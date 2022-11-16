@@ -1,0 +1,47 @@
+site_name: UnBook
+
+theme:
+  name: material
+  palette:
+    - scheme: dracula
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.instant
+    - content.tabs.link
+
+  plugins:
+    - glightbox
+
+  font:
+  text: Roboto
+  code: Roboto Mono
+
+markdown_extensions:
+  - pymdownx.tasklist
+  - pymdownx.emoji
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.highlight
+  - attr_list
+
+nav:
+  - Documentação:
+      - Visão do Produto e Projeto:
+          - Histórico de Revisão: 'documentation/historico-de-revisao.md'
+          - Visão Geral do Produto: 'documentation/visao-geral-do-produto.md'
+          - Visão Geral do Projeto: 'documentation/visao-geral-do-projeto.md'
+          - Processo de Desenvolvimento de Software: 'documentation/processo-de-desenvolvimento-de-software.md'
+          - Lições Aprendidas: 'documentation/licoes-aprendidas.md'
+      - Seminário de Processos e Ciclos de Vida: 'seminario.md'
