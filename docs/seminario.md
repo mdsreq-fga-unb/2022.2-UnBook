@@ -1,16 +1,5 @@
 # Metodologia Scrum
 
-<h1 id="sobre-o-projeto"><img alt="📓" class="emojione" src="https://cdnjs.cloudflare.com/ajax/libs/emojione/2.2.7/assets/png/1f4d3.png" title=":notebook:" /> Sobre o Projeto</h1>
-<div text-align="center">
-   <img alt="size-badge" src="https://img.shields.io/github/repo-size/mdsreq-fga-unb/2022.1-pets-off-road?style=for-the-badge"/>
-   <img alt="languages-badge" src="https://img.shields.io/github/languages/count/mdsreq-fga-unb/2022.1-pets-off-road?style=for-the-badge"/>
-   <img alt="issues-badge" src="https://img.shields.io/github/issues/mdsreq-fga-unb/2022.1-pets-off-road?style=for-the-badge"/>
-   <img alt="pr-badge" src="https://img.shields.io/github/issues-pr/mdsreq-fga-unb/2022.1-pets-off-road?style=for-the-badge"/>
-</div>
-<p align="center">
-   <img width="300" src="img/Slide1.jpeg" />
-</p>
-
 ![Slide 01 - Scrum](img/Slide1.jpeg)
 ![Slide 02 - Scrum](img/Slide2.jpeg)
 ![Slide 03 - Scrum](img/Slide3.jpeg)
