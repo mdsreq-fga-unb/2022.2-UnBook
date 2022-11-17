@@ -42,7 +42,7 @@ Segundo Project Management Body of Knowledge (PMBOK, 2017), o risco consiste em 
 | Diminuição da equipe                | Redução da equipe por motivos de desistência                                                                         | Baixa         | Redistribuição do trabalho entre os integrantes restantes             |
 | Baixa produtividade da equipe       | Produtividade abaixo do esperado por falta de conhecimento da equipe ou baixa disponibilidade                        | Moderada      | Melhorar a gestão de tempo e redistribuir tarefas pendentes           |
 | Problemas com o Cliente             | Desistência de clientes e dificuldade de comunicação                                                                 | Baixa         | Buscar mais pessoas interessadas no projeto                           |
-| Problemas de comuniacção da equipe  | Falta de comunicação entre os membros por motivos externos                                                           | Baixa         | Buscar mais pessoas interessadas no projeto                           |
+| Problemas de comuniacção da equipe  | Falta de comunicação entre os membros por motivos externos                                                           | Baixa         | Buscar meios de comunicação mais eficientes.                          |
 
 ## Critérios de Replanejamento
 

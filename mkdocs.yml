@@ -48,4 +48,7 @@ nav:
           - Visão Geral do Projeto: 'visao-de-produto-e-projeto/visao-geral-do-projeto.md'
           - Processo de Desenvolvimento de Software: 'visao-de-produto-e-projeto/processo-de-desenvolvimento-de-software.md'
           - Lições Aprendidas: 'visao-de-produto-e-projeto/licoes-aprendidas.md'
-      - Seminário de Processos e Ciclos de Vida: 'seminario.md'
+      - Entregas:
+          - Unidade 1:
+              - Seminário de Processos e Ciclos de Vida: 'entregas/seminario.md'
+              - Video de Apresentação Git Pages: 'entregas/video-apresentacao.md'
