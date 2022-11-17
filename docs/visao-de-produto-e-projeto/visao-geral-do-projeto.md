@@ -31,9 +31,9 @@ A comunicação diária será feita pelo Whatsapp e as reuniões semanais se dar
 | Sprint Retrospective          | Equipe do Projeto             | Semanalmente          | Ver oportunidades de melhoria para aplicar à próxima sprint                 |
 | Comunicar situação do projeto | Equipe do Projeto e Professor | Final de cada unidade | Relatório de Situação do Projeto                                            |
 
-## Matriz de Comunicação
+## Gerenciamento de Riscos
 
-A comunicação diária será feita pelo Whatsapp e as reuniões semanais se darão por meio das plataformas Discord ou Microsoft Teams.
+Segundo Project Management Body of Knowledge (PMBOK, 2017), o risco consiste em uma condição ou evento que caso venha a ocorrer acarretará em um efeito positivo ou negativo, podendo causar danos ou atrasos em um projeto de software. Levando isso em consideração, o gerenciamento de risco é de caráter fundamental para o bom desenvolvimento do projeto.
 
 | Risco                               | Descrição                                                                                                            | Probabilidade | Ações de Mitigação                                                    |
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ------------- | --------------------------------------------------------------------- |

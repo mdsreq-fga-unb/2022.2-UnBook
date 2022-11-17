@@ -8,6 +8,7 @@
 ![Slide 06 - Scrum](img/Slide6.jpeg)
 ![Slide 07 - Scrum](img/Slide7.jpeg)
 ![Slide 08 - Scrum](img/Slide8.jpeg)
+![Slide 8.1 - Scrum](img/Slide8.1.jpeg)
 ![Slide 09 - Scrum](img/Slide9.jpeg)
 
 # Programação Extrema (XP)
@@ -20,4 +21,5 @@
 ![Slide 15 - Scrum](img/Slide15.jpeg)
 ![Slide 16 - Scrum](img/Slide16.jpeg)
 ![Slide 17 - Scrum](img/Slide17.jpeg)
+![Slide 17.1 - Scrum](img/Slide17.1.jpeg)
 ![Slide 18 - Scrum](img/Slide18.jpeg)

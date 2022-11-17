@@ -28,6 +28,9 @@ theme:
   text: Roboto
   code: Roboto Mono
 
+  theme:
+    logo: 'img/logo_UnBook.png'
+
 markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.emoji
@@ -40,9 +43,9 @@ nav:
   - Início: 'index.md'
   - Documentação:
       - Visão do Produto e Projeto:
-          - Histórico de Revisão: 'documentation/historico-de-revisao.md'
-          - Visão Geral do Produto: 'documentation/visao-geral-do-produto.md'
-          - Visão Geral do Projeto: 'documentation/visao-geral-do-projeto.md'
-          - Processo de Desenvolvimento de Software: 'documentation/processo-de-desenvolvimento-de-software.md'
-          - Lições Aprendidas: 'documentation/licoes-aprendidas.md'
+          - Histórico de Revisão: 'visao-de-produto-e-projeto/historico-de-revisao.md'
+          - Visão Geral do Produto: 'visao-de-produto-e-projeto/visao-geral-do-produto.md'
+          - Visão Geral do Projeto: 'visao-de-produto-e-projeto/visao-geral-do-projeto.md'
+          - Processo de Desenvolvimento de Software: 'visao-de-produto-e-projeto/processo-de-desenvolvimento-de-software.md'
+          - Lições Aprendidas: 'visao-de-produto-e-projeto/licoes-aprendidas.md'
       - Seminário de Processos e Ciclos de Vida: 'seminario.md'
