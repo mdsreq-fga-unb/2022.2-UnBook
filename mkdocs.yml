@@ -37,6 +37,7 @@ markdown_extensions:
   - attr_list
 
 nav:
+  - Início: 'index.md'
   - Documentação:
       - Visão do Produto e Projeto:
           - Histórico de Revisão: 'documentation/historico-de-revisao.md'
