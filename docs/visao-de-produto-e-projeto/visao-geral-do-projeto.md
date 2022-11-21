@@ -25,10 +25,10 @@ A comunicação diária será feita pelo Whatsapp e as reuniões semanais se dar
 
 | Descrição                     | Área / Envolvidos             | Periodicidade         | Produtos Gerados                                                            |
 | ----------------------------- | ----------------------------- | --------------------- | --------------------------------------------------------------------------- |
-| Daily                         | Equipe do Projeto             | Diariamente           | Relatório do andamento das tarefas individuais                              |
-| Sprint Planning               | Equipe do Projeto e Cliente   | Semanalmente          | Realizar o planejamento da sprint e definir as funcionalidades prioritárias |
-| Sprint Review                 | Equipe do Projeto e Cliente   | Semanalmente          | Apresentar resultados da sprint e validar as funcionalidades implementadas  |
-| Sprint Retrospective          | Equipe do Projeto             | Semanalmente          | Ver oportunidades de melhoria para aplicar à próxima sprint                 |
+| Daily                         | Equipe do Projeto             | Diariamente           | Relato do andamento das tarefas individuais                              |
+| Sprint Planning               | Equipe do Projeto e Cliente   | Semanalmente          | Planejamento da sprint e definição das funcionalidades prioritárias |
+| Sprint Review                 | Equipe do Projeto e Cliente   | Semanalmente          | Resultados da sprint e validações das funcionalidades implementadas  |
+| Sprint Retrospective          | Equipe do Projeto             | Semanalmente          | Oportunidades de melhoria para aplicar à próxima sprint                 |
 | Comunicar situação do projeto | Equipe do Projeto e Professor | Final de cada unidade | Relatório de Situação do Projeto                                            |
 
 ## Gerenciamento de Riscos
