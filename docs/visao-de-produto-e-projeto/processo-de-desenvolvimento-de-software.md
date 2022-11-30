@@ -1,7 +1,19 @@
 # Processo de Desenvolvimento de Software
+Para o desenvolvimento do projeto iremos utilizar as metodologias Scrum e XP (Extreme Programming) com ciclos de entregas rápidas e incrementais. Abaixo seguem as principais características que usaremos de cada um dos métodos.
 
-Para o desenvolvimento do projeto iremos utilizar as metodologias Scrum e XP (Extreme Programming) com ciclos de entregas rápidas e incrementais. Para tal, realizaremos reuniões assíncronas diárias (Daily) através do whatsapp, para verificar o andamaneto das terefas individuais. Faremos reuniões semanais com os clientes (Sprint Planning e Sprint Review) para definir as metas da sprint e validar as funcionalidades implementadas. Também faremos reuniões semanais com a equipe para verificar oportunidades de melhoria para as próximas sprints (Sprint Retrospective).
-Durante a codificação da aplicação utilizaremos programação em pares (Pair Programming) e realizaremos testes para acompanhar o desenvolvimento do projeto (TDD). Nas Sprint Planning faremos uso do Planning Poker para mensurar a dificuldade das tarefas.
+- ###Tópicos SCRUM
+    - **Daily Sprints** - Realizadas diariamente, para que os membros da equipe possam se comunicar (preferencialmente pelo WhatsApp) e se atualizar sobre o andamento do projeto.
+    - **Sprint Planning** - realizada no início de cada sprint, para que os membros da equipe possam se reunir e planejar o que será feito na sprint.
+    - **Sprint Review** - realizada no final de cada sprint, para que os membros da equipe possam revisar o que foi feito na sprint.
+    - **Sprint Retrospective** - realizada no final de cada sprint, para que os membros da equipe possam refletir sobre o que foi feito na sprint e o que pode ser melhorado para as próximas sprints.
+    - **Product Backlog** - É uma lista de funcionalidades que o produto deve ter, ordenadas de acordo com a importância para o cliente. As funcionalidades são adicionadas ao Product Backlog durante o Sprint Planning.
+
+- ###Tópicos eXtreme Programming
+    - **Pair Programming** - É uma técnica de programação em que dois programadores trabalham juntos em um mesmo computador. Um dos programadores (o driver) escreve o código enquanto o outro (o observer) observa e sugere melhorias.
+    - **Test Driven Development** - É uma técnica de desenvolvimento de software que consiste em escrever testes antes de escrever o código. Os testes são escritos para especificar e validar o comportamento do código.
+    - **Continuous Integration** - É uma prática de desenvolvimento de software que consiste em integrar o código desenvolvido por diferentes programadores dirigida a entregas. Cada integração é verificada por um processo de integração contínua, que pode incluir compilação, execução de testes e notificação de desenvolvedores sobre falhas.
+    - **Plannig Poker** - É uma técnica de estimativa de esforço de desenvolvimento de software que consiste em uma equipe de desenvolvimento estimar o esforço necessário para completar uma tarefa.
+
 
 ![Imagem Esquema de reunião Semanal](../img/ReunioesSemanais.jpeg)
 ![Imagem Agile Board](../img/AgileBoard.jpg)
