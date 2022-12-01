@@ -1,20 +1,12 @@
 site_name: UnBook
 
+extra_css:
+  - stylesheets/extra.css
+
 theme:
   name: material
   palette:
-    - scheme: dracula
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-    - scheme: slate
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
+    - scheme: UnBook
   features:
     - navigation.tabs
     - navigation.top
