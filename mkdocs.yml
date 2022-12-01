@@ -29,7 +29,7 @@ theme:
   code: Roboto Mono
 
   theme:
-    logo: 'img/logo_UnBook.png'
+    logo: img/logo_UnBook.png
 
 markdown_extensions:
   - pymdownx.tasklist
@@ -40,15 +40,17 @@ markdown_extensions:
   - attr_list
 
 nav:
-  - Início: 'index.md'
+  - Início: index.md
   - Documentação:
       - Visão do Produto e Projeto:
-          - Histórico de Revisão: 'visao-de-produto-e-projeto/historico-de-revisao.md'
-          - Visão Geral do Produto: 'visao-de-produto-e-projeto/visao-geral-do-produto.md'
-          - Visão Geral do Projeto: 'visao-de-produto-e-projeto/visao-geral-do-projeto.md'
-          - Processo de Desenvolvimento de Software: 'visao-de-produto-e-projeto/processo-de-desenvolvimento-de-software.md'
-          - Lições Aprendidas: 'visao-de-produto-e-projeto/licoes-aprendidas.md'
-      - Entregas:
+          - Histórico de Revisão: visao-de-produto-e-projeto/historico-de-revisao.md
+          - Visão Geral do Produto: visao-de-produto-e-projeto/visao-geral-do-produto.md
+          - Visão Geral do Projeto: visao-de-produto-e-projeto/visao-geral-do-projeto.md
+          - Processo de Desenvolvimento de Software: visao-de-produto-e-projeto/processo-de-desenvolvimento-de-software.md
+      - Backlog do Produto: backlog-do-produto/backlog-do-produto.md
+      - Entregas: 
           - Unidade 1:
-              - Seminário de Processos e Ciclos de Vida: 'entregas/seminario.md'
-              - Video de Apresentação Git Pages: 'entregas/video-apresentacao.md'
+              - Seminário de Processos e Ciclos de Vida: entregas/seminario.md
+              - Video de Apresentação Git Pages: entregas/video-apresentacao.md
+      - Lições Aprendidas: 
+              - Unidade 1: licoes-aprendidas/licoes-aprendidas-unidade1.md
