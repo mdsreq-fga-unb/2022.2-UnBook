@@ -15,7 +15,7 @@
 | E01 - Usuário          | F03 - Criar, visualizar, editar e deletar grupos              |
 | E01 - Usuário          | F04 - Interagir com grupos (entrar, sair, realizar postagens) |
 | E01 - Usuário          | F05 - Realizar a moderação de grupos em que é administrador   |
-| E01 - Usuário          | F06 - Fazer conexão com outros usuários (Chats e sugestões)   |
+| E01 - Usuário          | F06 - Fazer conexão com outros usuários (Chats e Sugestões)   |
 | E01 - Usuário          | F07 - Alterar perfil na plataforma                            |
 | E01 - Usuário          | F08 - Criar calendário                                        |
 | E02 - Moderador        | F09 - Fazer a moderação de usuários                           |
@@ -23,3 +23,9 @@
 | E03 - Cadastro e Login | F11 - Cadastrar na plataforma                                 |
 | E03 - Cadastro e Login | F12 - Logar na plataforma                                     |
 | E03 - Cadastro e Login | F13 - Alterar cadastro na plataforma                          |
+
+## Mínimo Produto Viável
+
+| MVP1                    | MVP2                         |
+| ----------------------- | ---------------------------- |
+| F01, F07, F11, F12, F13 | F02, F03, F04, F05, F09, F10 |
