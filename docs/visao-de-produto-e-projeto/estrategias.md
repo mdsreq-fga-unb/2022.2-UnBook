@@ -32,3 +32,5 @@ O Design Simples é uma técnica utilizada para simplificar o desenvolvimento de
 A refatoração será utilizado com o objetivo de reestruturar o código da aplicação para seguir os princípios do design simples. Para tal, será adotada a prática de revisão dos pull requests criados pelos membros da equipe. Desta forma, os membros poderão sugerir melhorias e apontar duplicações no código.
 
 ## Estratégia de Integração Contínua
+
+Como estratégia para integração contínua, será utilizada a ferramenta GitLab.
