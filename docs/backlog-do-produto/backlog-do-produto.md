@@ -6,26 +6,63 @@
 | ---------- | ------ | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 30/11/2022 | 1.0    | Primeira versão do Backlog do Produto | [Ana Beatriz](https://github.com/AnaBeatrizMassuh), [Gabriel Cabral](https://github.com/GabriellCabrall), [Lucas Borba](https://github.com/LBorba00), [Maciel Júnior](https://github.com/macieljuniormax), [Pedro Campos](https://github.com/pedrocampos0) |
 
+## Personas
+
+| Persona       | Descrição                                                                       |
+| ------------- | ------------------------------------------------------------------------------- |
+| Usuário       | Alunos ou docentes da Unb que utilizarão a rede social                          |
+| Moderador     | Usuários que possuem função de realizar a moderação da plataforma               |
+| Administrador | Usuários que possuem a função de realizar a moderação de um grupo na plataforma |
+
 ## Product Backlog
 
-| Épicos                 | Features                                                      |
-| ---------------------- | ------------------------------------------------------------- |
-| E01 - Usuário          | F01 - Criar, visualizar, editar e deletar postagens           |
-| E01 - Usuário          | F02 - Interagir com uma postagem (curtir, comentar e salvar)  |
-| E01 - Usuário          | F03 - Criar, visualizar, editar e deletar grupos              |
-| E01 - Usuário          | F04 - Interagir com grupos (entrar, sair, realizar postagens) |
-| E01 - Usuário          | F05 - Realizar a moderação de grupos em que é administrador   |
-| E01 - Usuário          | F06 - Fazer conexão com outros usuários (Chats e Sugestões)   |
-| E01 - Usuário          | F07 - Alterar perfil na plataforma                            |
-| E01 - Usuário          | F08 - Criar calendário                                        |
-| E02 - Moderador        | F09 - Fazer a moderação de usuários                           |
-| E02 - Moderador        | F10 - Fazer a moderação de postagens de usuários              |
-| E03 - Cadastro e Login | F11 - Cadastrar na plataforma                                 |
-| E03 - Cadastro e Login | F12 - Logar na plataforma                                     |
-| E03 - Cadastro e Login | F13 - Alterar cadastro na plataforma                          |
+| Épicos                         | Features                      | User Stories                                                                                                                                                |
+| ------------------------------ | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| E01 - Feed de Postagens        | F01 - Administrar postagens   | US01 - Como usuário, eu gostaria de criar postagens na plataforma para que outros usuários possam visualizá-las                                             |
+| E01 - Feed de Postagens        | F01 - Administrar postagens   | US02 - Como usuário, eu gostaria de editar postagens na plataforma para corrigir ou alterar o conteúdo da postagem                                          |
+| E01 - Feed de Postagens        | F01 - Administrar postagens   | US03 - Como usuário, eu gostaria de deletar postagens criadas por mim para que essas não estejam mais disponíveis na plataforma                             |
+| E01 - Feed de Postagens        | F02 - Interagir com postagens | US04 - Como usuário, eu gostaria de visualizar postagens de outros usuários para ficar mais informado                                                       |
+| E01 - Feed de Postagens        | F02 - Interagir com postagens | US05 - Como usuário, eu gostaria de curtir postagens na plataforma para que elas apareçam em destaque                                                       |
+| E01 - Feed de Postagens        | F02 - Interagir com postagens | US06 - Como usuário, eu gostaria de comentar em postagens da plataforma para opinar sobre as postagens                                                      |
+| E01 - Feed de Postagens        | F02 - Interagir com postagens | US07 - Como usuário, eu gostaria de salvar postagens para poder visualizá-las posteriormente                                                                |
+| E02 - Interação entre usuários | F03 - Realizar conexões       | US08 - Como usuário, eu gostaria de me conectar com outro usuário, para ver suas postagens com prioridade                                                   |
+| E02 - Interação entre usuários | F03 - Realizar conexões       | US09 - Como usuário, eu gostaria de receber sugestões de usuários para me conectar, para ver suas postagens com prioridade                                  |
+| E02 - Interação entre usuários | F04 - Interagir com grupos    | US10 - Como usuário, eu gostaria de ser capaz de entrar em grupo já existente, pois posso ter interesse no grupo ou saber dele só após sua criação          |
+| E02 - Interação entre usuários | F04 - Interagir com grupos    | US11 - Como usuário, eu gostaria de ser capaz de sair de grupos, pois posso não compartilhar mais dos mesmos interesses                                     |
+| E02 - Interação entre usuários | F04 - Interagir com grupos    | US12 - Como usuário, eu gostaria de criar grupos na plataforma para unir pessoas com interesses semelhantes                                                 |
+| E02 - Interação entre usuários | F04 - Interagir com grupos    | US13 - Como usuário, eu gostaria que me fossem sugeridos grupos que se assemelhem a minhas áreas de interesse                                               |
+| E02 - Interação entre usuários | F05 - Comunicar por chat      | US14 - Como usuário, eu gostaria de visualizar mensagens que forem enviadas a mim por outros usuários por meio do chat para me comunicar com esses usuários |
+| E02 - Interação entre usuários | F05 - Comunicar por chat      | US15 - Como usuário, eu gostaria de enviar mensagens para outros usuários, por meio do chat, para me comunicar com esses usuários                           |
+| E02 - Interação entre usuários | F05 - Comunicar por chat      | US16 - Como usuário, eu gostaria de curtir mensagens enviadas a mim, por outros usuários por meio do chat, para ter uma conversa mais interativa            |
+| E02 - Interação entre usuários | F05 - Comunicar por chat      | US17 - Como usuário, eu gostaria de ser capaz de salvar mensagens enviadas a mim, por outros usuários por meio do chat, para acessá-las mais facilmente     |
+| E03 - Moderação                | F06 - Moderar o feed          | US18 - Como moderador, eu quero banir usuários que desrespeitem os princípios da plataforma para que esse usuários não possam mais acessar a rede social    |
+| E03 - Moderação                | F06 - Moderar o feed          | US19 - Como moderador, eu quero excluir postagens que não seguem os princípios da plataforma para que essas não sejam visualizadas pelos usuários           |
+| E03 - Moderação                | F07 - Moderar grupos          | US20 - Como administrador, eu quero excluir postagens que ferem os princípios do grupo para que essas não sejam visualizadas pelos usuários                 |
+| E03 - Moderação                | F07 - Moderar grupos          | US21 - Como administrador, eu quero excluir usuários que ferem os princípios do grupo para que esses usuários não façam mais parte do grupo                 |
+| E03 - Moderação                | F07 - Moderar grupos          | US22 - Como administrador, eu quero conceder acesso à outros membros do grupo para que esses se tornem administrador do grupo                               |
+| E03 - Moderação                | F07 - Moderar grupos          | US23 - Como administrador, eu gostaria de ser capaz de editar as publicações do grupo, para corrigí-las quando necessário                                   |
+| E03 - Moderação                | F07 - Moderar grupos          | US24 - Como administrador, eu gostaria de ser capaz de deletar grupos que já foram criados, pois esses podem ser tornar sem utilidade                       |
+| E04 - Cadastro e Login         | F08 - Gerenciar contas        | US25 - Como usuário, eu quero me cadastrar na plataforma para ter acesso à rede social                                                                      |
+| E04 - Cadastro e Login         | F08 - Gerenciar contas        | US26 - Como usuário, desejo ter a opção de cadastrar diretamente com o minha conta institucional da microsoft, para facilitar meu cadaastro                 |
+| E04 - Cadastro e Login         | F08 - Gerenciar contas        | US27 - Como usuário, eu quero alterar meu cadastro na plataforma para poder corrigir ou alterar dados                                                       |
+| E04 - Cadastro e Login         | F08 - Gerenciar contas        | US28 - Como usuário, eu quero excluir meu cadastro para que eu não esteja mais vinculado à rede social                                                      |
+| E04 - Cadastro e Login         | F09 - Autenticar conta        | US29 - Como usuário, quero me autenticar na plataforma para poder interagir com a rede social                                                               |
+| E04 - Cadastro e Login         | F09 - Autenticar conta        | US30 - Como usuário, desejo ter a opção de logar diretamente com o minha conta institucional da microsoft para facilitar meu acesso                         |
+| E04 - Cadastro e Login         | F10 - Gerenciar Calendário    | US31 - Como usuário, quero criar um calendário dentro da plataforma, para organização pessoal e institucional                                               |
+| E04 - Cadastro e Login         | F10 - Gerenciar Calendário    | US32 - Como usuário, quero ter a opção de excluir meu calendário criado, para que esse não esteja mais disponível                                           |
+| E04 - Cadastro e Login         | F10 - Gerenciar Calendário    | US33 - Como usuário, quero ter a opção de atualizar/editar meu calendário criado, para corrigir ou inserir novas informações                                |
+
+## Requisitos não funcionais
+
+| Requisito | Categoria     | Descrição                                                                      |
+| --------- | ------------- | ------------------------------------------------------------------------------ |
+| RNF01     | Implementação | O Front-end da apliação deverá ser codificado utilizando a tecnologia React JS |
+| RNF02     | Implementação | O Back-end da aplicação deverá ser codificado utilizando a tecnologia Node JS  |
+| RNF03     | Interface     | A aplicação deverá ser responsiva para diferentes tamanhos de tela             |
 
 ## Mínimo Produto Viável
 
-| MVP1                    | MVP2                         |
-| ----------------------- | ---------------------------- |
-| F01, F07, F11, F12, F13 | F02, F03, F04, F05, F09, F10 |
+| MVP | User Stories                                                     | Objetivo                              |
+| --- | ---------------------------------------------------------------- | ------------------------------------- |
+| 1   | US01, US02, US03, US04, US25, US27, US28, US29                   | Criar e vizualizar postagens          |
+| 2   | US05, US06, US07, US10, US11, US18, US19, US20, US21, US22, US24 | Permitir interações entre os usuários |

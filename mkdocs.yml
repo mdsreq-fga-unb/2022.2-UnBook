@@ -39,11 +39,10 @@ nav:
           - Visão Geral do Produto: visao-de-produto-e-projeto/visao-geral-do-produto.md
           - Visão Geral do Projeto: visao-de-produto-e-projeto/visao-geral-do-projeto.md
           - Processo de Desenvolvimento de Software: visao-de-produto-e-projeto/processo-de-desenvolvimento-de-software.md
-          - Estratégias de Implementação: visao-de-produto-e-projeto/estrategias.md
       - Backlog do Produto: backlog-do-produto/backlog-do-produto.md
-      - Entregas: 
-          - Unidade 1:
-              - Seminário de Processos e Ciclos de Vida: entregas/seminario.md
-              - Video de Apresentação Git Pages: entregas/video-apresentacao.md
-      - Lições Aprendidas: 
-              - Unidade 1: licoes-aprendidas/licoes-aprendidas-unidade1.md
+      - Estratégias de Implementação: visao-de-produto-e-projeto/estrategias.md
+  - Entregas: 
+      - Unidade 1:
+          - Seminário de Processos e Ciclos de Vida: entregas/seminario.md
+          - Video de Apresentação Git Pages: entregas/video-apresentacao.md
+  - Lições Aprendidas: licoes-aprendidas/licoes-aprendidas-unidade1.md
