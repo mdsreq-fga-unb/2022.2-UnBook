@@ -1,0 +1,27 @@
+{
+  "name": "unbook",
+  "version": "1.0.0",
+  "description": "Projeto 'UnBook' para a disciplina MDS da Universidade de Brasília",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon ./index.js localhost 3000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdsreq-fga-unb/2022.2-UnBook.git"
+  },
+  "keywords": [
+    "UnBook"
+  ],
+  "author": " <https://github.com/GabriellCabrall>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdsreq-fga-unb/2022.2-UnBook/issues"
+  },
+  "homepage": "https://github.com/mdsreq-fga-unb/2022.2-UnBook#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.12"
+  }
+}
