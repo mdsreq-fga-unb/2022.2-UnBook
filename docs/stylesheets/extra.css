@@ -1,0 +1,25 @@
+[data-md-color-scheme="UnBook"] {
+  --md-primary-fg-color:        #202024;
+  --md-default-fg-color:             #E1E1E6;
+  --md-default-fg-color--light:      #E1E1E6;
+  --md-default-fg-color--lighter:    #E1E1E6;
+  --md-default-fg-color--lightest:   #E1E1E6;
+  --md-typeset-a-color: #E1E1E6;
+  --md-typeset-color: #E1E1E6;
+  --md-admonition-fg-color:  #00B37E;
+  --md-default-bg-color:             #121214;
+  --md-code-fg-color:                #121214;
+  --md-code-bg-color:                #121214;
+  --md-footer-bg-color--dark:        #202024;
+  --md-accent-fg-color: #00B37E;
+  --md-footer-bg-color: #202024;
+  --md-typeset-table-color: rgba(255, 255, 255, 0.05);
+  --md-primary-fg-color--light:          #00B37E;
+  --md-primary-fg-color--dark:           #00B37E;
+  --md-primary-bg-color:                 #00B37E;
+  --md-primary-bg-color--light:         #00B37E;
+  --md-accent-fg-color:                #00B37E;
+  --md-accent-fg-color--transparent:     #00B37E;
+  --md-accent-bg-color:                  #00B37E;
+  --md-accent-bg-color--light:          #00B37E;
+}

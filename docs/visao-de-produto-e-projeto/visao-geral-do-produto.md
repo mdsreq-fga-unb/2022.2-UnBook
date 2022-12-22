@@ -2,8 +2,6 @@
 
 ## Declaração de Posição do Produto
 
-Como intenção, a equipe pretende melhorar a comunicação e distribuição de informações entre os estudantes, para que se mantenham informados acerca de assuntos pertinentes ao curso, à universidade e à vida profissional. Temos como objetivo, também, aprimorar a interação social entre os alunos, para que possam se conhecer melhor, fazer novos amigos e terem experiências únicas.
-
 | Para            | Alunos universitários (Neste caso, alunos da UnB).                                                                                                                                                                                                                   |
 | --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Quem            | Em vários momentos são sobrecarregados por informações e acabam perdendo oportunidades dentro da faculdade.                                                                                                                                                          |
@@ -14,7 +12,15 @@ Como intenção, a equipe pretende melhorar a comunicação e distribuição de 
 
 ## Objetivos do Produto
 
-O objetivo principal do produto é disponibilizar uma plataforma que facilite aos alunos da universidade a terem acesso a informações sobre a faculdade, sejam elas de eventos, abertura de processos seletivos para equipes de competições e empresas juniores, vagas de estágio, etc. Já o objetivo secundário do projeto é promover a socialização dos alunos, visto que as relações interpessoais na faculdade foram fragilizadas com os tempos de pandemia.
+Objetivo principal do produto:
+
+- Disponibilizar uma plataforma que facilite aos alunos da universidade a terem acesso a informações sobre a faculdade.
+
+Objetivo secundário do produto:
+
+- Promover a socialização dos alunos.
+
+&nbsp; &nbsp; Pois as relações interpessoais na faculdade foram fragilizadas com os tempos de pandemia.
 
 ## Tecnologias a Serem Utilizadas
 

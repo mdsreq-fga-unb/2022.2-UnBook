@@ -1,20 +1,12 @@
 site_name: UnBook
 
+extra_css:
+  - stylesheets/extra.css
+
 theme:
   name: material
   palette:
-    - scheme: dracula
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
-    - scheme: slate
-      primary: deep purple
-      accent: deep purple
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
+    - scheme: UnBook
   features:
     - navigation.tabs
     - navigation.top
@@ -28,6 +20,9 @@ theme:
   text: Roboto
   code: Roboto Mono
 
+  theme:
+    logo: img/logo_UnBook.png
+
 markdown_extensions:
   - pymdownx.tasklist
   - pymdownx.emoji
@@ -37,12 +32,19 @@ markdown_extensions:
   - attr_list
 
 nav:
-  - Início: 'index.md'
+  - Início: index.md
   - Documentação:
       - Visão do Produto e Projeto:
-          - Histórico de Revisão: 'documentation/historico-de-revisao.md'
-          - Visão Geral do Produto: 'documentation/visao-geral-do-produto.md'
-          - Visão Geral do Projeto: 'documentation/visao-geral-do-projeto.md'
-          - Processo de Desenvolvimento de Software: 'documentation/processo-de-desenvolvimento-de-software.md'
-          - Lições Aprendidas: 'documentation/licoes-aprendidas.md'
-      - Seminário de Processos e Ciclos de Vida: 'seminario.md'
+          - Histórico de Revisão: visao-de-produto-e-projeto/historico-de-revisao.md
+          - Visão Geral do Produto: visao-de-produto-e-projeto/visao-geral-do-produto.md
+          - Visão Geral do Projeto: visao-de-produto-e-projeto/visao-geral-do-projeto.md
+          - Processo de Desenvolvimento de Software: visao-de-produto-e-projeto/processo-de-desenvolvimento-de-software.md
+      - Backlog do Produto: backlog-do-produto/backlog-do-produto.md
+      - Estratégias de Implementação: visao-de-produto-e-projeto/estrategias.md
+  - Entregas: 
+      - Unidade 1:
+          - Seminário de Processos e Ciclos de Vida: entregas/seminario.md
+          - Video de Apresentação Git Pages: entregas/video-apresentacao.md
+      - Unidade 2:
+          - Video de Apresentação Backlog do Produto e Estratégias de Implementação: entregas/video-apresentacao-unidade2.md
+  - Lições Aprendidas: licoes-aprendidas/licoes-aprendidas-unidade1.md
