@@ -1,9 +1,13 @@
 import { SignUpController } from "../../modules/accounts/controllers/signup";
 import { MissingParamError } from "../../modules/accounts/errors/missing-param-error";
 
+const makeSut = (): SignUpController => {
+  return new SignUpController();
+};
+
 describe("SignUp Controller", () => {
   test("Deve retornar 400 se o nome não for enviado", () => {
-    const sut = new SignUpController();
+    const sut = makeSut();
     const httpRequest = {
       body: {
         email: "any_email@mail.com",
@@ -17,7 +21,7 @@ describe("SignUp Controller", () => {
   });
 
   test("Deve retornar 400 se o email não for enviado", () => {
-    const sut = new SignUpController();
+    const sut = makeSut();
     const httpRequest = {
       body: {
         name: "any_name",
@@ -31,7 +35,7 @@ describe("SignUp Controller", () => {
   });
 
   test("Deve retornar 400 se a senha não for enviada", () => {
-    const sut = new SignUpController();
+    const sut = makeSut();
     const httpRequest = {
       body: {
         name: "any_name",
@@ -45,7 +49,7 @@ describe("SignUp Controller", () => {
   });
 
   test("Deve retornar 400 se a confirmação da senha não for enviada", () => {
-    const sut = new SignUpController();
+    const sut = makeSut();
     const httpRequest = {
       body: {
         name: "any_name",
