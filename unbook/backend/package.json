@@ -4,7 +4,7 @@
   "description": "Projeto 'UnBook' para a disciplina MDS da Universidade de Brasília",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests",
+    "test": "jest --passWithNoTests --watch",
     "serve": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
   },
   "repository": {
