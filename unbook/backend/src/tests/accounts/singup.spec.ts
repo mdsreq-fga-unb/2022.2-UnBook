@@ -1,4 +1,5 @@
-// eslint-disable-next-line max-classes-per-file
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable-next-line max-classes-per-file */
 import { SignUpController } from "../../modules/accounts/controllers/signup";
 import {
   InvalidParamError,
@@ -14,7 +15,6 @@ interface ISutTypes {
 
 const makeSut = (): ISutTypes => {
   class EmailValidatorStub implements IEmailValidator {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     isValid(email: string): boolean {
       return true;
     }
@@ -121,7 +121,6 @@ describe("SignUp Controller", () => {
 
   test("Deve retornar 500 se o EmailValidator retornar um erro", () => {
     class EmailValidatorStub implements IEmailValidator {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isValid(email: string): boolean {
         throw new ServerError();
       }
