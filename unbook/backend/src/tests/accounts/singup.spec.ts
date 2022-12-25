@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable-next-line max-classes-per-file */
 import { SignUpController } from "../../modules/accounts/controllers/signup";
 import {
   InvalidParamError,
@@ -17,15 +16,6 @@ const makeEmailValidator = (): IEmailValidator => {
   class EmailValidatorStub implements IEmailValidator {
     isValid(email: string): boolean {
       return true;
-    }
-  }
-  return new EmailValidatorStub();
-};
-
-const makeEmailValidatorWithError = (): IEmailValidator => {
-  class EmailValidatorStub implements IEmailValidator {
-    isValid(email: string): boolean {
-      throw new Error();
     }
   }
   return new EmailValidatorStub();
@@ -133,8 +123,10 @@ describe("SignUp Controller", () => {
   });
 
   test("Deve retornar 500 se o EmailValidator retornar um erro", () => {
-    const emailValidatorStub = makeEmailValidatorWithError();
-    const sut = new SignUpController(emailValidatorStub);
+    const { sut, emailValidatorStub } = makeSut();
+    jest.spyOn(emailValidatorStub, "isValid").mockImplementationOnce(() => {
+      throw new Error();
+    });
     const httpRequest = {
       body: {
         name: "any_name",
