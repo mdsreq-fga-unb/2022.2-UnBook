@@ -19,6 +19,7 @@
   "rules": {
     "camelcase": "off",
     "import/no-unresolved": "error",
+    "@typescript-eslint/explicit-function-return-type": "warn",
     "@typescript-eslint/naming-convention": [
       "error",
       {
@@ -47,7 +48,7 @@
     "import-helpers/order-imports": [
       "warn",
       {
-        "newlinesBetween": "always",
+        "newlinesBetween": "never",
         "groups": ["module", "/^@shared/", ["parent", "sibling", "index"]],
         "alphabetize": {
           "order": "asc",
@@ -62,5 +63,10 @@
       }
     ],
     "prettier/prettier": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    }
   }
 }
