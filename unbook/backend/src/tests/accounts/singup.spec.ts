@@ -1,6 +1,8 @@
+// eslint-disable-next-line max-classes-per-file
 import { SignUpController } from "../../modules/accounts/controllers/signup";
 import { InvalidParamError } from "../../modules/accounts/errors/invalid-param-error";
 import { MissingParamError } from "../../modules/accounts/errors/missing-param-error";
+import { ServerError } from "../../modules/accounts/errors/server-errors";
 import { IEmailValidator } from "../../modules/accounts/protocols/email-validator";
 
 interface ISutTypes {
@@ -113,5 +115,27 @@ describe("SignUp Controller", () => {
     };
     sut.handle(httpRequest);
     expect(isValidSpy).toHaveBeenCalledWith("any_email@mail.com");
+  });
+
+  test("Deve retornar 500 se o EmailValidator retornar um erro", () => {
+    class EmailValidatorStub implements IEmailValidator {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      isValid(email: string): boolean {
+        throw new ServerError();
+      }
+    }
+    const emailValidatorStub = new EmailValidatorStub();
+    const sut = new SignUpController(emailValidatorStub);
+    const httpRequest = {
+      body: {
+        name: "any_name",
+        email: "any_email@mail.com",
+        password: "any_password",
+        passwordConfirmation: "any_password",
+      },
+    };
+    const httpResponse = sut.handle(httpRequest);
+    expect(httpResponse.statusCode).toBe(500);
+    expect(httpResponse.body).toEqual(new ServerError());
   });
 });
