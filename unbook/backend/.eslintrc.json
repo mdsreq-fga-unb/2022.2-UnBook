@@ -62,7 +62,8 @@
         "devDependencies": ["**/*.spec.js"]
       }
     ],
-    "prettier/prettier": "error"
+    "prettier/prettier": "error",
+    "no-restricted-syntax": "off"
   },
   "settings": {
     "import/resolver": {
