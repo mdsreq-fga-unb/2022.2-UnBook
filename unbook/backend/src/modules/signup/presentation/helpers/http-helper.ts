@@ -1,3 +1,4 @@
+import { IAddAccountModel } from "../controllers/SignUpProtocols";
 import { ServerError } from "../errors/server-errors";
 import { IHttpResponse } from "../protocols/http";
 
@@ -15,4 +16,11 @@ const serverError = (): IHttpResponse => {
   };
 };
 
-export { badRequest, serverError };
+const ok = (data: IAddAccountModel): IHttpResponse => {
+  return {
+    statusCode: 200,
+    body: data,
+  };
+};
+
+export { badRequest, serverError, ok };
