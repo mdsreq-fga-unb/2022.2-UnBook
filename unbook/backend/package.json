@@ -4,7 +4,12 @@
   "description": "Projeto 'UnBook' para a disciplina MDS da Universidade de Brasília",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests --watch",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:unit": "npm test -- --watch -c jest-unit-config.json",
+    "test:integration": "npm test -- --watch -c jest-integration-config.json",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage --no-cache",
     "serve": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
   },
   "repository": {
