@@ -8,7 +8,7 @@
     "test:unit": "npm test -- --watch -c jest-unit-config.json",
     "test:integration": "npm test -- --watch -c jest-integration-config.json",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage",
+    "test:ci": "npx jest --coverage",
     "serve": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
   },
   "repository": {
@@ -31,12 +31,15 @@
     "bcrypt": "^5.1.0",
     "express": "^4.18.2",
     "i": "^0.3.7",
+    "mongodb": "^4.13.0",
     "nodemon": "^2.0.12",
     "npm": "^9.2.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^4.1.4",
     "@types/jest": "^29.2.4",
+    "@types/mongodb": "^4.0.7",
     "@types/validator": "^13.7.10",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
