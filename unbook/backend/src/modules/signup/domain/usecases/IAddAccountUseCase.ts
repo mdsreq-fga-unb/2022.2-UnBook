@@ -7,7 +7,7 @@ interface IAddAccountModel {
 }
 
 interface IAddAccount {
-  add(account: IAddAccountModel): IAccountModel;
+  add(account: IAddAccountModel): Promise<IAccountModel>;
 }
 
 export { IAddAccountModel, IAddAccount };
