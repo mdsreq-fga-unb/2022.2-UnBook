@@ -4,7 +4,7 @@
   "description": "Projeto 'UnBook' para a disciplina MDS da Universidade de Brasília",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand --watch",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.json",
     "test:integration": "npm test -- --watch -c jest-integration-config.json",
