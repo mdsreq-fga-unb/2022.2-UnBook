@@ -1,5 +1,4 @@
 import { IController, IHttpRequest, IHttpResponse } from ".";
-import { IEncrypter } from "../../data/protocols/encrypter";
 import { IAccountModel } from "../../domain/models/AccountModel";
 import {
   IAddAccount,
@@ -15,5 +14,4 @@ export {
   IHttpRequest,
   IHttpResponse,
   IEmailValidator,
-  IEncrypter,
 };
