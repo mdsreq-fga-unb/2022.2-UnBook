@@ -1,11 +1,21 @@
+/* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IEncrypter } from "../../modules/signup/data/protocols/encrypter";
-import { DbAddAccount } from "../../modules/signup/data/repositories/DbAddAccount";
+import {
+  AddAccountRepository,
+  IEncrypter,
+  IAddAccountRepository,
+} from "../../modules/signup/data/protocols/data-sign-up-protocols";
+import {
+  IAccountModel,
+  IAddAccountModel,
+} from "../../modules/signup/presentation/protocols/signup-protocols";
 
 interface ISutTypes {
-  sut: DbAddAccount;
+  sut: IAddAccountRepository;
   encrypterStub: IEncrypter;
+  addAccountRepositoryStub: IAddAccountRepository;
 }
+
 const makeEmcrypter = (): IEncrypter => {
   class EncrypterStub implements IEncrypter {
     encrypt(value: string): Promise<string> {
@@ -14,16 +24,34 @@ const makeEmcrypter = (): IEncrypter => {
   }
   return new EncrypterStub();
 };
+
+const makeAddAccountRepository = (): IAddAccountRepository => {
+  class AddAccountRepositoryStub implements IAddAccountRepository {
+    async add(account: IAddAccountModel): Promise<IAccountModel> {
+      const fakeAccount = {
+        id: "valid_id",
+        name: "valid_name",
+        email: "valid_email",
+        password: "hashed_password",
+      };
+      return new Promise((resolve) => resolve(fakeAccount));
+    }
+  }
+  return new AddAccountRepositoryStub();
+};
+
 const makeSut = (): ISutTypes => {
   const encrypterStub = makeEmcrypter();
-  const sut = new DbAddAccount(encrypterStub);
+  const addAccountRepositoryStub = makeAddAccountRepository();
+  const sut = new AddAccountRepository(encrypterStub, addAccountRepositoryStub);
   return {
     sut,
     encrypterStub,
+    addAccountRepositoryStub,
   };
 };
 
-describe("DbAddAccount UseCase", () => {
+describe("AddAccount Repository UseCase", () => {
   test("Deve chamar o Encrypter com o password correto", async () => {
     const { sut, encrypterStub } = makeSut();
     const encrypterSpy = jest.spyOn(encrypterStub, "encrypt");
@@ -50,5 +78,21 @@ describe("DbAddAccount UseCase", () => {
     };
     const promise = sut.add(accountData);
     await expect(promise).rejects.toThrow();
+  });
+
+  test("Deve chamar o AddAccountRepository com os valores corretos", async () => {
+    const { sut, addAccountRepositoryStub } = makeSut();
+    const addSpy = jest.spyOn(addAccountRepositoryStub, "add");
+    const accountData = {
+      name: "valid_name",
+      email: "valid_email",
+      password: "valid_password",
+    };
+    await sut.add(accountData);
+    expect(addSpy).toHaveBeenCalledWith({
+      name: "valid_name",
+      email: "valid_email",
+      password: "hashed_password",
+    });
   });
 });
