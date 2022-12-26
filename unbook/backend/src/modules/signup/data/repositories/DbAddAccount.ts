@@ -2,8 +2,8 @@ import {
   IAccountModel,
   IAddAccount,
   IAddAccountModel,
+  IEncrypter,
 } from "../../presentation/protocols/signup-protocols";
-import { IEncrypter } from "../protocols/encrypter";
 
 class DbAddAccount implements IAddAccount {
   constructor(private readonly encrypter: IEncrypter) {

@@ -6,7 +6,6 @@ interface ISutTypes {
   sut: DbAddAccount;
   encrypterStub: IEncrypter;
 }
-
 const makeEmcrypter = (): IEncrypter => {
   class EncrypterStub implements IEncrypter {
     encrypt(value: string): Promise<string> {
@@ -15,7 +14,6 @@ const makeEmcrypter = (): IEncrypter => {
   }
   return new EncrypterStub();
 };
-
 const makeSut = (): ISutTypes => {
   const encrypterStub = makeEmcrypter();
   const sut = new DbAddAccount(encrypterStub);
@@ -45,13 +43,12 @@ describe("DbAddAccount UseCase", () => {
       .mockReturnValueOnce(
         new Promise((resolve, reject) => reject(new Error()))
       );
-
     const accountData = {
       name: "valid_name",
       email: "valid_email",
       password: "valid_password",
     };
     const promise = sut.add(accountData);
-    await expect(promise).rejects.toThrow(new Error());
+    await expect(promise).rejects.toThrow();
   });
 });
