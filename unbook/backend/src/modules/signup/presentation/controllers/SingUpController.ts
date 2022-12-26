@@ -38,7 +38,7 @@ class SignUpController implements IController {
       if (!isValid) {
         return badRequest(new InvalidParamError("email"));
       }
-      this.addAccount.add({
+      const account = this.addAccount.add({
         name,
         email,
         password,
@@ -46,7 +46,7 @@ class SignUpController implements IController {
 
       return {
         statusCode: 200,
-        body: {},
+        body: account,
       };
     } catch (error) {
       return serverError();
