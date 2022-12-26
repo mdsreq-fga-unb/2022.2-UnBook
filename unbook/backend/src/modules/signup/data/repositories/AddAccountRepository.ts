@@ -13,18 +13,12 @@ class AddAccountRepository implements IAddAccount {
     this.encrypter = encrypter;
     this.addAccountRepository = addAccountRepository;
   }
-  async add(account: IAddAccountModel): Promise<IAccountModel> {
-    const hashedPassword = await this.encrypter.encrypt(account.password);
-    await this.addAccountRepository.add(
-      Object.assign(account, { password: hashedPassword })
+  async add(accountData: IAddAccountModel): Promise<IAccountModel> {
+    const hashedPassword = await this.encrypter.encrypt(accountData.password);
+    const account = await this.addAccountRepository.add(
+      Object.assign(accountData, { password: hashedPassword })
     );
-    const accountData = {
-      id: "valid_id",
-      name: "valid_name",
-      email: "valid_email",
-      password: "valid_password",
-    };
-    return new Promise((resolve) => resolve(accountData));
+    return new Promise((resolve) => resolve(account));
   }
 }
 
