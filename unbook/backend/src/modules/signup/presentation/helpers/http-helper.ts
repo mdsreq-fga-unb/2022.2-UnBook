@@ -1,6 +1,6 @@
-import { IAddAccountModel } from "../controllers/SignUpProtocols";
 import { ServerError } from "../errors/server-errors";
 import { IHttpResponse } from "../protocols/http";
+import { IAddAccountModel } from "../protocols/signup-protocols";
 
 const badRequest = (error: Error): IHttpResponse => {
   return {

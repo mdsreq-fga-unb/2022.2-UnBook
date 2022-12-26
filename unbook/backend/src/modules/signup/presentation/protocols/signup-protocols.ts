@@ -1,10 +1,10 @@
+import { IController, IHttpRequest, IHttpResponse } from ".";
 import { IAccountModel } from "../../domain/models/AccountModel";
 import {
   IAddAccount,
   IAddAccountModel,
 } from "../../domain/usecases/IAddAccountUseCase";
-import { IController, IHttpRequest, IHttpResponse } from "../protocols";
-import { IEmailValidator } from "../protocols/email-validator";
+import { IEmailValidator } from "./email-validator";
 
 export {
   IAccountModel,

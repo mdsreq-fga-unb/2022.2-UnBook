@@ -6,7 +6,7 @@ import {
   IHttpResponse,
   IEmailValidator,
   IAddAccount,
-} from "./SignUpProtocols";
+} from "../protocols/signup-protocols";
 
 class SignUpController implements IController {
   private readonly emailValidator: IEmailValidator;
