@@ -9,7 +9,7 @@
     "test:integration": "npm test -- --watch -c jest-integration-config.json",
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npx jest --coverage",
-    "serve": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts"
+    "serve": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/main/server.ts"
   },
   "repository": {
     "type": "git",
