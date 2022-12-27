@@ -32,14 +32,16 @@
     "express": "^4.18.2",
     "i": "^0.3.7",
     "mongodb": "^4.13.0",
+    "mongoose": "^6.8.1",
     "nodemon": "^2.0.12",
     "npm": "^9.2.0",
     "validator": "^13.7.0"
   },
   "devDependencies": {
-    "@shelf/jest-mongodb": "^4.1.4",
+    "@shelf/jest-mongodb": "^2.0.3",
     "@types/jest": "^29.2.4",
     "@types/mongodb": "^4.0.7",
+    "@types/mongoose": "^5.11.97",
     "@types/validator": "^13.7.10",
     "@typescript-eslint/eslint-plugin": "^5.47.0",
     "@typescript-eslint/parser": "^5.47.0",
