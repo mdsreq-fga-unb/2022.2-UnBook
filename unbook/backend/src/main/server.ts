@@ -1,11 +1,7 @@
-import express from "express";
+import { app } from "./config/app";
 
-const app = express();
-
-app.use(express.json());
+app.listen(3000, () => console.log("Server is Running!!!"));
 
 app.get("/", (request, response) =>
   response.json({ message: "Hello, UnBookers!" })
 );
-
-app.listen(3000, () => console.log("Server is Running!!!"));
