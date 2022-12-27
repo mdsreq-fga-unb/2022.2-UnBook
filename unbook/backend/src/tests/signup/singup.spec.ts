@@ -1,17 +1,17 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { SignUpController } from "../../modules/signup/presentation/controllers/SingUpController";
+import { SignUpController } from "../../presentation/controllers/SingUpController";
 import {
   InvalidParamError,
   MissingParamError,
   ServerError,
-} from "../../modules/signup/presentation/errors";
+} from "../../presentation/errors";
 import {
   IAddAccount,
   IAccountModel,
   IAddAccountModel,
   IEmailValidator,
-} from "../../modules/signup/presentation/protocols/signup-protocols";
+} from "../../presentation/protocols/signup-protocols";
 
 interface ISutTypes {
   sut: SignUpController;

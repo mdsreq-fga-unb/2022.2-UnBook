@@ -4,11 +4,11 @@ import {
   AddAccountRepository,
   IEncrypter,
   IAddAccountRepository,
-} from "../../modules/signup/data/protocols/data-sign-up-protocols";
+} from "../../database/protocols/data-sign-up-protocols";
 import {
   IAccountModel,
   IAddAccountModel,
-} from "../../modules/signup/presentation/protocols/signup-protocols";
+} from "../../presentation/protocols/signup-protocols";
 
 interface ISutTypes {
   sut: IAddAccountRepository;
