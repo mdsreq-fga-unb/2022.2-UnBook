@@ -1,4 +1,4 @@
-import { IController } from "./controller";
-import { IHttpRequest, IHttpResponse } from "./http";
+import { IController } from "./IController";
+import { IHttpRequest, IHttpResponse } from "./IHttp";
 
 export { IController, IHttpRequest, IHttpResponse };

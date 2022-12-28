@@ -4,7 +4,7 @@ import {
   IAddAccount,
   IAddAccountModel,
 } from "../../domain/usecases/IAddAccountUseCase";
-import { IEmailValidator } from "./email-validator";
+import { IEmailValidator } from "./IEmailValidator";
 
 export {
   IAccountModel,

@@ -1,5 +1,5 @@
-import { ServerError } from "../errors/server-errors";
-import { IHttpResponse } from "../protocols/http";
+import { ServerError } from "../errors/ServerError";
+import { IHttpResponse } from "../protocols/IHttp";
 import { IAddAccountModel } from "../protocols/signup-protocols";
 
 const badRequest = (error: Error): IHttpResponse => {
