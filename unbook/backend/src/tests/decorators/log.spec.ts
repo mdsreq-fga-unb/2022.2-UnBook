@@ -5,20 +5,37 @@ import {
   IHttpResponse,
 } from "../../presentation/protocols";
 
+interface ISutTypes {
+  sut: LogControllerDecorator;
+  controllerStub: IController;
+}
+
+const makeController = (): IController => {
+  class ControllerStub implements IController {
+    async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
+      const httpResponse: IHttpResponse = {
+        body: httpRequest.body,
+        statusCode: 200,
+      };
+      return new Promise((resolve) => resolve(httpResponse));
+    }
+  }
+  return new ControllerStub();
+};
+
+const makeSut = (): ISutTypes => {
+  const controllerStub = makeController();
+  const sut = new LogControllerDecorator(controllerStub);
+  return {
+    sut,
+    controllerStub,
+  };
+};
+
 describe("Log Controller Decorator", () => {
   test("Garante que o decorator chama o handle do controller", async () => {
-    class ControllerStub implements IController {
-      async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
-        const httpResponse: IHttpResponse = {
-          body: httpRequest.body,
-          statusCode: 200,
-        };
-        return new Promise((resolve) => resolve(httpResponse));
-      }
-    }
-    const controllerStub = new ControllerStub();
+    const { sut, controllerStub } = makeSut();
     const handleSpy = jest.spyOn(controllerStub, "handle");
-    const sut = new LogControllerDecorator(controllerStub);
     const httpRequest = {
       body: {
         name: "any_name",
