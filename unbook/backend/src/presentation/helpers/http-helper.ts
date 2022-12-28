@@ -9,10 +9,10 @@ const badRequest = (error: Error): IHttpResponse => {
   };
 };
 
-const serverError = (): IHttpResponse => {
+const serverError = (error: Error): IHttpResponse => {
   return {
     statusCode: 500,
-    body: new ServerError(),
+    body: new ServerError(error.stack as string),
   };
 };
 
