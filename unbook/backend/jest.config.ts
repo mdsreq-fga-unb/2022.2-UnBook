@@ -1,5 +1,9 @@
 export default {
-  collectCoverageFrom: ["src/**/*.{js,jsx,ts,tsx}", "!<rootDir>/node_modules/"],
+  collectCoverageFrom: [
+    "src/**/*.{js,jsx,ts,tsx}",
+    "!<rootDir>/node_modules/",
+    "!<rootDir>/src/main/**",
+  ],
   silent: false,
   coverageDirectory: "coverage",
   roots: ["<rootDir>/src"],
