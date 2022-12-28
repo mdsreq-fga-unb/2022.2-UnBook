@@ -11,7 +11,8 @@ describe("Account Mongo Repository", () => {
   });
 
   beforeEach(async () => {
-    await MongoHelper.getCollection("accounts").deleteMany({});
+    const errorCollection = MongoHelper.getCollection("accounts");
+    await errorCollection.deleteMany({});
   });
 
   const makeSut = (): AccountMongoRepository => {
