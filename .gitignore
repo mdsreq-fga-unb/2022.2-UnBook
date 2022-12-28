@@ -24,3 +24,6 @@ coverage
 *.sln
 *.sw?
 globalConfig.json
+
+# Database connect
+unbook/backend/src/main/config/env.ts
