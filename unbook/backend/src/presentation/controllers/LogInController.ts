@@ -1,4 +1,4 @@
-import { IAuthentication } from "../../domain/usecases/IAuthentication";
+import { IAuthentication } from "../../domain/usecases/IAuthenticationUseCase";
 import {
   badRequest,
   ok,

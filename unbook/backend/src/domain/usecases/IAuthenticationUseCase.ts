@@ -3,7 +3,7 @@ interface IAuthenticationModel {
   password: string;
 }
 interface IAuthentication {
-  auth(authentication: IAuthenticationModel): Promise<string>;
+  auth(authentication: IAuthenticationModel): Promise<string | undefined>;
 }
 
 export { IAuthentication, IAuthenticationModel };
