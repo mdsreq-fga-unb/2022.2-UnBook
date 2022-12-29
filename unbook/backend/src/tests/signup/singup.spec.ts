@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { SignUpController } from "../../presentation/controllers/SingUpController";
@@ -17,12 +18,14 @@ import {
   IAddAccountModel,
   IEmailValidator,
   IHttpRequest,
+  IValidation,
 } from "../../presentation/protocols/signup-protocols";
 
 interface ISutTypes {
   sut: SignUpController;
   emailValidatorStub: IEmailValidator;
   addAccountStub: IAddAccount;
+  validationStub: IValidation;
 }
 
 const makeFakeRequest = (): IHttpRequest => {
@@ -63,14 +66,29 @@ const makeAddAccount = (): IAddAccount => {
   return new AddAccountStub();
 };
 
+const makeValidation = (): IValidation => {
+  class ValidationStub implements IValidation {
+    async validate(input: any): Promise<Error | null> {
+      return null;
+    }
+  }
+  return new ValidationStub();
+};
+
 const makeSut = (): ISutTypes => {
   const emailValidatorStub = makeEmailValidator();
   const addAccountStub = makeAddAccount();
-  const sut = new SignUpController(emailValidatorStub, addAccountStub);
+  const validationStub = makeValidation();
+  const sut = new SignUpController(
+    emailValidatorStub,
+    addAccountStub,
+    validationStub
+  );
   return {
     sut,
     emailValidatorStub,
     addAccountStub,
+    validationStub,
   };
 };
 
@@ -200,5 +218,13 @@ describe("SignUp Controller", () => {
     expect(httpResponse).toEqual(ok(makeFakeAccount()));
     expect(httpResponse.statusCode).toBe(200);
     expect(httpResponse.body).toEqual(makeFakeAccount());
+  });
+
+  test("Deve chamar o Validation com os valores corretos", async () => {
+    const { sut, validationStub } = makeSut();
+    const validateSpy = jest.spyOn(validationStub, "validate");
+    const httpRequest = makeFakeRequest();
+    await sut.handle(httpRequest);
+    expect(validateSpy).toHaveBeenCalledWith(httpRequest.body);
   });
 });
