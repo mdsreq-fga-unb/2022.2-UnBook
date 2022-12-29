@@ -152,4 +152,10 @@ describe("Authentication Repository", () => {
     const promise = sut.auth(makeFakeAuthentication());
     await expect(promise).rejects.toThrow();
   });
+
+  test("Deve chamar o TokenGenerator com o id correto", async () => {
+    const { sut } = makeSut();
+    const acessToken = await sut.auth(makeFakeAuthentication());
+    expect(acessToken).toBe("any_token");
+  });
 });
