@@ -1,9 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import { IAddAccountRepository } from "../../../../database/protocols/data-sign-up-protocols";
-import {
-  IAccountModel,
-  IAddAccountModel,
-} from "../../../../presentation/protocols/signup-protocols";
+import { IAddAccountModel } from "../../../../presentation/protocols/signup-protocols";
 import { MongoHelper } from "../helpers/mongo-helper";
 
 class AccountMongoRepository implements IAddAccountRepository {
