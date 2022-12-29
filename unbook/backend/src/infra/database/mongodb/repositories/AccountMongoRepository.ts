@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { IAddAccountRepository } from "../../../../database/protocols/data-sign-up-protocols";
+import { IAddAccountRepository } from "../../../../database/protocols/database/data-sign-up-protocols";
 import {
   IAccountModel,
   IAddAccountModel,

@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import { IEncrypter } from "../../database/protocols/data-sign-up-protocols";
+import { IEncrypter } from "../../database/protocols/database/data-sign-up-protocols";
 
 class BcryptAdapter implements IEncrypter {
   constructor(private readonly salt: number) {

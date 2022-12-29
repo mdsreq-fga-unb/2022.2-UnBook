@@ -4,7 +4,7 @@ import {
   IAddAccount,
   IAddAccountModel,
 } from "../../presentation/protocols/signup-protocols";
-import { IEncrypter } from "../protocols/data-sign-up-protocols";
+import { IEncrypter } from "../protocols/database/data-sign-up-protocols";
 
 class AddAccountRepository implements IAddAccount {
   constructor(

@@ -1,7 +1,7 @@
 import {
   IAccountModel,
   IAddAccountModel,
-} from "../../presentation/protocols/signup-protocols";
+} from "../../../presentation/protocols/signup-protocols";
 
 interface IAddAccountRepository {
   add(account: IAddAccountModel): Promise<IAccountModel>;

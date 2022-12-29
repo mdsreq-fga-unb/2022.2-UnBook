@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ILoadAccountByEmailRepository } from "../../database/protocols/LoadAccountByEmailRepository";
+import { ILoadAccountByEmailRepository } from "../../database/protocols/database/ILoadAccountByEmailRepository";
 import { AuthenticationRepository } from "../../database/repositories/AuthenticationRepository";
 import { IAccountModel } from "../../domain/models/AccountModel";
 import { IAuthenticationModel } from "../../domain/usecases/IAuthenticationUseCase";

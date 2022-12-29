@@ -2,7 +2,7 @@ import {
   IAuthentication,
   IAuthenticationModel,
 } from "../../domain/usecases/IAuthenticationUseCase";
-import { ILoadAccountByEmailRepository } from "../protocols/LoadAccountByEmailRepository";
+import { ILoadAccountByEmailRepository } from "../protocols/database/ILoadAccountByEmailRepository";
 
 class AuthenticationRepository implements IAuthentication {
   constructor(

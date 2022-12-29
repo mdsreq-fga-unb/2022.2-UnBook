@@ -1,4 +1,4 @@
-import { ILogErrorRepository } from "../../database/repositories/ILogErrorRepository";
+import { ILogErrorRepository } from "../../database/protocols/database/ILogErrorRepository";
 import {
   IController,
   IHttpRequest,

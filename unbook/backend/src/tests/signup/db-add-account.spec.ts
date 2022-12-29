@@ -4,7 +4,7 @@ import {
   AddAccountRepository,
   IEncrypter,
   IAddAccountRepository,
-} from "../../database/protocols/data-sign-up-protocols";
+} from "../../database/protocols/database/data-sign-up-protocols";
 import {
   IAccountModel,
   IAddAccountModel,
