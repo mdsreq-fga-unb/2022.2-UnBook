@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IAuthentication } from "../../domain/usecases/IAuthentication";
+import {
+  IAuthentication,
+  IAuthenticationModel,
+} from "../../domain/usecases/IAuthentication";
 import { LoginController } from "../../presentation/controllers/LogInController";
 import { MissingParamError } from "../../presentation/errors";
 import {
@@ -31,7 +34,7 @@ const makeValidation = (): IValidation => {
 
 const makeAuthentication = (): IAuthentication => {
   class AuthenticationStub implements IAuthentication {
-    async auth(email: string, password: string): Promise<string> {
+    async auth(authentication: IAuthenticationModel): Promise<string> {
       return new Promise((resolve) => resolve("any_token"));
     }
   }
@@ -63,7 +66,10 @@ describe("SignUp Controller", () => {
     const { sut, authenticationStub } = makeSut();
     const authSpy = jest.spyOn(authenticationStub, "auth");
     await sut.handle(makeFakeRequest());
-    expect(authSpy).toHaveBeenCalledWith("any_email@mail.com", "any_password");
+    expect(authSpy).toHaveBeenCalledWith({
+      email: "any_email@mail.com",
+      password: "any_password",
+    });
   });
 
   test("Deve retornar 500 se o Authentication retonrar um erro", async () => {
