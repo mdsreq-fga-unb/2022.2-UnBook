@@ -93,36 +93,6 @@ const makeSut = (): ISutTypes => {
 };
 
 describe("SignUp Controller", () => {
-  test("Deve retornar 400 se o nome não for enviado", async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeFakeRequest();
-    delete httpRequest.body.name;
-    const httpResponse = await sut.handle(httpRequest);
-    expect(httpResponse).toEqual(badRequest(new MissingParamError("name")));
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError("name"));
-  });
-
-  test("Deve retornar 400 se o email não for enviado", async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeFakeRequest();
-    delete httpRequest.body.email;
-    const httpResponse = await sut.handle(httpRequest);
-    expect(httpResponse).toEqual(badRequest(new MissingParamError("email")));
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError("email"));
-  });
-
-  test("Deve retornar 400 se a senha não for enviada", async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeFakeRequest();
-    delete httpRequest.body.password;
-    const httpResponse = await sut.handle(httpRequest);
-    expect(httpResponse).toEqual(badRequest(new MissingParamError("password")));
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(new MissingParamError("password"));
-  });
-
   test("Deve retornar 400 se a confirmação da senha e a senha não coincidirem", async () => {
     const { sut } = makeSut();
     const httpRequest = makeFakeRequest();
@@ -134,20 +104,6 @@ describe("SignUp Controller", () => {
     expect(httpResponse.statusCode).toBe(400);
     expect(httpResponse.body).toEqual(
       new InvalidParamError("passwordConfirmation")
-    );
-  });
-
-  test("Deve retornar 400 se a confirmação da senha não for enviada", async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeFakeRequest();
-    delete httpRequest.body.passwordConfirmation;
-    const httpResponse = await sut.handle(httpRequest);
-    expect(httpResponse).toEqual(
-      badRequest(new MissingParamError("passwordConfirmation"))
-    );
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(
-      new MissingParamError("passwordConfirmation")
     );
   });
 
