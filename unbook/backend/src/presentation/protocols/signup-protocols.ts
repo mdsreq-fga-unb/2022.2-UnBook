@@ -4,6 +4,7 @@ import {
   IAddAccount,
   IAddAccountModel,
 } from "../../domain/usecases/IAddAccountUseCase";
+import { IValidation } from "../helpers/validators/IValidation";
 import { IEmailValidator } from "./IEmailValidator";
 
 export {
@@ -14,4 +15,5 @@ export {
   IHttpRequest,
   IHttpResponse,
   IEmailValidator,
+  IValidation,
 };
