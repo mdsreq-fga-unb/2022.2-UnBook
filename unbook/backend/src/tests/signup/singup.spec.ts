@@ -12,7 +12,6 @@ import {
   IAddAccount,
   IAccountModel,
   IAddAccountModel,
-  IEmailValidator,
   IHttpRequest,
   IValidation,
 } from "../../presentation/protocols/signup-protocols";
