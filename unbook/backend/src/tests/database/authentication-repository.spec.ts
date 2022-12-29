@@ -101,16 +101,6 @@ describe("Authentication Repository", () => {
     );
   });
 
-  test("Deve chamar o HashComparer com os valores corretos", async () => {
-    const { sut, hashComparerStub } = makeSut();
-    const compareSpy = jest.spyOn(hashComparerStub, "compare");
-    await sut.auth(makeFakeAuthentication());
-    expect(compareSpy).toHaveBeenLastCalledWith(
-      "any_password",
-      "hashed_password"
-    );
-  });
-
   test("Deve lançar um erro se o HashComparer lançar um erro", async () => {
     const { sut, hashComparerStub } = makeSut();
     jest
@@ -120,5 +110,14 @@ describe("Authentication Repository", () => {
       );
     const promise = sut.auth(makeFakeAuthentication());
     await expect(promise).rejects.toThrow();
+  });
+
+  test("Deve retornar null se HashComparer retornar false", async () => {
+    const { sut, hashComparerStub } = makeSut();
+    jest
+      .spyOn(hashComparerStub, "compare")
+      .mockReturnValueOnce(new Promise((resolve) => resolve(false)));
+    const acessToken = await sut.auth(makeFakeAuthentication());
+    expect(acessToken).toBeNull();
   });
 });
