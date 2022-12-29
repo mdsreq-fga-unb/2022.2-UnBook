@@ -22,11 +22,15 @@ class AuthenticationRepository implements IAuthentication {
       authentication.email
     );
     if (account) {
-      await this.hashComparer.compare(
+      const isValid = await this.hashComparer.compare(
         authentication.password,
         account.password
       );
-      await this.tokenGenerator.generate(account.id);
+
+      if (isValid) {
+        const acessToken = await this.tokenGenerator.generate(account.id);
+        return acessToken;
+      }
     }
     return null;
   }
