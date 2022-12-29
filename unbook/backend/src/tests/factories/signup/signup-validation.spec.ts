@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { makeSignUpValidation } from "../../../main/factories/signup/signup-validation";
-import { CompareFieldsValidation } from "../../../presentation/helpers/validators/CompareFieldsValidation";
-import { EmailValidation } from "../../../presentation/helpers/validators/EmailValidation";
-import { RequiredFieldValidation } from "../../../presentation/helpers/validators/RequiredFieldValidation";
-import { ValidationComposite } from "../../../presentation/helpers/validators/ValidationComposite";
+import {
+  EmailValidation,
+  CompareFieldsValidation,
+  RequiredFieldValidation,
+  ValidationComposite,
+} from "../../../presentation/helpers/validators";
 import { IEmailValidator } from "../../../presentation/protocols/signup-protocols";
 
 jest.mock("../../../presentation/helpers/validators/ValidationComposite");

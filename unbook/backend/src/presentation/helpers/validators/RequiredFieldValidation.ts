@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
 import { MissingParamError } from "../../errors";
-import { IValidation } from "./IValidation";
+import { IValidation } from "../../protocols/IValidation";
 
 class RequiredFieldValidation implements IValidation {
   constructor(private readonly fieldName: string) {

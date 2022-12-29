@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ILogErrorRepository } from "../../database/repositories/ILogErrorRepository";
 import { LogControllerDecorator } from "../../main/decorators/LogControllerDecorator";
-import { serverError, ok } from "../../presentation/helpers/http-helper";
+import { serverError, ok } from "../../presentation/helpers/http/http-helper";
 import {
   IController,
   IHttpRequest,

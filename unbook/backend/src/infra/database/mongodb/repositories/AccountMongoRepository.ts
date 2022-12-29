@@ -25,7 +25,7 @@ class AccountMongoRepository implements IAddAccountRepository {
     return {
       id: "any_id",
       name: "any_name",
-      email: "any_email@aluno.unb.br",
+      email: "any_email@mail.com",
       password: "any_password",
     };
   }

@@ -1,5 +1,5 @@
-import { ServerError, UnauthorizedError } from "../errors";
-import { IHttpResponse } from "../protocols/IHttp";
+import { ServerError, UnauthorizedError } from "../../errors";
+import { IHttpResponse } from "../../protocols/IHttp";
 
 const badRequest = (error: Error): IHttpResponse => {
   return {

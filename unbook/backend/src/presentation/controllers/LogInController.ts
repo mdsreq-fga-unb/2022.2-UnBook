@@ -1,11 +1,10 @@
 import { IAuthentication } from "../../domain/usecases/IAuthentication";
-import { InvalidParamError, MissingParamError } from "../errors";
 import {
   badRequest,
   ok,
   serverError,
   unauthorized,
-} from "../helpers/http-helper";
+} from "../helpers/http/http-helper";
 import { IController, IHttpRequest, IHttpResponse } from "../protocols";
 import { IValidation } from "../protocols/signup-protocols";
 
