@@ -9,6 +9,7 @@ import {
 } from "../../presentation/errors";
 import {
   badRequest,
+  ok,
   serverError,
   unauthorized,
 } from "../../presentation/helpers/http-helper";
@@ -115,5 +116,11 @@ describe("SignUp Controller", () => {
     });
     const httpResponse = await sut.handle(makeFakeRequest());
     expect(httpResponse).toEqual(serverError(new Error()));
+  });
+
+  test("Deve retornar 200 os dados forem enviados corretamente", async () => {
+    const { sut } = makeSut();
+    const httpResponse = await sut.handle(makeFakeRequest());
+    expect(httpResponse).toEqual(ok({ accessToken: "any_token" }));
   });
 });
