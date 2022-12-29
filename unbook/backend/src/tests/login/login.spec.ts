@@ -4,7 +4,10 @@ import {
   InvalidParamError,
   MissingParamError,
 } from "../../presentation/errors";
-import { badRequest } from "../../presentation/helpers/http-helper";
+import {
+  badRequest,
+  serverError,
+} from "../../presentation/helpers/http-helper";
 import {
   IEmailValidator,
   IHttpRequest,
@@ -71,5 +74,14 @@ describe("SignUp Controller", () => {
     const isValidSpy = jest.spyOn(emailValidatorStub, "isValid");
     await sut.handle(makeFakeRequest());
     expect(isValidSpy).toHaveBeenCalledWith("any_email@mail.com");
+  });
+
+  test("Deve retornar 500 se o EmailValidator tiver um erro", async () => {
+    const { sut, emailValidatorStub } = makeSut();
+    jest.spyOn(emailValidatorStub, "isValid").mockImplementationOnce(() => {
+      throw new Error();
+    });
+    const httpResponse = await sut.handle(makeFakeRequest());
+    expect(httpResponse).toEqual(serverError(new Error()));
   });
 });
