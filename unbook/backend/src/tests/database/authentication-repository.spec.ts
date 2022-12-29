@@ -141,4 +141,15 @@ describe("Authentication Repository", () => {
     await sut.auth(makeFakeAuthentication());
     expect(generateSpy).toHaveBeenLastCalledWith("any_id");
   });
+
+  test("Deve lançar um erro se o TokenGenerator lançar um erro", async () => {
+    const { sut, tokenGeneratorStub } = makeSut();
+    jest
+      .spyOn(tokenGeneratorStub, "generate")
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      );
+    const promise = sut.auth(makeFakeAuthentication());
+    await expect(promise).rejects.toThrow();
+  });
 });
