@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { LoginController } from "../../presentation/controllers/LogInController";
-import { MissingParamError } from "../../presentation/errors";
+import {
+  InvalidParamError,
+  MissingParamError,
+} from "../../presentation/errors";
 import { badRequest } from "../../presentation/helpers/http-helper";
 import { IEmailValidator } from "../../presentation/protocols/signup-protocols";
 
@@ -48,6 +51,19 @@ describe("SignUp Controller", () => {
     };
     const httpResponse = await sut.handle(httpRequest);
     expect(httpResponse).toEqual(badRequest(new MissingParamError("password")));
+  });
+
+  test("Deve retornar 400 se o email fornecido for inválido", async () => {
+    const { sut, emailValidatorStub } = makeSut();
+    jest.spyOn(emailValidatorStub, "isValid").mockReturnValueOnce(false);
+    const httpRequest = {
+      body: {
+        email: "any_email@mail.com",
+        password: "any_password",
+      },
+    };
+    const httpResponse = await sut.handle(httpRequest);
+    expect(httpResponse).toEqual(badRequest(new InvalidParamError("email")));
   });
 
   test("Deve chamar o EmailValidator com o email correto", async () => {
