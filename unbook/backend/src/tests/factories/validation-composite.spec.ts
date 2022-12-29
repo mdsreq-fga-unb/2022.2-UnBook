@@ -7,7 +7,7 @@ import { IValidation } from "../../presentation/protocols/signup-protocols";
 
 interface ISubTypes {
   sut: ValidationComposite;
-  validationStub: IValidation;
+  validationStubs: IValidation[];
 }
 
 const makeValidation = (): IValidation => {
@@ -20,21 +20,31 @@ const makeValidation = (): IValidation => {
 };
 
 const makeSut = (): ISubTypes => {
-  const validationStub = makeValidation();
-  const sut = new ValidationComposite([validationStub]);
+  const validationStubs = [makeValidation(), makeValidation()];
+  const sut = new ValidationComposite(validationStubs);
   return {
     sut,
-    validationStub,
+    validationStubs,
   };
 };
 
 describe("Validation Composite", () => {
   test("Deve retornar um erro se alguma validação falhar", () => {
-    const { sut, validationStub } = makeSut();
+    const { sut, validationStubs } = makeSut();
     jest
-      .spyOn(validationStub, "validate")
+      .spyOn(validationStubs[1], "validate")
       .mockReturnValueOnce(new MissingParamError("field"));
     const error = sut.validate({ field: "any_value" });
     expect(error).toEqual(new MissingParamError("field"));
+  });
+
+  test("Deve retornar o primeiro se tiver mais de um erro de validação", () => {
+    const { sut, validationStubs } = makeSut();
+    jest.spyOn(validationStubs[0], "validate").mockReturnValueOnce(new Error());
+    jest
+      .spyOn(validationStubs[1], "validate")
+      .mockReturnValueOnce(new MissingParamError("field"));
+    const error = sut.validate({ field: "any_value" });
+    expect(error).toEqual(new Error());
   });
 });
