@@ -11,11 +11,9 @@ class AuthenticationRepository implements IAuthentication {
     this.loadAccountByEmailRepository = loadAccountByEmailRepository;
   }
 
-  async auth(
-    authentication: IAuthenticationModel
-  ): Promise<string | undefined> {
+  async auth(authentication: IAuthenticationModel): Promise<string | null> {
     await this.loadAccountByEmailRepository.load(authentication.email);
-    return undefined;
+    return null;
   }
 }
 
