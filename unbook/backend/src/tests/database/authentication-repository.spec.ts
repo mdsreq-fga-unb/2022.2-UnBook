@@ -53,4 +53,15 @@ describe("Authentication Repository", () => {
     await sut.auth(makeFakeAuthentication());
     expect(loadSpy).toHaveBeenLastCalledWith("any_email@mail.com");
   });
+
+  test("Deve lançar um erro se o LoadAccountByEmailRepository lançar um erro", async () => {
+    const { sut, loadAccountByEmailRepositoryStub } = makeSut();
+    jest
+      .spyOn(loadAccountByEmailRepositoryStub, "load")
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      );
+    const promise = sut.auth(makeFakeAuthentication());
+    await expect(promise).rejects.toThrow();
+  });
 });
