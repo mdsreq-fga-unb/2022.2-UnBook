@@ -1,4 +1,4 @@
-import { ServerError } from "../errors/ServerError";
+import { ServerError, UnauthorizedError } from "../errors";
 import { IHttpResponse } from "../protocols/IHttp";
 import { IAddAccountModel } from "../protocols/signup-protocols";
 
@@ -23,4 +23,11 @@ const ok = (data: IAddAccountModel): IHttpResponse => {
   };
 };
 
-export { badRequest, serverError, ok };
+const unauthorized = (): IHttpResponse => {
+  return {
+    statusCode: 401,
+    body: new UnauthorizedError(),
+  };
+};
+
+export { badRequest, serverError, ok, unauthorized };

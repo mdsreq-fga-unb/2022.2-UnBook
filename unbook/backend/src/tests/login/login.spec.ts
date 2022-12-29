@@ -5,10 +5,12 @@ import { LoginController } from "../../presentation/controllers/LogInController"
 import {
   InvalidParamError,
   MissingParamError,
+  UnauthorizedError,
 } from "../../presentation/errors";
 import {
   badRequest,
   serverError,
+  unauthorized,
 } from "../../presentation/helpers/http-helper";
 import {
   IEmailValidator,
