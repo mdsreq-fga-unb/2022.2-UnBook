@@ -1,4 +1,6 @@
+/* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { IAuthentication } from "../../domain/usecases/IAuthentication";
 import { LoginController } from "../../presentation/controllers/LogInController";
 import {
   InvalidParamError,
@@ -16,6 +18,7 @@ import {
 interface ISubTypes {
   sut: LoginController;
   emailValidatorStub: IEmailValidator;
+  authenticationStub: IAuthentication;
 }
 
 const makeEmailValidator = (): IEmailValidator => {
@@ -27,12 +30,23 @@ const makeEmailValidator = (): IEmailValidator => {
   return new EmailValidatorStub();
 };
 
+const makeAuthentication = (): IAuthentication => {
+  class AuthenticationStub implements IAuthentication {
+    async auth(email: string, password: string): Promise<string> {
+      return new Promise((resolve) => resolve("any_token"));
+    }
+  }
+  return new AuthenticationStub();
+};
+
 const makeSut = (): ISubTypes => {
   const emailValidatorStub = makeEmailValidator();
-  const sut = new LoginController(emailValidatorStub);
+  const authenticationStub = makeAuthentication();
+  const sut = new LoginController(emailValidatorStub, authenticationStub);
   return {
     sut,
     emailValidatorStub,
+    authenticationStub,
   };
 };
 
@@ -83,5 +97,12 @@ describe("SignUp Controller", () => {
     });
     const httpResponse = await sut.handle(makeFakeRequest());
     expect(httpResponse).toEqual(serverError(new Error()));
+  });
+
+  test("Deve chamar o Authentication com os valores corretos", async () => {
+    const { sut, authenticationStub } = makeSut();
+    const authSpy = jest.spyOn(authenticationStub, "auth");
+    await sut.handle(makeFakeRequest());
+    expect(authSpy).toHaveBeenCalledWith("any_email@mail.com", "any_password");
   });
 });
