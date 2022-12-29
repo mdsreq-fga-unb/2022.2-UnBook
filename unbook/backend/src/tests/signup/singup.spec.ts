@@ -93,20 +93,6 @@ const makeSut = (): ISutTypes => {
 };
 
 describe("SignUp Controller", () => {
-  test("Deve retornar 400 se a confirmação da senha e a senha não coincidirem", async () => {
-    const { sut } = makeSut();
-    const httpRequest = makeFakeRequest();
-    httpRequest.body.passwordConfirmation = "invalid_password";
-    const httpResponse = await sut.handle(httpRequest);
-    expect(httpResponse).toEqual(
-      badRequest(new InvalidParamError("passwordConfirmation"))
-    );
-    expect(httpResponse.statusCode).toBe(400);
-    expect(httpResponse.body).toEqual(
-      new InvalidParamError("passwordConfirmation")
-    );
-  });
-
   test("Deve retornar 400 se um e-mail inválido for enviado", async () => {
     const { sut, emailValidatorStub } = makeSut();
     jest.spyOn(emailValidatorStub, "isValid").mockReturnValueOnce(false);
