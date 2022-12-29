@@ -7,7 +7,7 @@ import {
 import { MongoHelper } from "../helpers/mongo-helper";
 
 class AccountMongoRepository implements IAddAccountRepository {
-  async add(accountData: IAddAccountModel): Promise<IAccountModel> {
+  async add(accountData: IAddAccountModel): Promise<any> {
     const accountCollection = MongoHelper.getCollection("accounts");
     const result = await accountCollection.insertOne(accountData);
     const id = result.insertedId;
@@ -22,12 +22,7 @@ class AccountMongoRepository implements IAddAccountRepository {
       };
     }
 
-    return {
-      id: "valid_id",
-      name: "valid_name",
-      email: "valid_email@mail.com",
-      password: "valid_password",
-    };
+    return null;
   }
 }
 
