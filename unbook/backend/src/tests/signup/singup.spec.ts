@@ -68,8 +68,8 @@ const makeAddAccount = (): IAddAccount => {
 
 const makeValidation = (): IValidation => {
   class ValidationStub implements IValidation {
-    validate(input: any): Error | null {
-      return null;
+    validate(input: any): Error | undefined {
+      return undefined;
     }
   }
   return new ValidationStub();
