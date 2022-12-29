@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
+import { MissingParamError } from "../../errors";
 import { IValidation } from "./IValidation";
 
 class RequiredFieldValidation implements IValidation {
@@ -7,10 +8,8 @@ class RequiredFieldValidation implements IValidation {
     this.fieldName = fieldName;
   }
   validate(input: any): Error | undefined {
-    for (const field of this.fieldName) {
-      if (!input[field]) {
-        return new Error(`Missing param: ${field}`);
-      }
+    if (!input[this.fieldName]) {
+      return new MissingParamError(this.fieldName);
     }
   }
 }
