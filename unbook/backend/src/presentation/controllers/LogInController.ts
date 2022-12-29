@@ -1,6 +1,11 @@
 import { IAuthentication } from "../../domain/usecases/IAuthentication";
 import { InvalidParamError, MissingParamError } from "../errors";
-import { badRequest, serverError, unauthorized } from "../helpers/http-helper";
+import {
+  badRequest,
+  ok,
+  serverError,
+  unauthorized,
+} from "../helpers/http-helper";
 import { IController, IHttpRequest, IHttpResponse } from "../protocols";
 import { IEmailValidator } from "../protocols/signup-protocols";
 
@@ -25,13 +30,11 @@ class LoginController implements IController {
       if (!isValid) {
         return badRequest(new InvalidParamError("email"));
       }
-      const acessToken = await this.authentication.auth(email, password);
-      if (!acessToken) {
+      const accessToken = await this.authentication.auth(email, password);
+      if (!accessToken) {
         return unauthorized();
       }
-      return new Promise((resolve) =>
-        resolve(badRequest(new MissingParamError("email")))
-      );
+      return ok({ accessToken });
     } catch (error) {
       return serverError(error as Error);
     }

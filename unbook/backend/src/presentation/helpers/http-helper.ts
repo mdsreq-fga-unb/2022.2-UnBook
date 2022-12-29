@@ -1,6 +1,5 @@
 import { ServerError, UnauthorizedError } from "../errors";
 import { IHttpResponse } from "../protocols/IHttp";
-import { IAddAccountModel } from "../protocols/signup-protocols";
 
 const badRequest = (error: Error): IHttpResponse => {
   return {
@@ -16,7 +15,7 @@ const serverError = (error: Error): IHttpResponse => {
   };
 };
 
-const ok = (data: IAddAccountModel): IHttpResponse => {
+const ok = (data: unknown): IHttpResponse => {
   return {
     statusCode: 200,
     body: data,
