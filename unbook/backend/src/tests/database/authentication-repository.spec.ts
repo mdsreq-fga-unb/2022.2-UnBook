@@ -1,12 +1,14 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IHashComparer } from "../../database/protocols/criptography/IHashComparer";
-import { ITokenGenerator } from "../../database/protocols/criptography/ITokenGenerator";
-import { IUpdateAccessTokenRepository } from "../../database/protocols/database/data-sign-up-protocols";
-import { ILoadAccountByEmailRepository } from "../../database/protocols/database/ILoadAccountByEmailRepository";
+import {
+  IHashComparer,
+  ITokenGenerator,
+  IUpdateAccessTokenRepository,
+  ILoadAccountByEmailRepository,
+  IAccountModel,
+  IAuthenticationModel,
+} from "../../database/protocols/criptography/db-authentication-protocols";
 import { AuthenticationRepository } from "../../database/repositories/AuthenticationRepository";
-import { IAccountModel } from "../../domain/models/AccountModel";
-import { IAuthenticationModel } from "../../domain/usecases/IAuthenticationUseCase";
 
 const makeFaceAccount = (): IAccountModel => {
   return {
