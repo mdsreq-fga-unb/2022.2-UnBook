@@ -5,8 +5,8 @@ import {
 } from "../../../domain/usecases/IAuthenticationUseCase";
 import { ILoadAccountByEmailRepository } from "../database/ILoadAccountByEmailRepository";
 import { IUpdateAccessTokenRepository } from "../database/IUpdateAcessTokenRepository";
+import { IEncrypter } from "./IEncrypter";
 import { IHashComparer } from "./IHashComparer";
-import { ITokenGenerator } from "./ITokenGenerator";
 
 export {
   IAccountModel,
@@ -15,5 +15,5 @@ export {
   ILoadAccountByEmailRepository,
   IUpdateAccessTokenRepository,
   IHashComparer,
-  ITokenGenerator,
+  IEncrypter,
 };

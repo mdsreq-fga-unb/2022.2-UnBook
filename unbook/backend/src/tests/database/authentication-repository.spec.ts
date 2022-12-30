@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import {
   IHashComparer,
-  ITokenGenerator,
+  IEncrypter,
   IUpdateAccessTokenRepository,
   ILoadAccountByEmailRepository,
   IAccountModel,
@@ -47,13 +47,13 @@ const makeHashComparer = (): IHashComparer => {
   return new HashComparerStub();
 };
 
-const makeTokenGenerator = (): ITokenGenerator => {
-  class TokenGeneratorStub implements ITokenGenerator {
-    async generate(id: string): Promise<string> {
+const makeEncrypter = (): IEncrypter => {
+  class EncrypterStub implements IEncrypter {
+    async encrypt(id: string): Promise<string> {
       return new Promise((resolve) => resolve("any_token"));
     }
   }
-  return new TokenGeneratorStub();
+  return new EncrypterStub();
 };
 
 const makeUpdateAccessTokenRepository = (): IUpdateAccessTokenRepository => {
@@ -69,26 +69,26 @@ interface ISutTypes {
   sut: AuthenticationRepository;
   loadAccountByEmailRepositoryStub: ILoadAccountByEmailRepository;
   hashComparerStub: IHashComparer;
-  tokenGeneratorStub: ITokenGenerator;
+  encrypterStub: IEncrypter;
   updtadeAcessTokenRepositoryStub: IUpdateAccessTokenRepository;
 }
 
 const makeSut = (): ISutTypes => {
   const loadAccountByEmailRepositoryStub = makeLoadAccountByEmailRepository();
   const hashComparerStub = makeHashComparer();
-  const tokenGeneratorStub = makeTokenGenerator();
+  const encrypterStub = makeEncrypter();
   const updtadeAcessTokenRepositoryStub = makeUpdateAccessTokenRepository();
   const sut = new AuthenticationRepository(
     loadAccountByEmailRepositoryStub,
     hashComparerStub,
-    tokenGeneratorStub,
+    encrypterStub,
     updtadeAcessTokenRepositoryStub
   );
   return {
     sut,
     loadAccountByEmailRepositoryStub,
     hashComparerStub,
-    tokenGeneratorStub,
+    encrypterStub,
     updtadeAcessTokenRepositoryStub,
   };
 };
@@ -151,17 +151,17 @@ describe("Authentication Repository", () => {
     expect(acessToken).toBeNull();
   });
 
-  test("Deve chamar o TokenGenerator com o id correto", async () => {
-    const { sut, tokenGeneratorStub } = makeSut();
-    const generateSpy = jest.spyOn(tokenGeneratorStub, "generate");
+  test("Deve chamar o Encrypter com o id correto", async () => {
+    const { sut, encrypterStub } = makeSut();
+    const generateSpy = jest.spyOn(encrypterStub, "encrypt");
     await sut.auth(makeFakeAuthentication());
     expect(generateSpy).toHaveBeenLastCalledWith("any_id");
   });
 
-  test("Deve lançar um erro se o TokenGenerator lançar um erro", async () => {
-    const { sut, tokenGeneratorStub } = makeSut();
+  test("Deve lançar um erro se o Encrypter lançar um erro", async () => {
+    const { sut, encrypterStub } = makeSut();
     jest
-      .spyOn(tokenGeneratorStub, "generate")
+      .spyOn(encrypterStub, "encrypt")
       .mockReturnValueOnce(
         new Promise((resolve, reject) => reject(new Error()))
       );
@@ -169,7 +169,7 @@ describe("Authentication Repository", () => {
     await expect(promise).rejects.toThrow();
   });
 
-  test("Deve chamar o TokenGenerator com o id correto", async () => {
+  test("Deve chamar o Encrypter com o id correto", async () => {
     const { sut } = makeSut();
     const acessToken = await sut.auth(makeFakeAuthentication());
     expect(acessToken).toBe("any_token");
