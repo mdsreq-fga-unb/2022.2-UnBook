@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { makeLogInValidation } from "../../../main/factories/login/login-validation";
+import { makeLogInValidation } from "../../../main/factories/login/login-validation-factory";
 import {
   EmailValidation,
   RequiredFieldValidation,
