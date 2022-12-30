@@ -31,12 +31,12 @@ class AuthenticationRepository implements IAuthentication {
       );
 
       if (isValid) {
-        const acessToken = await this.encrypter.encrypt(account.id);
+        const accessToken = await this.encrypter.encrypt(account.id);
         await this.updateAccessTokenRepository.updateAcessToken(
           account.id,
-          acessToken
+          accessToken
         );
-        return acessToken;
+        return accessToken;
       }
     }
     return null;

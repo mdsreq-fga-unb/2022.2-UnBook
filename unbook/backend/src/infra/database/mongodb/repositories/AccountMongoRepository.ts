@@ -1,5 +1,11 @@
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-underscore-dangle */
-import { IAddAccountRepository } from "../../../../database/protocols/database/data-sign-up-protocols";
+import { ObjectId } from "mongodb";
+import {
+  IAddAccountRepository,
+  IUpdateAccessTokenRepository,
+} from "../../../../database/protocols/database/data-sign-up-protocols";
 import { ILoadAccountByEmailRepository } from "../../../../database/protocols/database/ILoadAccountByEmailRepository";
 import {
   IAccountModel,
@@ -8,7 +14,10 @@ import {
 import { MongoHelper } from "../helpers/mongo-helper";
 
 class AccountMongoRepository
-  implements IAddAccountRepository, ILoadAccountByEmailRepository
+  implements
+    IAddAccountRepository,
+    ILoadAccountByEmailRepository,
+    IUpdateAccessTokenRepository
 {
   async add(accountData: IAddAccountModel): Promise<IAccountModel> {
     const accountCollection = MongoHelper.getCollection("accounts");
@@ -40,6 +49,21 @@ class AccountMongoRepository
       };
     }
     return null;
+  }
+
+  async updateAcessToken(id: string, token: string): Promise<void> {
+    const idObject = new ObjectId(id);
+    const accountCollection = MongoHelper.getCollection("accounts");
+    await accountCollection.updateOne(
+      {
+        _id: idObject,
+      },
+      {
+        $set: {
+          accessToken: token,
+        },
+      }
+    );
   }
 }
 
