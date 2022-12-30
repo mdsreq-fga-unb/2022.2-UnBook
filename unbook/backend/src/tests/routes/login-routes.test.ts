@@ -50,5 +50,15 @@ describe("Login Routes", () => {
         })
         .expect(200);
     });
+
+    test("Deve 401 quando o usuário não for encontrado", async () => {
+      await request(app)
+        .post("/api/login")
+        .send({
+          email: "any_email@aluno.unb.br",
+          password: "any_password",
+        })
+        .expect(401);
+    });
   });
 });
