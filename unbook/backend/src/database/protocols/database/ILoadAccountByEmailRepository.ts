@@ -1,7 +1,7 @@
 import { IAccountModel } from "../../../presentation/protocols/signup-protocols";
 
 interface ILoadAccountByEmailRepository {
-  load(email: string): Promise<IAccountModel | null>;
+  loadByEmail(email: string): Promise<IAccountModel | null>;
 }
 
 export { ILoadAccountByEmailRepository };

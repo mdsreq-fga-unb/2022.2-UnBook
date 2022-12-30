@@ -21,7 +21,7 @@ class AuthenticationRepository implements IAuthentication {
   }
 
   async auth(authentication: IAuthenticationModel): Promise<string | null> {
-    const account = await this.loadAccountByEmailRepository.load(
+    const account = await this.loadAccountByEmailRepository.loadByEmail(
       authentication.email
     );
     if (account) {
@@ -32,7 +32,10 @@ class AuthenticationRepository implements IAuthentication {
 
       if (isValid) {
         const acessToken = await this.encrypter.encrypt(account.id);
-        await this.updateAccessTokenRepository.update(account.id, acessToken);
+        await this.updateAccessTokenRepository.updateAcessToken(
+          account.id,
+          acessToken
+        );
         return acessToken;
       }
     }
