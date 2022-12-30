@@ -6,8 +6,8 @@ class JWTAdapter implements IEncrypter {
     this.secret = secret;
   }
   async encrypt(value: string): Promise<string> {
-    await jwt.sign({ id: value }, this.secret);
-    return "any_token";
+    const acessToken = jwt.sign({ id: value }, this.secret);
+    return acessToken;
   }
 }
 
