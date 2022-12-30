@@ -4,18 +4,18 @@ import {
   IAddAccount,
   IAddAccountModel,
 } from "../../presentation/protocols/signup-protocols";
-import { IEncrypter } from "../protocols/database/data-sign-up-protocols";
+import { IHasher } from "../protocols/database/data-sign-up-protocols";
 
 class AddAccountRepository implements IAddAccount {
   constructor(
-    private readonly encrypter: IEncrypter,
+    private readonly hasher: IHasher,
     private readonly addAccountRepository: IAddAccount
   ) {
-    this.encrypter = encrypter;
+    this.hasher = hasher;
     this.addAccountRepository = addAccountRepository;
   }
   async add(accountData: IAddAccountModel): Promise<IAccountModel> {
-    const hashedPassword = await this.encrypter.encrypt(accountData.password);
+    const hashedPassword = await this.hasher.hash(accountData.password);
     const account = await this.addAccountRepository.add(
       Object.assign(accountData, { password: hashedPassword })
     );
