@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { makeSignUpValidation } from "../../../main/factories/signup/signup-validation";
+import { makeSignUpValidation } from "../../../main/factories/signup/signup-validation-factory";
 import {
   EmailValidation,
   CompareFieldsValidation,
