@@ -179,4 +179,15 @@ describe("Authentication Repository", () => {
     await sut.auth(makeFakeAuthentication());
     expect(updateSpy).toHaveBeenLastCalledWith("any_id", "any_token");
   });
+
+  test("Deve lançar um erro se o UpdateAcessTokenRepository lançar um erro", async () => {
+    const { sut, updtadeAcessTokenRepositoryStub } = makeSut();
+    jest
+      .spyOn(updtadeAcessTokenRepositoryStub, "update")
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      );
+    const promise = sut.auth(makeFakeAuthentication());
+    await expect(promise).rejects.toThrow();
+  });
 });
