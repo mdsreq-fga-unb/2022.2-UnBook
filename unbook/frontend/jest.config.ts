@@ -7,9 +7,9 @@ export default {
 	silent: false,
 	coverageDirectory: "coverage",
 	roots: ["<rootDir>/src"],
-	testEnvironment: "node",
+	testEnvironment: "jsdom",
 	preset: "@shelf/jest-mongodb",
 	transform: {
-		"^.+\\.ts$": "ts-jest",
+		"^.+\\.(ts|tsx)$": "ts-jest",
 	},
 };

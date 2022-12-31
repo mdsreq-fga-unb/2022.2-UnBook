@@ -1,4 +1,9 @@
 {
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
 	"env": {
 		"browser": true,
 		"es2021": true
@@ -16,6 +21,8 @@
 	},
 	"plugins": ["react", "@typescript-eslint"],
 	"rules": {
+		"react/jsx-uses-react": "error",
+		"react/jsx-uses-vars": "error",
 		"react/react-in-jsx-scope": "off",
 		"indent": ["error", "tab"],
 		"linebreak-style": ["error", "unix"],
