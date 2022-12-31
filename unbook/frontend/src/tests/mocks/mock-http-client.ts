@@ -1,11 +1,9 @@
 import {
 	HttpPostParams,
 	IHttpPostClient,
-} from "../../database/protocols/http/HttpPostClient";
-import {
 	HttpResponse,
 	HttpStatusCode,
-} from "../../database/protocols/http/HttpResponse";
+} from "../../database/protocols/http";
 
 class HttpPostClientSpy<T, R> implements IHttpPostClient<T, R> {
 	url?: string;

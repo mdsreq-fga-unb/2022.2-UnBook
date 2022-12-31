@@ -1,14 +1,13 @@
 import { HttpStatusCode } from "../../../../database/protocols/http/HttpResponse";
 import { RemoteAuthentication } from "../../../../database/repositories/RemoteAuthentication";
-import { InvalidCredentialsError } from "../../../../domain/errors/InvalidCredentialsError";
-import { UnexpectedError } from "../../../../domain/errors/UnexpectedError";
+import {
+	InvalidCredentialsError,
+	UnexpectedError,
+} from "../../../../domain/errors";
 import { IAccountModel } from "../../../../domain/models/AccountModel";
 import { IAuthenticationParams } from "../../../../domain/usecases/IAuthenticationUseCase";
-import {
-	mockAccountModel,
-	mockAuthentication,
-} from "../../../mocks/mock-account";
-import { HttpPostClientSpy } from "../../../mocks/mock-http-client";
+import { mockAccountModel, mockAuthentication } from "../../../mocks";
+import { HttpPostClientSpy } from "../../../mocks/";
 import { faker } from "@faker-js/faker";
 
 interface ISubTypes {

@@ -1,11 +1,10 @@
-import { InvalidCredentialsError } from "../../domain/errors/InvalidCredentialsError";
-import { UnexpectedError } from "../../domain/errors/UnexpectedError";
+import { InvalidCredentialsError, UnexpectedError } from "../../domain/errors/";
 import { IAccountModel } from "../../domain/models/AccountModel";
 import {
 	IAuthentication,
 	IAuthenticationParams,
 } from "../../domain/usecases/IAuthenticationUseCase";
-import { IHttpPostClient } from "../protocols/http/HttpPostClient";
+import { IHttpPostClient } from "../protocols/http/index";
 import { HttpStatusCode } from "../protocols/http/HttpResponse";
 
 class RemoteAuthentication implements IAuthentication {
