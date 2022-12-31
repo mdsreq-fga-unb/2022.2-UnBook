@@ -1,4 +1,5 @@
 import { InvalidCredentialsError } from "../../domain/errors/InvalidCredentialsError";
+import { UnexpectedError } from "../../domain/errors/UnexpectedError";
 import { IAuthenticationParams } from "../../domain/usecases/IAuthenticationUseCase";
 import { IHttpPostClient } from "../protocols/http/HttpPostClient";
 import { HttpStatusCode } from "../protocols/http/HttpResponse";
@@ -16,10 +17,12 @@ class RemoteAuthentication {
 		});
 
 		switch (httpResponse.statusCode) {
+		case HttpStatusCode.ok:
+			break;
 		case HttpStatusCode.unathorized:
 			throw new InvalidCredentialsError();
 		default:
-			return Promise.resolve();
+			throw new UnexpectedError();
 		}
 	}
 }
