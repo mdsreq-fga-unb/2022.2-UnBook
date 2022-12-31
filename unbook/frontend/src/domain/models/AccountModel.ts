@@ -1,5 +1,5 @@
 interface IAccountModel {
-  acessToken: string;
+	accessToken: string;
 }
 
 export { IAccountModel };

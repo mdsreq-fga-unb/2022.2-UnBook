@@ -1,11 +1,14 @@
 import { InvalidCredentialsError } from "../../domain/errors/InvalidCredentialsError";
 import { UnexpectedError } from "../../domain/errors/UnexpectedError";
 import { IAccountModel } from "../../domain/models/AccountModel";
-import { IAuthenticationParams } from "../../domain/usecases/IAuthenticationUseCase";
+import {
+	IAuthentication,
+	IAuthenticationParams,
+} from "../../domain/usecases/IAuthenticationUseCase";
 import { IHttpPostClient } from "../protocols/http/HttpPostClient";
 import { HttpStatusCode } from "../protocols/http/HttpResponse";
 
-class RemoteAuthentication {
+class RemoteAuthentication implements IAuthentication {
 	constructor(
 		private readonly url: string,
 		private readonly httpPostClient: IHttpPostClient<
@@ -14,7 +17,7 @@ class RemoteAuthentication {
 		>
 	) {}
 
-	async auth(params: IAuthenticationParams): Promise<void> {
+	async auth(params: IAuthenticationParams): Promise<IAccountModel> {
 		const httpResponse = await this.httpPostClient.post({
 			url: this.url,
 			body: params,
@@ -22,7 +25,7 @@ class RemoteAuthentication {
 
 		switch (httpResponse.statusCode) {
 		case HttpStatusCode.ok:
-			break;
+			return httpResponse.body;
 		case HttpStatusCode.unathorized:
 			throw new InvalidCredentialsError();
 		default:
