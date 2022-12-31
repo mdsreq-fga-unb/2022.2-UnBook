@@ -1,3 +1,4 @@
+import { IAccountModel } from "../../domain/models/AccountModel";
 import { IAuthenticationParams } from "../../domain/usecases/IAuthenticationUseCase";
 import { faker } from "@faker-js/faker";
 
@@ -8,4 +9,10 @@ const mockAuthentication = (): IAuthenticationParams => {
 	};
 };
 
-export { mockAuthentication };
+const mockAccountModel = (): IAccountModel => {
+	return {
+		accessToken: faker.datatype.uuid(),
+	};
+};
+
+export { mockAuthentication, mockAccountModel };
