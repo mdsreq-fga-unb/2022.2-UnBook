@@ -1,3 +1,4 @@
+import { IAuthenticationParams } from "../../domain/usecases/IAuthenticationUseCase";
 import { IHttpPostClient } from "../protocols/http/HttpPostClient";
 
 class RemoteAuthentication {
@@ -6,9 +7,8 @@ class RemoteAuthentication {
 		private readonly httpPostClient: IHttpPostClient
 	) {}
 
-	async auth(): Promise<void> {
-		await this.httpPostClient.post({ url: this.url });
-		return Promise.resolve();
+	async auth(params: IAuthenticationParams): Promise<void> {
+		await this.httpPostClient.post({ url: this.url, body: params });
 	}
 }
 

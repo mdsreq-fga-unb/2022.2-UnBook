@@ -1,11 +1,11 @@
 import { IAccountModel } from "../models/AccountModel";
 
-interface IAuthenticationModel {
+interface IAuthenticationParams {
 	email: string;
 	password: string;
 }
 interface IAuthentication {
-	auth(authentication: IAuthenticationModel): Promise<IAccountModel>;
+	auth(authentication: IAuthenticationParams): Promise<IAccountModel>;
 }
 
-export { IAuthentication, IAuthenticationModel };
+export { IAuthentication, IAuthenticationParams };
