@@ -1,6 +1,7 @@
 import { HttpStatusCode } from "../../../../database/protocols/http/HttpResponse";
 import { RemoteAuthentication } from "../../../../database/repositories/RemoteAuthentication";
 import { InvalidCredentialsError } from "../../../../domain/errors/InvalidCredentialsError";
+import { UnexpectedError } from "../../../../domain/errors/UnexpectedError";
 import { mockAuthentication } from "../../../mocks/mock-authentication";
 import { HttpPostClientSpy } from "../../../mocks/mock-http-client";
 import { faker } from "@faker-js/faker";
@@ -35,12 +36,39 @@ describe("RemoteAuthentication", () => {
 		expect(httpPostClientSpy.body).toEqual(authenticationParams);
 	});
 
-	test("Deve lançar um erro de o HttpPostClient retornar 401", async () => {
+	test("Deve lançar o erro InvalidCredencialsError se o HttpPostClient retornar 401", async () => {
 		const { sut, httpPostClientSpy } = makeSut();
 		httpPostClientSpy.response = {
 			statusCode: HttpStatusCode.unathorized,
 		};
 		const promise = sut.auth(mockAuthentication());
 		await expect(promise).rejects.toThrow(new InvalidCredentialsError());
+	});
+
+	test("Deve lançar o erro UnexpectedError se o HttpPostClient retornar 400", async () => {
+		const { sut, httpPostClientSpy } = makeSut();
+		httpPostClientSpy.response = {
+			statusCode: HttpStatusCode.badRequest,
+		};
+		const promise = sut.auth(mockAuthentication());
+		await expect(promise).rejects.toThrow(new UnexpectedError());
+	});
+
+	test("Deve lançar o erro UnexpectedError se o HttpPostClient retornar 500", async () => {
+		const { sut, httpPostClientSpy } = makeSut();
+		httpPostClientSpy.response = {
+			statusCode: HttpStatusCode.serverError,
+		};
+		const promise = sut.auth(mockAuthentication());
+		await expect(promise).rejects.toThrow(new UnexpectedError());
+	});
+
+	test("Deve lançar o erro UnexpectedError se o HttpPostClient retornar 404", async () => {
+		const { sut, httpPostClientSpy } = makeSut();
+		httpPostClientSpy.response = {
+			statusCode: HttpStatusCode.notFound,
+		};
+		const promise = sut.auth(mockAuthentication());
+		await expect(promise).rejects.toThrow(new UnexpectedError());
 	});
 });
