@@ -1,6 +1,5 @@
 import React from "react";
-import { Spinner } from "../../components/login/Spinner";
-import { Input } from "../../components/input/Input";
+import { Input, FormStatus } from "../../components";
 import styles from "./Login.module.css";
 
 const Login: React.FC = () => {
@@ -15,10 +14,7 @@ const Login: React.FC = () => {
 				<div className={styles.signup}>
 					Não tem uma conta? <a href="">Cadastre-se</a>
 				</div>
-				<div className={styles.errorWrapper}>
-					<Spinner className={styles.spinner} />
-					<div className={styles.error}>Erro</div>
-				</div>
+				<FormStatus />
 			</form>
 			<footer className={styles.footer}></footer>
 		</div>

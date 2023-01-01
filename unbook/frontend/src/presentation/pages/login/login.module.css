@@ -81,21 +81,6 @@
   color: var(--secondary);
 }
 
-.login .errorWrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.login .spinner {
-  display: block;
-}
-
-.login .error {
-  color: var(--alert);
-}
-
 @media (max-width: 768px) {
   html {
       font-size: 87.5%;
