@@ -1,10 +1,11 @@
-import "./App.css";
+import "./App.module.css";
+import { Login } from "./presentation/pages/login/login";
+import "./global.css";
 
-function App() {
+function App(): JSX.Element {
 	return (
 		<div className="App">
-			<h1>UnBook</h1>
-			<hr />
+			<Login />
 		</div>
 	);
 }

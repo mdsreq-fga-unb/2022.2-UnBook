@@ -1,0 +1,131 @@
+.wrapper {
+  max-width: 70rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
+
+  display: grid;
+  grid-template-columns: 256px 1fr;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 2rem;
+}
+
+.login h1 {
+  margin-bottom: 2.5rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.login .form {
+  background-color: var(--medium-gray);
+  border-radius: 8px;
+  overflow: hidden;
+  padding: 2.5rem;
+}
+
+.login input {
+  width: 100%;
+  background-color: var(--medium-gray);
+  border: 1px solid var(--primary);
+  padding: 1rem;
+  border-radius: 8px;
+  line-height: 1.4;
+  margin-bottom: 1rem;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid var(--primary);
+  -webkit-text-fill-color: var(--ligther-gray) !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(0, 0, 0, 0) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+
+.login button {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  color: var(--ligther-gray);
+  width: 100%;
+  border-radius: 8px;
+  height: 50px;
+  padding: 0 1.5rem;
+  font-weight: 700;
+  display: block;
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.1s, background-color 0.1s;
+}
+
+.login button:hover {
+  background-color: var(--secondary);
+  border: 1px solid var(--secondary);
+  cursor: pointer;
+}
+
+.login .separator {
+  margin-bottom: 2.5rem;
+  margin-top: 2.5rem;
+  background-color: var(--ligth-gray);
+  height: 1px;
+  width: 100%;
+}
+
+.login .signup {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.login .signup a {
+  font-weight: bold;
+  color: var(--primary);
+  text-decoration: none;
+  outline: none;
+  transition: color 0.1s, background-color 0.1s;
+}
+
+.login .signup a:hover {
+  color: var(--secondary);
+}
+
+.login .errorWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login .spinner {
+}
+
+.login .error {
+  color: var(--alert);
+}
+
+@media (max-width: 768px) {
+  html {
+      font-size: 87.5%;
+  }
+  .wrapper {
+      grid-template-columns: 1fr;
+  }
+}
