@@ -1,5 +1,5 @@
 import "./App.module.css";
-import { Login } from "./presentation/pages/login/login";
+import { Login } from "./presentation/pages/login/Login";
 import "./global.css";
 
 function App(): JSX.Element {

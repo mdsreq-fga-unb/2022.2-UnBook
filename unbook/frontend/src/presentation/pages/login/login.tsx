@@ -1,14 +1,15 @@
 import React from "react";
-import { Spinner } from "../../components/login/spinner";
-import styles from "./login.module.css";
+import { Spinner } from "../../components/login/Spinner";
+import { Input } from "../../components/input/Input";
+import styles from "./Login.module.css";
 
 const Login: React.FC = () => {
 	return (
 		<div className={styles.login}>
 			<form className={styles.form}>
 				<h1 className={styles.titile}>UnBooK</h1>
-				<input type="email" name="email" placeholder="Digite seu e-mail" />
-				<input type="password" name="password" placeholder="Digite sua senha" />
+				<Input type="email" name="email" placeholder="Digite seu e-mail" />
+				<Input type="password" name="password" placeholder="Digite sua senha" />
 				<button type="submit">Entrar</button>
 				<div className={styles.separator} />
 				<div className={styles.signup}>
