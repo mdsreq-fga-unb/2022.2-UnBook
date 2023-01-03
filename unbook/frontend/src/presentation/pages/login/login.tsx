@@ -5,17 +5,25 @@ import { Context } from "../../contexts/form/form-context";
 
 type StateProps = {
 	isLoading: boolean;
-	errorMessage: string;
+};
+type ErrorStateProps = {
+	email: string;
+	password: string;
+	main: string;
 };
 
 const Login: React.FC = () => {
 	const [state] = useState<StateProps>({
 		isLoading: false,
-		errorMessage: "",
+	});
+	const [errorState] = useState<ErrorStateProps>({
+		email: "Campo obrigatório",
+		password: "Campo obrigatório",
+		main: "",
 	});
 	return (
 		<div className={styles.login}>
-			<Context.Provider value={state}>
+			<Context.Provider value={{ state, errorState }}>
 				<form className={styles.form}>
 					<h1 className={styles.titile}>UnBooK</h1>
 					<Input type="email" name="email" placeholder="Digite seu e-mail" />
