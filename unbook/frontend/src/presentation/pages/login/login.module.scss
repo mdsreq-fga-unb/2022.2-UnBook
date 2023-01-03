@@ -60,8 +60,7 @@
   }
 
   &:disabled {
-    background-color: var(--disabled);
-    border: 1px solid var(--disabled);
+    opacity: 0.5;
   }
 }
 
