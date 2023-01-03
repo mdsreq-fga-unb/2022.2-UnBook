@@ -8,4 +8,10 @@ describe("Login Component", () => {
 		const errorWrapper = getByTestId("errorWrapper");
 		expect(errorWrapper.childElementCount).toBe(0);
 	});
+
+	test("Deve garantir que o botão de entrar esteja desabilitado se a senha e email não estiverem preenchidos", () => {
+		const { getByTestId } = render(<Login />);
+		const submitButton = getByTestId("submit") as HTMLButtonElement;
+		expect(submitButton.disabled).toBe(true);
+	});
 });
