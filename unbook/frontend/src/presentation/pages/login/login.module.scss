@@ -47,12 +47,22 @@
   align-items: center;
   gap: 0.5rem;
   transition: color 0.1s, background-color 0.1s;
-}
 
-.login button:hover {
-  background-color: var(--secondary);
-  border: 1px solid var(--secondary);
-  cursor: pointer;
+  &:not(:disabled) {
+    background-color: var(--primary);
+    border: 1px solid var(--primary);
+
+    &:hover{
+      background-color: var(--secondary);
+      border: 1px solid var(--secondary);
+      cursor: pointer;
+    }
+  }
+
+  &:disabled {
+    background-color: var(--disabled);
+    border: 1px solid var(--disabled);
+  }
 }
 
 .login .separator {

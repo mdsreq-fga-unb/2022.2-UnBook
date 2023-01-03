@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Input, FormStatus } from "../../components";
-import styles from "./login.module.css";
+import styles from "./login.module.scss";
 import { Context } from "../../contexts/form/form-context";
 
 type StateProps = {
@@ -9,7 +9,7 @@ type StateProps = {
 };
 
 const Login: React.FC = () => {
-	const [state] = useState({
+	const [state] = useState<StateProps>({
 		isLoading: false,
 		errorMessage: "",
 	});
@@ -24,7 +24,9 @@ const Login: React.FC = () => {
 						name="password"
 						placeholder="Digite sua senha"
 					/>
-					<button type="submit">Entrar</button>
+					<button data-testid="submit" disabled type="submit">
+						Entrar
+					</button>
 					<div className={styles.separator} />
 					<div className={styles.signup}>
 						Não tem uma conta? <a href="">Cadastre-se</a>
