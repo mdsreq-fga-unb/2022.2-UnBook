@@ -1,6 +1,6 @@
 import React from "react";
-import { Spinner } from "../";
-import styles from "./FormStatus.module.css";
+import { Spinner } from "../index";
+import styles from "./formStatus.module.css";
 
 const FormStatus: React.FC = () => {
 	return (

@@ -5,6 +5,8 @@ export default {
 		"!<rootDir>/src/main/**",
 	],
 	silent: false,
+	transformIgnorePatterns: [],
+
 	coverageDirectory: "coverage",
 	roots: ["<rootDir>/src"],
 	testEnvironment: "jsdom",
