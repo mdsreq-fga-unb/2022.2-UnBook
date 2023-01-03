@@ -14,4 +14,16 @@ describe("Login Component", () => {
 		const submitButton = getByTestId("submit") as HTMLButtonElement;
 		expect(submitButton.disabled).toBe(true);
 	});
+
+	test("Deve garantir que o título do input email deva ser campo obrigatório", () => {
+		const { getByTestId } = render(<Login />);
+		const emailStatus = getByTestId("email-status");
+		expect(emailStatus.title).toBe("Campo obrigatório");
+	});
+
+	test("Deve garantir que o título do input deva password ser campo obrigatório", () => {
+		const { getByTestId } = render(<Login />);
+		const passwordStatus = getByTestId("password-status");
+		expect(passwordStatus.title).toBe("Campo obrigatório");
+	});
 });
