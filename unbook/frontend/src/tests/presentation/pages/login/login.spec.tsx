@@ -6,23 +6,11 @@ import {
 	render,
 } from "@testing-library/react";
 import { Login } from "../../../../presentation/pages";
-import { IValidation } from "../../../../presentation/protocols/IValidation";
+import { ValidationSpy } from "../../mocks/validation";
 
 interface ISutTypes {
 	sut: RenderResult;
 	validationSpy: ValidationSpy;
-}
-
-class ValidationSpy implements IValidation {
-	errorMessage: string;
-	fieldName: string;
-	fieldValue: string;
-
-	validate(fieldName: string, fieldValue: string): string {
-		this.fieldName = fieldName;
-		this.fieldValue = fieldValue;
-		return this.errorMessage;
-	}
 }
 
 const makeSut = (): ISutTypes => {
