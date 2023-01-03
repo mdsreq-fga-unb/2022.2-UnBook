@@ -11,7 +11,6 @@ type Props = React.DetailedHTMLProps<
 const Input: React.FC<Props> = (props: Props) => {
 	const { state, setState } = useContext(Context);
 	const error = state[`${props.name}Error`];
-	console.log(error);
 	const enableInput = (event: React.FocusEvent<HTMLInputElement>): void => {
 		event.target.readOnly = false;
 	};
