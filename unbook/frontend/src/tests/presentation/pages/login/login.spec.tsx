@@ -66,11 +66,11 @@ describe("Login Component", () => {
 			expect(validationSpy.input).toEqual({ email: "any_email" });
 		});
 
-		test("Deve garantir que o validation seja chamado com os valores corretos", () => {
+		test("Deve garantir que o validation seja chamado com o password corretamente", () => {
 			const { sut, validationSpy } = makeSut();
-			const emailInput = sut.getByTestId("email-status");
-			fireEvent.input(emailInput, { target: { value: "any_email" } });
-			expect(validationSpy.input).toEqual({ email: "any_email" });
+			const passwordInput = sut.getByTestId("password-status");
+			fireEvent.input(passwordInput, { target: { value: "any_password" } });
+			expect(validationSpy.input).toEqual({ password: "any_password" });
 		});
 	});
 });
