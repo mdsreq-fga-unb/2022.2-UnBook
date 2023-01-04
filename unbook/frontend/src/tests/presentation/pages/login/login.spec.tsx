@@ -5,7 +5,7 @@ import {
 	fireEvent,
 	render,
 } from "@testing-library/react";
-import { Login } from "../../../../presentation/pages";
+import { Login } from "../../../../presentation/pages/login/login";
 import { ValidationStub } from "../../mocks/validation/mock-validation";
 import { faker } from "@faker-js/faker";
 
@@ -79,5 +79,22 @@ describe("Login Component", () => {
 		});
 		const submitButton = sut.getByTestId("submit") as HTMLButtonElement;
 		expect(submitButton.disabled).toBe(false);
+	});
+
+	test("Deve exibir o ícone de carregando quando o botão de submit for clicado", () => {
+		const { sut, validationStub } = makeSut();
+		validationStub.errorMessage = null;
+		const emailInput = sut.getByTestId("email-status");
+		fireEvent.input(emailInput, {
+			target: { value: faker.internet.password() },
+		});
+		const passwordInput = sut.getByTestId("password-status");
+		fireEvent.input(passwordInput, {
+			target: { value: faker.internet.password() },
+		});
+		const submitButton = sut.getByTestId("submit");
+		fireEvent.click(submitButton);
+		const spinner = sut.getByTestId("spinner");
+		expect(spinner).toBeTruthy();
 	});
 });
