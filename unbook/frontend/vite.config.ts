@@ -8,6 +8,7 @@ export default defineConfig({
 	plugins: [react()],
 	test: {
 		globals: true,
+		setupFiles: ["vitest-localstorage-mock"],
 		environment: "jsdom",
 	},
 });

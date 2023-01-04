@@ -18,7 +18,8 @@
     "axios": "^1.2.2",
     "identity-obj-proxy": "^3.0.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "vitest-localstorage-mock": "^0.0.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
