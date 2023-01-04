@@ -4,6 +4,7 @@ import {
 	cleanup,
 	fireEvent,
 	render,
+	waitFor,
 } from "@testing-library/react";
 import { Login } from "../../../../presentation/pages/login/login";
 import {
@@ -11,28 +12,33 @@ import {
 	AuthenticationSpy,
 } from "../../../presentation/mocks/validation";
 import { faker } from "@faker-js/faker";
+import "vitest-localstorage-mock";
+import { InvalidCredentialsError } from "../../../../domain/errors";
+import { vi } from "vitest";
 
 interface ISutTypes {
 	sut: RenderResult;
-	validationStub: ValidationStub;
 	authenticationSpy: AuthenticationSpy;
 }
 
-const makeSut = (): ISutTypes => {
+type SutParams = {
+	validationError: string;
+};
+
+const makeSut = (params?: SutParams): ISutTypes => {
 	const validationStub = new ValidationStub();
 	const authenticationSpy = new AuthenticationSpy();
-	validationStub.errorMessage = faker.random.words();
+	validationStub.errorMessage = params?.validationError;
 	const sut = render(
 		<Login validation={validationStub} authentication={authenticationSpy} />
 	);
 	return {
 		sut,
-		validationStub,
 		authenticationSpy,
 	};
 };
 
-const simulatedValidSubmit = (
+const simulateValidSubmit = (
 	sut: RenderResult,
 	email = faker.internet.email(),
 	password = faker.internet.password()
@@ -65,49 +71,56 @@ const populatePasswordField = (
 
 describe("Login Component", () => {
 	afterEach(cleanup);
+	beforeEach(() => {
+		localStorage.clear();
+	});
 	test("Não deve renderizar o spinner e o erro no início", () => {
 		const { sut } = makeSut();
-		const errorWrapper = sut.getByTestId("errorWrapper");
+		const errorWrapper = sut.getByTestId("error-wrap");
 		expect(errorWrapper.childElementCount).toBe(0);
 	});
 
 	test("Deve garantir que o botão de entrar esteja desabilitado se a senha e email não estiverem preenchidos", () => {
-		const { sut } = makeSut();
+		const validationError = faker.random.words();
+		const { sut } = makeSut({ validationError });
 		const submitButton = sut.getByTestId("submit") as HTMLButtonElement;
 		expect(submitButton.disabled).toBe(true);
 	});
 
 	test("Deve garantir que o título do input email deva ser campo obrigatório", () => {
-		const { sut, validationStub } = makeSut();
+		const validationError = faker.random.words();
+		const { sut } = makeSut({ validationError });
 		const emailStatus = sut.getByTestId("email-status");
-		expect(emailStatus.title).toBe(validationStub.errorMessage);
+		expect(emailStatus.title).toBe(validationError);
 	});
 
 	test("Deve garantir que o título do input password deva ser campo obrigatório", () => {
-		const { sut, validationStub } = makeSut();
+		const validationError = faker.random.words();
+		const { sut } = makeSut({ validationError });
 		const passwordStatus = sut.getByTestId("password-status");
-		expect(passwordStatus.title).toBe(validationStub.errorMessage);
+		expect(passwordStatus.title).toBe(validationError);
 	});
 
 	test("Deve mostrar um erro de email se o Validation falhar", () => {
-		const { sut, validationStub } = makeSut();
+		const validationError = faker.random.words();
+		const { sut } = makeSut({ validationError });
 		const emailInput = sut.getByTestId("email-status");
 		fireEvent.input(emailInput, { target: { value: faker.internet.email() } });
-		expect(emailInput.title).toBe(validationStub.errorMessage);
+		expect(emailInput.title).toBe(validationError);
 	});
 
 	test("Deve mostrar um erro de password se o Validation falhar", () => {
-		const { sut, validationStub } = makeSut();
+		const validationError = faker.random.words();
+		const { sut } = makeSut({ validationError });
 		const passwordInput = sut.getByTestId("password-status");
 		fireEvent.input(passwordInput, {
 			target: { value: faker.internet.password() },
 		});
-		expect(passwordInput.title).toBe(validationStub.errorMessage);
+		expect(passwordInput.title).toBe(validationError);
 	});
 
 	test("Deve habilitar o botão de submit se os valores passados forem válidos", () => {
-		const { sut, validationStub } = makeSut();
-		validationStub.errorMessage = null;
+		const { sut } = makeSut();
 		populateEmailField(sut);
 		populatePasswordField(sut);
 		const submitButton = sut.getByTestId("submit") as HTMLButtonElement;
@@ -115,19 +128,17 @@ describe("Login Component", () => {
 	});
 
 	test("Deve exibir o ícone de carregando quando o botão de submit for clicado", () => {
-		const { sut, validationStub } = makeSut();
-		validationStub.errorMessage = null;
-		simulatedValidSubmit(sut);
+		const { sut } = makeSut();
+		simulateValidSubmit(sut);
 		const spinner = sut.getByTestId("spinner");
 		expect(spinner).toBeTruthy();
 	});
 
 	test("Deve chamar o Authentication com os valores corretos", () => {
-		const { sut, validationStub, authenticationSpy } = makeSut();
-		validationStub.errorMessage = null;
+		const { sut, authenticationSpy } = makeSut();
 		const email = faker.internet.email();
 		const password = faker.internet.password();
-		simulatedValidSubmit(sut, email, password);
+		simulateValidSubmit(sut, email, password);
 		expect(authenticationSpy.params).toEqual({
 			email,
 			password,
@@ -135,17 +146,41 @@ describe("Login Component", () => {
 	});
 
 	test("Deve chamar o Authentication apenas uma vez", () => {
-		const { sut, validationStub, authenticationSpy } = makeSut();
-		validationStub.errorMessage = null;
-		simulatedValidSubmit(sut);
-		simulatedValidSubmit(sut);
+		const { sut, authenticationSpy } = makeSut();
+		simulateValidSubmit(sut);
+		simulateValidSubmit(sut);
 		expect(authenticationSpy.callsCount).toBe(1);
 	});
 
 	test("Deve chamar o Authentication apenas uma vez", () => {
-		const { sut, authenticationSpy } = makeSut();
+		const validationError = faker.random.words();
+		const { sut, authenticationSpy } = makeSut({ validationError });
 		populateEmailField(sut);
 		fireEvent.submit(sut.getByTestId("form"));
 		expect(authenticationSpy.callsCount).toBe(0);
+	});
+
+	test("Deve mostrar o erro se a autenticação falhar", async () => {
+		const { sut, authenticationSpy } = makeSut();
+		const error = new InvalidCredentialsError();
+		vi.spyOn(authenticationSpy, "auth").mockReturnValueOnce(
+			Promise.reject(error)
+		);
+		simulateValidSubmit(sut);
+		const errorWrap = sut.getByTestId("error-wrap");
+		await waitFor(() => errorWrap);
+		const mainError = sut.findByTestId("main-error");
+		expect((await mainError).textContent).toBe(error.message);
+		expect(errorWrap.childElementCount).toBe(1);
+	});
+
+	test("Deve adicionar um accessToken no localstorage caso a autenticação tiver sucesso", async () => {
+		const { sut, authenticationSpy } = makeSut();
+		simulateValidSubmit(sut);
+		await waitFor(() => sut.findByTestId("form"));
+		expect(localStorage.setItem).toHaveBeenCalledWith(
+			"accessToken",
+			authenticationSpy.account.accessToken
+		);
 	});
 });
