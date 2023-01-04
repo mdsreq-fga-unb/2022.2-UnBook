@@ -133,4 +133,12 @@ describe("Login Component", () => {
 			password,
 		});
 	});
+
+	test("Deve chamar o Authentication apenas uma vez", () => {
+		const { sut, validationStub, authenticationSpy } = makeSut();
+		validationStub.errorMessage = null;
+		simulatedValidSubmit(sut);
+		simulatedValidSubmit(sut);
+		expect(authenticationSpy.callsCount).toBe(1);
+	});
 });
