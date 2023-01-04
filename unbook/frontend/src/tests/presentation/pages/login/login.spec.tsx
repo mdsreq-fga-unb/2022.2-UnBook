@@ -6,23 +6,11 @@ import {
 	render,
 } from "@testing-library/react";
 import { Login } from "../../../../presentation/pages/login/login";
-import { ValidationStub } from "../../mocks/validation/mock-validation";
-import { faker } from "@faker-js/faker";
 import {
-	IAuthentication,
-	IAuthenticationParams,
-} from "../../../../domain/usecases/IAuthenticationUseCase";
-import { IAccountModel } from "../../../../domain/models/IAccountModel";
-import { mockAccountModel } from "../../../mocks";
-
-class AuthenticationSpy implements IAuthentication {
-	account = mockAccountModel();
-	params: IAuthenticationParams;
-	async auth(params: IAuthenticationParams): Promise<IAccountModel> {
-		this.params = params;
-		return Promise.resolve(this.account);
-	}
-}
+	ValidationStub,
+	AuthenticationSpy,
+} from "../../../presentation/mocks/validation";
+import { faker } from "@faker-js/faker";
 
 interface ISutTypes {
 	sut: RenderResult;
