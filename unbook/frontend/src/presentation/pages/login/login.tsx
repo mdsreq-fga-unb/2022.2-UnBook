@@ -26,6 +26,7 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
 		passwordError: "",
 		mainError: "",
 	});
+
 	useEffect(() => {
 		setState({
 			...state,
@@ -34,10 +35,15 @@ const Login: React.FC<Props> = ({ validation }: Props) => {
 		});
 	}, [state.email, state.password]);
 
+	const handleSubmit = (): void => {
+		event.preventDefault();
+		setState({ ...state, isLoading: true });
+	};
+
 	return (
 		<div className={styles.login}>
 			<Context.Provider value={{ state, setState }}>
-				<form className={styles.form}>
+				<form className={styles.form} onSubmit={handleSubmit}>
 					<h1 className={styles.titile}>UnBooK</h1>
 					<Input type="email" name="email" placeholder="Digite seu e-mail" />
 					<Input

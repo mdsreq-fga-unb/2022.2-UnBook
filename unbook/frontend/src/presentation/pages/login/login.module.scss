@@ -16,6 +16,8 @@
   justify-content: center;
   height: 100vh;
   gap: 2rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .login h1 {
@@ -29,6 +31,8 @@
   border-radius: 8px;
   overflow: hidden;
   padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
 }
 
 .login button {

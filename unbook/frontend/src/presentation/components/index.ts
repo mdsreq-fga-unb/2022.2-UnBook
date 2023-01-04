@@ -1,5 +1,5 @@
-import { FormStatus } from "./form-status/FormStatus";
-import { Spinner } from "./spinner/Spinner";
-import { Input } from "./input/Input";
+import { FormStatus } from "./form-status/formStatus";
+import { Spinner } from "./spinner/spinner";
+import { Input } from "./input/input";
 
 export { FormStatus, Spinner, Input };
