@@ -1,5 +1,5 @@
 import { InvalidCredentialsError, UnexpectedError } from "../../domain/errors/";
-import { IAccountModel } from "../../domain/models/AccountModel";
+import { IAccountModel } from "../../domain/models/IAccountModel";
 import {
 	IAuthentication,
 	IAuthenticationParams,

@@ -1,4 +1,4 @@
-import { IAccountModel } from "../models/AccountModel";
+import { IAccountModel } from "../models/IAccountModel";
 
 interface IAuthenticationParams {
 	email: string;
