@@ -141,4 +141,11 @@ describe("Login Component", () => {
 		simulatedValidSubmit(sut);
 		expect(authenticationSpy.callsCount).toBe(1);
 	});
+
+	test("Deve chamar o Authentication apenas uma vez", () => {
+		const { sut, authenticationSpy } = makeSut();
+		populateEmailField(sut);
+		fireEvent.submit(sut.getByTestId("form"));
+		expect(authenticationSpy.callsCount).toBe(0);
+	});
 });
