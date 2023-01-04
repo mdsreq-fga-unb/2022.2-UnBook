@@ -15,6 +15,7 @@ import { faker } from "@faker-js/faker";
 import "vitest-localstorage-mock";
 import { InvalidCredentialsError } from "../../../../domain/errors";
 import { vi } from "vitest";
+import { BrowserRouter } from "react-router-dom";
 
 interface ISutTypes {
 	sut: RenderResult;
@@ -30,7 +31,9 @@ const makeSut = (params?: SutParams): ISutTypes => {
 	const authenticationSpy = new AuthenticationSpy();
 	validationStub.errorMessage = params?.validationError;
 	const sut = render(
-		<Login validation={validationStub} authentication={authenticationSpy} />
+		<BrowserRouter>
+			<Login validation={validationStub} authentication={authenticationSpy} />
+		</BrowserRouter>
 	);
 	return {
 		sut,
@@ -182,5 +185,13 @@ describe("Login Component", () => {
 			"accessToken",
 			authenticationSpy.account.accessToken
 		);
+	});
+
+	test("Deve ir para página de criar conta ao clicar no link de cadastro", async () => {
+		const { sut } = makeSut();
+		const signup = sut.getByTestId("signup");
+		fireEvent.click(signup);
+
+		expect(location.pathname).toBe("/signup");
 	});
 });
