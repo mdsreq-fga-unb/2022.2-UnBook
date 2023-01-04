@@ -1,4 +1,4 @@
-import { IAccountModel } from "../../domain/models/AccountModel";
+import { IAccountModel } from "../../domain/models/IAccountModel";
 import { IAuthenticationParams } from "../../domain/usecases/IAuthenticationUseCase";
 import { faker } from "@faker-js/faker";
 

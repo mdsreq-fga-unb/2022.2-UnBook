@@ -8,19 +8,39 @@ import {
 import { Login } from "../../../../presentation/pages/login/login";
 import { ValidationStub } from "../../mocks/validation/mock-validation";
 import { faker } from "@faker-js/faker";
+import {
+	IAuthentication,
+	IAuthenticationParams,
+} from "../../../../domain/usecases/IAuthenticationUseCase";
+import { IAccountModel } from "../../../../domain/models/IAccountModel";
+import { mockAccountModel } from "../../../mocks";
+
+class AuthenticationSpy implements IAuthentication {
+	account = mockAccountModel();
+	params: IAuthenticationParams;
+	async auth(params: IAuthenticationParams): Promise<IAccountModel> {
+		this.params = params;
+		return Promise.resolve(this.account);
+	}
+}
 
 interface ISutTypes {
 	sut: RenderResult;
 	validationStub: ValidationStub;
+	authenticationSpy: AuthenticationSpy;
 }
 
 const makeSut = (): ISutTypes => {
 	const validationStub = new ValidationStub();
+	const authenticationSpy = new AuthenticationSpy();
 	validationStub.errorMessage = faker.random.words();
-	const sut = render(<Login validation={validationStub} />);
+	const sut = render(
+		<Login validation={validationStub} authentication={authenticationSpy} />
+	);
 	return {
 		sut,
 		validationStub,
+		authenticationSpy,
 	};
 };
 
@@ -71,7 +91,7 @@ describe("Login Component", () => {
 		validationStub.errorMessage = null;
 		const emailInput = sut.getByTestId("email-status");
 		fireEvent.input(emailInput, {
-			target: { value: faker.internet.password() },
+			target: { value: faker.internet.email() },
 		});
 		const passwordInput = sut.getByTestId("password-status");
 		fireEvent.input(passwordInput, {
@@ -86,7 +106,7 @@ describe("Login Component", () => {
 		validationStub.errorMessage = null;
 		const emailInput = sut.getByTestId("email-status");
 		fireEvent.input(emailInput, {
-			target: { value: faker.internet.password() },
+			target: { value: faker.internet.email() },
 		});
 		const passwordInput = sut.getByTestId("password-status");
 		fireEvent.input(passwordInput, {
@@ -96,5 +116,26 @@ describe("Login Component", () => {
 		fireEvent.click(submitButton);
 		const spinner = sut.getByTestId("spinner");
 		expect(spinner).toBeTruthy();
+	});
+
+	test("Deve chamar o Authentication com os valores corretos", () => {
+		const { sut, validationStub, authenticationSpy } = makeSut();
+		validationStub.errorMessage = null;
+		const emailInput = sut.getByTestId("email-status");
+		const email = faker.internet.email();
+		fireEvent.input(emailInput, {
+			target: { value: email },
+		});
+		const passwordInput = sut.getByTestId("password-status");
+		const password = faker.internet.password();
+		fireEvent.input(passwordInput, {
+			target: { value: password },
+		});
+		const submitButton = sut.getByTestId("submit");
+		fireEvent.click(submitButton);
+		expect(authenticationSpy.params).toEqual({
+			email,
+			password,
+		});
 	});
 });

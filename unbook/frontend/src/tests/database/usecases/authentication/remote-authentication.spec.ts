@@ -4,7 +4,7 @@ import {
 	InvalidCredentialsError,
 	UnexpectedError,
 } from "../../../../domain/errors";
-import { IAccountModel } from "../../../../domain/models/AccountModel";
+import { IAccountModel } from "../../../../domain/models/IAccountModel";
 import { IAuthenticationParams } from "../../../../domain/usecases/IAuthenticationUseCase";
 import { mockAccountModel, mockAuthentication } from "../../../mocks";
 import { HttpPostClientSpy } from "../../../mocks/";
