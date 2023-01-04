@@ -1,11 +1,17 @@
 import "./App.module.css";
-import { Login } from "./presentation/pages/login/login";
 import "./global.css";
+import { Routes, Route } from "react-router-dom";
+import { Login } from "./presentation/pages/login/login";
 
 function App(): JSX.Element {
 	return (
 		<div className="App">
-			<Login />
+			<Routes>
+				<Route
+					path="/login"
+					element={<Login validation={undefined} authentication={undefined} />}
+				/>
+			</Routes>
 		</div>
 	);
 }

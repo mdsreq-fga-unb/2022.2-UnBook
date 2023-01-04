@@ -4,6 +4,7 @@ import styles from "./login.module.scss";
 import { Context } from "../../contexts/form/form-context";
 import { IValidation } from "../../protocols/IValidation";
 import { IAuthentication } from "../../../domain/usecases/IAuthenticationUseCase";
+import { Link } from "react-router-dom";
 
 type Props = {
 	validation: IValidation;
@@ -84,7 +85,10 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
 					</button>
 					<div className={styles.separator} />
 					<div className={styles.signup}>
-						Não tem uma conta? <a href="">Cadastre-se</a>
+						Não tem uma conta?
+						<Link data-testid="signup" to="/signup">
+							Cadastre-se
+						</Link>
 					</div>
 					<FormStatus />
 				</form>
