@@ -65,4 +65,19 @@ describe("Login Component", () => {
 		});
 		expect(passwordInput.title).toBe(validationStub.errorMessage);
 	});
+
+	test("Deve habilitar o botão de submit se os valores passados forem válidos", () => {
+		const { sut, validationStub } = makeSut();
+		validationStub.errorMessage = null;
+		const emailInput = sut.getByTestId("email-status");
+		fireEvent.input(emailInput, {
+			target: { value: faker.internet.password() },
+		});
+		const passwordInput = sut.getByTestId("password-status");
+		fireEvent.input(passwordInput, {
+			target: { value: faker.internet.password() },
+		});
+		const submitButton = sut.getByTestId("submit") as HTMLButtonElement;
+		expect(submitButton.disabled).toBe(false);
+	});
 });
