@@ -191,7 +191,6 @@ describe("Login Component", () => {
 		const { sut } = makeSut();
 		const signup = sut.getByTestId("signup");
 		fireEvent.click(signup);
-
 		expect(location.pathname).toBe("/signup");
 	});
 });

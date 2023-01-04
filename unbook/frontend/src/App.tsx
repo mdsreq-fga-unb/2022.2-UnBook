@@ -11,6 +11,10 @@ function App(): JSX.Element {
 					path="/login"
 					element={<Login validation={undefined} authentication={undefined} />}
 				/>
+				<Route
+					path="/"
+					element={<Login validation={undefined} authentication={undefined} />}
+				/>
 			</Routes>
 		</div>
 	);
