@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { IFielValidation } from "../../../validation/protocols/IFieldValidation";
 
 class FieldValidationSpy implements IFielValidation {
