@@ -1,6 +1,6 @@
-interface IFielValidation {
+interface IFieldValidation {
 	field: string;
 	validate: (value: string) => Error;
 }
 
-export { IFielValidation };
+export { IFieldValidation };

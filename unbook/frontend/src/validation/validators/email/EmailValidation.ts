@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { InvalidParamError } from "../../errors/InvalidParamError";
-import { IFielValidation } from "../../protocols/IFieldValidation";
+import { IFieldValidation } from "../../protocols/IFieldValidation";
 
-class EmailValidation implements IFielValidation {
+class EmailValidation implements IFieldValidation {
 	constructor(readonly field: string) {
 		this.field = field;
 	}

@@ -1,7 +1,7 @@
 import { InvalidParamError } from "../../errors/InvalidParamError";
-import { IFielValidation } from "../../protocols/IFieldValidation";
+import { IFieldValidation } from "../../protocols/IFieldValidation";
 
-class MinLengthValidation implements IFielValidation {
+class MinLengthValidation implements IFieldValidation {
 	constructor(readonly field: string, private readonly minLength: number) {
 		this.field = field;
 	}

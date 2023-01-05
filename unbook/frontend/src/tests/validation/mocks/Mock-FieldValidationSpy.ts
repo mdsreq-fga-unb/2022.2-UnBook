@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { IFielValidation } from "../../../validation/protocols/IFieldValidation";
+import { IFieldValidation } from "../../../validation/protocols/IFieldValidation";
 
-class FieldValidationSpy implements IFielValidation {
+class FieldValidationSpy implements IFieldValidation {
 	error: Error = null;
 	constructor(readonly field: string) {
 		this.field = field;
