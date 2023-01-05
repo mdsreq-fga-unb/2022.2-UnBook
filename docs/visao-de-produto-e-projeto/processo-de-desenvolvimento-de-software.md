@@ -14,6 +14,11 @@ Para o desenvolvimento do projeto iremos utilizar as metodologias Scrum e XP (Ex
     - **Continuous Integration** - É uma prática de desenvolvimento de software que consiste em integrar o código desenvolvido por diferentes programadores dirigida a entregas. Cada integração é verificada por um processo de integração contínua, que pode incluir compilação, execução de testes e notificação de desenvolvedores sobre falhas.
     - **Plannig Poker** - É uma técnica de estimativa de esforço de desenvolvimento de software que consiste em uma equipe de desenvolvimento estimar o esforço necessário para completar uma tarefa.
 
+- ###Como utilizaremos as duas técnicas
+    - **Sprint Planning e Plannig Poker** - utilizaremos o Plannig Poker durante Sprint Planning para gerenciar as tarefas mais pertinentes a serem feitas.
+    - **Sprints unidas a técnicas do XP** - para a realização das sprints utilizaremos as técnicas provenientes do XP, como Pair Programing, TDD, Continuous Integration para o desenvolvimento dos códigos.
+
+
 
 ![Imagem Esquema de reunião Semanal](../img/ReunioesSemanais.jpeg)
 ![Imagem Agile Board](../img/AgileBoard.jpg)
