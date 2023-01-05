@@ -6,7 +6,9 @@ class MinLengthValidation implements IFielValidation {
 		this.field = field;
 	}
 	validate(value: string): Error {
-		return new InvalidParamError(this.field);
+		return value.length >= this.minLength
+			? null
+			: new InvalidParamError(this.field);
 	}
 }
 
