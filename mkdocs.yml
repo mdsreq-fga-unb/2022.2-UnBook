@@ -40,6 +40,7 @@ nav:
           - Visão Geral do Projeto: visao-de-produto-e-projeto/visao-geral-do-projeto.md
           - Processo de Desenvolvimento de Software: visao-de-produto-e-projeto/processo-de-desenvolvimento-de-software.md        
           - Documentação das Sprints: visao-de-produto-e-projeto/documentacao-sprints.md
+          - Quadro Kanban: visao-de-produto-e-projeto/kanban.md
       - Backlog do Produto: backlog-do-produto/backlog-do-produto.md
       - Estratégias de Implementação: visao-de-produto-e-projeto/estrategias.md
       - Design: 
