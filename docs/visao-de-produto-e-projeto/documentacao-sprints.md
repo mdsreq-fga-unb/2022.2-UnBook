@@ -104,3 +104,15 @@ Segunda sprint de codificação do grupo, agora com o planejamento atualizado o 
 
 
 ##### O que podemos fazer de forma diferente na próxima sprint para melhorar nossos resultados?
+
+## **Relato Programação em Pares**
+
+A programação em pares ou pair programming é um método de programação no qual duas pessoas trabalham juntas em um único programa, muito utilizada no desenvolvimento ágil. A equipe optou por manter as duplas no período de uma sprint no início, entretanto devido a alterações no fluxo das sprints deste ponto em diante as duplas serão mantidas por uma semana, ou seja, meia sprint.  
+
+Em razão da equipe possuir um número ímpar de participantes (5 participantes), o grupo foi divido em duas duplas e um integrante sozinho a cada ciclo. 
+
+ 
+### **Ferramentas utilizadas**
+
+-Live share: extensão do Visual Code que traz um ambiente colaborativo em tempo real para editar ou debugar códigos. 
+-Discord: aplicativo de comunicação. 
