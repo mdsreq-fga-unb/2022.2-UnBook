@@ -42,6 +42,8 @@ nav:
           - Documentação das Sprints: visao-de-produto-e-projeto/documentacao-sprints.md
       - Backlog do Produto: backlog-do-produto/backlog-do-produto.md
       - Estratégias de Implementação: visao-de-produto-e-projeto/estrategias.md
+      - Design: 
+          - Arquitetura do projeto: visao-de-produto-e-projeto/arquitetura.md
   - Entregas: 
       - Unidade 1:
           - Seminário de Processos e Ciclos de Vida: entregas/seminario.md
