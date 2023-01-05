@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
-import { InvalidParamError } from "../../../validation/errors/invalid-param-error";
-import { MinLengthValidation } from "../../../validation/validators/min-lenth/min-lenth-validadtion";
+import { InvalidParamError } from "../../../validation/errors/InvalidParamError";
+import { MinLengthValidation } from "../../../validation/validators/min-lenth/MinLengthValidation";
 
 const makeSut = (
 	field = faker.database.column(),

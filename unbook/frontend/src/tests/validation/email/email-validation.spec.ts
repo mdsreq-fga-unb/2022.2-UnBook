@@ -1,5 +1,5 @@
-import { InvalidParamError } from "../../../validation/errors/invalid-param-error";
-import { EmailValidation } from "../../../validation/validators/email/email-validation";
+import { InvalidParamError } from "../../../validation/errors/InvalidParamError";
+import { EmailValidation } from "../../../validation/validators/email/EmailValidation";
 import { faker } from "@faker-js/faker";
 
 const makeSut = (field = faker.database.column()): EmailValidation => {
