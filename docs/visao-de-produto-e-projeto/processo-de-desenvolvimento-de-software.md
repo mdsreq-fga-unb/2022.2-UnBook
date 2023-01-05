@@ -4,8 +4,11 @@ Para o desenvolvimento do projeto iremos utilizar as metodologias Scrum e XP (Ex
 - ###Tópicos SCRUM
     - **Daily Sprints** - Realizadas diariamente, para que os membros da equipe possam se comunicar (preferencialmente pelo WhatsApp) e se atualizar sobre o andamento do projeto.
     - **Sprint Planning** - realizada no início de cada sprint, para que os membros da equipe possam se reunir e planejar o que será feito na sprint.
+       -Entrega: Sprint Backlog
     - **Sprint Review** - realizada no final de cada sprint, para que os membros da equipe possam revisar o que foi feito na sprint.
+        -Entrega: Documento informando o que foi atigindo durante a sprint. 
     - **Sprint Retrospective** - realizada no final de cada sprint, para que os membros da equipe possam refletir sobre o que foi feito na sprint e o que pode ser melhorado para as próximas sprints.
+        -Entrega: Documento informando os pontos que acreditamos que devemos melhorar para a próxima sprint e pontos positivos que devemos manter.
     - **Product Backlog** - É uma lista de funcionalidades que o produto deve ter, ordenadas de acordo com a importância para o cliente. As funcionalidades são adicionadas ao Product Backlog durante o Sprint Planning.
 
 - ###Tópicos eXtreme Programming
