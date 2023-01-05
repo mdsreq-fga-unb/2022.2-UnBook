@@ -1,4 +1,4 @@
-import { InvalidParamError } from "../../errors/invalid-param-error";
+import { InvalidParamError } from "../../errors/InvalidParamError";
 import { IFielValidation } from "../../protocols/IFieldValidation";
 
 class MinLengthValidation implements IFielValidation {

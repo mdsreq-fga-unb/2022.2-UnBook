@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { RequiredFieldError } from "../errors/required-field-error";
+import { RequiredFieldError } from "../errors/RequiredFieldError";
 import { IFielValidation } from "../protocols/IFieldValidation";
 
 class RequiredFieldValidation implements IFielValidation {
