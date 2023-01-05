@@ -3,13 +3,14 @@
 ###Sprint 08
 
 #### **Sprint Planning**: SCRUM MASTER - Pedro
-O marco inicial de codificação para o grupo, onde foi acordado as tarefas que seriam realizadas na sprint, e a divisão de tarefas entre os membros do grupo. Além disso, foi definido o que seria feito na sprint. As tarefas acordadas foram: codificar o cadastro e login do usuário que faz parte das U.S. 25,26,27,28. Foi definido também que o grupo iria se reunir diariamente para realizar o Daily Scrum, e que o grupo iria se reunir no final da sprint para realizar o Sprint Review e o Sprint Retrospective.
+O marco inicial de codificação para o grupo, onde foi acordado as tarefas que seriam realizadas na sprint, e a divisão de tarefas entre os membros do grupo. Além disso, foi definido o que seria feito na sprint. As tarefas acordadas foram: codificar o cadastro e login do usuário que faz parte das U.S. 25,26,27,28. Foi definido também que o grupo iria manter suas comunicações pelo grupo de WhatsApp e eventualmente o Discord, e que o grupo iria se reunir no final da sprint para realizar a Sprint Review e a Sprint Retrospective.
 O grupo como um todo ficou responsáveis pela parte de codifiação para que todos pudessem obter a experiência inicial da etapa de codificação.
 
 - Papéis da equipe:
- - Pedro: Ficou responsável por realizar o Daily Scrum e o Sprint Review e o Sprint Retrospective.
- - Maciel: Responsável pela codificação da landing page. (frontend)
- - Lucas e Ana: Ficaram responsáveis pelas atualizações da documentação do planejamento da sprint.
+ - Scrum Master e Desenvolvedor Pedro: Ficou responsável por realizar a Sprint Review e a Sprint Retrospective.
+ - Desenvolvedor Maciel: Responsável pela codificação do cadastro e login do usuário. (frontend, backend)
+ - Product Owners e Desenvolvedores Lucas e Ana: Ficaram responsáveis pelas atualizações da documentação do planejamento da sprint.
+ - Analista de Qualidade e Desenvolvedor Gabriel: Responsável por garantir a qualidade do produto e Responsável pela codificação do cadastro e login do usuário. (frontend, backend).
 
 #### **Sprint Review** 
 Conseguimos avançar na codificação do cadastro e login do usuário, chegando a 80% de finalização. Porém após observarmos o curto espaço de tempo entre uma sprint e outra e levando em conta as dificuldades técnicas que o grupo enfrentou, decidimos que seria melhor aumentar o prazo da sprint para duas semanas a partir da próxima sprint para que o grupo pudesse finalizar as tarefas pendentes e seguir com o desenvolvimento, assim como também para que o grupo pudesse se adpatar melhor ao processo de codificação. 
@@ -45,9 +46,11 @@ Segunda sprint de codificação do grupo, agora com o planejamento atualizado o 
 -Opções de busca: Oferecemos opções de busca para que o usuário possa encontrar o que procura de maneira mais rápida e eficiente. Funcionalidades que se encaixam nessa categoria são: barra de busca, filtros, tags. (opcional mas recomendado)
 
 - Papéis da equipe:
- - Pedro: Responsável pela codificação da landing page. (frontend)
- - Maciel: Responsável pela codificação da landing page. (frontend)
- - Lucas, Gabriel e Ana: Responsáveis pela codificação da landing page. (backend)
+ - Desenvolvedores Pedro e Maciel: Responsável pela codificação da landing page. (frontend)
+ - Desenvolvedores Lucas, Gabriel e Ana: Responsáveis pela codificação da landing page. (backend)
+ - Product owner Pedro: Responsável pelas atualizações da documentação do planejamento da sprint.
+ - Scrum master Maciel: Responsável por realizar a Sprint Review e a Sprint Retrospective.
+ - Analista de qualidade Ana: Responsável por realizar os testes de qualidade do produto.
 
 
 #### **Sprint Review** 
