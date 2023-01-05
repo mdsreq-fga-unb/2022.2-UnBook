@@ -12,13 +12,13 @@ const makeSut = (
 describe("MinLengthValidation", () => {
 	test("Deve retornar erro se o valor for inválido", () => {
 		const sut = makeSut("field", 5);
-		const error = sut.validate("123");
+		const error = sut.validate(faker.random.alphaNumeric(3));
 		expect(error).toEqual(new InvalidParamError("field"));
 	});
 
 	test("Deve retornar falso se o valor for válido", () => {
 		const sut = makeSut("field", 5);
-		const error = sut.validate("123456");
+		const error = sut.validate(faker.random.alphaNumeric(5));
 		expect(error).toBeFalsy();
 	});
 });

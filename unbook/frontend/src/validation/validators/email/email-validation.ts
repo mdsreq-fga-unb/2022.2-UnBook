@@ -9,7 +9,9 @@ class EmailValidation implements IFielValidation {
 	validate(value: string): Error {
 		const emailRegex =
 			/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-		return emailRegex.test(value) ? null : new InvalidParamError(this.field);
+		return !value || emailRegex.test(value)
+			? null
+			: new InvalidParamError(this.field);
 	}
 }
 
