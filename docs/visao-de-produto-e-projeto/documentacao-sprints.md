@@ -115,4 +115,5 @@ Em razão da equipe possuir um número ímpar de participantes (5 participantes)
 ### **Ferramentas utilizadas**
 
  -Live share: extensão do Visual Code que traz um ambiente colaborativo em tempo real para editar ou debugar códigos. 
+ 
  -Discord: aplicativo de comunicação. 
