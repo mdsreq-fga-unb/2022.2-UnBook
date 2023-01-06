@@ -2,12 +2,9 @@ import "./App.module.css";
 import "./global.css";
 import { Routes, Route } from "react-router-dom";
 import { Home } from "./presentation/pages/home/home";
+import { makeLogin } from "./main/factories/pages/login/login-factory";
 
-type Props = {
-	makeLogin: React.FC;
-};
-
-function App({ makeLogin }: Props): JSX.Element {
+function App(): JSX.Element {
 	return (
 		<div className="App">
 			<Routes>
