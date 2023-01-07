@@ -1,5 +1,11 @@
 import { IAuthentication } from "../../domain/usecases/IAuthenticationUseCase";
-import { badRequest, ok, serverError } from "../helpers/http/http-helper";
+import { EmailInUseError } from "../errors/email-in-use-error";
+import {
+  badRequest,
+  forbidden,
+  ok,
+  serverError,
+} from "../helpers/http/http-helper";
 import {
   IController,
   IHttpRequest,
@@ -31,6 +37,9 @@ class SignUpController implements IController {
         email,
         password,
       });
+      if (!account) {
+        return forbidden(new EmailInUseError());
+      }
       const accessToken = await this.authentication.auth({
         email,
         password,
