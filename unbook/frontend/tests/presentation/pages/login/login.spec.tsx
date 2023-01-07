@@ -12,14 +12,15 @@ import {
 	AuthenticationSpy,
 } from "../../../presentation/mocks/validation";
 import { faker } from "@faker-js/faker";
-import "vitest-localstorage-mock";
 import { InvalidCredentialsError } from "../../../../src/domain/errors";
 import { vi } from "vitest";
 import { BrowserRouter } from "react-router-dom";
+import { SaveAccessTokenMock } from "../../mocks/validation/mock-save-access-token";
 
 interface ISutTypes {
 	sut: RenderResult;
 	authenticationSpy: AuthenticationSpy;
+	saveAccessTokenMock: SaveAccessTokenMock;
 }
 
 type SutParams = {
@@ -30,14 +31,20 @@ const makeSut = (params?: SutParams): ISutTypes => {
 	const validationStub = new ValidationStub();
 	const authenticationSpy = new AuthenticationSpy();
 	validationStub.errorMessage = params?.validationError;
+	const saveAccessTokenMock = new SaveAccessTokenMock();
 	const sut = render(
 		<BrowserRouter>
-			<Login validation={validationStub} authentication={authenticationSpy} />
+			<Login
+				validation={validationStub}
+				authentication={authenticationSpy}
+				saveAccessToken={saveAccessTokenMock}
+			/>
 		</BrowserRouter>
 	);
 	return {
 		sut,
 		authenticationSpy,
+		saveAccessTokenMock,
 	};
 };
 
@@ -74,9 +81,7 @@ const populatePasswordField = (
 
 describe("Login Component", () => {
 	afterEach(cleanup);
-	beforeEach(() => {
-		localStorage.clear();
-	});
+
 	test("Não deve renderizar o spinner e o erro no início", () => {
 		const { sut } = makeSut();
 		const errorWrapper = sut.getByTestId("error-wrap");
@@ -177,12 +182,11 @@ describe("Login Component", () => {
 		expect(errorWrap.childElementCount).toBe(1);
 	});
 
-	test("Deve adicionar um accessToken no localstorage caso a autenticação tiver sucesso", async () => {
-		const { sut, authenticationSpy } = makeSut();
+	test("Deve chamar o SaveAccessToken quando a autenticação tiver sucesso", async () => {
+		const { sut, authenticationSpy, saveAccessTokenMock } = makeSut();
 		simulateValidSubmit(sut);
 		await waitFor(() => sut.findByTestId("form"));
-		expect(localStorage.setItem).toHaveBeenCalledWith(
-			"accessToken",
+		expect(saveAccessTokenMock.accessToken).toBe(
 			authenticationSpy.account.accessToken
 		);
 	});
