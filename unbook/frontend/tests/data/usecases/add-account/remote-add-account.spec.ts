@@ -6,6 +6,7 @@ import { HttpPostClientSpy } from "../../../mocks";
 import { mockAddAccountParams } from "../../mocks/mock-add-account";
 import { HttpStatusCode } from "../../../../src/data/protocols/http";
 import { EmailInUseError } from "../../../../src/domain/errors/EmailInUseError";
+import { UnexpectedError } from "../../../../src/domain/errors";
 
 interface ISubTypes {
 	sut: RemoteAddAccount;
@@ -47,5 +48,14 @@ describe("RemoteAuthentication", () => {
 		};
 		const promise = sut.add(mockAddAccountParams());
 		await expect(promise).rejects.toThrow(new EmailInUseError());
+	});
+
+	test("Deve lançar o erro UnexpectedError se o HttpPostClient retornar 400", async () => {
+		const { sut, httpPostClientSpy } = makeSut();
+		httpPostClientSpy.response = {
+			statusCode: HttpStatusCode.serverError,
+		};
+		const promise = sut.add(mockAddAccountParams());
+		await expect(promise).rejects.toThrow(new UnexpectedError());
 	});
 });
