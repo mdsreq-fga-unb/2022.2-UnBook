@@ -4,6 +4,8 @@ import { IAddAccountParams } from "../../../../src/domain/usecases/IAddAccountUs
 import { IAccountModel } from "../../../../src/domain/models/IAccountModel";
 import { HttpPostClientSpy } from "../../../mocks";
 import { mockAddAccountParams } from "../../mocks/mock-add-account";
+import { HttpStatusCode } from "../../../../src/data/protocols/http";
+import { EmailInUseError } from "../../../../src/domain/errors/EmailInUseError";
 
 interface ISubTypes {
 	sut: RemoteAddAccount;
@@ -36,5 +38,14 @@ describe("RemoteAuthentication", () => {
 		const addAccountParams = mockAddAccountParams();
 		await sut.add(addAccountParams);
 		expect(httpPostClientSpy.body).toEqual(addAccountParams);
+	});
+
+	test("Deve lançar o erro EmailInUseError se o HttpPostClient retornar 403", async () => {
+		const { sut, httpPostClientSpy } = makeSut();
+		httpPostClientSpy.response = {
+			statusCode: HttpStatusCode.forbidden,
+		};
+		const promise = sut.add(mockAddAccountParams());
+		await expect(promise).rejects.toThrow(new EmailInUseError());
 	});
 });
