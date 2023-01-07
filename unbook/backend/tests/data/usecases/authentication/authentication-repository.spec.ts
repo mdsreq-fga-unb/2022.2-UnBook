@@ -7,10 +7,10 @@ import {
   ILoadAccountByEmailRepository,
   IAccountModel,
   IAuthenticationModel,
-} from "../../src/database/protocols/criptography/db-authentication-protocols";
-import { AuthenticationRepository } from "../../src/database/repositories/AuthenticationRepository";
+} from "../../../../src/data/protocols/criptography/db-authentication-protocols";
+import { AuthenticationRepository } from "../../../../src/data/repositories/AuthenticationRepository";
 
-const makeFaceAccount = (): IAccountModel => {
+const makeFackAccount = (): IAccountModel => {
   return {
     id: "any_id",
     name: "any_name",
@@ -24,7 +24,7 @@ const makeLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
     implements ILoadAccountByEmailRepository
   {
     async loadByEmail(email: string): Promise<IAccountModel> {
-      return new Promise((resolve) => resolve(makeFaceAccount()));
+      return new Promise((resolve) => resolve(makeFackAccount()));
     }
   }
 

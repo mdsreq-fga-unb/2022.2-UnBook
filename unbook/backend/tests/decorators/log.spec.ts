@@ -1,6 +1,6 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ILogErrorRepository } from "../../src/database/protocols/database/ILogErrorRepository";
+import { ILogErrorRepository } from "../../src/data/protocols/database/ILogErrorRepository";
 import { LogControllerDecorator } from "../../src/main/decorators/LogControllerDecorator";
 import {
   serverError,
