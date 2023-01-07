@@ -1,10 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { EmailInUseError } from "../../domain/errors/EmailInUseError";
 import { IAccountModel } from "../../domain/models/IAccountModel";
 import {
 	IAddAccount,
 	IAddAccountParams,
 } from "../../domain/usecases/IAddAccountUseCase";
-import { IHttpPostClient } from "../protocols/http";
+import { HttpStatusCode, IHttpPostClient } from "../protocols/http";
 
 class RemoteAddAccount implements IAddAccount {
 	constructor(
@@ -15,11 +16,17 @@ class RemoteAddAccount implements IAddAccount {
 		>
 	) {}
 	async add(params: IAddAccountParams): Promise<IAccountModel> {
-		await this.httpPostClient.post({
+		const httpResponse = await this.httpPostClient.post({
 			url: this.url,
 			body: params,
 		});
-		return new Promise((resolve) => resolve(null));
+
+		switch (httpResponse.statusCode) {
+		case HttpStatusCode.forbidden:
+			throw new EmailInUseError();
+		default:
+			return null;
+		}
 	}
 }
 
