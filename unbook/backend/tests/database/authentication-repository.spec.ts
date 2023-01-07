@@ -7,8 +7,8 @@ import {
   ILoadAccountByEmailRepository,
   IAccountModel,
   IAuthenticationModel,
-} from "../../database/protocols/criptography/db-authentication-protocols";
-import { AuthenticationRepository } from "../../database/repositories/AuthenticationRepository";
+} from "../../src/database/protocols/criptography/db-authentication-protocols";
+import { AuthenticationRepository } from "../../src/database/repositories/AuthenticationRepository";
 
 const makeFaceAccount = (): IAccountModel => {
   return {

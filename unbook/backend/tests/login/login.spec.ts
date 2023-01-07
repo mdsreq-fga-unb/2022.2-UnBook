@@ -4,18 +4,18 @@
 import {
   IAuthentication,
   IAuthenticationModel,
-} from "../../domain/usecases/IAuthenticationUseCase";
-import { LoginController } from "../../presentation/controllers/LogInController";
-import { MissingParamError } from "../../presentation/errors";
+} from "../../src/domain/usecases/IAuthenticationUseCase";
+import { LoginController } from "../../src/presentation/controllers/LogInController";
+import { MissingParamError } from "../../src/presentation/errors";
 import {
   badRequest,
   ok,
   serverError,
-} from "../../presentation/helpers/http/http-helper";
+} from "../../src/presentation/helpers/http/http-helper";
 import {
   IHttpRequest,
   IValidation,
-} from "../../presentation/protocols/signup-protocols";
+} from "../../src/presentation/protocols/signup-protocols";
 
 interface ISubTypes {
   sut: LoginController;

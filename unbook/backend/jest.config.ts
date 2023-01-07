@@ -6,7 +6,7 @@ export default {
   ],
   silent: false,
   coverageDirectory: "coverage",
-  roots: ["<rootDir>/src"],
+  roots: ["<rootDir>"],
   testEnvironment: "node",
   preset: "@shelf/jest-mongodb",
   transform: {

@@ -1,5 +1,5 @@
 import request from "supertest";
-import { app } from "../../main/config/app";
+import { app } from "../../src/main/config/app";
 
 describe("Cors Middleware", () => {
   test("Garante que a API possa ser acessada", async () => {

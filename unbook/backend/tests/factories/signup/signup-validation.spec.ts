@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { makeLogInValidation } from "../../../main/factories/controllers/login/login-validation-factory";
+import { makeSignUpValidation } from "../../../src/main/factories/controllers/signup/signup-validation-factory";
 import {
   EmailValidation,
+  CompareFieldsValidation,
   RequiredFieldValidation,
   ValidationComposite,
-} from "../../../presentation/helpers/validators";
-import { IEmailValidator } from "../../../presentation/protocols/signup-protocols";
+} from "../../../src/presentation/helpers/validators";
+import { IEmailValidator } from "../../../src/presentation/protocols/signup-protocols";
 
-jest.mock("../../../presentation/helpers/validators/ValidationComposite");
+jest.mock("../../../src/presentation/helpers/validators/ValidationComposite");
 const makeEmailValidator = (): IEmailValidator => {
   class EmailValidatorStub implements IEmailValidator {
     isValid(email: string): boolean {
@@ -17,13 +18,16 @@ const makeEmailValidator = (): IEmailValidator => {
   return new EmailValidatorStub();
 };
 
-describe("LoginValidation Factory", () => {
+describe("SignUpValidation Factory", () => {
   test("Deve chamar o ValidationComposite com todas as validações", async () => {
-    makeLogInValidation();
+    makeSignUpValidation();
     const validations = [];
-    for (const field of ["email", "password"]) {
+    for (const field of ["name", "email", "password", "passwordConfirmation"]) {
       validations.push(new RequiredFieldValidation(field));
     }
+    validations.push(
+      new CompareFieldsValidation("password", "passwordConfirmation")
+    );
     validations.push(new EmailValidation("email", makeEmailValidator()));
     expect(ValidationComposite).toHaveBeenCalledWith(validations);
   });

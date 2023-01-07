@@ -4,11 +4,11 @@ import {
   AddAccountRepository,
   IHasher,
   IAddAccountRepository,
-} from "../../database/protocols/database/data-sign-up-protocols";
+} from "../../src/database/protocols/database/data-sign-up-protocols";
 import {
   IAccountModel,
   IAddAccountModel,
-} from "../../presentation/protocols/signup-protocols";
+} from "../../src/presentation/protocols/signup-protocols";
 
 const makeFakeAccount = (): IAccountModel => {
   return {
