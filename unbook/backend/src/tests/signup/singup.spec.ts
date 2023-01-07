@@ -7,8 +7,10 @@ import {
 } from "../../domain/usecases/IAuthenticationUseCase";
 import { SignUpController } from "../../presentation/controllers/SingUpController";
 import { MissingParamError, ServerError } from "../../presentation/errors";
+import { EmailInUseError } from "../../presentation/errors/email-in-use-error";
 import {
   badRequest,
+  forbidden,
   ok,
   serverError,
 } from "../../presentation/helpers/http/http-helper";
@@ -117,13 +119,25 @@ describe("SignUp Controller", () => {
     expect(httpResponse.body).toEqual(new ServerError("any_stack"));
   });
 
+  test("Deve retornar 403 se o AddAccount retornar null", async () => {
+    const { sut, addAccountStub } = makeSut();
+    jest
+      .spyOn(addAccountStub, "add")
+      .mockReturnValueOnce(new Promise((resolve) => resolve(null)));
+    const httpRequest = makeFakeRequest();
+    const httpResponse = await sut.handle(httpRequest);
+    expect(httpResponse).toEqual(forbidden(new EmailInUseError()));
+  });
+
   test("Deve retornar 200 os dados forem enviados corretamente", async () => {
     const { sut } = makeSut();
     const httpRequest = makeFakeRequest();
     const httpResponse = await sut.handle(httpRequest);
-    expect(httpResponse).toEqual(ok(makeFakeAccount()));
-    expect(httpResponse.statusCode).toBe(200);
-    expect(httpResponse.body).toEqual(makeFakeAccount());
+    expect(httpResponse).toEqual(
+      ok({
+        accessToken: "any_token",
+      })
+    );
   });
 
   test("Deve chamar o Validation com os valores corretos", async () => {
