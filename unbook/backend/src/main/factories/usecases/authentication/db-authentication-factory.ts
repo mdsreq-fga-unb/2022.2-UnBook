@@ -1,4 +1,4 @@
-import { AuthenticationRepository } from "../../../../database/repositories/AuthenticationRepository";
+import { AuthenticationRepository } from "../../../../data/repositories/AuthenticationRepository";
 import { IAuthentication } from "../../../../domain/usecases/IAuthenticationUseCase";
 import { BcryptAdapter } from "../../../../infra/criptography/BcryptAdapter";
 import { JWTAdapter } from "../../../../infra/criptography/JWTAdapter";

@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { IEncrypter } from "../../database/protocols/criptography/db-authentication-protocols";
+import { IEncrypter } from "../../data/protocols/criptography/db-authentication-protocols";
 
 class JWTAdapter implements IEncrypter {
   constructor(private readonly secret: string) {
