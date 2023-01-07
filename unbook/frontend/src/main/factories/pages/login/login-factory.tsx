@@ -5,6 +5,8 @@ import { AxiosHttpClient } from "../../../../infra/http/AxiosHttpClient";
 import { ValidationComposite } from "../../../../validation/validators/validation-composite/ValidationComposite";
 import { ValidationBuilder } from "../../../../validation/validators/builder/ValidationBuilder";
 import { makeUrl } from "./makeUrl-factory";
+import { LocalSaveAccessToken } from "../../../../data/repositories/LocalSaveAccessToken";
+import { LocalStorageAdapter } from "../../../../infra/cache/LocalStorageAdapter";
 
 const makeLogin = (): JSX.Element => {
 	const url = makeUrl("login");
@@ -14,10 +16,13 @@ const makeLogin = (): JSX.Element => {
 		...ValidationBuilder.field("email").required().email().build(),
 		...ValidationBuilder.field("password").required().min(8).build(),
 	]);
+	const localStorageAdapter = new LocalStorageAdapter();
+	const localSaveAccessToken = new LocalSaveAccessToken(localStorageAdapter);
 	return (
 		<Login
 			validation={validationComposite}
 			authentication={remoteAuthentication}
+			saveAccessToken={localSaveAccessToken}
 		/>
 	);
 };
