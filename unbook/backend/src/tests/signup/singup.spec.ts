@@ -1,6 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import {
+  IAuthentication,
+  IAuthenticationModel,
+} from "../../domain/usecases/IAuthenticationUseCase";
 import { SignUpController } from "../../presentation/controllers/SingUpController";
 import { MissingParamError, ServerError } from "../../presentation/errors";
 import {
@@ -16,11 +20,14 @@ import {
   IValidation,
 } from "../../presentation/protocols/signup-protocols";
 
-interface ISutTypes {
-  sut: SignUpController;
-  addAccountStub: IAddAccount;
-  validationStub: IValidation;
-}
+const makeAuthentication = (): IAuthentication => {
+  class AuthenticationStub implements IAuthentication {
+    async auth(authentication: IAuthenticationModel): Promise<string> {
+      return new Promise((resolve) => resolve("any_token"));
+    }
+  }
+  return new AuthenticationStub();
+};
 
 const makeFakeRequest = (): IHttpRequest => {
   return {
@@ -59,14 +66,27 @@ const makeValidation = (): IValidation => {
   return new ValidationStub();
 };
 
+interface ISutTypes {
+  sut: SignUpController;
+  addAccountStub: IAddAccount;
+  validationStub: IValidation;
+  authenticationStub: IAuthentication;
+}
+
 const makeSut = (): ISutTypes => {
+  const authenticationStub = makeAuthentication();
   const addAccountStub = makeAddAccount();
   const validationStub = makeValidation();
-  const sut = new SignUpController(addAccountStub, validationStub);
+  const sut = new SignUpController(
+    addAccountStub,
+    validationStub,
+    authenticationStub
+  );
   return {
     sut,
     addAccountStub,
     validationStub,
+    authenticationStub,
   };
 };
 
@@ -123,5 +143,15 @@ describe("SignUp Controller", () => {
     expect(httpResponse).toEqual(
       badRequest(new MissingParamError("any_field"))
     );
+  });
+
+  test("Deve chamar o Authentication com os valores corretos", async () => {
+    const { sut, authenticationStub } = makeSut();
+    const authSpy = jest.spyOn(authenticationStub, "auth");
+    await sut.handle(makeFakeRequest());
+    expect(authSpy).toHaveBeenCalledWith({
+      email: "any_email@mail.com",
+      password: "any_password",
+    });
   });
 });
