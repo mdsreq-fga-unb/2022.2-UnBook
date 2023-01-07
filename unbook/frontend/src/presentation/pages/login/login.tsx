@@ -5,10 +5,12 @@ import { Context } from "../../contexts/form/form-context";
 import { IValidation } from "../../protocols/IValidation";
 import { IAuthentication } from "../../../domain/usecases/IAuthenticationUseCase";
 import { Link, useNavigate } from "react-router-dom";
+import { ISaveAccessToken } from "../../../domain/usecases/ISaveAccessTokenUseCase";
 
 type Props = {
 	validation: IValidation;
 	authentication: IAuthentication;
+	saveAccessToken: ISaveAccessToken;
 };
 
 type StateProps = {
@@ -20,7 +22,11 @@ type StateProps = {
 	mainError: string;
 };
 
-const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
+const Login: React.FC<Props> = ({
+	validation,
+	authentication,
+	saveAccessToken,
+}: Props) => {
 	const navigate = useNavigate();
 	const [state, setState] = useState<StateProps>({
 		isLoading: false,
@@ -52,7 +58,7 @@ const Login: React.FC<Props> = ({ validation, authentication }: Props) => {
 				email: state.email,
 				password: state.password,
 			});
-			localStorage.setItem("accessToken", account.accessToken);
+			await saveAccessToken.save(account.accessToken);
 			navigate("/");
 		} catch (error) {
 			setState({
