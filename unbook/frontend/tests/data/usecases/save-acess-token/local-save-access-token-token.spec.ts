@@ -26,7 +26,7 @@ describe("LocalSaveAccessToken", () => {
 		expect(setStorageMock.value).toBe(accessToken);
 	});
 
-	test("Deve chamar SetStorage com os valores corretos", async () => {
+	test("Deve lançar um erro se o SetStorage lançar um erro", async () => {
 		const { sut, setStorageMock } = makeSut();
 		vi.spyOn(setStorageMock, "set").mockReturnValueOnce(
 			Promise.reject(new Error())
