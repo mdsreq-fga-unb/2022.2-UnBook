@@ -1,9 +1,15 @@
+import { faker } from "@faker-js/faker";
 import {
 	HttpPostParams,
 	IHttpPostClient,
 	HttpResponse,
 	HttpStatusCode,
 } from "../../../src/data/protocols/http";
+
+const mockPostRequest = (): HttpPostParams<any> => ({
+	url: faker.internet.url(),
+	body: faker.helpers.objectValue({}),
+});
 
 class HttpPostClientSpy<T, R> implements IHttpPostClient<T, R> {
 	url?: string;
@@ -18,4 +24,4 @@ class HttpPostClientSpy<T, R> implements IHttpPostClient<T, R> {
 	}
 }
 
-export { HttpPostClientSpy };
+export { HttpPostClientSpy, mockPostRequest };

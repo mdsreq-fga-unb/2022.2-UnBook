@@ -1,6 +1,5 @@
 import { mockAuthentication, mockAccountModel } from "./mock-account";
-import { HttpPostClientSpy } from "./http/mock-http-client";
-import { mockPostRequest } from "./http/mock-http-post";
+import { mockPostRequest, HttpPostClientSpy } from "./http/mock-http";
 import { mockAxios } from "./mock-axios";
 
 export {
