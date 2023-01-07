@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
-import { IValidation } from "../../protocols/IValidation";
+import { IValidation } from "../protocols/IValidation";
 
 class ValidationComposite implements IValidation {
   constructor(private readonly validations: IValidation[]) {

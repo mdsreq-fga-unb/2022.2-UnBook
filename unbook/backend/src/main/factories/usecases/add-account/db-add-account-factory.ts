@@ -7,6 +7,7 @@ const makeDbAddAccount = (): IAddAccount => {
   const salt = 12;
   const bcryptAdapter = new BcryptAdapter(salt);
   const accountMongoRepository = new AccountMongoRepository();
+  const loadAccountByEmailRepository = new LoadAccountByEmailRepository();
   return new AddAccountRepository(bcryptAdapter, accountMongoRepository);
 };
 export { makeDbAddAccount };

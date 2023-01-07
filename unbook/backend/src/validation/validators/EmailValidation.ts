@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
-import { InvalidParamError } from "../../errors";
-import { IEmailValidator } from "../../protocols/IEmailValidator";
-import { IValidation } from "../../protocols/IValidation";
+import { InvalidParamError } from "../../presentation/errors";
+import { IEmailValidator } from "../protocols/IEmailValidator";
+import { IValidation } from "../protocols/IValidation";
 
 class EmailValidation implements IValidation {
   constructor(

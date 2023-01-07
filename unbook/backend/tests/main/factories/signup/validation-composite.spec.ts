@@ -1,9 +1,9 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { MissingParamError } from "../../../src/presentation/errors";
-import { ValidationComposite } from "../../../src/presentation/helpers/validators/ValidationComposite";
-import { IValidation } from "../../../src/presentation/protocols/signup-protocols";
+import { MissingParamError } from "../../../../src/presentation/errors";
+import { IValidation } from "../../../../src/presentation/protocols/signup-protocols";
+import { ValidationComposite } from "../../../../src/validation/validators/ValidationComposite";
 
 interface ISubTypes {
   sut: ValidationComposite;

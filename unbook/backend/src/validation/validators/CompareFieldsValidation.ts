@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable consistent-return */
-import { InvalidParamError } from "../../errors";
-import { IValidation } from "../../protocols/IValidation";
+import { InvalidParamError } from "../../presentation/errors";
+import { IValidation } from "../protocols/IValidation";
 
 class CompareFieldsValidation implements IValidation {
   constructor(

@@ -2,8 +2,8 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { InvalidParamError } from "../../src/presentation/errors";
-import { EmailValidation } from "../../src/presentation/helpers/validators/EmailValidation";
 import { IEmailValidator } from "../../src/presentation/protocols/signup-protocols";
+import { EmailValidation } from "../../src/validation/validators/EmailValidation";
 
 interface ISutTypes {
   sut: EmailValidation;

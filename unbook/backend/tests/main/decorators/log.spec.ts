@@ -1,17 +1,17 @@
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { ILogErrorRepository } from "../../src/data/protocols/database/ILogErrorRepository";
-import { LogControllerDecorator } from "../../src/main/decorators/LogControllerDecorator";
+import { ILogErrorRepository } from "../../../src/data/protocols/database/ILogErrorRepository";
+import { IAccountModel } from "../../../src/domain/models/AccountModel";
+import { LogControllerDecorator } from "../../../src/main/decorators/LogControllerDecorator";
 import {
   serverError,
   ok,
-} from "../../src/presentation/helpers/http/http-helper";
+} from "../../../src/presentation/helpers/http/http-helper";
 import {
   IController,
   IHttpRequest,
   IHttpResponse,
-} from "../../src/presentation/protocols";
-import { IAccountModel } from "../../src/presentation/protocols/signup-protocols";
+} from "../../../src/presentation/protocols";
 
 const makeFakeRequest = (): IHttpRequest => {
   return {

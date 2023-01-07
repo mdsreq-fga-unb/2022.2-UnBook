@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { makeLogInValidation } from "../../../src/main/factories/controllers/login/login-validation-factory";
+import { makeLogInValidation } from "../../../../src/main/factories/controllers/login/login-validation-factory";
+import { IEmailValidator } from "../../../../src/presentation/protocols/signup-protocols";
 import {
   EmailValidation,
   RequiredFieldValidation,
   ValidationComposite,
-} from "../../../src/presentation/helpers/validators";
-import { IEmailValidator } from "../../../src/presentation/protocols/signup-protocols";
+} from "../../../../src/validation/validators";
 
-jest.mock("../../../src/presentation/helpers/validators/ValidationComposite");
+jest.mock("../../../../src/validation/validators/ValidationComposite");
 const makeEmailValidator = (): IEmailValidator => {
   class EmailValidatorStub implements IEmailValidator {
     isValid(email: string): boolean {
