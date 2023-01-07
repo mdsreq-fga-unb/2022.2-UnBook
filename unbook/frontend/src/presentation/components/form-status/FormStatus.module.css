@@ -12,4 +12,5 @@
 
 .error {
   color: var(--alert);
+  text-align: center;
 }

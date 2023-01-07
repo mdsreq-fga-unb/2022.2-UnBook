@@ -1,6 +1,6 @@
 import React from "react";
 import { Login } from "../../../../presentation/pages/login/login";
-import { RemoteAuthentication } from "../../../../database/repositories/RemoteAuthentication";
+import { RemoteAuthentication } from "../../../../data/repositories/RemoteAuthentication";
 import { AxiosHttpClient } from "../../../../infra/http/AxiosHttpClient";
 import { ValidationComposite } from "../../../../validation/validators/validation-composite/ValidationComposite";
 import { ValidationBuilder } from "../../../../validation/validators/builder/ValidationBuilder";

@@ -2,7 +2,7 @@ import {
 	HttpPostParams,
 	HttpResponse,
 	IHttpPostClient,
-} from "../../database/protocols/http";
+} from "../../data/protocols/http";
 import axios, { AxiosResponse } from "axios";
 
 class AxiosHttpClient
