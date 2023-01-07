@@ -18,4 +18,16 @@ describe("RequiredFieldValidation", () => {
 		const error = sut.validate(faker.internet.email());
 		expect(error).toBeFalsy();
 	});
+
+	test("Deve retornar erro se o campo for nulo", () => {
+		const sut = makeSut();
+		const error = sut.validate(null);
+		expect(error).toEqual(new RequiredFieldError());
+	});
+
+	test("Deve retornar erro se o campo for indefinido", () => {
+		const sut = makeSut();
+		const error = sut.validate(undefined);
+		expect(error).toEqual(new RequiredFieldError());
+	});
 });

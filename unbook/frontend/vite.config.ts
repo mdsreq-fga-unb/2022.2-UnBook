@@ -10,5 +10,9 @@ export default defineConfig({
 		globals: true,
 		setupFiles: ["vitest-localstorage-mock"],
 		environment: "jsdom",
+		coverage: {
+			provider: "istanbul",
+			exclude: ["**/node_modules/**", "**/dist/**", "<rootDir>/src/tests/"],
+		},
 	},
 });
