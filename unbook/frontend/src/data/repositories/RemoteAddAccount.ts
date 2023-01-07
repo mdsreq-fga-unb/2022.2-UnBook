@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { UnexpectedError } from "../../domain/errors";
 import { EmailInUseError } from "../../domain/errors/EmailInUseError";
 import { IAccountModel } from "../../domain/models/IAccountModel";
 import {
@@ -22,10 +23,12 @@ class RemoteAddAccount implements IAddAccount {
 		});
 
 		switch (httpResponse.statusCode) {
+		case HttpStatusCode.ok:
+			return null;
 		case HttpStatusCode.forbidden:
 			throw new EmailInUseError();
 		default:
-			return null;
+			throw new UnexpectedError();
 		}
 	}
 }
