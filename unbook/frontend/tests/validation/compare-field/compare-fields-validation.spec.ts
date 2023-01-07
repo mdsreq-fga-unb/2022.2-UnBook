@@ -12,4 +12,23 @@ describe("CompareFieldsValidation", () => {
 		const error = sut.validate(faker.random.word());
 		expect(error).toEqual(new InvalidFieldError());
 	});
+
+	test("Deve retornar falso se a comparação for válida", () => {
+		const valueToCompare = faker.random.word();
+		const sut = makeSut(valueToCompare);
+		const error = sut.validate(valueToCompare);
+		expect(error).toBeFalsy();
+	});
+
+	// test("Deve retornar erro se o campo for nulo", () => {
+	// 	const sut = makeSut();
+	// 	const error = sut.validate(null);
+	// 	expect(error).toEqual(new RequiredFieldError());
+	// });
+
+	// test("Deve retornar erro se o campo for indefinido", () => {
+	// 	const sut = makeSut();
+	// 	const error = sut.validate(undefined);
+	// 	expect(error).toEqual(new RequiredFieldError());
+	// });
 });
