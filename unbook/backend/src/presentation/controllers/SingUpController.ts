@@ -1,3 +1,4 @@
+import { IAuthentication } from "../../domain/usecases/IAuthenticationUseCase";
 import { badRequest, ok, serverError } from "../helpers/http/http-helper";
 import {
   IController,
@@ -10,10 +11,12 @@ import {
 class SignUpController implements IController {
   constructor(
     private readonly addAccount: IAddAccount,
-    private readonly validation: IValidation
+    private readonly validation: IValidation,
+    private readonly authentication: IAuthentication
   ) {
     this.addAccount = addAccount;
     this.validation = validation;
+    this.authentication = authentication;
   }
 
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
@@ -28,7 +31,10 @@ class SignUpController implements IController {
         email,
         password,
       });
-
+      this.authentication.auth({
+        email,
+        password,
+      });
       return ok(account);
     } catch (error) {
       return serverError(error as Error);
