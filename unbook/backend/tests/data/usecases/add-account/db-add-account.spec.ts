@@ -58,7 +58,7 @@ const makeLoadAccountByEmailRepository = (): ILoadAccountByEmailRepository => {
     implements ILoadAccountByEmailRepository
   {
     async loadByEmail(email: string): Promise<IAccountModel> {
-      return new Promise((resolve) => resolve(makeFakeAccount()));
+      return new Promise((resolve) => resolve(null));
     }
   }
 
@@ -127,6 +127,17 @@ describe("AddAccount Repository UseCase", () => {
     const { sut } = makeSut();
     const account = await sut.add(makeAccountData());
     expect(account).toEqual(makeFakeAccount());
+  });
+
+  test("Deve retornar null se o LoadAccountByEmailRepository não retornar null", async () => {
+    const { sut, loadAccountByEmailRepositoryStub } = makeSut();
+    jest
+      .spyOn(loadAccountByEmailRepositoryStub, "loadByEmail")
+      .mockReturnValueOnce(
+        new Promise((resolve) => resolve(makeFakeAccount()))
+      );
+    const account = await sut.add(makeAccountData());
+    expect(account).toBeNull();
   });
 
   test("Deve garantir a chamada do LoadAccountByEmailRepository com o email correto", async () => {
