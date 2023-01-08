@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input, FormStatus } from "../../components";
 import styles from "./signup.module.scss";
 import { Context } from "../../contexts/form/form-context";
 import { Link } from "react-router-dom";
+import { IValidation } from "../../protocols/IValidation";
 
-const SignUp: React.FC = () => {
-	const [state] = React.useState({
+type Props = {
+	validation: IValidation;
+};
+
+const SignUp: React.FC<Props> = ({ validation }: Props) => {
+	const [state, setState] = React.useState({
 		isLoading: false,
+		name: "",
 		mainError: "",
 		nameError: "Campo obrigatório",
 		emailError: "Campo obrigatório",
@@ -14,9 +20,16 @@ const SignUp: React.FC = () => {
 		passwordConfirmationError: "Campo obrigatório",
 	});
 
+	useEffect(() => {
+		setState({
+			...state,
+			nameError: validation.validate("name", state.name),
+		});
+	}, [state.name]);
+
 	return (
 		<div className={styles.signup}>
-			<Context.Provider value={{ state }}>
+			<Context.Provider value={{ state, setState }}>
 				<form className={styles.form}>
 					<h1 className={styles.titile}>Cadastra-se</h1>
 					<Input type="text" name="name" placeholder="Digite seu nome" />
