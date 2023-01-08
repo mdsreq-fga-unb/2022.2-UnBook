@@ -15,11 +15,12 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
 		name: "",
 		email: "",
 		password: "",
+		passwordConfirmation: "",
 		mainError: "",
 		nameError: "",
 		emailError: "",
 		passwordError: "",
-		passwordConfirmationError: "Campo obrigatório",
+		passwordConfirmationError: "",
 	});
 
 	useEffect(() => {
@@ -28,6 +29,10 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
 			nameError: validation.validate("name", state.name),
 			emailError: validation.validate("email", state.email),
 			passwordError: validation.validate("password", state.password),
+			passwordConfirmationError: validation.validate(
+				"passwordConfirmation",
+				state.passwordConfirmation
+			),
 		});
 	}, [state.name, state.email, state.password]);
 
@@ -45,7 +50,7 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
 					/>
 					<Input
 						type="password"
-						name="password-confirmation"
+						name="passwordConfirmation"
 						placeholder="Repita sua senha"
 					/>
 					<button data-testid="submit" disabled type="submit">
