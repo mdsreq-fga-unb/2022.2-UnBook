@@ -42,6 +42,8 @@ const makeSut = (params?: SutParams): ISutTypes => {
 	};
 };
 describe("Signup Component", () => {
+	afterEach(cleanup);
+
 	test("Deve começar com um estado incial", () => {
 		const { sut } = makeSut();
 		testChildCount(sut, "error-wrap", 0);
@@ -60,5 +62,12 @@ describe("Signup Component", () => {
 		const { sut } = makeSut({ validationError });
 		populateField(sut, "email");
 		testStatsForField(sut, "email", validationError);
+	});
+
+	test("Deve mostrar um password error se a validação falhar", () => {
+		const validationError = faker.random.words();
+		const { sut } = makeSut({ validationError });
+		populateField(sut, "password");
+		testStatsForField(sut, "password", validationError);
 	});
 });
