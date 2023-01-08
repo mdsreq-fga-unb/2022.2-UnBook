@@ -18,6 +18,7 @@ import {
 	populateField,
 	testButtonIsDisabled,
 	testChildCount,
+	testStatsForField,
 } from "../../mocks/form-helper";
 
 interface ISutTypes {
@@ -51,5 +52,13 @@ describe("Signup Component", () => {
 		const validationError = faker.random.words();
 		const { sut } = makeSut({ validationError });
 		populateField(sut, "name");
+		testStatsForField(sut, "name", validationError);
+	});
+
+	test("Deve mostrar um email error se a validação falhar", () => {
+		const validationError = faker.random.words();
+		const { sut } = makeSut({ validationError });
+		populateField(sut, "email");
+		testStatsForField(sut, "email", validationError);
 	});
 });

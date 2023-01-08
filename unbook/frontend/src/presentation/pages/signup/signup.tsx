@@ -14,10 +14,11 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
 		isLoading: false,
 		name: "",
 		email: "",
+		password: "",
 		mainError: "",
 		nameError: "",
 		emailError: "",
-		passwordError: "Campo obrigatório",
+		passwordError: "",
 		passwordConfirmationError: "Campo obrigatório",
 	});
 
@@ -26,36 +27,25 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
 			...state,
 			nameError: validation.validate("name", state.name),
 			emailError: validation.validate("email", state.email),
+			passwordError: validation.validate("password", state.password),
 		});
-	}, [state.name, state.email]);
+	}, [state.name, state.email, state.password]);
 
 	return (
 		<div className={styles.signup}>
 			<Context.Provider value={{ state, setState }}>
 				<form className={styles.form}>
 					<h1 className={styles.titile}>Cadastra-se</h1>
+					<Input type="text" name="name" placeholder="Digite seu nome" />
+					<Input type="email" name="email" placeholder="Digite seu e-mail" />
 					<Input
-						data-testid="name"
-						type="text"
-						name="name"
-						placeholder="Digite seu nome"
-					/>
-					<Input
-						data-testid="email"
-						type="email"
-						name="email"
-						placeholder="Digite seu e-mail"
-					/>
-					<Input
-						data-testid="password"
 						type="password"
 						name="password"
 						placeholder="Digite sua senha"
 					/>
 					<Input
-						data-testid="password-confirmation"
 						type="password"
-						name="password"
+						name="password-confirmation"
 						placeholder="Repita sua senha"
 					/>
 					<button data-testid="submit" disabled type="submit">

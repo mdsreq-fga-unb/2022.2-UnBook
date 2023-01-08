@@ -28,4 +28,18 @@ const populateField = (
 	fireEvent.input(input, { target: { value } });
 };
 
-export { testChildCount, testButtonIsDisabled, populateField };
+const testStatsForField = (
+	sut: RenderResult,
+	fieldName: string,
+	validationError?: string
+): void => {
+	const fieldStatusDiv = sut.getByTestId(`${fieldName}-status`);
+	expect(fieldStatusDiv.title).toBe(validationError || "Tudo certo!");
+};
+
+export {
+	testChildCount,
+	testButtonIsDisabled,
+	populateField,
+	testStatsForField,
+};
