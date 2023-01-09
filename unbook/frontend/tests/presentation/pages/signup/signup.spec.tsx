@@ -16,9 +16,11 @@ import {
 	testChildCount,
 	testStatsForField,
 } from "../../mocks/form-helper";
+import { AddAccountSpy } from "../../mocks/add-account/mock-add-account";
 
 interface ISutTypes {
 	sut: RenderResult;
+	addAccountSpy: AddAccountSpy;
 }
 
 type SutParams = {
@@ -28,13 +30,15 @@ type SutParams = {
 const makeSut = (params?: SutParams): ISutTypes => {
 	const validationStub = new ValidationStub();
 	validationStub.errorMessage = params?.validationError;
+	const addAccountSpy = new AddAccountSpy();
 	const sut = render(
 		<BrowserRouter>
-			<SignUp validation={validationStub} />
+			<SignUp validation={validationStub} addAccount={addAccountSpy} />
 		</BrowserRouter>
 	);
 	return {
 		sut,
+		addAccountSpy,
 	};
 };
 
@@ -105,5 +109,19 @@ describe("Signup Component", () => {
 		simulateValidSubmit(sut);
 		const spinner = sut.getByTestId("spinner");
 		expect(spinner).toBeTruthy();
+	});
+
+	test("Deve chamar o AddAccount com os valores corretos", () => {
+		const { sut, addAccountSpy } = makeSut();
+		const name = faker.name.firstName();
+		const email = faker.internet.email();
+		const password = faker.internet.password();
+		simulateValidSubmit(sut, name, email, password);
+		expect(addAccountSpy.params).toEqual({
+			name,
+			email,
+			password,
+			passwordConfirmation: password,
+		});
 	});
 });
