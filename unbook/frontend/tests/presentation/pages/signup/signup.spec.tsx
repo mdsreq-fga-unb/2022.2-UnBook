@@ -20,10 +20,12 @@ import {
 import { AddAccountSpy } from "../../mocks/add-account/mock-add-account";
 import { EmailInUseError } from "../../../../src/domain/errors/EmailInUseError";
 import { vi } from "vitest";
+import { SaveAccessTokenMock } from "../../mocks/validation/mock-save-access-token";
 
 interface ISutTypes {
 	sut: RenderResult;
 	addAccountSpy: AddAccountSpy;
+	saveAccessTokenMock: SaveAccessTokenMock;
 }
 
 type SutParams = {
@@ -34,14 +36,20 @@ const makeSut = (params?: SutParams): ISutTypes => {
 	const validationStub = new ValidationStub();
 	validationStub.errorMessage = params?.validationError;
 	const addAccountSpy = new AddAccountSpy();
+	const saveAccessTokenMock = new SaveAccessTokenMock();
 	const sut = render(
 		<BrowserRouter>
-			<SignUp validation={validationStub} addAccount={addAccountSpy} />
+			<SignUp
+				validation={validationStub}
+				addAccount={addAccountSpy}
+				saveAccessToken={saveAccessTokenMock}
+			/>
 		</BrowserRouter>
 	);
 	return {
 		sut,
 		addAccountSpy,
+		saveAccessTokenMock,
 	};
 };
 
@@ -150,5 +158,15 @@ describe("Signup Component", () => {
 		await simulateValidSubmit(sut);
 		testElementText(sut, "main-error", error.message);
 		testChildCount(sut, "error-wrap", 1);
+	});
+
+	test("Deve chamar o SaveAccessToken quando a autenticação tiver sucesso", async () => {
+		const { sut, addAccountSpy, saveAccessTokenMock } = makeSut();
+		simulateValidSubmit(sut);
+		await waitFor(() => sut.findByTestId("form"));
+		expect(saveAccessTokenMock.accessToken).toBe(
+			addAccountSpy.account.accessToken
+		);
+		expect(location.pathname).toBe("/");
 	});
 });
