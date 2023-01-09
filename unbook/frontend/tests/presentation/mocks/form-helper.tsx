@@ -10,6 +10,11 @@ const testChildCount = (
 	expect(element.childElementCount).toBe(count);
 };
 
+const testElementExists = (sut: RenderResult, fieldName: string): void => {
+	const element = sut.getByTestId(fieldName);
+	expect(element).toBeTruthy();
+};
+
 const testButtonIsDisabled = (
 	sut: RenderResult,
 	fieldName: string,
@@ -42,4 +47,5 @@ export {
 	testButtonIsDisabled,
 	populateField,
 	testStatsForField,
+	testElementExists,
 };

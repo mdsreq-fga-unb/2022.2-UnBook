@@ -6,13 +6,9 @@ import {
 	render,
 	waitFor,
 } from "@testing-library/react";
-import { Login } from "../../../../src/presentation/pages/login/login";
-import { ValidationStub, AuthenticationSpy } from "../../mocks/validation";
+import { ValidationStub } from "../../mocks/validation";
 import { faker } from "@faker-js/faker";
-import { InvalidCredentialsError } from "../../../../src/domain/errors";
-import { vi } from "vitest";
 import { BrowserRouter } from "react-router-dom";
-import { SaveAccessTokenMock } from "../../mocks/validation/mock-save-access-token";
 import { SignUp } from "../../../../src/presentation/pages/signup/signup";
 import {
 	populateField,
@@ -41,13 +37,30 @@ const makeSut = (params?: SutParams): ISutTypes => {
 		sut,
 	};
 };
+
+const simulateValidSubmit = async (
+	sut: RenderResult,
+	name = faker.name.firstName(),
+	email = faker.internet.email(),
+	password = faker.internet.password()
+): Promise<void> => {
+	populateField(sut, "name", name);
+	populateField(sut, "email", email);
+	populateField(sut, "password", password);
+	populateField(sut, "passwordConfirmation", password);
+	const form = sut.getByTestId("form");
+	fireEvent.submit(form);
+	await waitFor(() => form);
+};
+
 describe("Signup Component", () => {
 	afterEach(cleanup);
 
 	test("Deve começar com um estado incial", () => {
 		const { sut } = makeSut();
 		testChildCount(sut, "error-wrap", 0);
-		testButtonIsDisabled(sut, "submit", true);
+		const submitButton = sut.getByTestId("submit") as HTMLButtonElement;
+		expect(submitButton.disabled).toBe(false);
 	});
 
 	test("Deve mostrar um name error se a validação falhar", () => {
@@ -76,5 +89,21 @@ describe("Signup Component", () => {
 		const { sut } = makeSut({ validationError });
 		populateField(sut, "passwordConfirmation");
 		testStatsForField(sut, "passwordConfirmation", validationError);
+	});
+
+	test("Deve habilitar o botão de submit se os valores passados forem válidos", () => {
+		const { sut } = makeSut();
+		populateField(sut, "name");
+		populateField(sut, "email");
+		populateField(sut, "password");
+		populateField(sut, "passwordConfirmation");
+		testButtonIsDisabled(sut, "submit", false);
+	});
+
+	test("Deve exibir o ícone de carregando quando o botão de submit for clicado", () => {
+		const { sut } = makeSut();
+		simulateValidSubmit(sut);
+		const spinner = sut.getByTestId("spinner");
+		expect(spinner).toBeTruthy();
 	});
 });
