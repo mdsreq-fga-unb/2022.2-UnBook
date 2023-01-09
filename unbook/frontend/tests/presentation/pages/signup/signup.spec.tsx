@@ -124,4 +124,12 @@ describe("Signup Component", () => {
 			passwordConfirmation: password,
 		});
 	});
+
+	test("Deve chamar o Authentication apenas uma vez", () => {
+		const { sut, addAccountSpy } = makeSut();
+		simulateValidSubmit(sut);
+		simulateValidSubmit(sut);
+		simulateValidSubmit(sut);
+		expect(addAccountSpy.callsCount).toBe(1);
+	});
 });
