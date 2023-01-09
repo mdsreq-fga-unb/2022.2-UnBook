@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Input, FormStatus } from "../../components";
 import styles from "./signup.module.scss";
 import { Context } from "../../contexts/form/form-context";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IValidation } from "../../protocols/IValidation";
 import { IAddAccount } from "../../../domain/usecases/IAddAccountUseCase";
+import { ISaveAccessToken } from "../../../domain/usecases/ISaveAccessTokenUseCase";
 
 type Props = {
 	validation: IValidation;
 	addAccount: IAddAccount;
+	saveAccessToken: ISaveAccessToken;
 };
 
 type StateProps = {
@@ -24,7 +26,12 @@ type StateProps = {
 	mainError: string;
 };
 
-const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
+const SignUp: React.FC<Props> = ({
+	validation,
+	addAccount,
+	saveAccessToken,
+}: Props) => {
+	const navigate = useNavigate();
 	const [state, setState] = useState<StateProps>({
 		isLoading: false,
 		name: "",
@@ -66,12 +73,14 @@ const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
 			}
 			event.preventDefault();
 			setState({ ...state, isLoading: true });
-			await addAccount.add({
+			const account = await addAccount.add({
 				name: state.name,
 				email: state.email,
 				password: state.password,
 				passwordConfirmation: state.passwordConfirmation,
 			});
+			await saveAccessToken.save(account.accessToken);
+			navigate("/");
 		} catch (error) {
 			setState({
 				...state,
