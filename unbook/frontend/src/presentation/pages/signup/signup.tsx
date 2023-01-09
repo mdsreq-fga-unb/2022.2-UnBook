@@ -4,9 +4,11 @@ import styles from "./signup.module.scss";
 import { Context } from "../../contexts/form/form-context";
 import { Link } from "react-router-dom";
 import { IValidation } from "../../protocols/IValidation";
+import { IAddAccount } from "../../../domain/usecases/IAddAccountUseCase";
 
 type Props = {
 	validation: IValidation;
+	addAccount: IAddAccount;
 };
 
 type StateProps = {
@@ -22,7 +24,7 @@ type StateProps = {
 	mainError: string;
 };
 
-const SignUp: React.FC<Props> = ({ validation }: Props) => {
+const SignUp: React.FC<Props> = ({ validation, addAccount }: Props) => {
 	const [state, setState] = useState<StateProps>({
 		isLoading: false,
 		name: "",
@@ -54,6 +56,12 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
 	): Promise<void> => {
 		event.preventDefault();
 		setState({ ...state, isLoading: true });
+		await addAccount.add({
+			name: state.name,
+			email: state.email,
+			password: state.password,
+			passwordConfirmation: state.passwordConfirmation,
+		});
 	};
 
 	return (
