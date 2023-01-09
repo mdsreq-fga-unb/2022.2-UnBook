@@ -42,10 +42,20 @@ const testStatsForField = (
 	expect(fieldStatusDiv.title).toBe(validationError || "Tudo certo!");
 };
 
+const testElementText = async (
+	sut: RenderResult,
+	fieldName: string,
+	text: string
+): Promise<void> => {
+	const element = sut.findByTestId(fieldName);
+	expect((await element).textContent).toBe(text);
+};
+
 export {
 	testChildCount,
 	testButtonIsDisabled,
 	populateField,
 	testStatsForField,
 	testElementExists,
+	testElementText,
 };

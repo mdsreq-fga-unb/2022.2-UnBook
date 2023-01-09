@@ -14,9 +14,12 @@ import {
 	populateField,
 	testButtonIsDisabled,
 	testChildCount,
+	testElementText,
 	testStatsForField,
 } from "../../mocks/form-helper";
 import { AddAccountSpy } from "../../mocks/add-account/mock-add-account";
+import { EmailInUseError } from "../../../../src/domain/errors/EmailInUseError";
+import { vi } from "vitest";
 
 interface ISutTypes {
 	sut: RenderResult;
@@ -138,5 +141,14 @@ describe("Signup Component", () => {
 		const { sut, addAccountSpy } = makeSut({ validationError });
 		simulateValidSubmit(sut);
 		expect(addAccountSpy.callsCount).toBe(0);
+	});
+
+	test("Deve mostrar o erro se a autenticação falhar", async () => {
+		const { sut, addAccountSpy } = makeSut();
+		const error = new EmailInUseError();
+		vi.spyOn(addAccountSpy, "add").mockRejectedValueOnce(error);
+		await simulateValidSubmit(sut);
+		testElementText(sut, "main-error", error.message);
+		testChildCount(sut, "error-wrap", 1);
 	});
 });
