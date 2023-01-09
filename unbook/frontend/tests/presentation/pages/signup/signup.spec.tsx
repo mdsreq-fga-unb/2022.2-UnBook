@@ -169,4 +169,13 @@ describe("Signup Component", () => {
 		);
 		expect(location.pathname).toBe("/");
 	});
+
+	test("Deve lançar um erro se o SaveAccessTokeb falhar", async () => {
+		const { sut, saveAccessTokenMock } = makeSut();
+		const error = new EmailInUseError();
+		vi.spyOn(saveAccessTokenMock, "save").mockRejectedValueOnce(error);
+		await simulateValidSubmit(sut);
+		testElementText(sut, "main-error", error.message);
+		testChildCount(sut, "error-wrap", 1);
+	});
 });
