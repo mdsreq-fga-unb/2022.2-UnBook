@@ -132,4 +132,11 @@ describe("Signup Component", () => {
 		simulateValidSubmit(sut);
 		expect(addAccountSpy.callsCount).toBe(1);
 	});
+
+	test("Não deve chamar o AddAccount se o formulário for inválido", async () => {
+		const validationError = faker.random.words();
+		const { sut, addAccountSpy } = makeSut({ validationError });
+		simulateValidSubmit(sut);
+		expect(addAccountSpy.callsCount).toBe(0);
+	});
 });

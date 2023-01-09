@@ -168,6 +168,13 @@ describe("Login Component", () => {
 		expect(authenticationSpy.callsCount).toBe(0);
 	});
 
+	test("Não deve chamar o Authentication se o formulário for inválido", async () => {
+		const validationError = faker.random.words();
+		const { sut, authenticationSpy } = makeSut({ validationError });
+		simulateValidSubmit(sut);
+		expect(authenticationSpy.callsCount).toBe(0);
+	});
+
 	test("Deve mostrar o erro se a autenticação falhar", async () => {
 		const { sut, authenticationSpy } = makeSut();
 		const error = new InvalidCredentialsError();
