@@ -9,18 +9,31 @@ type Props = {
 	validation: IValidation;
 };
 
+type StateProps = {
+	isLoading: boolean;
+	name: string;
+	email: string;
+	password: string;
+	passwordConfirmation: string;
+	nameError: string;
+	emailError: string;
+	passwordError: string;
+	passwordConfirmationError: string;
+	mainError: string;
+};
+
 const SignUp: React.FC<Props> = ({ validation }: Props) => {
-	const [state, setState] = React.useState({
+	const [state, setState] = useState<StateProps>({
 		isLoading: false,
 		name: "",
 		email: "",
 		password: "",
 		passwordConfirmation: "",
-		mainError: "",
 		nameError: "",
 		emailError: "",
 		passwordError: "",
 		passwordConfirmationError: "",
+		mainError: "",
 	});
 
 	useEffect(() => {
@@ -34,12 +47,23 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
 				state.passwordConfirmation
 			),
 		});
-	}, [state.name, state.email, state.password]);
+	}, [state.name, state.email, state.password, state.passwordConfirmation]);
+
+	const handleSubmit = async (
+		event: React.FormEvent<HTMLFormElement>
+	): Promise<void> => {
+		event.preventDefault();
+		setState({ ...state, isLoading: true });
+	};
 
 	return (
 		<div className={styles.signup}>
 			<Context.Provider value={{ state, setState }}>
-				<form className={styles.form}>
+				<form
+					data-testid="form"
+					onSubmit={handleSubmit}
+					className={styles.form}
+				>
 					<h1 className={styles.titile}>Cadastra-se</h1>
 					<Input type="text" name="name" placeholder="Digite seu nome" />
 					<Input type="email" name="email" placeholder="Digite seu e-mail" />
@@ -53,7 +77,16 @@ const SignUp: React.FC<Props> = ({ validation }: Props) => {
 						name="passwordConfirmation"
 						placeholder="Repita sua senha"
 					/>
-					<button data-testid="submit" disabled type="submit">
+					<button
+						data-testid="submit"
+						disabled={
+							!!state.nameError ||
+							!!state.emailError ||
+							!!state.passwordError ||
+							!!state.passwordConfirmationError
+						}
+						type="submit"
+					>
 						Cadastrar
 					</button>
 					<div className={styles.separator} />
