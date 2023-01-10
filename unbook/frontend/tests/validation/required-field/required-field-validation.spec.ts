@@ -2,32 +2,36 @@ import { RequiredFieldError } from "../../../src/validation/errors/RequiredField
 import { RequiredFieldValidation } from "../../../src/validation/required-field/RequiredFieldValidation";
 import { faker } from "@faker-js/faker";
 
-const makeSut = (): RequiredFieldValidation => {
-	return new RequiredFieldValidation(faker.internet.email());
+const makeSut = (field: string): RequiredFieldValidation => {
+	return new RequiredFieldValidation(field);
 };
 
 describe("RequiredFieldValidation", () => {
 	test("Deve retornar erro se o campo estiver vazio", () => {
-		const sut = makeSut();
-		const error = sut.validate("");
+		const field = faker.database.column();
+		const sut = makeSut(field);
+		const error = sut.validate({ [field]: "" });
 		expect(error).toEqual(new RequiredFieldError());
 	});
 
 	test("Deve retornar falso se o campo não estiver vazio", () => {
-		const sut = makeSut();
-		const error = sut.validate(faker.internet.email());
+		const field = faker.database.column();
+		const sut = makeSut(field);
+		const error = sut.validate({ [field]: faker.random.word() });
 		expect(error).toBeFalsy();
 	});
 
 	test("Deve retornar erro se o campo for nulo", () => {
-		const sut = makeSut();
-		const error = sut.validate(null);
+		const field = faker.database.column();
+		const sut = makeSut(field);
+		const error = sut.validate({ [field]: null });
 		expect(error).toEqual(new RequiredFieldError());
 	});
 
 	test("Deve retornar erro se o campo for indefinido", () => {
-		const sut = makeSut();
-		const error = sut.validate(undefined);
+		const field = faker.database.column();
+		const sut = makeSut(field);
+		const error = sut.validate({ [field]: undefined });
 		expect(error).toEqual(new RequiredFieldError());
 	});
 });

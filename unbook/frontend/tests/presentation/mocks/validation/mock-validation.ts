@@ -4,7 +4,7 @@ import { IValidation } from "../../../../src/presentation/protocols/IValidation"
 class ValidationStub implements IValidation {
 	errorMessage: string;
 
-	validate(fieldName: string, fieldValue: string): string {
+	validate(fieldName: string, input: object): string {
 		return this.errorMessage;
 	}
 }

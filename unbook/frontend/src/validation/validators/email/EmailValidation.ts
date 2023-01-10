@@ -6,10 +6,10 @@ class EmailValidation implements IFieldValidation {
 	constructor(readonly field: string) {
 		this.field = field;
 	}
-	validate(value: string): Error {
+	validate(input: object): Error {
 		const emailRegex =
 			/[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-		return !value || emailRegex.test(value)
+		return !input[this.field] || emailRegex.test(input[this.field])
 			? null
 			: new InvalidParamError(this.field);
 	}

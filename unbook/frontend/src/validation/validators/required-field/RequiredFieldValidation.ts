@@ -4,8 +4,8 @@ import { IFieldValidation } from "../../protocols/IFieldValidation";
 
 class RequiredFieldValidation implements IFieldValidation {
 	constructor(readonly field: string) {}
-	validate(value: string): Error {
-		return value ? null : new RequiredFieldError();
+	validate(input: object): Error {
+		return input[this.field] ? null : new RequiredFieldError();
 	}
 }
 

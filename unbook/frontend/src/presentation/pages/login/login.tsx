@@ -15,6 +15,7 @@ type Props = {
 
 type StateProps = {
 	isLoading: boolean;
+	isFormInvalid: boolean;
 	email: string;
 	password: string;
 	emailError: string;
@@ -30,6 +31,7 @@ const Login: React.FC<Props> = ({
 	const navigate = useNavigate();
 	const [state, setState] = useState<StateProps>({
 		isLoading: false,
+		isFormInvalid: true,
 		email: "",
 		password: "",
 		emailError: "",
@@ -38,10 +40,15 @@ const Login: React.FC<Props> = ({
 	});
 
 	useEffect(() => {
+		const { email, password } = state;
+		const formData = { email, password };
+		const emailError = validation.validate("email", formData);
+		const passwordError = validation.validate("password", formData);
 		setState({
 			...state,
-			emailError: validation.validate("email", state.email),
-			passwordError: validation.validate("password", state.password),
+			emailError,
+			passwordError,
+			isFormInvalid: !!emailError || !!passwordError,
 		});
 	}, [state.email, state.password]);
 
@@ -50,7 +57,7 @@ const Login: React.FC<Props> = ({
 	): Promise<void> => {
 		event.preventDefault();
 		try {
-			if (state.isLoading || state.emailError || state.passwordError) {
+			if (state.isLoading || state.isFormInvalid) {
 				return;
 			}
 			setState({ ...state, isLoading: true });
@@ -86,7 +93,7 @@ const Login: React.FC<Props> = ({
 					/>
 					<button
 						data-testid="submit"
-						disabled={!!state.emailError || !!state.passwordError}
+						disabled={state.isFormInvalid}
 						type="submit"
 					>
 						Entrar
