@@ -126,7 +126,9 @@ const SignUp: React.FC<Props> = ({
 					<div className={styles.separator} />
 					<div className={styles.login}>
 						Já possui uma conta?
-						<Link to="/login">Entrar</Link>
+						<Link data-testid="login" to="/login">
+							Entrar
+						</Link>
 					</div>
 					<FormStatus />
 				</form>
