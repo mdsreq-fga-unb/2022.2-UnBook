@@ -178,4 +178,11 @@ describe("Signup Component", () => {
 		testElementText(sut, "main-error", error.message);
 		testChildCount(sut, "error-wrap", 1);
 	});
+
+	test("Deve ir para página de login", async () => {
+		const { sut } = makeSut();
+		const login = sut.findByTestId("login");
+		fireEvent.click(await login);
+		expect(location.pathname).toBe("/login");
+	});
 });
