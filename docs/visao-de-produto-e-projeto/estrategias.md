@@ -17,7 +17,16 @@ O Design Simples é uma técnica utilizada para simplificar o desenvolvimento de
 
 ## Estratégia de Integração Contínua
 
-Como estratégia para integração contínua, será utilizada a ferramenta GitHub Actions.
+#### Ferramentas para integração contínua
+
+- A ferramenta a ser utilizada é o Github Actions.
+
+#### Técnicas para integração contínua
+
+- Testes automatizados;
+- Construção com ritimo sustentável porem ágil;
+- Integrações simples e rápidas;
+- Progresso constante e demonstrável.
 
 ## Estratégia de Testes
 
@@ -36,6 +45,12 @@ Como estratégia para integração contínua, será utilizada a ferramenta GitHu
 
 - TDD: os testes serão realizados com o auxílio das ferramentas Jest e Enzyme
 - Testes Manuais: utilizaremos para verificar se as funcionalidades estão funcionando conforme o esperado
+
+#### Execução dos testes
+
+- Os testes unitários serão feitos pelo par após a codificação da funcionalidade para verificar se a funcionalidade está de acordo com a user story, portanto o teste será realizado durante a sprint;
+- Os testes de sistema serão realizados pela equipe após a integração para verificar se o produto está se comportando como esperado, portanto o teste será realizado durante a sprint;
+- Os testes de aceitação serão realizados pelo cliente e também pela equipe com o objetivo de verificar se o produto está de acordo com as especificações do cliente, portanto este teste será realizado sempre após os testes unitários e os de sistemas.
 
 ## Estratégia de Refatoração
 
