@@ -1,5 +1,4 @@
-import { HttpResponse } from "./index";
-
+import { HttpResponse } from "./HttpResponse";
 type HttpPostParams<T> = {
 	url: string;
 	body?: T;

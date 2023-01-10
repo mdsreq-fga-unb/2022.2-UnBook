@@ -4,7 +4,7 @@ import { IAddAccountParams } from "../../../../src/domain/usecases/IAddAccountUs
 import { IAccountModel } from "../../../../src/domain/models/IAccountModel";
 import { HttpPostClientSpy, mockAccountModel } from "../../../mocks";
 import { mockAddAccountParams } from "../../mocks/mock-add-account";
-import { HttpStatusCode } from "../../../../src/data/protocols/http";
+import { HttpStatusCode } from "../../../../src/data/protocols/http/HttpResponse";
 import { EmailInUseError } from "../../../../src/domain/errors/EmailInUseError";
 import { UnexpectedError } from "../../../../src/domain/errors";
 

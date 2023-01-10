@@ -1,6 +1,7 @@
 import React from "react";
 import {
 	RenderResult,
+	act,
 	cleanup,
 	fireEvent,
 	render,
@@ -55,17 +56,21 @@ const simulateValidSubmit = (
 ): void => {
 	populateEmailField(sut, email);
 	populatePasswordField(sut, password);
-	const submitButton = sut.getByTestId("submit");
-	fireEvent.click(submitButton);
+	act(() => {
+		const submitButton = sut.getByTestId("submit");
+		fireEvent.click(submitButton);
+	});
 };
 
 const populateEmailField = (
 	sut: RenderResult,
 	email = faker.internet.email()
 ): void => {
-	const emailInput = sut.getByTestId("email-status");
-	fireEvent.input(emailInput, {
-		target: { value: email },
+	act(() => {
+		const emailInput = sut.getByTestId("email-status");
+		fireEvent.input(emailInput, {
+			target: { value: email },
+		});
 	});
 };
 
@@ -73,9 +78,11 @@ const populatePasswordField = (
 	sut: RenderResult,
 	password = faker.internet.password()
 ): void => {
-	const passwordInput = sut.getByTestId("password-status");
-	fireEvent.input(passwordInput, {
-		target: { value: password },
+	act(() => {
+		const passwordInput = sut.getByTestId("password-status");
+		fireEvent.input(passwordInput, {
+			target: { value: password },
+		});
 	});
 };
 
@@ -112,17 +119,25 @@ describe("Login Component", () => {
 	test("Deve mostrar um erro de email se o Validation falhar", () => {
 		const validationError = faker.random.words();
 		const { sut } = makeSut({ validationError });
-		const emailInput = sut.getByTestId("email-status");
-		fireEvent.input(emailInput, { target: { value: faker.internet.email() } });
+		let emailInput;
+		act(() => {
+			emailInput = sut.getByTestId("email-status");
+			fireEvent.input(emailInput, {
+				target: { value: faker.internet.email() },
+			});
+		});
 		expect(emailInput.title).toBe(validationError);
 	});
 
 	test("Deve mostrar um erro de password se o Validation falhar", () => {
 		const validationError = faker.random.words();
 		const { sut } = makeSut({ validationError });
-		const passwordInput = sut.getByTestId("password-status");
-		fireEvent.input(passwordInput, {
-			target: { value: faker.internet.password() },
+		let passwordInput;
+		act(() => {
+			passwordInput = sut.getByTestId("password-status");
+			fireEvent.input(passwordInput, {
+				target: { value: faker.internet.password() },
+			});
 		});
 		expect(passwordInput.title).toBe(validationError);
 	});
@@ -164,7 +179,9 @@ describe("Login Component", () => {
 		const validationError = faker.random.words();
 		const { sut, authenticationSpy } = makeSut({ validationError });
 		populateEmailField(sut);
-		fireEvent.submit(sut.getByTestId("form"));
+		act(() => {
+			fireEvent.submit(sut.getByTestId("form"));
+		});
 		expect(authenticationSpy.callsCount).toBe(0);
 	});
 
@@ -201,7 +218,9 @@ describe("Login Component", () => {
 	test("Deve ir para página de criar conta ao clicar no link de cadastro", async () => {
 		const { sut } = makeSut();
 		const signup = sut.getByTestId("signup");
-		fireEvent.click(signup);
+		act(() => {
+			fireEvent.click(signup);
+		});
 		expect(location.pathname).toBe("/signup");
 	});
 });

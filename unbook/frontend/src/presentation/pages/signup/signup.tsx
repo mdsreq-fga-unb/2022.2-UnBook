@@ -71,14 +71,27 @@ const SignUp: React.FC<Props> = ({
 		});
 	}, [state.name, state.email, state.password, state.passwordConfirmation]);
 
+	useEffect(() => {
+		const { email, password } = state;
+		const formData = { email, password };
+		const emailError = validation.validate("email", formData);
+		const passwordError = validation.validate("password", formData);
+		setState({
+			...state,
+			emailError,
+			passwordError,
+			isFormInvalid: !!emailError || !!passwordError,
+		});
+	}, [state.email, state.password]);
+
 	const handleSubmit = async (
 		event: React.FormEvent<HTMLFormElement>
 	): Promise<void> => {
+		event.preventDefault();
 		try {
 			if (state.isLoading || state.isFormInvalid) {
 				return;
 			}
-			event.preventDefault();
 			setState({ ...state, isLoading: true });
 			const account = await addAccount.add({
 				name: state.name,

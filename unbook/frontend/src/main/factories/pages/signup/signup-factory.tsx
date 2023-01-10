@@ -1,16 +1,17 @@
 import React from "react";
-import { Login } from "../../../../presentation/pages/login/login";
-import { RemoteAuthentication } from "../../../../data/repositories/RemoteAuthentication";
 import { AxiosHttpClient } from "../../../../infra/http/AxiosHttpClient";
 import { ValidationComposite } from "../../../../validation/validators/validation-composite/ValidationComposite";
 import { ValidationBuilder } from "../../../../validation/validators/builder/ValidationBuilder";
 import { LocalSaveAccessToken } from "../../../../data/repositories/LocalSaveAccessToken";
 import { LocalStorageAdapter } from "../../../../infra/cache/LocalStorageAdapter";
+import { SignUp } from "../../../../presentation/pages/signup/signup";
+import { RemoteAddAccount } from "../../../../data/repositories/RemoteAddAccount";
+import { makeUrl } from "../login/makeUrl-factory";
 
 const makeSignUp = (): JSX.Element => {
-	const url = makeUrl("login");
+	const url = makeUrl("signup");
 	const axiosHttpClient = new AxiosHttpClient();
-	const remoteAuthentication = new RemoteAuthentication(url, axiosHttpClient);
+	const remoteAddAccount = new RemoteAddAccount(url, axiosHttpClient);
 	const validationComposite = ValidationComposite.build([
 		...ValidationBuilder.field("name").required().min(8).build(),
 		...ValidationBuilder.field("email").required().email().build(),
@@ -23,9 +24,9 @@ const makeSignUp = (): JSX.Element => {
 	const localStorageAdapter = new LocalStorageAdapter();
 	const localSaveAccessToken = new LocalSaveAccessToken(localStorageAdapter);
 	return (
-		<Login
+		<SignUp
 			validation={validationComposite}
-			authentication={remoteAuthentication}
+			addAccount={remoteAddAccount}
 			saveAccessToken={localSaveAccessToken}
 		/>
 	);

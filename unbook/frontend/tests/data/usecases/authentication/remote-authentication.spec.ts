@@ -1,4 +1,4 @@
-import { HttpStatusCode } from "../../../../src/data/protocols/http";
+import { HttpStatusCode } from "../../../../src/data/protocols/http/HttpResponse";
 import { RemoteAuthentication } from "../../../../src/data/repositories/RemoteAuthentication";
 import {
 	InvalidCredentialsError,

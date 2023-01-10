@@ -1,6 +1,7 @@
 import React from "react";
 import {
 	RenderResult,
+	act,
 	cleanup,
 	fireEvent,
 	render,
@@ -64,7 +65,9 @@ const simulateValidSubmit = async (
 	populateField(sut, "password", password);
 	populateField(sut, "passwordConfirmation", password);
 	const form = sut.getByTestId("form");
-	fireEvent.submit(form);
+	act(() => {
+		fireEvent.submit(form);
+	});
 	await waitFor(() => form);
 };
 
@@ -181,8 +184,10 @@ describe("Signup Component", () => {
 
 	test("Deve ir para página de login", async () => {
 		const { sut } = makeSut();
-		const login = sut.findByTestId("login");
-		fireEvent.click(await login);
+		const login = sut.getByTestId("login");
+		act(() => {
+			fireEvent.click(login);
+		});
 		expect(location.pathname).toBe("/login");
 	});
 });

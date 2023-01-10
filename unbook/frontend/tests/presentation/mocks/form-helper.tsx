@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { RenderResult, fireEvent } from "@testing-library/react";
+import { RenderResult, act, fireEvent } from "@testing-library/react";
 
 const testChildCount = (
 	sut: RenderResult,
@@ -29,10 +29,11 @@ const populateField = (
 	fieldName: string,
 	value = faker.random.word()
 ): void => {
-	const input = sut.getByTestId(`${fieldName}-status`);
-	fireEvent.input(input, { target: { value } });
+	act(() => {
+		const input = sut.getByTestId(`${fieldName}-status`);
+		fireEvent.input(input, { target: { value } });
+	});
 };
-
 const testStatsForField = (
 	sut: RenderResult,
 	fieldName: string,
