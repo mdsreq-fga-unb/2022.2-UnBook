@@ -25,7 +25,6 @@
 		"react/jsx-uses-vars": "error",
 		"react/react-in-jsx-scope": "off",
 		"indent": ["error", "tab"],
-		"linebreak-style": ["error", "unix"],
 		"quotes": ["error", "double"],
 		"semi": ["error", "always"],
 		"@typescript-eslint/explicit-function-return-type": "warn",
