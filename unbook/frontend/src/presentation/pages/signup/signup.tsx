@@ -15,6 +15,7 @@ type Props = {
 
 type StateProps = {
 	isLoading: boolean;
+	isFormInvalid: boolean;
 	name: string;
 	email: string;
 	password: string;
@@ -34,6 +35,7 @@ const SignUp: React.FC<Props> = ({
 	const navigate = useNavigate();
 	const [state, setState] = useState<StateProps>({
 		isLoading: false,
+		isFormInvalid: true,
 		name: "",
 		email: "",
 		password: "",
@@ -46,15 +48,24 @@ const SignUp: React.FC<Props> = ({
 	});
 
 	useEffect(() => {
+		const nameError = validation.validate("name", state.name);
+		const emailError = validation.validate("email", state.email);
+		const passwordError = validation.validate("password", state.password);
+		const passwordConfirmationError = validation.validate(
+			"passwordConfirmation",
+			state.passwordConfirmation
+		);
 		setState({
 			...state,
-			nameError: validation.validate("name", state.name),
-			emailError: validation.validate("email", state.email),
-			passwordError: validation.validate("password", state.password),
-			passwordConfirmationError: validation.validate(
-				"passwordConfirmation",
-				state.passwordConfirmation
-			),
+			nameError,
+			emailError,
+			passwordError,
+			passwordConfirmationError,
+			isFormInvalid:
+				!!emailError ||
+				!!passwordError ||
+				!!nameError ||
+				!!passwordConfirmationError,
 		});
 	}, [state.name, state.email, state.password, state.passwordConfirmation]);
 
@@ -62,13 +73,7 @@ const SignUp: React.FC<Props> = ({
 		event: React.FormEvent<HTMLFormElement>
 	): Promise<void> => {
 		try {
-			if (
-				state.isLoading ||
-				state.emailError ||
-				state.passwordError ||
-				state.nameError ||
-				state.passwordConfirmationError
-			) {
+			if (state.isLoading || state.isFormInvalid) {
 				return;
 			}
 			event.preventDefault();
@@ -113,12 +118,7 @@ const SignUp: React.FC<Props> = ({
 					/>
 					<button
 						data-testid="submit"
-						disabled={
-							!!state.nameError ||
-							!!state.emailError ||
-							!!state.passwordError ||
-							!!state.passwordConfirmationError
-						}
+						disabled={state.isFormInvalid}
 						type="submit"
 					>
 						Cadastrar
