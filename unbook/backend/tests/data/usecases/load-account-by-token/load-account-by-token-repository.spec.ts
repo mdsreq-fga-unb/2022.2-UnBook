@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable max-classes-per-file */
 import { IDecrypter } from "../../../../src/data/protocols/criptography/IDecrypter";
 import { ILoadAccountByTokenRepository } from "../../../../src/data/protocols/database/account/ILoadAccountByTokenRepository";
@@ -93,5 +94,27 @@ describe("LoadAccountByTokenRepository", () => {
     const { sut } = makeSut();
     const account = await sut.load("any_token");
     expect(account).toEqual(makeFakeAccount());
+  });
+
+  test("Deve lançar um erro se o Decrypter falhar", async () => {
+    const { sut, decrypterStub } = makeSut();
+    jest
+      .spyOn(decrypterStub, "decrypt")
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      );
+    const promise = sut.load("any_token");
+    await expect(promise).rejects.toThrow();
+  });
+
+  test("Deve lançar um erro se o LoadAccountByTokenRepository falhar", async () => {
+    const { sut, loadAccountByTokenRepositoryStub } = makeSut();
+    jest
+      .spyOn(loadAccountByTokenRepositoryStub, "loadByToken")
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      );
+    const promise = sut.load("any_token");
+    await expect(promise).rejects.toThrow();
   });
 });
