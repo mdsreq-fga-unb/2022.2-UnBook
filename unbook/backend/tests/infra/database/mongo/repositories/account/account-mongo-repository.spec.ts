@@ -96,10 +96,10 @@ describe("Account Mongo Repository", () => {
       expect(account.password).toBe("any_password");
     });
 
-    // test("Deve retornar null se o loadByEmail falhar", async () => {
-    //   const sut = makeSut();
-    //   const account = await sut.loadByEmail("any_email@mail.com");
-    //   expect(account).toBeFalsy();
-    // });
+    test("Deve retornar null se o loadByToken falhar", async () => {
+      const sut = makeSut();
+      const account = await sut.loadByToken("any_token");
+      expect(account).toBeFalsy();
+    });
   });
 });
