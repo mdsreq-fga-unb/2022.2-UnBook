@@ -48,4 +48,10 @@ describe("JWT Adapter", () => {
       expect(verifySpy).toHaveBeenCalledWith("any_token", "secret_key");
     });
   });
+
+  test("Deve retornar um token quando o verify tiver sucesso", async () => {
+    const sut = makeSut();
+    const value = await sut.decrypt("any_token");
+    expect(value).toBe("any_value");
+  });
 });
