@@ -3,7 +3,10 @@
 import { IAccountModel } from "../../../src/domain/models/AccountModel";
 import { ILoadAccountByToken } from "../../../src/domain/usecases/ILoadAccountByTokenUseCase";
 import { AccessDeniedError } from "../../../src/presentation/errors/access-denied-error";
-import { forbidden } from "../../../src/presentation/helpers/http/http-helper";
+import {
+  forbidden,
+  ok,
+} from "../../../src/presentation/helpers/http/http-helper";
 import { AuthMiddleware } from "../../../src/presentation/middlewares/AuthMiddleware";
 import { IHttpRequest } from "../../../src/presentation/protocols";
 
@@ -68,5 +71,11 @@ describe("Auth Middleware", () => {
       .mockReturnValueOnce(new Promise((resolve) => resolve(null)));
     const httpResponse = await sut.handle(makeFakeRequest());
     expect(httpResponse).toEqual(forbidden(new AccessDeniedError()));
+  });
+
+  test("Deve retornar 200 se o LoadAccountBuToken retornar uma conta", async () => {
+    const { sut, loadAccountByTokenStub } = makeSut();
+    const httpResponse = await sut.handle(makeFakeRequest());
+    expect(httpResponse).toEqual(ok({ accountId: "valid_id" }));
   });
 });
