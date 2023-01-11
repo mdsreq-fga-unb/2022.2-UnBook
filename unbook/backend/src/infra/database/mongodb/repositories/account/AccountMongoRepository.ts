@@ -7,6 +7,7 @@ import {
   IUpdateAccessTokenRepository,
 } from "../../../../../data/protocols/database/account/data-sign-up-protocols";
 import { ILoadAccountByEmailRepository } from "../../../../../data/protocols/database/account/ILoadAccountByEmailRepository";
+import { ILoadAccountByTokenRepository } from "../../../../../data/protocols/database/account/ILoadAccountByTokenRepository";
 import {
   IAccountModel,
   IAddAccountModel,
@@ -17,7 +18,8 @@ class AccountMongoRepository
   implements
     IAddAccountRepository,
     ILoadAccountByEmailRepository,
-    IUpdateAccessTokenRepository
+    IUpdateAccessTokenRepository,
+    ILoadAccountByTokenRepository
 {
   async add(accountData: IAddAccountModel): Promise<IAccountModel> {
     const accountCollection = MongoHelper.getCollection("accounts");
@@ -64,6 +66,20 @@ class AccountMongoRepository
         },
       }
     );
+  }
+
+  async loadByToken(token: string): Promise<IAccountModel> {
+    const accountCollection = MongoHelper.getCollection("accounts");
+    const account = await accountCollection.findOne({ accessToken: token });
+    if (account) {
+      return {
+        id: account._id.toString(),
+        name: account.name,
+        email: account.email,
+        password: account.password,
+      };
+    }
+    return null;
   }
 }
 
