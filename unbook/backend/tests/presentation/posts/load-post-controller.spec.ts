@@ -1,7 +1,7 @@
 import MockDate from "mockdate";
 import { IPostModel } from "../../../src/domain/models/IPostModel";
 import { ILoadPosts } from "../../../src/domain/usecases/ILoadPostUseCase";
-import { LoadPostsController } from "../../../src/presentation/controllers/post/LoadPostController";
+import { LoadPostsController } from "../../../src/presentation/controllers/post/LoadPostsController";
 import {
   noContent,
   ok,
