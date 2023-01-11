@@ -5,9 +5,7 @@ import { IHttpRequest, IHttpResponse } from "../protocols";
 import { IMiddleware } from "../protocols/IMiddleware";
 
 class AuthMiddleware implements IMiddleware {
-  constructor(private readonly loadAccountByToken: ILoadAccountByToken) {
-    this.loadAccountByToken = loadAccountByToken;
-  }
+  constructor(private readonly loadAccountByToken: ILoadAccountByToken) {}
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const accessToken = httpRequest.headers?.["x-access-token"];
@@ -17,8 +15,8 @@ class AuthMiddleware implements IMiddleware {
           return ok({ accountId: account.id });
         }
       }
-      const error = forbidden(new AccessDeniedError());
-      return new Promise((resolve) => resolve(error));
+
+      return forbidden(new AccessDeniedError());
     } catch (error) {
       return serverError(error as Error);
     }
