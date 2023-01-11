@@ -1,54 +1,53 @@
 import { Header } from "../../components/Header";
 import styles from "../../../App.module.css";
 import { Sidebar } from "../../components/Sidebar";
-import { Post, PostProps } from "../../components/Post";
+import { Post } from "../../components/Post";
 
-const posts: Post[] = [
+const posts = [
 	{
-	  id: 1,
-	  author: {
+		id: 1,
+		author: {
 			avatarUrl: "http://github.com/pedrocampos0.png",
 			name: "Pedro Campos",
 			role: "Web Developer",
-	  },
-	  content: [
+		},
+		content: [
 			{ type: "paragraph", content: "Fala galeraa 👋" },
 			{
-		  type: "paragraph",
-		  content:
-			"Testando feed de postagens",
+				type: "paragraph",
+				content: "Testando feed de postagens",
 			},
 			{
-		  type: "link",
-		  content: "unbook",
+				type: "link",
+				content: "unbook",
 			},
-	  ],
-	  publishedAt: new Date("2022-10-10 20:00:00"),
+		],
+		publishedAt: new Date("2022-10-10 20:00:00"),
 	},
 ];
-  
+
 const Home: React.FC = () => {
 	return (
 		<div>
-		  <Header />
-	
-		  <div className={styles.wrapper}>
+			<Header />
+
+			<div className={styles.wrapper}>
 				<Sidebar />
 				<main>
-			  {posts.map((post) => {
+					{posts.map((post) => {
 						return (
-				  <Post
+							<Post
 								key={post.id}
 								author={post.author}
 								content={post.content}
 								publishedAt={post.publishedAt}
-				  />
+							/>
 						);
-			  })}
+					})}
 				</main>
-		  </div>
+			</div>
 		</div>
-	  );
+	);
 };
 
 export { Home };

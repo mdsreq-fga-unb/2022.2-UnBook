@@ -5,24 +5,24 @@ import { Avatar } from "./Avatar";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 
-interface Author {
-  name: string;
-  role: string;
-  avatarUrl: string;
+interface IAuthor {
+	name: string;
+	role: string;
+	avatarUrl: string;
 }
 
-interface Content {
-  type: "paragraph" | "link";
-  content: string
+interface IContent {
+	type: "paragraph" | "link";
+	content: string;
 }
 
-export interface PostProps {
-  author: Author;
-  publishedAt: Date;
-  content: Content[];
+export interface IPostProps {
+	author: IAuthor;
+	publishedAt: Date;
+	content: IContent[];
 }
 
-export function Post({ author, publishedAt, content }: PostProps) {
+export function Post({ author, publishedAt, content }: IPostProps): JSX.Element {
 	const [comments, setComments] = useState(["Feed bacana"]);
 	const [newCommentText, setNewCommentText] = useState("");
 
@@ -37,22 +37,26 @@ export function Post({ author, publishedAt, content }: PostProps) {
 		addSuffix: true,
 	});
 
-	function handleCreateNewComment(event: FormEvent) {
+	function handleCreateNewComment(event: FormEvent): void {
 		event.preventDefault();
 		setComments([...comments, newCommentText]);
 		setNewCommentText("");
 	}
 
-	function handleNewCommentChange(event: ChangeEvent<HTMLTextAreaElement>) {
+	function handleNewCommentChange(
+		event: ChangeEvent<HTMLTextAreaElement>
+	): void {
 		event.target.setCustomValidity("");
 		setNewCommentText(event.target.value);
 	}
 
-	function handleNewCommentInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
+	function handleNewCommentInvalid(
+		event: InvalidEvent<HTMLTextAreaElement>
+	): void {
 		event.target.setCustomValidity("Esse campo é obrigatório!");
 	}
 
-	function deleteComment(commentToDelete: string) {
+	function deleteComment(commentToDelete: string): void {
 		const commentsWithoutDeletedOne = comments.filter((comment) => {
 			return comment != commentToDelete;
 		});
@@ -86,7 +90,7 @@ export function Post({ author, publishedAt, content }: PostProps) {
 					} else if (line.type == "link") {
 						return (
 							<p key={line.content}>
-								<a href='#'>{line.content}</a>
+								<a href="#">{line.content}</a>
 							</p>
 						);
 					}
@@ -97,15 +101,15 @@ export function Post({ author, publishedAt, content }: PostProps) {
 				<strong>Deixe seu feedback</strong>
 				<textarea
 					required
-					name='comment'
-					placeholder='Deixe um comentário'
+					name="comment"
+					placeholder="Deixe um comentário"
 					value={newCommentText}
 					onChange={handleNewCommentChange}
 					onInvalid={handleNewCommentInvalid}
 				/>
 				<footer>
-					<button disabled={isNewCommentEmpty} type='submit'>
-            Publicar
+					<button disabled={isNewCommentEmpty} type="submit">
+						Publicar
 					</button>
 				</footer>
 			</form>
