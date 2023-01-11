@@ -3,20 +3,38 @@ import { IAddPostRepository } from "../../../../src/data/protocols/database/post
 import { AddPostRepository } from "../../../../src/data/repositories/AddPostRepository";
 import { IAddPostModel } from "../../../../src/domain/usecases/IAddPostUseCase";
 
+interface ISutTypes {
+  sut: AddPostRepository;
+  addPostRepositoryStub: IAddPostRepository;
+}
+
 const makeFakePostData = (): IAddPostModel => ({
   content: "valid_content",
 });
 
+const makeAddPostRepository = (): IAddPostRepository => {
+  class AddPostRepositoryStub implements IAddPostRepository {
+    async add(postData: IAddPostModel): Promise<void> {
+      return new Promise((resolve) => resolve());
+    }
+  }
+
+  return new AddPostRepositoryStub();
+};
+
+const makeSut = (): ISutTypes => {
+  const addPostRepositoryStub = makeAddPostRepository();
+  const sut = new AddPostRepository(addPostRepositoryStub);
+  return {
+    sut,
+    addPostRepositoryStub,
+  };
+};
+
 describe("AddPost Repository UseCase", () => {
   test("Deve chamar o AddPostRepository com os valores corretos", async () => {
-    class AddPostRepositoryStub implements IAddPostRepository {
-      async add(postData: IAddPostModel): Promise<void> {
-        return new Promise((resolve) => resolve());
-      }
-    }
-    const addPostRepositoryStub = new AddPostRepositoryStub();
+    const { sut, addPostRepositoryStub } = makeSut();
     const addSpy = jest.spyOn(addPostRepositoryStub, "add");
-    const sut = new AddPostRepository(addPostRepositoryStub);
     const postData = makeFakePostData();
     await sut.add(postData);
     expect(addSpy).toHaveBeenCalledWith(postData);
