@@ -3,6 +3,7 @@ import { IPostModel } from "../../../src/domain/models/IPostModel";
 import { ILoadPosts } from "../../../src/domain/usecases/ILoadPostUseCase";
 import { LoadPostsController } from "../../../src/presentation/controllers/post/LoadPostController";
 import {
+  noContent,
   ok,
   serverError,
 } from "../../../src/presentation/helpers/http/http-helper";
@@ -62,6 +63,15 @@ describe("LoadPost Controller", () => {
     const { sut } = makeSut();
     const httpResponse = await sut.handle({});
     expect(httpResponse).toEqual(ok(makeFakePosts()));
+  });
+
+  test("Deve retornar 204 se LoadPosts retornar vazio", async () => {
+    const { sut, loadPostsStub } = makeSut();
+    jest
+      .spyOn(loadPostsStub, "load")
+      .mockReturnValueOnce(new Promise((resolve) => resolve([])));
+    const httpResponse = await sut.handle({});
+    expect(httpResponse).toEqual(noContent());
   });
 
   test("Deve retornar 500 se o LoadPosts lançar um erro", async () => {

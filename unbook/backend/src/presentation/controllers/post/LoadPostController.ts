@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ILoadPosts } from "../../../domain/usecases/ILoadPostUseCase";
-import { ok, serverError } from "../../helpers/http/http-helper";
+import { noContent, ok, serverError } from "../../helpers/http/http-helper";
 import { IController, IHttpRequest, IHttpResponse } from "../../protocols";
 
 class LoadPostsController implements IController {
@@ -8,7 +8,7 @@ class LoadPostsController implements IController {
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const posts = await this.loadPosts.load();
-      return ok(posts);
+      return posts.length ? ok(posts) : noContent();
     } catch (error) {
       return serverError(error as Error);
     }
