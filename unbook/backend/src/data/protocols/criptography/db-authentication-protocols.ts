@@ -3,8 +3,8 @@ import {
   IAuthentication,
   IAuthenticationModel,
 } from "../../../domain/usecases/IAuthenticationUseCase";
-import { ILoadAccountByEmailRepository } from "../database/ILoadAccountByEmailRepository";
-import { IUpdateAccessTokenRepository } from "../database/IUpdateAcessTokenRepository";
+import { ILoadAccountByEmailRepository } from "../database/account/ILoadAccountByEmailRepository";
+import { IUpdateAccessTokenRepository } from "../database/account/IUpdateAcessTokenRepository";
 import { IEncrypter } from "./IEncrypter";
 import { IHashComparer } from "./IHashComparer";
 

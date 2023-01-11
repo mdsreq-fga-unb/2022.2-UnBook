@@ -5,8 +5,8 @@ import { ObjectId } from "mongodb";
 import {
   IAddAccountRepository,
   IUpdateAccessTokenRepository,
-} from "../../../../data/protocols/database/data-sign-up-protocols";
-import { ILoadAccountByEmailRepository } from "../../../../data/protocols/database/ILoadAccountByEmailRepository";
+} from "../../../../data/protocols/database/account/data-sign-up-protocols";
+import { ILoadAccountByEmailRepository } from "../../../../data/protocols/database/account/ILoadAccountByEmailRepository";
 import {
   IAccountModel,
   IAddAccountModel,

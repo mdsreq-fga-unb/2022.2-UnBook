@@ -4,8 +4,8 @@ import {
   IAddAccount,
   IAddAccountModel,
 } from "../../presentation/protocols/signup-protocols";
-import { IHasher } from "../protocols/database/data-sign-up-protocols";
-import { ILoadAccountByEmailRepository } from "../protocols/database/ILoadAccountByEmailRepository";
+import { IHasher } from "../protocols/database/account/data-sign-up-protocols";
+import { ILoadAccountByEmailRepository } from "../protocols/database/account/ILoadAccountByEmailRepository";
 
 class AddAccountRepository implements IAddAccount {
   constructor(

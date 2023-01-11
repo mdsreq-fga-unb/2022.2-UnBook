@@ -40,7 +40,7 @@ const makeValidation = (): IValidation => {
 };
 const makeAddPost = (): IAddPost => {
   class AddPostStub implements IAddPost {
-    async add(data: IAddPostModel): Promise<IPostModel> {
+    async add(data: IAddPostModel): Promise<void> {
       return new Promise((resolve) => resolve(null));
     }
   }

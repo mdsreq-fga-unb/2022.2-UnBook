@@ -4,8 +4,8 @@ import {
   AddAccountRepository,
   IHasher,
   IAddAccountRepository,
-} from "../../../../src/data/protocols/database/data-sign-up-protocols";
-import { ILoadAccountByEmailRepository } from "../../../../src/data/protocols/database/ILoadAccountByEmailRepository";
+} from "../../../../src/data/protocols/database/account/data-sign-up-protocols";
+import { ILoadAccountByEmailRepository } from "../../../../src/data/protocols/database/account/ILoadAccountByEmailRepository";
 import {
   IAccountModel,
   IAddAccountModel,

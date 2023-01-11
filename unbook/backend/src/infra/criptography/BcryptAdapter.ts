@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import { IHashComparer } from "../../data/protocols/criptography/db-authentication-protocols";
-import { IHasher } from "../../data/protocols/database/data-sign-up-protocols";
+import { IHasher } from "../../data/protocols/database/account/data-sign-up-protocols";
 
 class BcryptAdapter implements IHasher, IHashComparer {
   constructor(private readonly salt: number) {
