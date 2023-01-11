@@ -88,4 +88,10 @@ describe("LoadAccountByTokenRepository", () => {
     const account = await sut.load("any_token");
     expect(account).toBeNull();
   });
+
+  test("Deve retornar um account se tiver sucesso", async () => {
+    const { sut } = makeSut();
+    const account = await sut.load("any_token");
+    expect(account).toEqual(makeFakeAccount());
+  });
 });
