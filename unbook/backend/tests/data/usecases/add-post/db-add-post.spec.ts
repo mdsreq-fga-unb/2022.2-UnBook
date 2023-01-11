@@ -39,4 +39,11 @@ describe("AddPost Repository UseCase", () => {
     await sut.add(postData);
     expect(addSpy).toHaveBeenCalledWith(postData);
   });
+
+  test("Deve lançar um erro de o AddPostRepository falhar", async () => {
+    const { sut, addPostRepositoryStub } = makeSut();
+    jest.spyOn(addPostRepositoryStub, "add").mockRejectedValueOnce(new Error());
+    const promise = sut.add(makeFakePostData());
+    await expect(promise).rejects.toThrow();
+  });
 });
