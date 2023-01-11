@@ -27,6 +27,7 @@ describe("Account Mongo Repository", () => {
     const sut = makeSut();
     await sut.add({
       content: "any_content",
+      date: new Date(),
     });
     const post = await postCollection.findOne({ content: "any_content" });
     expect(post).toBeTruthy();

@@ -19,7 +19,7 @@ class AddPostController implements IController {
         return badRequest(test);
       }
       const { content } = httpRequest.body;
-      await this.addPost.add({ content });
+      await this.addPost.add({ content, date: new Date() });
       return noContent();
     } catch (error) {
       return serverError(error as Error);

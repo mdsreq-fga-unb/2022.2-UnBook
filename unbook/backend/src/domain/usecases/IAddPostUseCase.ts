@@ -1,5 +1,6 @@
 interface IAddPostModel {
   content: string;
+  date: Date;
 }
 
 interface IAddPost {

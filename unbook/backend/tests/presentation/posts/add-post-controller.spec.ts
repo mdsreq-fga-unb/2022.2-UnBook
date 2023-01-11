@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable max-classes-per-file */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import { faker } from "@faker-js/faker";
-import { IPostModel } from "../../../src/domain/models/PostModel";
+import MockDate from "mockdate";
 import {
   IAddPost,
   IAddPostModel,
@@ -11,7 +12,6 @@ import { AddPostController } from "../../../src/presentation/controllers/post-co
 import {
   badRequest,
   noContent,
-  ok,
   serverError,
 } from "../../../src/presentation/helpers/http/http-helper";
 import { IHttpRequest } from "../../../src/presentation/protocols";
@@ -26,6 +26,7 @@ interface ISubTypes {
 const makeFakeRequest = (): IHttpRequest => ({
   body: {
     content: faker.lorem.paragraph(),
+    date: new Date(),
   },
 });
 
@@ -60,6 +61,14 @@ const makeSut = (): ISubTypes => {
 };
 
 describe("AddPost Controller", () => {
+  beforeAll(() => {
+    MockDate.set(new Date());
+  });
+
+  afterAll(() => {
+    MockDate.reset();
+  });
+
   test("Deve chamar o authentication com os valores corretos", async () => {
     const { sut, validationStub } = makeSut();
     const validateSpy = jest.spyOn(validationStub, "validate");

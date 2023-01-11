@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import MockDate from "mockdate";
 import { IAddPostRepository } from "../../../../src/data/protocols/database/posts/IAddPostRepository";
 import { AddPostRepository } from "../../../../src/data/repositories/AddPostRepository";
 import { IAddPostModel } from "../../../../src/domain/usecases/IAddPostUseCase";
@@ -10,6 +11,7 @@ interface ISutTypes {
 
 const makeFakePostData = (): IAddPostModel => ({
   content: "valid_content",
+  date: new Date(),
 });
 
 const makeAddPostRepository = (): IAddPostRepository => {
@@ -32,6 +34,14 @@ const makeSut = (): ISutTypes => {
 };
 
 describe("AddPost Repository UseCase", () => {
+  beforeAll(() => {
+    MockDate.set(new Date());
+  });
+
+  afterAll(() => {
+    MockDate.reset();
+  });
+
   test("Deve chamar o AddPostRepository com os valores corretos", async () => {
     const { sut, addPostRepositoryStub } = makeSut();
     const addSpy = jest.spyOn(addPostRepositoryStub, "add");
