@@ -53,5 +53,11 @@ describe("Account Mongo Repository", () => {
       expect(posts[0].content).toBe("any_content");
       expect(posts[1].content).toBe("other_content");
     });
+
+    test("Deve retornar uma lista vazia", async () => {
+      const sut = makeSut();
+      const posts = await sut.loadAll();
+      expect(posts.length).toBe(0);
+    });
   });
 });
