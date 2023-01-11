@@ -20,13 +20,13 @@ describe("Login Routes", () => {
   });
 
   describe("POST /post", () => {
-    test("Deve retornar 200 quando o signup tiver sucesso", async () => {
+    test("Deve retornar 403 quando add post não tiver um accessToken", async () => {
       await request(app)
         .post("/api/post")
         .send({
           content: "any_content",
         })
-        .expect(204);
+        .expect(403);
     });
   });
 });
