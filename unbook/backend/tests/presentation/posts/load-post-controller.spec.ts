@@ -2,7 +2,10 @@ import MockDate from "mockdate";
 import { IPostModel } from "../../../src/domain/models/IPostModel";
 import { ILoadPosts } from "../../../src/domain/usecases/ILoadPostUseCase";
 import { LoadPostsController } from "../../../src/presentation/controllers/post/LoadPostController";
-import { ok } from "../../../src/presentation/helpers/http/http-helper";
+import {
+  ok,
+  serverError,
+} from "../../../src/presentation/helpers/http/http-helper";
 
 const makeFakePosts = (): IPostModel[] => {
   return [
@@ -59,5 +62,16 @@ describe("LoadPost Controller", () => {
     const { sut } = makeSut();
     const httpResponse = await sut.handle({});
     expect(httpResponse).toEqual(ok(makeFakePosts()));
+  });
+
+  test("Deve retornar 500 se o LoadPosts lançar um erro", async () => {
+    const { sut, loadPostsStub } = makeSut();
+    jest
+      .spyOn(loadPostsStub, "load")
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      );
+    const httpResponse = await sut.handle({});
+    expect(httpResponse).toEqual(serverError(new Error()));
   });
 });
