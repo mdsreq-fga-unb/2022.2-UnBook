@@ -5,7 +5,7 @@ import {
   IAuthentication,
   IAuthenticationModel,
 } from "../../../src/domain/usecases/IAuthenticationUseCase";
-import { LoginController } from "../../../src/presentation/controllers/login-controller/LogInController";
+import { LoginController } from "../../../src/presentation/controllers/login/LogInController";
 import { MissingParamError } from "../../../src/presentation/errors";
 import {
   badRequest,

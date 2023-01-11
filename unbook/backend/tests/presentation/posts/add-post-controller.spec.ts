@@ -8,7 +8,7 @@ import {
   IAddPost,
   IAddPostModel,
 } from "../../../src/domain/usecases/IAddPostUseCase";
-import { AddPostController } from "../../../src/presentation/controllers/post-controller.ts/AddPostController";
+import { AddPostController } from "../../../src/presentation/controllers/post/AddPostController";
 import {
   badRequest,
   noContent,

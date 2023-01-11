@@ -5,7 +5,7 @@ import {
   IAuthentication,
   IAuthenticationModel,
 } from "../../../src/domain/usecases/IAuthenticationUseCase";
-import { SignUpController } from "../../../src/presentation/controllers/signup-controller/SingUpController";
+import { SignUpController } from "../../../src/presentation/controllers/signup/SingUpController";
 import {
   MissingParamError,
   ServerError,

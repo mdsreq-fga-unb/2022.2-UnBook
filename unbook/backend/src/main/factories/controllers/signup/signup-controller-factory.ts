@@ -1,4 +1,4 @@
-import { SignUpController } from "../../../../presentation/controllers/signup-controller/SingUpController";
+import { SignUpController } from "../../../../presentation/controllers/signup/SingUpController";
 import { IController } from "../../../../presentation/protocols";
 import { makeDbAddAccount } from "../../usecases/add-account/db-add-account-factory";
 import { makeDbAuthentication } from "../../usecases/authentication/db-authentication-factory";

@@ -1,4 +1,4 @@
-import { AddPostController } from "../../../../presentation/controllers/post-controller.ts/AddPostController";
+import { AddPostController } from "../../../../presentation/controllers/post/AddPostController";
 import { IController } from "../../../../presentation/protocols/signup-protocols";
 import { makeLogControllerDecorator } from "../../usecases/decorators/log-controller-decorator-factory";
 import { makeDbAddPost } from "../../usecases/posts/db-add-post-factory";
