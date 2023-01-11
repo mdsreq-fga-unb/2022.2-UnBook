@@ -6,5 +6,5 @@ import { makeAuthMiddleware } from "../factories/middlewares/auth-middleware-fac
 
 export default (router: Router): void => {
   const userAuth = adaptMiddleware(makeAuthMiddleware());
-  router.post("/post", userAuth, adaptRoute(makeAddPostController()));
+  router.post("/posts", userAuth, adaptRoute(makeAddPostController()));
 };

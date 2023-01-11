@@ -28,7 +28,7 @@ describe("Post Routes", () => {
   describe("POST /post", () => {
     test("Deve retornar 403 quando add post não tiver um accessToken", async () => {
       await request(app)
-        .post("/api/post")
+        .post("/api/posts")
         .send({
           content: "any_content",
         })
@@ -53,7 +53,7 @@ describe("Post Routes", () => {
         }
       );
       await request(app)
-        .post("/api/post")
+        .post("/api/posts")
         .set("x-access-token", accessToken)
         .send({
           content: "any_content",
