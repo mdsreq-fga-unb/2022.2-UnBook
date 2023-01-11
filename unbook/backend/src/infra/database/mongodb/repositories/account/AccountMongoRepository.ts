@@ -5,13 +5,13 @@ import { ObjectId } from "mongodb";
 import {
   IAddAccountRepository,
   IUpdateAccessTokenRepository,
-} from "../../../../data/protocols/database/account/data-sign-up-protocols";
-import { ILoadAccountByEmailRepository } from "../../../../data/protocols/database/account/ILoadAccountByEmailRepository";
+} from "../../../../../data/protocols/database/account/data-sign-up-protocols";
+import { ILoadAccountByEmailRepository } from "../../../../../data/protocols/database/account/ILoadAccountByEmailRepository";
 import {
   IAccountModel,
   IAddAccountModel,
-} from "../../../../presentation/protocols/signup-protocols";
-import { MongoHelper } from "../helpers/mongo-helper";
+} from "../../../../../presentation/protocols/signup-protocols";
+import { MongoHelper } from "../../helpers/mongo-helper";
 
 class AccountMongoRepository
   implements

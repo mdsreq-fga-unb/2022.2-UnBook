@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import { Collection } from "mongodb";
-import { MongoHelper } from "../../../../src/infra/database/mongodb/helpers/mongo-helper";
-import { AccountMongoRepository } from "../../../../src/infra/database/mongodb/repositories/AccountMongoRepository";
+import { MongoHelper } from "../../../../../../src/infra/database/mongodb/helpers/mongo-helper";
+import { AccountMongoRepository } from "../../../../../../src/infra/database/mongodb/repositories/account/AccountMongoRepository";
 
 let accountCollection: Collection;
 
