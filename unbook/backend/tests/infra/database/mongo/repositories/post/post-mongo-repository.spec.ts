@@ -23,13 +23,35 @@ describe("Account Mongo Repository", () => {
     return new PostMongoRepository();
   };
 
-  test("Deve adicionar um post quando tiver sucesso", async () => {
-    const sut = makeSut();
-    await sut.add({
-      content: "any_content",
-      date: new Date(),
+  describe("Add", () => {
+    test("Deve adicionar um post quando tiver sucesso", async () => {
+      const sut = makeSut();
+      await sut.add({
+        content: "any_content",
+        date: new Date(),
+      });
+      const post = await postCollection.findOne({ content: "any_content" });
+      expect(post).toBeTruthy();
     });
-    const post = await postCollection.findOne({ content: "any_content" });
-    expect(post).toBeTruthy();
+  });
+
+  describe("loadAll", () => {
+    test("Deve carregar todos os posts quando tiver sucesso", async () => {
+      await postCollection.insertMany([
+        {
+          content: "any_content",
+          date: new Date(),
+        },
+        {
+          content: "other_content",
+          date: new Date(),
+        },
+      ]);
+      const sut = makeSut();
+      const posts = await sut.loadAll();
+      expect(posts.length).toBe(2);
+      expect(posts[0].content).toBe("any_content");
+      expect(posts[1].content).toBe("other_content");
+    });
   });
 });
