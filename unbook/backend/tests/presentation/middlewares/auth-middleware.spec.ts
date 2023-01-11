@@ -6,6 +6,7 @@ import { AccessDeniedError } from "../../../src/presentation/errors/access-denie
 import {
   forbidden,
   ok,
+  serverError,
 } from "../../../src/presentation/helpers/http/http-helper";
 import { AuthMiddleware } from "../../../src/presentation/middlewares/AuthMiddleware";
 import { IHttpRequest } from "../../../src/presentation/protocols";
@@ -77,5 +78,16 @@ describe("Auth Middleware", () => {
     const { sut, loadAccountByTokenStub } = makeSut();
     const httpResponse = await sut.handle(makeFakeRequest());
     expect(httpResponse).toEqual(ok({ accountId: "valid_id" }));
+  });
+
+  test("Deve retornar 500 se o LoadAccountBuToken lançar erro", async () => {
+    const { sut, loadAccountByTokenStub } = makeSut();
+    jest
+      .spyOn(loadAccountByTokenStub, "load")
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      );
+    const httpResponse = await sut.handle(makeFakeRequest());
+    expect(httpResponse).toEqual(serverError(new Error()));
   });
 });
