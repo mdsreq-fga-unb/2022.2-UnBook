@@ -19,10 +19,10 @@ describe("Login Routes", () => {
     await postCollection.deleteMany({});
   });
 
-  describe("POST /posts", () => {
+  describe("POST /post", () => {
     test("Deve retornar 200 quando o signup tiver sucesso", async () => {
       await request(app)
-        .post("/api/posts")
+        .post("/api/post")
         .send({
           content: "any_content",
         })
