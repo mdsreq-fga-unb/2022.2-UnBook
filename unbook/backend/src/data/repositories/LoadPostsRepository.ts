@@ -5,8 +5,8 @@ import { ILoadPostsRepository } from "../protocols/database/posts/ILoadPostsRepo
 class LoadPostsRepository implements ILoadPosts {
   constructor(private readonly loadPostsRepository: ILoadPostsRepository) {}
   async load(): Promise<IPostModel[]> {
-    await this.loadPostsRepository.loadAll();
-    return [];
+    const posts = await this.loadPostsRepository.loadAll();
+    return posts;
   }
 }
 

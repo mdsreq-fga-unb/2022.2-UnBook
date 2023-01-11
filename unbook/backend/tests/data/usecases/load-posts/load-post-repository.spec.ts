@@ -17,17 +17,36 @@ const makeFakePosts = (): IPostModel[] => {
   ];
 };
 
+interface ISutTypes {
+  sut: LoadPostsRepository;
+  loadPostsRepositoryStub: ILoadPostsRepository;
+}
+
+const makeSut = (): ISutTypes => {
+  class LoadPostsRepositoryStub implements ILoadPostsRepository {
+    async loadAll(): Promise<IPostModel[]> {
+      return new Promise((resolve) => resolve(makeFakePosts()));
+    }
+  }
+  const loadPostsRepositoryStub = new LoadPostsRepositoryStub();
+  const sut = new LoadPostsRepository(loadPostsRepositoryStub);
+  return {
+    sut,
+    loadPostsRepositoryStub,
+  };
+};
+
 describe("LoadPost Controller", () => {
   test("Deve chamar o LoadPostsRepository", async () => {
-    class LoadPostsRepositoryStub implements ILoadPostsRepository {
-      async loadAll(): Promise<IPostModel[]> {
-        return new Promise((resolve) => resolve(makeFakePosts()));
-      }
-    }
-    const loadPostsRepositoryStub = new LoadPostsRepositoryStub();
+    const { sut, loadPostsRepositoryStub } = makeSut();
     const loadAllSpy = jest.spyOn(loadPostsRepositoryStub, "loadAll");
-    const sut = new LoadPostsRepository(loadPostsRepositoryStub);
     await sut.load();
     expect(loadAllSpy).toHaveBeenCalled();
+  });
+
+  test("Deve retornar uma lista de posts com sucesso", async () => {
+    const { sut } = makeSut();
+    const posts = await sut.load();
+    expect(posts).toEqual(makeFakePosts());
   });
 });
