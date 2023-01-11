@@ -1,5 +1,9 @@
 import { IAddPost } from "../../../domain/usecases/IAddPostUseCase";
-import { badRequest, serverError } from "../../helpers/http/http-helper";
+import {
+  badRequest,
+  noContent,
+  serverError,
+} from "../../helpers/http/http-helper";
 import { IController, IHttpRequest, IHttpResponse } from "../../protocols";
 import { IValidation } from "../../protocols/signup-protocols";
 
@@ -16,7 +20,7 @@ class AddPostController implements IController {
       }
       const { content } = httpRequest.body;
       await this.addPost.add({ content });
-      return null;
+      return noContent();
     } catch (error) {
       return serverError(error as Error);
     }

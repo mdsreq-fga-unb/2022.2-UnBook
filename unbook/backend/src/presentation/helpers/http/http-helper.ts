@@ -29,6 +29,13 @@ const ok = (data: unknown): IHttpResponse => {
   };
 };
 
+const noContent = (): IHttpResponse => {
+  return {
+    statusCode: 204,
+    body: null,
+  };
+};
+
 const unauthorized = (): IHttpResponse => {
   return {
     statusCode: 401,
@@ -36,4 +43,4 @@ const unauthorized = (): IHttpResponse => {
   };
 };
 
-export { badRequest, forbidden, serverError, ok, unauthorized };
+export { badRequest, forbidden, serverError, ok, unauthorized, noContent };

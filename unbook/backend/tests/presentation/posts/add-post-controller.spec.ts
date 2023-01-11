@@ -10,6 +10,8 @@ import {
 import { AddPostController } from "../../../src/presentation/controllers/post-controller.ts/AddPostController";
 import {
   badRequest,
+  noContent,
+  ok,
   serverError,
 } from "../../../src/presentation/helpers/http/http-helper";
 import { IHttpRequest } from "../../../src/presentation/protocols";
@@ -90,5 +92,11 @@ describe("AddPost Controller", () => {
       );
     const httpResponse = await sut.handle(makeFakeRequest());
     expect(httpResponse).toEqual(serverError(new Error()));
+  });
+
+  test("Deve retornar 204 de tiver sucesso", async () => {
+    const { sut } = makeSut();
+    const httpResponse = await sut.handle(makeFakeRequest());
+    expect(httpResponse).toEqual(noContent());
   });
 });
