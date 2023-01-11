@@ -49,4 +49,15 @@ describe("LoadPost Controller", () => {
     const posts = await sut.load();
     expect(posts).toEqual(makeFakePosts());
   });
+
+  test("Deve lançar um erro se o LoadPostRepository lançar um erro", async () => {
+    const { sut, loadPostsRepositoryStub } = makeSut();
+    jest
+      .spyOn(loadPostsRepositoryStub, "loadAll")
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      );
+    const promise = sut.load();
+    await expect(promise).rejects.toThrow();
+  });
 });
