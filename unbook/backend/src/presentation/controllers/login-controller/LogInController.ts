@@ -1,12 +1,12 @@
-import { IAuthentication } from "../../domain/usecases/IAuthenticationUseCase";
+import { IAuthentication } from "../../../domain/usecases/IAuthenticationUseCase";
 import {
   badRequest,
   ok,
   serverError,
   unauthorized,
-} from "../helpers/http/http-helper";
-import { IController, IHttpRequest, IHttpResponse } from "../protocols";
-import { IValidation } from "../protocols/signup-protocols";
+} from "../../helpers/http/http-helper";
+import { IController, IHttpRequest, IHttpResponse } from "../../protocols";
+import { IValidation } from "../../protocols/signup-protocols";
 
 class LoginController implements IController {
   constructor(

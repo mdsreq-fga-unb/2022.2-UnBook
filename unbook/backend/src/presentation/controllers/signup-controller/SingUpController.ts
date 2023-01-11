@@ -1,18 +1,18 @@
-import { IAuthentication } from "../../domain/usecases/IAuthenticationUseCase";
-import { EmailInUseError } from "../errors/email-in-use-error";
+import { IAuthentication } from "../../../domain/usecases/IAuthenticationUseCase";
+import { EmailInUseError } from "../../errors/email-in-use-error";
 import {
   badRequest,
   forbidden,
   ok,
   serverError,
-} from "../helpers/http/http-helper";
+} from "../../helpers/http/http-helper";
 import {
   IController,
   IHttpRequest,
   IHttpResponse,
   IAddAccount,
   IValidation,
-} from "../protocols/signup-protocols";
+} from "../../protocols/signup-protocols";
 
 class SignUpController implements IController {
   constructor(

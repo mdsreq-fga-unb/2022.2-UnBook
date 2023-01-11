@@ -4,23 +4,26 @@
 import {
   IAuthentication,
   IAuthenticationModel,
-} from "../../src/domain/usecases/IAuthenticationUseCase";
-import { SignUpController } from "../../src/presentation/controllers/SingUpController";
-import { MissingParamError, ServerError } from "../../src/presentation/errors";
-import { EmailInUseError } from "../../src/presentation/errors/email-in-use-error";
+} from "../../../src/domain/usecases/IAuthenticationUseCase";
+import { SignUpController } from "../../../src/presentation/controllers/signup-controller/SingUpController";
+import {
+  MissingParamError,
+  ServerError,
+} from "../../../src/presentation/errors";
+import { EmailInUseError } from "../../../src/presentation/errors/email-in-use-error";
 import {
   badRequest,
   forbidden,
   ok,
   serverError,
-} from "../../src/presentation/helpers/http/http-helper";
+} from "../../../src/presentation/helpers/http/http-helper";
 import {
   IAddAccount,
   IAccountModel,
   IAddAccountModel,
   IHttpRequest,
   IValidation,
-} from "../../src/presentation/protocols/signup-protocols";
+} from "../../../src/presentation/protocols/signup-protocols";
 
 const makeAuthentication = (): IAuthentication => {
   class AuthenticationStub implements IAuthentication {
