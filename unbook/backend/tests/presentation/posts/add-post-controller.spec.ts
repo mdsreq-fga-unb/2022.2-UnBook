@@ -8,7 +8,10 @@ import {
   IAddPostModel,
 } from "../../../src/domain/usecases/IAddPostUseCase";
 import { AddPostController } from "../../../src/presentation/controllers/post-controller.ts/AddPostController";
-import { badRequest } from "../../../src/presentation/helpers/http/http-helper";
+import {
+  badRequest,
+  serverError,
+} from "../../../src/presentation/helpers/http/http-helper";
 import { IHttpRequest } from "../../../src/presentation/protocols";
 import { IValidation } from "../../../src/validation/protocols/IValidation";
 
@@ -76,5 +79,16 @@ describe("AddPost Controller", () => {
     const httpRequest = makeFakeRequest();
     await sut.handle(httpRequest);
     expect(addSpy).toBeCalledWith(httpRequest.body);
+  });
+
+  test("Deve retornar um erro 500 se o AddPosta lançar um erro", async () => {
+    const { sut, addPostStub } = makeSut();
+    const addSpy = jest
+      .spyOn(addPostStub, "add")
+      .mockReturnValueOnce(
+        new Promise((resolve, reject) => reject(new Error()))
+      );
+    const httpResponse = await sut.handle(makeFakeRequest());
+    expect(httpResponse).toEqual(serverError(new Error()));
   });
 });
