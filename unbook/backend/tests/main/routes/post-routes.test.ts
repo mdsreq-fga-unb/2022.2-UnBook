@@ -67,30 +67,40 @@ describe("Post Routes", () => {
       await request(app).get("/api/posts").expect(403);
     });
 
-    // test("Deve retornar 204 quando add post tiver um accessToken", async () => {
-    //   const result = await accountCollection.insertOne({
-    //     name: "any_name",
-    //     email: "any_email@mail.com",
-    //     password: "any_password",
-    //   });
-    //   const objectId = result.insertedId;
-    //   const id = objectId.toHexString();
-    //   const accessToken = sign({ id }, env.jwtSecret);
-    //   await accountCollection.updateOne(
-    //     { _id: objectId },
-    //     {
-    //       $set: {
-    //         accessToken,
-    //       },
-    //     }
-    //   );
-    //   await request(app)
-    //     .post("/api/posts")
-    //     .set("x-access-token", accessToken)
-    //     .send({
-    //       content: "any_content",
-    //     })
-    //     .expect(204);
-    // });
+    test("Deve retornar 200 quando add post tiver um accessToken", async () => {
+      const result = await accountCollection.insertOne({
+        name: "any_name",
+        email: "any_email@mail.com",
+        password: "any_password",
+      });
+      const objectId = result.insertedId;
+      const id = objectId.toHexString();
+      const accessToken = sign({ id }, env.jwtSecret);
+      await accountCollection.updateOne(
+        { _id: objectId },
+        {
+          $set: {
+            accessToken,
+          },
+        }
+      );
+      await postCollection.insertMany([
+        {
+          content: "any_content",
+          date: new Date(),
+        },
+        {
+          content: "other_content",
+          date: new Date(),
+        },
+      ]);
+      await request(app)
+        .get("/api/posts")
+        .set("x-access-token", accessToken)
+        .send({
+          content: "any_content",
+        })
+        .expect(200);
+    });
   });
 });
