@@ -12,12 +12,10 @@ O grupo como um todo ficou responsáveis pela parte de codifiação para que tod
  - Product Owners e Desenvolvedores Lucas e Ana: Ficaram responsáveis pelas atualizações da documentação do planejamento da sprint.
  - Analista de Qualidade e Desenvolvedor Gabriel: Responsável por garantir a qualidade do produto e Responsável pela codificação do cadastro e login do usuário. (frontend, backend).
 
-#### **Sprint Review** 
-Conseguimos avançar na codificação do cadastro e login do usuário, chegando a 80% de finalização. Porém após observarmos o curto espaço de tempo entre uma sprint e outra e levando em conta as dificuldades técnicas que o grupo enfrentou, decidimos que seria melhor aumentar o prazo da sprint para duas semanas a partir da próxima sprint para que o grupo pudesse finalizar as tarefas pendentes e seguir com o desenvolvimento, assim como também para que o grupo pudesse se adpatar melhor ao processo de codificação. 
-
 #### **Sprint Retrospective**
 ##### O que funcionou bem durante essa sprint e o que devemos continuar fazendo?
 A equipe teve uma boa comunicação e apesar das dificuldades técnicas, conseguiu realizar, quase que completa, a codificação do cadastro e login do usuário, e também conseguiu realizar a atualização da documentação do planejamento da sprint. 
+Observarmos o curto espaço de tempo entre uma sprint e outra e levando em conta as dificuldades técnicas que o grupo enfrentou, decidimos que seria melhor aumentar o prazo da sprint para duas semanas a partir da próxima sprint para que o grupo pudesse finalizar as tarefas pendentes e seguir com o desenvolvimento, assim como também para que o grupo pudesse se adpatar melhor ao processo de codificação.
 
 ##### O que não funcionou tão bem e o que devemos mudar?
 Tivemos dificuldades em se adaptar ao processo de codificação por alguns motivos como: Curto prazo entre as sprint, incompatibilidade do horário no pairprogrammig e pelo processo de desenvolvimento ser significativamente diferente do que a equipe está acostumada com documentação extensa, testes e integração contínua, e pelo fato de ser a primeira sprint de codificaçao do grupo. 
@@ -33,17 +31,7 @@ O grupo irá aumentar o prazo da sprint para duas semanas a partir da próxima s
 ###Sprint 09
 
 #### **Sprint Planning**: SCRUM MASTER - Maciel
-Segunda sprint de codificação do grupo, agora com o planejamento atualizado o grupo deverá realizar a codificação da landing page para o usuário que faz parte das U.S. 01, 02, 03, 04. Como landing page acordada previamente com o cliente optamos por incluir:
-
--Título do produto.
-
--Postagem em destaque: Utilizaremos uma imagem ou vídeo impactante para captar a atenção do usuário e transmitir a funcionalidade da página inicial de maneira visual. (opcional mas recomendado)
-
--Botão de call-to-action (CTA) como forma de inserir novas postagens: Adicionaremos um botão de CTA para incentivar o usuário a tomar uma ação.
-
--Opções de navegação: Forneceemos opções de navegação para que o usuário possa explorar mais a página inicial e descobrir mais sobre o nosso produto. Funcionalidades que se encaixam nessa categoria são: botões de navegação, gupos, área de destaque.
-
--Opções de busca: Oferecemos opções de busca para que o usuário possa encontrar o que procura de maneira mais rápida e eficiente. Funcionalidades que se encaixam nessa categoria são: barra de busca, filtros, tags. (opcional mas recomendado)
+Segunda sprint de codificação do grupo, agora com o planejamento atualizado o grupo deverá realizar a codificação da landing page para o usuário que faz parte das U.S. 01, 02, 03, 04, 25, 27, 28, 29. 
 
 - Papéis da equipe:
  - Desenvolvedores Pedro e Maciel: Responsável pela codificação da landing page. (frontend)
@@ -54,7 +42,7 @@ Segunda sprint de codificação do grupo, agora com o planejamento atualizado o 
 
 
 #### **Sprint Review** 
-
+Conseguimos avançar na codificação do cadastro e login do usuário, ambos finalizados com sucesso. Contudo não conseguimos concluir o feed de postagens por completo. Apresentamos o MVP1 para os clientes e obtivemos um feedback postivo apesar do estado do MVP1 estar incompleto, por falta da integração entre o backend e o frontend. 
 
 #### **Sprint Retrospective**
 ##### O que funcionou bem durante essa sprint e o que devemos continuar fazendo?
