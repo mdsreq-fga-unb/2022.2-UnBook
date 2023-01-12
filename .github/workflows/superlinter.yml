@@ -1,0 +1,22 @@
+name: Super-Linter
+
+on: push
+
+jobs:
+  super-lint:
+    name: Lint code base
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run Super-Linter
+        uses: github/super-linter@v4.9.7
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_CSS: false
+          VALIDATE_HTML: false
+          VALIDATE_MARKDOWN: false
+          VALIDATE_JAVASCRIPT_STANDARD: false
+          DISABLE_ERRORS: true

@@ -12,23 +12,20 @@
 
 ## Planejamento das Fases e/ou Iterações do Projeto
 
-| Sprint | Produto (Entrega)                                                             | Data Início | Data Fim   |
+| Sprint | Produto                                                             | Data Início | Data Fim   |
 | ------ | ----------------------------------------------------------------------------- | ----------- | ---------- |
-| 00     | Formação da equipe e criação da ideia inicial do projeto.                     | 25/10/2022  | 27/10/2022 |
-| 01     | Reformulação da ideia do projeto e desenvolvimento da visão geral do produto. | 28/10/2022  | 03/11/2022 |
-| 02     | Estudo e apresentação da metodologia Scrum e XP.                              | 04/11/2022  | 10/11/2022 |
-| 03     | Construção do GitPages para armazenamento da documentação do projeto.         | 11/11/2022  | 17/11/2022 |
-| 04     | Escolhas das tecnologias e alinhamento inicial com os clientes.                                        | 18/11/2022  | 24/11/2022 |
-| 05     | A equipe realizará os estudos das tecnologias e o levantamento inicial do backlog do produto.                                         | 25/11/2022  | 01/12/2022 |
-| 06     | Codificar o "esqueleto" do projeto e refinar o backlog do produto.                                         | 02/12/2022  | 08/12/2022 |
-| 07     | Codificar o CRUD dos administradores. | 09/12/2022  | 15/12/2022 |
-| 08     | CRUD de usuários.                                         | 16/12/2022  | 22/12/2022 |
-| 09     | Codificar o feed para postagens.                                         | 03/01/2023  | 07/01/2023 |
-| 10     | Refinar o feed para postagens e Alinhar com os clientes o MVP do produto. | 08/01/2023  | 12/01/2023 |
-| 11     | Codificar a seção com informações mais importantes.                                         | 13/01/2023  | 19/01/2023 |
-| 12     | Codificar a seção com vagas em cursos e estágios.                                         | 20/01/2023  | 26/01/2023 |
-| 13     | Codificar o chat para os usuários interagirem.                                         | 27/01/2023  | 02/02/2023 |
-| 14     | Codificar o fórum de perguntas e respostas de cada disciplina e Alinhar com os clientes o MVP final do produto.                                         | 03/02/2023  | 08/02/2023 |
+| 00     | Entrega da Ideia inicial do projeto                   | 25/10/2022  | 27/10/2022 |
+| 01     | Entrega da Ideia inicial do projeto refatorada e visão geral do produto | 28/10/2022  | 03/11/2022 |
+| 02     | Entrega dos Slides de apresentação da metodologia Scrum e XP.                              | 04/11/2022  | 10/11/2022 |
+| 03     | Entrega do GitPages para armazenamento da documentação do projeto.         | 11/11/2022  | 17/11/2022 |
+| 04     | Entrega da Ideia inicial das U.S. | 18/11/2022  | 24/11/2022 |
+| 05     | Entrega da Ideia inicial do backlog do produto.                                         | 25/11/2022  | 01/12/2022 |
+| 06     |   Entrega da atualização das documentações do GitPages  | 02/12/2022  | 08/12/2022 |
+| 07     |   Entrega do Backlog do produto refatorado  | 09/12/2022  | 13/12/2022 |
+| 08     | Entrega da landing page do projeto e lista de tarefas do produto ajustada.                                        | 14/12/2022  | 22/12/2022 |
+| 09     | US01, US02, US03, US04, US25, US27, US28, US29 Criar e visualizar postagens  | 03/01/2023  | 12/01/2023 |
+| 10     | US05, US06, US07, US10, US11, US18 | 13/01/2023  | 26/01/2023 |
+| 11     | US19, US20, US21, US22, US24	Permitir interações entre os usuários | 27/01/2023  | 08/02/2023 |
 
 ## Matriz de Comunicação
 
