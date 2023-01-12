@@ -1,7 +1,7 @@
 import {
   ValidationComposite,
   RequiredFieldValidation,
-} from "../../../../validation/validators";
+} from "../../../../../validation/validators";
 
 const makeAddPostValidation = (): ValidationComposite => {
   const validations = [];

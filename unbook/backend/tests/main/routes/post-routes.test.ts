@@ -61,4 +61,36 @@ describe("Post Routes", () => {
         .expect(204);
     });
   });
+
+  describe("POST /post", () => {
+    test("Deve retornar 403 quando não tiver um accessToken", async () => {
+      await request(app).get("/api/posts").expect(403);
+    });
+
+    // test("Deve retornar 204 quando add post tiver um accessToken", async () => {
+    //   const result = await accountCollection.insertOne({
+    //     name: "any_name",
+    //     email: "any_email@mail.com",
+    //     password: "any_password",
+    //   });
+    //   const objectId = result.insertedId;
+    //   const id = objectId.toHexString();
+    //   const accessToken = sign({ id }, env.jwtSecret);
+    //   await accountCollection.updateOne(
+    //     { _id: objectId },
+    //     {
+    //       $set: {
+    //         accessToken,
+    //       },
+    //     }
+    //   );
+    //   await request(app)
+    //     .post("/api/posts")
+    //     .set("x-access-token", accessToken)
+    //     .send({
+    //       content: "any_content",
+    //     })
+    //     .expect(204);
+    // });
+  });
 });

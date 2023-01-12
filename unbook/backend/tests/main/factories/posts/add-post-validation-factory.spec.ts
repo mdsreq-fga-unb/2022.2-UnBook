@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { makeAddPostValidation } from "../../../../src/main/factories/controllers/posts/add-post-validation-factory";
+import { makeAddPostValidation } from "../../../../src/main/factories/controllers/posts/add-post/add-post-validation-factory";
 import {
   EmailValidation,
   RequiredFieldValidation,
