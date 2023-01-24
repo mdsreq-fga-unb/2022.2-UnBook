@@ -1,4 +1,4 @@
-name: GitHub Actions Workflow Portal Teses
+name: CI de Build e testes para UnBook
 on:
   push:
   pull_request:
