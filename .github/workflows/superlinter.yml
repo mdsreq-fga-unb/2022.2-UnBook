@@ -21,5 +21,3 @@ jobs:
           VALIDATE_MARKDOWN: false
           VALIDATE_JAVASCRIPT_STANDARD: false
           VALIDATE_TYPESCRIPT_STANDARD: false
-          DISABLE_ERRORS: true
-
