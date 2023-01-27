@@ -1,4 +1,16 @@
+import { useState } from 'react';
+
 const Register = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [secret, setSecret] = useState('');
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.table({ name, email, password, secret });
+  };
+
   return (
     <div className="container-fluid">
       <div className="row py-5 bg-secondary text-light">
@@ -9,20 +21,33 @@ const Register = () => {
 
       <div class="row py-5">
         <div class="d-flex justify-content-center">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="form-group py-2">
               <label className="text-muted"><small>Nome</small></label>
-              <input type="text" className="form-control" placeholder="Digite seu nome" />
+              <input
+                value={name}
+                onChange={e => setName(e.target.value)}
+                type="text" className="form-control"
+                placeholder="Digite seu nome" />
             </div>
 
             <div className="form-group py-2">
               <label className="text-muted"><small>E-mail</small></label>
-              <input type="email" className="form-control" placeholder="Digite seu e-mail" />
+              <input
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                type="email"
+                className="form-control"
+                placeholder="Digite seu e-mail" />
             </div>
 
             <div className="form-group py-2">
-              <label className="text-muted"><small>Nome</small></label>
-              <input type="password" className="form-control" placeholder="Digite sua senha" />
+              <label className="text-muted"><small>Senha</small></label>
+              <input
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+                type="password" className="form-control"
+                placeholder="Digite sua senha" />
             </div>
 
             <div className="form-group py-2">
@@ -33,13 +58,18 @@ const Register = () => {
                 <option>Qual é sua comida favorita?</option>
               </select>
               <small className="form-text text-muted">
-                Voê pode usar esta resposta para recuperar sua senha, se esquecer.
+                Você pode usar esta resposta para recuperar sua senha, se esquecer.
               </small>
             </div>
 
             <div className="form-group py-2">
               <label className="text-muted"><small>Resposta</small></label>
-              <input type="text" className="form-control" placeholder="Digite sua resposta aqui" />
+              <input
+                value={secret}
+                onChange={e => setSecret(e.target.value)}
+                type="text"
+                className="form-control"
+                placeholder="Digite sua resposta aqui" />
             </div>
 
             <div>
