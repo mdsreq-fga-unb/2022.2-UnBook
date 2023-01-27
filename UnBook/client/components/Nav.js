@@ -2,28 +2,11 @@ import Link from "next/link";
 
 const Nav = () => {
     return (
-        <ul className="nav justify-content-center">
-            <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                    Home
-                </a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">
-                    Link
-                </a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link" href="#">
-                    Link
-                </a>
-            </li>
-            <li className="nav-item">
-                <a className="nav-link disabled">
-                    Disabled
-                </a>
-            </li>
-        </ul>
+        <nav className="nav bg-dark d-flex justify-content-end">
+              <Link href="/" className="nav-link text-light">Página Inicial</Link>
+              <Link href="/login" className="nav-link active text-light">Entrar</Link>
+              <Link href="/register" className="nav-link active text-light">Cadastrar</Link>
+        </nav>
 
     );
 };
