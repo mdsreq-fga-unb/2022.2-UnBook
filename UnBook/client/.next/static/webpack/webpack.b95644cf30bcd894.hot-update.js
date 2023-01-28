@@ -11,8 +11,25 @@ self["webpackHotUpdate_N_E"]("webpack",{},
 /******/ function(__webpack_require__) { // webpackRuntimeModules
 /******/ /* webpack/runtime/getFullHash */
 /******/ !function() {
+<<<<<<<< HEAD:UnBook/client/.next/static/webpack/webpack.b95644cf30bcd894.hot-update.js
 /******/ 	__webpack_require__.h = function() { return "f98e34f9937fc298"; }
+========
+/******/ 	__webpack_require__.h = function() { return "bdf177173cd37f05"; }
+>>>>>>>> refs/remotes/origin/feat/new_components:UnBook/client/.next/static/webpack/webpack.eda7f9c1ce626432.hot-update.js
 /******/ }();
+/******/ 
+/******/ /* webpack/runtime/compat */
+/******/ 
+/******/ 
+/******/ // noop fns to prevent runtime errors during initialization
+/******/ if (typeof self !== "undefined") {
+/******/ 	self.$RefreshReg$ = function () {};
+/******/ 	self.$RefreshSig$ = function () {
+/******/ 		return function (type) {
+/******/ 			return type;
+/******/ 		};
+/******/ 	};
+/******/ }
 /******/ 
 /******/ }
 );
