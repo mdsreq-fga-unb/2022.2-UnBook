@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -8,7 +9,15 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.table({ name, email, password, secret });
+    // console.table({ name, email, password, secret });
+    axios.post('http://localhost:8000/api/register', {
+      name,
+      email,
+      password,
+      secret,
+    })
+    .then((res) => console.log(res))
+    .catch((err) => console.log(err))
   };
 
   return (
@@ -51,7 +60,7 @@ const Register = () => {
             </div>
 
             <div className="form-group py-2">
-              <label className="text-muted"><small>Nome</small></label>
+              <label className="text-muted"><small>Escolha uma pergunta</small></label>
               <select className="form-control">
                 <option>Qual é sua cor favorita?</option>
                 <option>Qual é o nome do seu melhor amigo?</option>
