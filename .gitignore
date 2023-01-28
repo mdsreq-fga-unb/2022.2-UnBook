@@ -30,3 +30,4 @@ unbook/frontend/public/js
 # Database connect
 unbook/backend/src/main/config/env.ts
 unbook/backend/globalConfig.json
+.next
