@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --passWithNoTests --runInBand --no-cache --watch"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +19,13 @@
     "next": "^13.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^8.20.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "babel-jest": "^29.4.1",
+    "jest": "^29.4.1",
+    "jest-environment-jsdom": "^29.4.1"
   }
 }
