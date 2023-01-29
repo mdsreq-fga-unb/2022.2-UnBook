@@ -1,8 +1,6 @@
 import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
-import { useRouter } from 'next/router';
 import Nav from '../../components/Nav';
-import { describe } from 'node:test';
 
 const makeSut = () => {
   const { getByTestId } = render(<Nav />);
