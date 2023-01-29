@@ -1,10 +1,12 @@
 import { useContext } from "react";
 import { UserContext } from "../../context";
+import UserRoute from '../../components/routes/UserRoute';
 
 const Home = () => {
     const {state, setState} = useContext(UserContext);
 
     return(
+      <UserRoute>
         <div className = "container">
             <div className = "row">
                 <div className="col">
@@ -12,6 +14,7 @@ const Home = () => {
                 </div>
             </div>
         </div>
+      </UserRoute>
     );
 };
 

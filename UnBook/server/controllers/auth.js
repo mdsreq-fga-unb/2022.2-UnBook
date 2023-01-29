@@ -42,7 +42,7 @@ export const login = async (req, res) => {
         const match = await comparePassword(password, user.password);
         if(!match) return res.status(400).send("Senha incorreta.");
         // criando um token sinalizador
-        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {expiresIn: "2m"});
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {expiresIn: "7d"});
         user.password = undefined;
         user.secret = undefined;
         res.json({
