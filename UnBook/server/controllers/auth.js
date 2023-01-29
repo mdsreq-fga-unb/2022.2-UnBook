@@ -7,7 +7,7 @@ export const register = async (req, res) => {
 
     // validacoes
     if(!name) return res.status(400).send("Campo 'nome' não preenchido!");
-    if(!password || password.lenght < 8) return res.status(400).send("A senha deve possuir ao menos 6 caracters.");
+    if(!password || password.lenght < 8) return res.status(400).send("A senha deve possuir ao menos 6 caracteres.");
     if(!secret) return res.status(400).send("É necessário responder a pergunta.");
     const exist = await User.findOne({email});
     if(exist) return res.status(400).send("Email já cadastrado.");
@@ -19,7 +19,7 @@ export const register = async (req, res) => {
     const user = new User({name, email, password:hashedPassword, secret});
     try{
         await user.save();
-        console.log("USUARIO SALVO =>", user);
+        // console.log("USUARIO SALVO =>", user);
         return res.json({ 
             ok: true, 
         });

@@ -1,23 +1,34 @@
 import { useState } from 'react';
 import axios from 'axios';
-
+import { toast } from 'react-toastify';
+import { Modal } from "antd";
+import Link from "next/link";
+ 
 const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secret, setSecret] = useState('');
+  const [ok, setOk] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.table({ name, email, password, secret });
-    axios.post('http://localhost:8000/api/register', {
-      name,
-      email,
-      password,
-      secret,
-    })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err))
+    try {
+      // console.table({ name, email, password, secret });
+      const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API}/register`, {
+        name,
+        email,
+        password,
+        secret,
+      });
+      setName('');
+      setEmail('');
+      setPassword('');
+      setSecret('');
+      setOk(data, ok);
+    } catch (err) {
+      toast.error(err.response.data)
+    }
   };
 
   return (
@@ -28,8 +39,8 @@ const Register = () => {
         </div>
       </div>
 
-      <div class="row py-5">
-        <div class="d-flex justify-content-center">
+      <div className="row py-5">
+        <div className="d-flex justify-content-center">
           <form onSubmit={handleSubmit}>
             <div className="form-group py-2">
               <label className="text-muted"><small>Nome</small></label>
@@ -82,10 +93,24 @@ const Register = () => {
             </div>
 
             <div>
-              <button className="btn btn-primary col-12">Cadastrar</button>
+              <button disabled={!name || !email || !password || !secret} className="btn btn-primary col-12">Cadastrar</button>
             </div>
 
           </form>
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col">
+          <Modal
+            title="Parabéns!"
+            visible={ok}
+            onCancel={() => setOk(false)}
+            footer={null}
+          >
+            <p>Usuário cadastrado!</p>
+            <Link href="/login" className="btn btn-primary btn-sm">Login</Link>
+          </Modal>
         </div>
       </div>
     </div>
