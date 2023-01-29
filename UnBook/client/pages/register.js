@@ -49,6 +49,7 @@ const Register = () => {
             <div className="form-group py-2">
               <label className="text-muted"><small>Nome</small></label>
               <input
+                data-testid="name-input"
                 value={name}
                 onChange={e => setName(e.target.value)}
                 type="text" className="form-control"
@@ -58,6 +59,7 @@ const Register = () => {
             <div className="form-group py-2">
               <label className="text-muted"><small>E-mail</small></label>
               <input
+                data-testid="email-input"
                 value={email}
                 onChange={e => setEmail(e.target.value)}
                 type="email"
@@ -68,6 +70,7 @@ const Register = () => {
             <div className="form-group py-2">
               <label className="text-muted"><small>Senha</small></label>
               <input
+                data-testid="password-input"
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 type="password" className="form-control"
@@ -76,7 +79,7 @@ const Register = () => {
 
             <div className="form-group py-2">
               <label className="text-muted"><small>Escolha uma pergunta</small></label>
-              <select className="form-control">
+              <select className="form-control" data-testid="select-input">
                 <option>Qual é sua cor favorita?</option>
                 <option>Qual é o nome do seu melhor amigo?</option>
                 <option>Qual é sua comida favorita?</option>
@@ -89,6 +92,7 @@ const Register = () => {
             <div className="form-group py-2">
               <label className="text-muted"><small>Resposta</small></label>
               <input
+                data-testid="secret-input"
                 value={secret}
                 onChange={e => setSecret(e.target.value)}
                 type="text"
