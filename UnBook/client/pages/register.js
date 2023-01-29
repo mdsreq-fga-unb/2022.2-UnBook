@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Modal } from "antd";
 import Link from "next/link";
-import { SyncOutlined } from "@ant-design/icons";
+import AuthForm from '../components/forms/AuthForm';
  
 const Register = () => {
   const [name, setName] = useState('');
@@ -24,14 +24,15 @@ const Register = () => {
         password,
         secret,
       });
-      setName('');
-      setEmail('');
-      setPassword('');
-      setSecret('');
+      setName("");
+      setEmail("");
+      setPassword("");
+      setSecret("");
       setOk(data, ok);
       setLoading(false);
     } catch (err) {
-      toast.error(err.response.data)
+      toast.error(err.response.data);
+      setLoading(false);
     }
   };
 
@@ -42,71 +43,20 @@ const Register = () => {
           <h1>Página de Cadastro</h1>
         </div>
       </div>
-
       <div className="row py-5">
         <div className="d-flex justify-content-center">
-          <form onSubmit={handleSubmit}>
-            <div className="form-group py-2">
-              <label className="text-muted"><small>Nome</small></label>
-              <input
-                data-testid="name-input"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                type="text" className="form-control"
-                placeholder="Digite seu nome" />
-            </div>
-
-            <div className="form-group py-2">
-              <label className="text-muted"><small>E-mail</small></label>
-              <input
-                data-testid="email-input"
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-                type="email"
-                className="form-control"
-                placeholder="Digite seu e-mail" />
-            </div>
-
-            <div className="form-group py-2">
-              <label className="text-muted"><small>Senha</small></label>
-              <input
-                data-testid="password-input"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
-                type="password" className="form-control"
-                placeholder="Digite sua senha" />
-            </div>
-
-            <div className="form-group py-2">
-              <label className="text-muted"><small>Escolha uma pergunta</small></label>
-              <select className="form-control" data-testid="select-input">
-                <option>Qual é sua cor favorita?</option>
-                <option>Qual é o nome do seu melhor amigo?</option>
-                <option>Qual é sua comida favorita?</option>
-              </select>
-              <small className="form-text text-muted">
-                Você pode usar esta resposta para recuperar sua senha, se esquecer.
-              </small>
-            </div>
-
-            <div className="form-group py-2">
-              <label className="text-muted"><small>Resposta</small></label>
-              <input
-                data-testid="secret-input"
-                value={secret}
-                onChange={e => setSecret(e.target.value)}
-                type="text"
-                className="form-control"
-                placeholder="Digite sua resposta aqui" />
-            </div>
-
-            <div>
-              <button disabled={!name || !email || !password || !secret} className="btn btn-primary col-12">
-                {loading ? <SyncOutlined spin className="py-1" /> : "Cadastrar"}
-              </button>
-            </div>
-
-          </form>
+          <AuthForm 
+            handleSubmit = {handleSubmit}
+            name = {name}
+            setName = {setName}
+            email = {email}
+            setEmail = {setEmail}
+            password = {password}
+            setPassword = {setPassword}
+            secret = {secret}
+            setSecret = {setSecret}
+            loading = {loading}
+          />
         </div>
       </div>
 
