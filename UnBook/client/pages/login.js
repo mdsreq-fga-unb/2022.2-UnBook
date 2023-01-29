@@ -81,6 +81,16 @@ const Login = () => {
           </p>
         </div>
       </div>
+
+      <div className="row">
+        <div className="col">
+          <p className="text-center">
+            <Link className="text-danger" href="/forgot-password">
+              Esqueci minha senha.
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
