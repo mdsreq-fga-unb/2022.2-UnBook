@@ -44,7 +44,7 @@ const Register = () => {
         </div>
       </div>
       <div className="row py-5">
-        <div className="d-flex justify-content-center">
+        <div className="col-md-4 offset-md-4">
           <AuthForm 
             handleSubmit = {handleSubmit}
             name = {name}
