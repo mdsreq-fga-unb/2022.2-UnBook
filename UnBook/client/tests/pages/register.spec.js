@@ -63,6 +63,35 @@ describe('Página de Registro', () => {
     expect(secretInput.value).toBe('Azul'); 
   });
 
+  test("deve chamar o submit quando todos os campos estiverem preenchidos", () => {
+    axios.post.mockResolvedValue({ data: {} });
+    const { registerButton, nameInput, emailInput, passwordInput, secretInput, select } = makeSut();
+    const { name, email, password, secret } = makeFaker();
+    act(() => {
+      fireEvent.change(nameInput, { target: { value: name} });
+      fireEvent.change(emailInput, { target: { value: email } });
+      fireEvent.change(passwordInput, { target: { value: password } });
+      fireEvent.change(secretInput, { target: { value: secret } });
+      fireEvent.click(registerButton);
+    });
+
+    expect(axios.post).toHaveBeenCalled();
+  });
+
+  test("não deve chamar o submit se algum campo não estiver preenchido", () => {
+    axios.post.mockResolvedValue({ data: {} });
+    const { registerButton, nameInput, emailInput, passwordInput, secretInput, select } = makeSut();
+    const { name, email, password } = makeFaker();
+    act(() => {
+      fireEvent.change(nameInput, { target: { value: name} });
+      fireEvent.change(emailInput, { target: { value: email } });
+      fireEvent.change(passwordInput, { target: { value: password } });
+      fireEvent.click(registerButton);
+    });
+
+    expect(axios.post).not.toHaveBeenCalled();
+  });
+
   test('envia o formulário com os dados corretamente', () => {
     axios.post.mockResolvedValue({ data: {} });
     const { registerButton, nameInput, emailInput, passwordInput, secretInput, select } = makeSut();

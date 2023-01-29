@@ -12,7 +12,6 @@ const Nav = () => {
   }, [process.browser && window.location.pathname]);
   
   const router = useRouter();
-
   const logout = () => {  
     window.localStorage.removeItem("auth");
     setState(null);
