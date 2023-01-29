@@ -8,6 +8,7 @@ const AuthForm = ({
               <div className="form-group py-2">
                 <label className="text-muted"><small>Nome</small></label>
                 <input
+                  data-testid="name-input"
                   value={name}
                   onChange={e => setName(e.target.value)}
                   type="text" className="form-control"
@@ -66,6 +67,7 @@ const AuthForm = ({
 
             <div className="form-group p-2">
               <button 
+                data-testid="register-button"
                 disabled={
                   page === "login" 
                     ? !email || !password
