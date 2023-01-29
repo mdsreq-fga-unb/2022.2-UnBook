@@ -2,8 +2,12 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import Nav from '../../components/Nav';
 
-const makeSut = () => {
-  const { getByTestId } = render(<Nav />);
+const makeSut = (state) => {
+  const { getByTestId } =  render(
+    <UserContext.Provider value={[state, jest.fn()]}>
+      <Nav />
+    </UserContext.Provider>
+  );
   const homeLink = getByTestId('home-link');
   const loginLink = getByTestId('login-link');
   const registerLink = getByTestId('register-link');
