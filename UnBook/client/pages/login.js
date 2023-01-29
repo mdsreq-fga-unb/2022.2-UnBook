@@ -46,7 +46,7 @@ const Login = () => {
     }
   };
 
-  //impedir que o usuario acesse o site sem efetuar o login 
+  //impedir que o usuario mude de pagina pela barra do navegador
   if(state && state.token) router.push("/");
 
   return (
