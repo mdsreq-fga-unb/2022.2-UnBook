@@ -30,7 +30,7 @@ export const register = async (req, res) => {
     }
 };
 
-export const login = async () => {
+export const login = async (req, res) => {
     // verificando se esta recebendo os dados
     //console.log(req.body);
     try{
