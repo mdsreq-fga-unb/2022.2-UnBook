@@ -7,9 +7,9 @@ import "antd/dist/antd.css";
 function MyApp({ Component, pageProps }) {
     return (
         <>
-            {/* <Head>
+            <head>
                 <link rel="stylesheet" href="/css/styles.css" />
-            </Head> */}
+            </head>
             <Nav />
             <ToastContainer position="top-center" />
             <Component {...pageProps} />

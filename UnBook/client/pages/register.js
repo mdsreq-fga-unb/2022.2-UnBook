@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Modal } from "antd";
 import Link from "next/link";
+import { SyncOutlined } from "@ant-design/icons";
  
 const Register = () => {
   const [name, setName] = useState('');
@@ -10,11 +11,13 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [secret, setSecret] = useState('');
   const [ok, setOk] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // console.table({ name, email, password, secret });
+      setLoading(true);
       const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API}/register`, {
         name,
         email,
@@ -26,6 +29,7 @@ const Register = () => {
       setPassword('');
       setSecret('');
       setOk(data, ok);
+      setLoading(false);
     } catch (err) {
       toast.error(err.response.data)
     }
@@ -33,7 +37,7 @@ const Register = () => {
 
   return (
     <div className="container-fluid">
-      <div className="row py-5 bg-secondary text-light">
+      <div className="row py-5 text-light bg-default-image">
         <div className="col text-center">
           <h1>Página de Cadastro</h1>
         </div>
@@ -93,7 +97,9 @@ const Register = () => {
             </div>
 
             <div>
-              <button disabled={!name || !email || !password || !secret} className="btn btn-primary col-12">Cadastrar</button>
+              <button disabled={!name || !email || !password || !secret} className="btn btn-primary col-12">
+                {loading ? <SyncOutlined spin className="py-1" /> : "Cadastrar"}
+              </button>
             </div>
 
           </form>
