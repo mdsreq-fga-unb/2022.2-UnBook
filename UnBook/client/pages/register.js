@@ -101,7 +101,7 @@ const Register = () => {
             </div>
 
             <div>
-              <button disabled={!name || !email || !password || !secret} className="btn btn-primary col-12">
+              <button data-testid="register-button" disabled={!name || !email || !password || !secret} className="btn btn-primary col-12">
                 {loading ? <SyncOutlined spin className="py-1" /> : "Cadastrar"}
               </button>
             </div>
