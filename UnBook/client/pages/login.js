@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Modal } from "antd";
@@ -15,6 +15,8 @@ const Login = () => {
   const [state, setState] = useContext(UserContext);
 
   const router = useRouter();
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +45,9 @@ const Login = () => {
       setLoading(false);
     }
   };
+
+  //impedir que o usuario acesse o site sem efetuar o login 
+  if(state && state.token) router.push("/");
 
   return (
     <div className="container-fluid">
