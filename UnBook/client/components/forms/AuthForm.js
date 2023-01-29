@@ -44,10 +44,11 @@ const AuthForm = ({
                   <option>Qual é o nome do seu melhor amigo?</option>
                   <option>Qual é sua comida favorita?</option>
                 </select>
+
                 <small className="form-text text-muted">
                   Você pode usar esta resposta para recuperar sua senha, se esquecer.
                 </small>
-            </div>
+              </div>
 
             <div className="form-group py-2">
               <label className="text-muted"><small>Resposta</small></label>
@@ -62,10 +63,10 @@ const AuthForm = ({
             </>)}
 
 
-            <div className="form-group py-2">
+            <div className="form-group p-2">
               <button 
                 disabled={
-                  page !== "login" 
+                  page === "login" 
                     ? !email || !password
                     : !name || !email || !secret || !password
                   } 

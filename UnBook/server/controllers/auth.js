@@ -1,5 +1,6 @@
 import User from "../models/user";
 import {hashPassword, comparePassword} from "../helpers/auth";
+import jwt from 'jsonwebtoken';
 
 export const register = async (req, res) => {
     // console.log("REGISTER ENDPOINT =>", req.body);
@@ -26,5 +27,17 @@ export const register = async (req, res) => {
     }catch (err){
         console.log("FALHA NO REGISTRO =>", err);
         return res.status(400).send("Erro. Tente novamente.");
+    }
+};
+
+export const login = async () => {
+    // verificando se esta recebendo os dados
+    console.log(req.body);
+    try{
+
+    } catch(err){
+        console.log(err);
+        return res.status(400).send("Erro.Tente novamente.");
+
     }
 };
