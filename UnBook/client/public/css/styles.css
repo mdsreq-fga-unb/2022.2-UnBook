@@ -8,3 +8,7 @@
 .logo {
     text-shadow: 2px 2px navy;
 }
+
+.active {
+    background-color: navy;
+}
