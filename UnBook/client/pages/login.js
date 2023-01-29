@@ -24,22 +24,28 @@ const Login = () => {
       // console.log(name, email, password, secret);
       setLoading(true);
       const { data } = await axios.post(
-        "/login",  
+        `/login`,  
         {
           email,
           password,
         }
       );
 
-      // atualiza o estado do usuário
-      setState({
-        user: data.user,
-        token: data.token,
-      })
+      if(data.error){
+        toast.error(data.error);
+        setLoading(false);
+      }else{
+        // atualiza o estado do usuário
+        setState({
+          user: data.user,
+          token: data.token,
+        });
 
-      // salva o usuário e o token no localStorage
-      window.localStorage.setItem("auth", JSON.stringify(data));
-      router.push("/");
+        // salva o usuário e o token no localStorage
+        window.localStorage.setItem("auth", JSON.stringify(data));
+        router.push("/");
+      }
+
     } catch (err) {
       toast.error(err.response.data);
       setLoading(false);

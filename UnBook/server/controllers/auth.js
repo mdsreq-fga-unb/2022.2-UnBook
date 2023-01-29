@@ -7,11 +7,27 @@ export const register = async (req, res) => {
     const {name, email, password, secret} = req.body;
 
     // validacoes
-    if(!name) return res.status(400).send("Campo 'nome' não preenchido!");
-    if(!password || password.lenght < 8) return res.status(400).send("A senha deve possuir ao menos 6 caracteres.");
-    if(!secret) return res.status(400).send("É necessário responder a pergunta.");
+    if(!name){
+        return res.json({
+            error:"Campo nome não preenchido!",
+        });
+    }
+    if(!password || password.lenght < 8){
+        return res.json({
+            error:"A senha deve possuir ao menos 8 caracteres.",
+        });
+    }
+    if(!secret){
+        return res.json({
+            error:"É necessário responder a pergunta.",
+        });
+    }
     const exist = await User.findOne({email});
-    if(exist) return res.status(400).send("Email já cadastrado.");
+    if(exist){
+        return res.json({
+            error:"Email já cadastrado.",
+        });
+    }
 
     // criptografar senha
     const hashedPassword = await hashPassword(password);
@@ -37,10 +53,18 @@ export const login = async (req, res) => {
         // verificando se o email existe na db
         const{ email, password } = req.body;
         const user = await User.findOne({ email });
-        if (!user) return res.status(400).send("Usuário não encontrado.");
+        if (!user){
+            return res.json({
+                error:"Usuário não encontrado.",
+            });
+        }
         // verificando a senha
         const match = await comparePassword(password, user.password);
-        if(!match) return res.status(400).send("Senha incorreta.");
+        if(!match){
+            return res.json({
+                error:"Senha incorreta.",
+            });
+        }
         // criando um token sinalizador
         const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {expiresIn: "7d"});
         user.password = undefined;
@@ -52,6 +76,7 @@ export const login = async (req, res) => {
     } catch(err){
         console.log(err);
         return res.status(400).send("Erro.Tente novamente.");
+
     }
 };
 
@@ -65,3 +90,38 @@ export const currentUser = async(req, res) => {
       res.sendStatus(400);
     }
 }
+
+export const forgotPassword = async(req, res) =>{
+    //console.log(req.body);
+    const{ email, newPassword, secret} = req.body;
+    //Validacao
+    if(!newPassword || !newPassword <8){
+        return res.json({
+            error: "A senha deve possuir ao menos 8 dígios.",
+        });
+    }
+    if(!secret){
+        return res.json({
+            error: "A pergunta deve ser respondida.",
+        });
+    }
+    const user = await User.findOne({ email, secret});
+    if(!user){
+        return res.json({
+            error: "Dados inseridos estão incorretos.",
+        });
+    }
+
+    try{
+        const hashed = await hashedPassword(newPassword);
+        await User.findByIdAndUpdate(user._id, { password: hashed});
+        return res.json({
+            sucess: "Senha atualizada com sucesso!",
+        });
+    }catch (err){
+        console.log(err);
+        return res.json({
+            error:"Algo deu errado. Tente novamente.",
+        });
+    }
+};

@@ -8,9 +8,8 @@ import { UserContext } from '../context';
 import { useRouter } from 'next/router';
  
 const ForgotPassword = () => {
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
   const [secret, setSecret] = useState('');
   const [ok, setOk] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -21,28 +20,33 @@ const ForgotPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // console.table({ name, email, password, secret });
+      // console.log(name, email, password, secret);
       setLoading(true);
-      const { data } = await axios.post(
-        "/register", 
-        {
-          name,
-          email,
-          password,
-          secret,
-        }
-      );
-      setName("");
-      setEmail("");
-      setPassword("");
-      setSecret("");
-      setOk(data, ok);
-      setLoading(false);
+      const { data } = await axios.post(`/forgot-password`, {
+        email,
+        newPassword,
+        secret,
+      });
+   
+      console.log("forgot password res => ", data);
+   
+      if (data.error) {
+        toast.error(data.error);
+        setLoading(false);
+      }
+   
+      if (data.success) {
+        setEmail("");
+        setNewPassword("");
+        setSecret("");
+        setOk(true);
+        setLoading(false);
+      }
     } catch (err) {
-      toast.error(err.response.data);
+      console.log(err);
       setLoading(false);
     }
-  };
+  }
 
   //impedir que o usuario mude de pagina pela barra do navegador
   if(state && state.token) router.push("/");
@@ -58,12 +62,10 @@ const ForgotPassword = () => {
         <div className="col-md-4 offset-md-4">
           <ForgotPasswordForm 
             handleSubmit = {handleSubmit}
-            name = {name}
-            setName = {setName}
             email = {email}
             setEmail = {setEmail}
-            password = {password}
-            setPassword = {setPassword}
+            newPassword = {newPassword}
+            setNewPassword = {setNewPassword}
             secret = {secret}
             setSecret = {setSecret}
             loading = {loading}

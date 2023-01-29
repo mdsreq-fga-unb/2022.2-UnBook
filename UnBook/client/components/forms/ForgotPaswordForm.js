@@ -1,20 +1,10 @@
 import { SyncOutlined } from "@ant-design/icons";
 
 const ForgotPasswordForm = ({
-    handleSubmit, name, setName, email, setEmail, password, setPassword, secret, setSecret, loading, page,
+    handleSubmit, email, setEmail, newPassword, setNewPassword, secret, setSecret, loading, page,
 }) => (
     <form onSubmit={handleSubmit}>
-            {page !== "login" && (
-              <div className="form-group py-2">
-                <label className="text-muted"><small>Nome</small></label>
-                <input
-                  data-testid="name-input"
-                  value={name}
-                  onChange={e => setName(e.target.value)}
-                  type="text" className="form-control"
-                  placeholder="Digite seu nome" />
-            </div>)}
-
+        
             <div className="form-group py-2">
               <label className="text-muted"><small>E-mail</small></label>
               <input
@@ -27,16 +17,16 @@ const ForgotPasswordForm = ({
             </div>
 
             <div className="form-group py-2">
-              <label className="text-muted"><small>Senha</small></label>
+              <label className="text-muted"><small>Nova senha</small></label>
               <input
                 data-testid="password-input"
-                value={password}
-                onChange={e => setPassword(e.target.value)}
+                value={newPassword}
+                onChange={e => setNewPassword(e.target.value)}
                 type="password" className="form-control"
-                placeholder="Digite sua senha" />
+                placeholder="Digite sua nova senha" />
             </div>
 
-            {page !== "login" && (
+        
               <>
               <div className="form-group py-2">
                 <label className="text-muted"><small>Escolha uma pergunta</small></label>
@@ -62,17 +52,13 @@ const ForgotPasswordForm = ({
                   placeholder="Digite sua resposta aqui" />
               </div>
               </>
-            )}
+          
 
 
             <div className="form-group p-2">
               <button 
                 data-testid="register-button"
-                disabled={
-                  page === "login" 
-                    ? !email || !password
-                    : !name || !email || !secret || !password
-                  } 
+                disabled={!email || !newPassword || !secret || loading}
                   className="btn btn-primary col-12">
                 {loading ? <SyncOutlined spin className="py-1" /> : "Enviar"}
               </button>

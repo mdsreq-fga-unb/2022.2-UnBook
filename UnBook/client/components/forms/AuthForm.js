@@ -70,8 +70,8 @@ const AuthForm = ({
                 data-testid="register-button"
                 disabled={
                   page === "login" 
-                    ? !email || !password
-                    : !name || !email || !secret || !password
+                    ? !email || !password || loading
+                    : !name || !email || !secret || !password || loading
                   } 
                   className="btn btn-primary col-12">
                 {loading ? <SyncOutlined spin className="py-1" /> : "Enviar"}
