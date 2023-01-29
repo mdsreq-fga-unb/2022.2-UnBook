@@ -1,13 +1,13 @@
 import bcrypt from "bcrypt";
 
 // verificando se a senha colocada e aceitavel
- const hashPassword = (pasword) => {
+ const hashPassword = (password) => {
     return new Promise((resolve, reject) => {
         bcrypt.genSalt(12, (err, salt) => {
             if(err){
                 reject(err);
             }
-            bcrypt.hash(pasword, salt, (err, hash) => {
+            bcrypt.hash(password, salt, (err, hash) => {
                 if(err){
                     reject(err);
                 }
@@ -17,7 +17,7 @@ import bcrypt from "bcrypt";
     });
 };
 
-const comparePassword = (pasword, hashed) => {
-    return bcrypt.compare(pasword, hashed);
+const comparePassword = (password, hashed) => {
+    return bcrypt.compare(password, hashed);
 };
 export {hashPassword, comparePassword};
