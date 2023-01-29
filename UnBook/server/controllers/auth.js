@@ -1,6 +1,6 @@
 import User from "../models/user";
 import {hashPassword, comparePassword} from "../helpers/auth";
-import jwt from 'jsonwebtoken';
+import jwt from "jsonwebtoken";
 
 export const register = async (req, res) => {
     // console.log("REGISTER ENDPOINT =>", req.body);
@@ -55,3 +55,9 @@ export const login = async (req, res) => {
 
     }
 };
+
+export const currentUser = async(req,res) => {
+    console.log(req.user);
+    //enviar o token usando o postman para ser verificado
+
+}
