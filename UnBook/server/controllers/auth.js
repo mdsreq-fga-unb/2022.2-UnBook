@@ -52,12 +52,16 @@ export const login = async (req, res) => {
     } catch(err){
         console.log(err);
         return res.status(400).send("Erro.Tente novamente.");
-
     }
 };
 
-export const currentUser = async(req,res) => {
-    console.log(req.user);
-    //enviar o token usando o postman para ser verificado
-
+export const currentUser = async(req, res) => {
+    try {
+      const user = await User.findById(req.auth._id).select("-password");
+      // res.json(user)
+      res.json({ ok: true });
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(400);
+    }
 }
