@@ -35,7 +35,7 @@ const Login = () => {
     <div className="container-fluid">
       <div className="row py-5 text-light bg-default-image">
         <div className="col text-center">
-          <h1>Página de Cadastro</h1>
+          <h1>Página de Login</h1>
         </div>
       </div>
       <div className="row py-5">
@@ -46,6 +46,7 @@ const Login = () => {
             password = {password}
             setPassword = {setPassword}
             loading = {loading}
+            page = "login"
           />
         </div>
       </div>
