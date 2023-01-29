@@ -50,17 +50,18 @@ const AuthForm = ({
                 </small>
               </div>
 
-            <div className="form-group py-2">
-              <label className="text-muted"><small>Resposta</small></label>
-              <input
-                data-testid="secret-input"
-                value={secret}
-                onChange={e => setSecret(e.target.value)}
-                type="text"
-                className="form-control"
-                placeholder="Digite sua resposta aqui" />
-            </div>
-            </>)}
+              <div className="form-group py-2">
+                <label className="text-muted"><small>Resposta</small></label>
+                <input
+                  data-testid="secret-input"
+                  value={secret}
+                  onChange={e => setSecret(e.target.value)}
+                  type="text"
+                  className="form-control"
+                  placeholder="Digite sua resposta aqui" />
+              </div>
+              </>
+            )}
 
 
             <div className="form-group p-2">
@@ -71,10 +72,10 @@ const AuthForm = ({
                     : !name || !email || !secret || !password
                   } 
                   className="btn btn-primary col-12">
-                {loading ? <SyncOutlined spin className="py-1" /> : "Cadastrar"}
+                {loading ? <SyncOutlined spin className="py-1" /> : "Enviar"}
               </button>
             </div>
-          </form>
+    </form>
 
 );
 

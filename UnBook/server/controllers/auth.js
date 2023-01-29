@@ -32,9 +32,23 @@ export const register = async (req, res) => {
 
 export const login = async () => {
     // verificando se esta recebendo os dados
-    console.log(req.body);
+    //console.log(req.body);
     try{
-
+        // verificando se o email existe na db
+        const{ email, password } = req.body;
+        const user = await User.findOne({ email });
+        if (!user) return res.status(400).send("Usuário não encontrado.");
+        // verificando a senha
+        const match = await comparePassword(password, user.password);
+        if(!match) return res.status(400).send("Senha incorreta.");
+        // criando um token sinalizador
+        const token = jwt.sign({_id: user._id}, process.env.JWT_SECRET, {expiresIn: "2m"});
+        user.password = undefined;
+        user.secret = undefined;
+        res.json({
+            token,
+            user,
+        })
     } catch(err){
         console.log(err);
         return res.status(400).send("Erro.Tente novamente.");

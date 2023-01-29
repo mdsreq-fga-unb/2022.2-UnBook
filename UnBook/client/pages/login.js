@@ -23,8 +23,8 @@ const Login = () => {
         email,
         password,
       });
-
-      router.push("/");
+      console.log(data);
+      //router.push("/");
     } catch (err) {
         toast.error(err.response.data);
         setLoading(false);
