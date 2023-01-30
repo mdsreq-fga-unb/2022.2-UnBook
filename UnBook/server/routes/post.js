@@ -17,7 +17,7 @@ router.post(
     uploadImage
 );
 
-router.get("/user-post", requireSignin, postByUser);
+router.get("/user-posts", requireSignin, postByUser);
 
 module.exports = router;
 

@@ -33,9 +33,9 @@ const CreatePostForm = ({ content, setContent, postSubmit, handleImage, uploadin
                   image && image.url ? (
                     <Avatar size={30} src={image.url} className="mt-1" />
                   ) : uploading ? (
-                    <LoadingOutlined className="nt-3"/>
+                    <LoadingOutlined className="mt-2"/>
                   ) : (
-                    <CameraOutlined className="nt-3"/>
+                    <CameraOutlined className="mt-2"/>
                   )}
                   <input onChange={handleImage} type="file" accept="images/*" hidden/>
               </label>

@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-const { ObjectID } = mongoose.Schema.Types;
+const { ObjectId } = mongoose.Schema.Types;
 
 const postSchema = new mongoose.Schema(
   {
@@ -8,23 +8,23 @@ const postSchema = new mongoose.Schema(
       required: true
     },
     postedBy: {
-      type: String,
-      ref: 'User',
+      type: ObjectId,
+      ref: "User",
     },
     image: {
       url: String,
       public_id: String,
     },
-    likes: [{type: ObjectID, ref: 'User'}],
+    likes: [{type: ObjectId, ref: "user"}],
     comments: [
       {
         text: String,
         created: { type: Date, default: Date.now },
-        postedBy: { type: ObjectID, ref: 'User' },
+        postedBy: { type: ObjectId, ref: "User" },
       }
     ]
   },
   { timestamps: true }
 );
 
-export default mongoose.model('Post', postSchema);
+export default mongoose.model("Post", postSchema);

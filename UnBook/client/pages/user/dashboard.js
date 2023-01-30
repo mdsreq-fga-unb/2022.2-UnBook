@@ -1,4 +1,4 @@
-import { useContext, useState, userEffect, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../../context";
 import UserRoute from "../../components/routes/UserRoute";
 import CreatePostForm from "../../components/forms/CreatePostForm";
@@ -21,13 +21,13 @@ const Home = () => {
     const router = useRouter();
 
     useEffect(() =>{
-      if(state && state.token) fetchUserPost();
+      if(state && state.token) fetchUserPosts();
     }, [state && state.token]);
 
-    const fetchUserPost = async () => {
+    const fetchUserPosts = async () => {
       try{
-        const {data} = await axios.get("/user-post");
-        //console.log("user post => ", data);
+        const {data} = await axios.get("/user-posts");
+        //console.log("user posts => ", data);
         setPosts(data);
       }catch(err){
         console.log(err);
@@ -40,7 +40,7 @@ const Home = () => {
       setUploading(true);
       try {
         const { data } = await axios.post("/create-post", { content, image });
-        console.log("create poste response =>", data);
+        console.log("create post response =>", data);
         if (data.error) {
           toast.error(data.error);
         } else {
