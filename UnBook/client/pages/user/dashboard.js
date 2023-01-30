@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, userEffect, useEffect } from "react";
 import { UserContext } from "../../context";
 import UserRoute from "../../components/routes/UserRoute";
 import CreatePostForm from "../../components/forms/CreatePostForm";
@@ -14,8 +14,25 @@ const Home = () => {
     const[image, setImage] = useState({});
     const [uploading, setUploading] = useState(false);
 
+    //posts
+    const [posts, setPosts] = useState([]);
+
     //route
     const router = useRouter();
+
+    useEffect(() =>{
+      if(state && state.token) fetchUserPost();
+    }, [state && state.token]);
+
+    const fetchUserPost = async () => {
+      try{
+        const {data} = await axios.get("/user-post");
+        //console.log("user post => ", data);
+        setPosts(data);
+      }catch(err){
+        console.log(err);
+      }
+    };
 
     const postSubmit = async (e) => {
       e.preventDefault();
@@ -76,6 +93,9 @@ const Home = () => {
                     image={image}
                   />
                 </div>
+
+                <pre>{JSON.stringify(posts, null, 4)}</pre>
+
                 <div className="col-md-4">Sidebar</div>
             </div>
         </div>
