@@ -45,6 +45,7 @@ const Home = () => {
         if (data.error) {
           toast.error(data.error);
         } else {
+          fetchUserPosts();
           toast.success("Publicação criada com sucesso!");
           setContent("");
           setImage({});

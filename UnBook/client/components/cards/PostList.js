@@ -10,9 +10,11 @@ import {
   EditOutlined, 
   DeleteOutlined } from "@ant-design/icons"
 import { UserContext } from "../../context";
+import { useRouter } from "next/router";
 
 export const PostList = ({posts}) => {
     const [ state ] = useContext(UserContext);
+    const router = useRouter();
     return( 
         <>
             {posts && posts.map((post) => <div key={post._id} className="card mb-5">
@@ -43,7 +45,7 @@ export const PostList = ({posts}) => {
                     </div>
                     {state && state.user && state.user._id === post.postedBy._id && (
                       <div  className="d-flex align-items-center">
-                        <EditOutlined className="text-danger h5 ps-3 mt-2" />
+                        <EditOutlined onClick={() => router.push(`/user/post/${post._id}`)} className="text-danger h5 ps-3 mt-2" />
                         <DeleteOutlined className="text-danger h5 ps-3 mt-2" />
                       </div>
                     )}
