@@ -8,25 +8,53 @@ import { toast } from "react-toastify";
 
 const Home = () => {
     const [state, setState] = useContext(UserContext);
+
+    //state
     const [content, setContent] = useState("");
+    const[image, setImage] = useState({});
+    const [uploading, setUploading] = useState(false);
+
+    //route
     const router = useRouter();
 
     const postSubmit = async (e) => {
       e.preventDefault();
       // console.log("post =>", content);
+      setUploading(true);
       try {
-        const { data } = await axios.post("/create-post", { content });
+        const { data } = await axios.post("/create-post", { content, image });
         console.log("create poste response =>", data);
         if (data.error) {
           toast.error(data.error);
         } else {
           toast.success("Publicação criada com sucesso!");
           setContent("");
-          router.push("/user/dashboard");
+          setImage({});
         }
       } catch (err) {
         console.log(err);
       }
+    };
+
+    const handleImage = async (e) => {
+      const file =e.target.files[0];
+      let formData = new FormData()
+      formData.append("image", file);
+      //console.log([...formData]);
+      setUploading(true);
+      try{
+        const {data} = await axios.post("/upload-image", formData);
+        //console.log("upload image =>", data);
+        setImage({
+          url: data.url,
+          public_id: data.public_id,
+        })
+        setUploading(false);
+      }catch(err){
+        console.log(err);
+        setUploading(false);
+      }
+
     };
 
     return(
@@ -43,6 +71,9 @@ const Home = () => {
                     content={content} 
                     setContent={setContent}
                     postSubmit={postSubmit}
+                    handleImage={handleImage}
+                    uploading={uploading}
+                    image={image}
                   />
                 </div>
                 <div className="col-md-4">Sidebar</div>
