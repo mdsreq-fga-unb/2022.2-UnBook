@@ -1,10 +1,18 @@
 import renderHTML from "react-render-html";
+import { useContext } from "react";
 import moment from "moment";
 import { Avatar } from 'antd';
 import PostImage from '../images/PostImage';
-import { HeartOutlined, HeartFilled, CommentOutlined } from "@ant-design/icons"
+import { 
+  HeartOutlined, 
+  HeartFilled, 
+  CommentOutlined, 
+  EditOutlined, 
+  DeleteOutlined } from "@ant-design/icons"
+import { UserContext } from "../../context";
 
 export const PostList = ({posts}) => {
+    const [ state ] = useContext(UserContext);
     return( 
         <>
             {posts && posts.map((post) => <div key={post._id} className="card mb-5">
@@ -22,15 +30,23 @@ export const PostList = ({posts}) => {
                 </div>
                 <div className="card-footer">
                   {post.image && (<PostImage url={post.image.url} />)}
-                  <div  className="d-flex align-items-center">
-                    <div className="d-flex align-items-center">
-                      <HeartOutlined className="text-danger h5 mt-2" />
-                      <div className="ps-1">3 likes</div>
+                  <div className="d-flex align-items-center justify-content-between">
+                    <div  className="d-flex align-items-center">
+                      <div className="d-flex align-items-center">
+                        <HeartOutlined className="text-danger h5 mt-2" />
+                        <div className="px-1">3 likes</div>
+                      </div>
+                      <div className="d-flex align-items-center">
+                        <CommentOutlined className="text-danger h5 ps-3 mt-2" />
+                        <div className="px-1">2 comments</div>
+                      </div>
                     </div>
-                    <div className="d-flex align-items-center">
-                      <CommentOutlined className="text-danger h5 ps-3 mt-2" />
-                      <div className="ps-1">2 comments</div>
-                    </div>
+                    {state && state.user && state.user._id === post.postedBy._id && (
+                      <div  className="d-flex align-items-center">
+                        <EditOutlined className="text-danger h5 ps-3 mt-2" />
+                        <DeleteOutlined className="text-danger h5 ps-3 mt-2" />
+                      </div>
+                    )}
                   </div>
                 </div>
             </div>)}
