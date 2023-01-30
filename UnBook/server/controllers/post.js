@@ -53,5 +53,25 @@ export const postByUser = async (req, res) => {
   }catch(err){
     console.log(err);
   }
+};
 
+export const userPost = async (req, res) => {
+  try{
+    const posts = await Post.findById(req.params._id)
+    res.json(posts);
+  }catch(err){
+    console.log(err);
+  }
+};
+
+export const updatePost = async (req, res) => {
+  // console.log("update post => ", req.body);
+  try {
+    const post = await Post.findByIdAndUpdate(req.params._id, req.body, {
+      new: true,
+    });
+    res.json(post);
+  } catch (err) {
+    console.log(err)
+  }
 };

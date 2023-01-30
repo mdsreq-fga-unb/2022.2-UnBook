@@ -5,7 +5,7 @@ import { CameraOutlined, LoadingOutlined } from "@ant-design/icons";
 import "react-quill/dist/quill.snow.css";
 
 
-const CreatePostForm = ({ content, setContent, postSubmit, handleImage, uploading, image }) => {
+const PostForm = ({ content, setContent, postSubmit, handleImage, uploading, image }) => {
     return(
         <div className = "card">
           <div className="card-body pb-3">
@@ -45,4 +45,4 @@ const CreatePostForm = ({ content, setContent, postSubmit, handleImage, uploadin
     );
 };
 
-export default CreatePostForm;
+export default PostForm;
