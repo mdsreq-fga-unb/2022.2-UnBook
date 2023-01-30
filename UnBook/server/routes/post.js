@@ -7,7 +7,7 @@ const router = express.Router();
 import { requireSignin, canEditDeletePost }  from "../middlewares";
 
 // controllers
-import { createPost, uploadImage, postByUser, userPost, updatePost } from "../controllers/post";
+import { createPost, uploadImage, postByUser, userPost, updatePost, deletePost } from "../controllers/post";
 
 router.post("/create-post", requireSignin, createPost);
 router.post(
@@ -20,5 +20,6 @@ router.post(
 router.get("/user-posts", requireSignin, postByUser);
 router.get("/user-post/:_id", requireSignin, userPost);
 router.put("/update-post/:_id", requireSignin, canEditDeletePost, updatePost);
+router.delete("/delete-post/:_id", requireSignin, canEditDeletePost, deletePost);
 
 module.exports = router;

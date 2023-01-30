@@ -75,6 +75,19 @@ const Home = () => {
       }
     };
 
+    const handleDelete = async (post) => {
+      try {
+        const answer = window.confirm("Tem certeza excluir essa publicação?");
+        if (!answer) return;
+        console.log(post._id)
+        const { data } = await axios.delete(`/delete-post/${post._id}`);
+        toast.error("Publicação excluída com sucesso!");
+        fetchUserPosts();
+      } catch (err) {
+        console.log(err)
+      }
+    }
+
     return(
       <UserRoute>
         <div className = "container-fluid">
@@ -94,7 +107,7 @@ const Home = () => {
                     image={image}
                   />
                   <br />
-                  <PostList posts ={posts}/>
+                  <PostList posts={posts} handleDelete={handleDelete}/>
                 </div>
 
                 {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}

@@ -12,7 +12,7 @@ import {
 import { UserContext } from "../../context";
 import { useRouter } from "next/router";
 
-export const PostList = ({posts}) => {
+export const PostList = ({posts, handleDelete}) => {
     const [ state ] = useContext(UserContext);
     const router = useRouter();
     return( 
@@ -46,7 +46,7 @@ export const PostList = ({posts}) => {
                     {state && state.user && state.user._id === post.postedBy._id && (
                       <div  className="d-flex align-items-center">
                         <EditOutlined onClick={() => router.push(`/user/post/${post._id}`)} className="text-danger h5 ps-3 mt-2" />
-                        <DeleteOutlined className="text-danger h5 ps-3 mt-2" />
+                        <DeleteOutlined onClick={() => handleDelete(post)} className="text-danger h5 ps-3 mt-2" />
                       </div>
                     )}
                   </div>
