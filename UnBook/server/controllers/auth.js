@@ -113,7 +113,7 @@ export const forgotPassword = async(req, res) =>{
     }
 
     try{
-        const hashed = await hashedPassword(newPassword);
+        const hashed = await hashPassword(newPassword);
         await User.findByIdAndUpdate(user._id, { password: hashed});
         return res.json({
             sucess: "Senha atualizada com sucesso!",

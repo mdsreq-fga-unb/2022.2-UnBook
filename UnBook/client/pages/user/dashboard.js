@@ -5,6 +5,7 @@ import CreatePostForm from "../../components/forms/CreatePostForm";
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { toast } from "react-toastify";
+import PostList from "../../components/cards/PostList";
 
 const Home = () => {
     const [state, setState] = useContext(UserContext);
@@ -92,9 +93,11 @@ const Home = () => {
                     uploading={uploading}
                     image={image}
                   />
+                  <br />
+                  <PostList posts ={posts}/>
                 </div>
 
-                <pre>{JSON.stringify(posts, null, 4)}</pre>
+                {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}
 
                 <div className="col-md-4">Sidebar</div>
             </div>

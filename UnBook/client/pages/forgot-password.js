@@ -6,7 +6,7 @@ import Link from "next/link";
 import ForgotPasswordForm from '../components/forms/ForgotPaswordForm';
 import { UserContext } from '../context';
 import { useRouter } from 'next/router';
- 
+
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
@@ -46,7 +46,7 @@ const ForgotPassword = () => {
       console.log(err);
       setLoading(false);
     }
-  }
+  };
 
   //impedir que o usuario mude de pagina pela barra do navegador
   if(state && state.token) router.push("/");
