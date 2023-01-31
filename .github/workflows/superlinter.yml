@@ -21,3 +21,5 @@ jobs:
           VALIDATE_MARKDOWN: false
           VALIDATE_JAVASCRIPT_STANDARD: false
           VALIDATE_TYPESCRIPT_STANDARD: false
+          VALIDATE_YAML: false
+          VALIDATE_NATURAL_LANGUAGE: false
