@@ -8,7 +8,7 @@ import { UserContext } from '../../../context';
 import { useRouter } from 'next/router';
  
 const ProfileUpdate = () => {
-  const [username, setUsername] = useState("")
+  const [userName, setUsername] = useState("")
   const [about, setAbout] = useState("")
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -38,7 +38,7 @@ const ProfileUpdate = () => {
       const { data } = await axios.put(
         `/profile-update`, 
         {
-          username,
+          userName,
           about,
           name,
           email,
@@ -72,7 +72,7 @@ const ProfileUpdate = () => {
         <div className="col-md-4 offset-md-4">
           <AuthForm 
             profileUpdate = {true}
-            username = {username}
+            userName = {userName}
             setUsername = {setUsername}
             about = {about}
             setAbout = {setAbout}

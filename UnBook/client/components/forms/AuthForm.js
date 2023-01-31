@@ -12,7 +12,7 @@ const AuthForm = ({
     setSecret, 
     loading, 
     page, 
-    username, 
+    userName, 
     setUsername, 
     about, 
     setAbout,
@@ -24,10 +24,10 @@ const AuthForm = ({
                 <label className="text-muted"><small>User name</small></label>
                 <input
                   data-testid="name-input"
-                  value={username}
+                  value={userName}
                   onChange={e => setUsername(e.target.value)}
                   type="text" className="form-control"
-                  placeholder="Digite seu nome" />
+                  placeholder="Digite seu User name" />
               </div>
             )}
 
