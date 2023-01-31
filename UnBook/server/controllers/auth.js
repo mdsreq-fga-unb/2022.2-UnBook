@@ -12,7 +12,7 @@ export const register = async (req, res) => {
             error:"Campo nome não preenchido!",
         });
     }
-    if(!password || password.lenght < 8){
+    if(!password || password.length < 8){
         return res.json({
             error:"A senha deve possuir ao menos 8 caracteres.",
         });
