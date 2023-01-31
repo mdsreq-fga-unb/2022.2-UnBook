@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --passWithNoTests --runInBand --no-cache --watch --silent",
+    "test": "jest --passWithNoTests --runInBand --no-cache --watchAll --silent",
     "coverage": "jest --passWithNoTests --runInBand --no-cache --coverage"
   },
   "keywords": [],
