@@ -20,6 +20,7 @@ jobs:
       - run: |
           cd UnBook
           cd client
+          npm install
           npm ci
       - run: |
           cd UnBook
