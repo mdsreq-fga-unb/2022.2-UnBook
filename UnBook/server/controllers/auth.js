@@ -1,6 +1,7 @@
 import User from "../models/user";
 import {hashPassword, comparePassword} from "../helpers/auth";
 import jwt from "jsonwebtoken";
+import validator from "validator"
 
 export const register = async (req, res) => {
     // console.log("REGISTER ENDPOINT =>", req.body);
@@ -20,6 +21,11 @@ export const register = async (req, res) => {
     if(!secret){
         return res.json({
             error:"É necessário responder a pergunta.",
+        });
+    }
+    if(!validator.isEmail(email) || !email.endsWith("@aluno.unb.br") || !email.endsWith("@unb.br")){
+        return res.json({
+            error:"Insira um e-mail válido.",
         });
     }
     const exist = await User.findOne({email});
