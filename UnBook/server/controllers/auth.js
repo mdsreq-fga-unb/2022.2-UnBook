@@ -24,7 +24,7 @@ export const register = async (req, res) => {
             error:"É necessário responder a pergunta.",
         });
     }
-    if(!validator.isEmail(email) || !email.endsWith("@aluno.unb.br") || !email.endsWith("@unb.br")){
+    if(!validator.isEmail(email) || !(email.endsWith("@aluno.unb.br") || email.endsWith("@unb.br"))){
         return res.json({
             error:"Insira um e-mail válido.",
         });
@@ -45,7 +45,7 @@ export const register = async (req, res) => {
         email, 
         password:hashedPassword, 
         secret,
-        username: nanoid(6),
+        userName: nanoid(6),
     });
     try{
         await user.save();
