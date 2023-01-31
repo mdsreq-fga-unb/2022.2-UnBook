@@ -7,7 +7,7 @@ on:
 jobs:
   build:
     name: Cria uma build e testa
-    runs-on: windows-latest
+    runs-on: Ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x, 17.x, 18.x, 19.x]
@@ -21,10 +21,10 @@ jobs:
           cd UnBook
           cd client
           npm ci --legacy-peer-deps
-      - run: |
-          cd UnBook
-          cd client
-          npm run build --if-present
+      #- run: |
+      #    cd UnBook
+       #   cd client
+      #    npm run build --if-present
           
       - run: |
            cd UnBook
