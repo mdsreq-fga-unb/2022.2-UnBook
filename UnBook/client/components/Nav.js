@@ -19,31 +19,51 @@ const Nav = () => {
   };
 
   return (
-    <nav className={"nav d-flex justify-content-end primary bg-primary"}>
+    <nav className={"nav d-flex justify-content-end primary bg-primary"}
+      style={{backgroundColor: "blue"}}
+    >
+
       <Link 
         href="/" 
-        className={`nav-link text-light logo ${current ==="/" && "active"}`} 
+        className={`nav-link logo ${current ==="/" && "active"}`} 
         data-testid="home-link">
           UnBook
       </Link>
 
+
       {state !== null ? (
         <>
-          <Link 
-            href="/user/dashboard" 
-            className={`nav-link text-light ${
-                current === "/user/dashboard" && "active"
-            }`}>
+          <div class="dropdown">
+            <a 
+              class="btn dropdown-toggle text_light" 
+              role="button"
+              id="dropdownMenuLink"
+              data-bs-toggle="dropdown" 
+              aria-expanded="false"
+            >
               {state && state.user && state.user.name}
-          </Link>
+            </a>
 
-          <a
-            onClick={logout}
-            className="nav-link text-light" 
-            data-testid="logout-link">
-              Sair
-          </a>
-
+            <ul class="dropdown-menu">
+              <li>
+                <Link 
+                  href="/user/dashboard" 
+                  className={`nav-link dropdown-item ${
+                    current === "/user/dashboard" && "active"
+                  }`}>
+                    Feed
+                </Link>
+              </li>
+              <li>
+                <a
+                  onClick={logout}
+                  className="nav-link" 
+                  data-testid="logout-link">
+                    Sair
+               </a>
+              </li>
+            </ul>
+          </div>
         </>
 
       ) : (
