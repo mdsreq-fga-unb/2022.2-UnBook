@@ -1,9 +1,48 @@
 import { SyncOutlined } from "@ant-design/icons";
 
 const AuthForm = ({
-    handleSubmit, name, setName, email, setEmail, password, setPassword, secret, setSecret, loading, page,
+    handleSubmit, 
+    name, 
+    setName, 
+    email, 
+    setEmail, 
+    password, 
+    setPassword, 
+    secret, 
+    setSecret, 
+    loading, 
+    page, 
+    userName, 
+    setUsername, 
+    about, 
+    setAbout,
+    profileUpdate,
 }) => (
     <form onSubmit={handleSubmit}>
+            {profileUpdate && (
+              <div className="form-group py-2">
+                <label className="text-muted"><small>User name</small></label>
+                <input
+                  data-testid="name-input"
+                  value={userName}
+                  onChange={e => setUsername(e.target.value)}
+                  type="text" className="form-control"
+                  placeholder="Digite seu User name" />
+              </div>
+            )}
+
+            {profileUpdate && (
+              <div className="form-group py-2">
+              <label className="text-muted"><small>Sobre</small></label>
+              <input
+                data-testid="name-input"
+                value={about}
+                onChange={e => setAbout(e.target.value)}
+                type="text" className="form-control"
+                placeholder="Escreva sobre você..." />
+              </div>
+            )}
+
             {page !== "login" && (
               <div className="form-group py-2">
                 <label className="text-muted"><small>Nome</small></label>
@@ -13,7 +52,7 @@ const AuthForm = ({
                   onChange={e => setName(e.target.value)}
                   type="text" className="form-control"
                   placeholder="Digite seu nome" />
-            </div>)}
+              </div>)}
 
             <div className="form-group py-2">
               <label className="text-muted"><small>E-mail</small></label>
@@ -23,7 +62,8 @@ const AuthForm = ({
                 onChange={e => setEmail(e.target.value)}
                 type="email"
                 className="form-control"
-                placeholder="Digite seu e-mail" />
+                placeholder="Digite seu e-mail"
+                disabled={profileUpdate} />
             </div>
 
             <div className="form-group py-2">
@@ -69,6 +109,7 @@ const AuthForm = ({
               <button 
                 data-testid="register-button"
                 disabled={
+                  profileUpdate ? loading :
                   page === "login" 
                     ? !email || !password || loading
                     : !name || !email || !secret || !password || loading
