@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { Modal } from "antd";
@@ -8,42 +8,51 @@ import { UserContext } from '../../../context';
 import { useRouter } from 'next/router';
  
 const ProfileUpdate = () => {
-  const [username, setUsername] = useState('')
-  const [about, setAbout] = useState('')
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [secret, setSecret] = useState('');
+  const [username, setUsername] = useState("")
+  const [about, setAbout] = useState("")
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [secret, setSecret] = useState("");
   const [ok, setOk] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
   const [state] = useContext(UserContext);
 
+  useEffect(() => {
+    if(state && state.user) {
+      // console.log("user from state =>", state.user)
+      setUsername(state.user.userName);
+      setAbout(state.user.about);
+      setName(state.user.name);
+      setEmail(state.user.email);
+    }
+  }, [state && state.user])
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       // console.table({ name, email, password, secret });
       setLoading(true);
-      const { data } = await axios.post(
-        "/register", 
+      const { data } = await axios.put(
+        `/profile-update`, 
         {
+          username,
+          about,
           name,
           email,
           password,
           secret,
         }
       );
+      console.log("update response =>", data);
 
         if(data.error){
           toast.error(data.error);
           setLoading(false);
         } else {
-          setName("");
-          setEmail("");
-          setPassword("");
-          setSecret("");
-          setOk(data.ok);
+          setOk(true);
           setLoading(false);
         }     
     } catch (err) {
@@ -89,8 +98,7 @@ const ProfileUpdate = () => {
             onCancel={() => setOk(false)}
             footer={null}
           >
-            <p>Usuário cadastrado!</p>
-            <Link href="/login" className="btn btn-primary btn-sm">Login</Link>
+            <p>Informações atualizadas!</p>
           </Modal>
         </div>
       </div>

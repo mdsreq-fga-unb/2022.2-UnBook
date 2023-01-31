@@ -62,7 +62,8 @@ const AuthForm = ({
                 onChange={e => setEmail(e.target.value)}
                 type="email"
                 className="form-control"
-                placeholder="Digite seu e-mail" />
+                placeholder="Digite seu e-mail"
+                disabled={profileUpdate} />
             </div>
 
             <div className="form-group py-2">
@@ -108,6 +109,7 @@ const AuthForm = ({
               <button 
                 data-testid="register-button"
                 disabled={
+                  profileUpdate ? loading :
                   page === "login" 
                     ? !email || !password || loading
                     : !name || !email || !secret || !password || loading

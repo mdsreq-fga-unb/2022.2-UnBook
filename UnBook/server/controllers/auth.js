@@ -138,3 +138,43 @@ export const forgotPassword = async(req, res) =>{
         });
     }
 };
+
+export const profileUpdate = async (req, res) => {
+    try {
+        // console.log("profile update req.body", req.body);
+        const data = {};
+
+        if(req.body.userName) {
+            data.userName = req.body.userName;
+        }
+        if(req.body.about) {
+            data.about = req.body.about;
+        }
+        if(req.body.name) {
+            data.name = req.body.name;
+        }
+        if(req.body.password) {
+            if(req.body.password.length < 8) {
+                return res.json({
+                    error: "A senha deve possuir pelo menos 8 caracteres"
+                })
+            } else {
+                data.password = await hashPassword(req.body.password);
+            }
+        }
+        if(req.body.secret) {
+            data.secret = req.body.secret;
+        }
+
+        let user = await User.findByIdAndUpdate(req.auth._id, data, { new: true });
+        // console.log(user);
+        user.password = undefined;
+        user.secret = undefined;
+        res.json(user);
+    } catch (err) {
+        if(err.code == 11000) {
+            return res.json({error: "Username duplicado"});
+        }
+        console.log(err);
+    }
+}
