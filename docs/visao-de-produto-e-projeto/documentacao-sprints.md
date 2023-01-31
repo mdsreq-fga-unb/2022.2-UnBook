@@ -42,44 +42,67 @@ Segunda sprint de codificação do grupo, agora com o planejamento atualizado o 
 
 
 #### **Sprint Review** 
-Conseguimos avançar na codificação do cadastro e login do usuário, ambos finalizados com sucesso. Contudo não conseguimos concluir o feed de postagens por completo. Apresentamos o MVP1 para os clientes e obtivemos um feedback postivo apesar do estado do MVP1 estar incompleto, por falta da integração entre o backend e o frontend. 
+Nesta sprint não conseguimos entregar todas as US que planejamos, entretanto conseguimos entregar algo que chegasse perto de satisfazer os objetivo que propomos para o MVP1.
 
 #### **Sprint Retrospective**
 ##### O que funcionou bem durante essa sprint e o que devemos continuar fazendo?
-
+--
 
 ##### O que não funcionou tão bem e o que devemos mudar?
- 
+Nesta sprint aprendemos que não devemos fazer apenas o back, ou apenas o front e sim nos propormos a focarmos em terminar uma us de cada vez.
 
 ##### O que aprendemos durante essa sprint?
-
+Aprendemos a lidar melhor com o processo de desenvolvimento ágil, sem o foco de separarmos a equipe em front e back, mas sim trabalharmos como uma equipe com o foco de entregar o que nos foi proposto. 
 
 ##### O que podemos fazer de forma diferente na próxima sprint para melhorar nossos resultados?
-
+Para as próximas sprints devemos focar no desenvolvimento ágil na abordagem iterativa e incremental para o desenvolvimento,  priorizando a colaboração e a flexibilidade. Além disso, focar na comunicação frequente e a transparência, priorizando a colaboração, a flexibilidade e a entrega de valor contínuo.
 
 
 ###Sprint 10
 
-#### **Sprint Planning**: SCRUM MASTER - 
+#### **Sprint Planning**: SCRUM MASTER - Ana Beatriz
+- Débito técnico: US03, US04, US25, US27, US28, US29
+- Objetivo: US05, US06, US07, US10, US11, US18
 
-#### **Sprint Review** 
+#### **Sprint Review**
+- Reconhecemos erro de superestimação como ponto fraco.
+- Discutimos motivos e impacto (clean architecture, não usar bootstrap).
+- Identificamos formas de evitar futuros erros (usar arquitetura MVC e usar bootstrap, alem de aumentar a comunicação).
+- Devemos definir objetivos realistas para próxima sprint.
+- Compromisso de evitar superestimação futura.
+
 
 
 #### **Sprint Retrospective**
 ##### O que funcionou bem durante essa sprint e o que devemos continuar fazendo?
-
+Nesta Sprint Retrospective, revisamos o progresso da sprint anterior e destacamos como pontos fortes a comunicação efetiva. Discutimos como a boa comunicação contribuiu para que fossemos capaz de identificarmos nossos erros e maneiras de  melhorar para a proxima sprint.
 
 ##### O que não funcionou tão bem e o que devemos mudar?
+Após uma revisão cuidadosa do progresso do projeto atual, chegamos à conclusão de que é necessário refatorar e recomeçar o código do zero. Infelizmente, descobrimos que a equipe atual apresentou-se sem as habilidades e conhecimentos necessários para implementar o projeto de maneira eficiente e efetiva, em maior parte pela escolha de seguir a arquitetura de "clean architecture" e falta de integração do back com o front.
  
 
 ##### O que aprendemos durante essa sprint?
-
+Durante essa sprint, aprendemos muitas lições valiosas. Desde a gestão de tempo até a resolução de problemas, aprimoramos nossas habilidades e aprimoramos nossa compreensão do projeto. Aprendemos a trabalhar juntos como equipe e a comunicar de forma clara e efetiva. Além disso, identificamos pontos fortes e fracos em nosso processo e descobrimos maneiras de melhorar para o futuro. Todas essas lições nos ajudarão a ter sucesso na próxima sprint e no projeto como um todo. Aprendemos muito e estamos animados para aplicar esses conhecimentos na próxima sprint!
 
 ##### O que podemos fazer de forma diferente na próxima sprint para melhorar nossos resultados?
+Refatorar e recomeçar o código é uma decisão difícil, mas é necessária para garantir o sucesso do projeto a longo prazo. Além disso, isso permitirá que a equipe atual se ajuste e se desenvolva, melhorando suas habilidades e conhecimentos em um ambiente de trabalho estruturado e orientado.
+
+Esperamos que essa decisão permita que o projeto progrida de forma mais eficiente e que atinja os objetivos estabelecidos. Acreditamos que essa é a melhor estratégia para garantir o sucesso a longo prazo e estamos comprometidos em fazer tudo o que estiver ao nosso alcance para garantir o sucesso do projeto.
+
+Nosso objetivo para a próxima sprint é nos esforçarmos ao máximo para alcançarmos nossos objetivos. Vamos trabalhar juntos como equipe, aprimorar nossas habilidades e enfrentar desafios com determinação. Vamos mantê-nos focados, motivados e dedicados à tarefa à mão. Juntos, podemos alcançar grandes coisas. Vamos continuar avançando e fazer a nossa melhor performance na próxima sprint!
 
 ###Sprint 11
 
-#### **Sprint Planning**: SCRUM MASTER - 
+#### **Sprint Planning**: SCRUM MASTER - Gabriel
+- Utilização de issues no próprio gitHub.
+- Analisar o código atual para identificar suas fraquezas e problemas.
+- Discutir como as habilidades da equipe atual podem ser aproveitadas para o novo projeto.
+- Estabelecer objetivos claros para a sprint, incluindo metas de recomeço do código.
+- Distribuir tarefas entre a equipe, levando em consideração as habilidades e experiências de cada membro.
+- Definir uma timeline realista para o recomeço e refatoração do código.
+- Monitorar o progresso regularmente para garantir que os objetivos sejam atingidos e fazer ajustes necessários.
+- Comunicar o plano e o progresso
+
 
 #### **Sprint Review** 
 
@@ -95,6 +118,7 @@ Conseguimos avançar na codificação do cadastro e login do usuário, ambos fin
 
 
 ##### O que podemos fazer de forma diferente na próxima sprint para melhorar nossos resultados?
+
 
  
 ### **Ferramentas utilizadas**
@@ -102,3 +126,4 @@ Conseguimos avançar na codificação do cadastro e login do usuário, ambos fin
  -Live share: extensão do Visual Code que traz um ambiente colaborativo em tempo real para editar ou debugar códigos. 
  
  -Discord: aplicativo de comunicação. 
+
