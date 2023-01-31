@@ -419,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kanban/" class="md-nav__link">
+      <a href="../kanban.md" class="md-nav__link">
         Quadro Kanban
       </a>
     </li>
@@ -741,34 +741,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../entregas/feedback/" class="md-nav__link">
-        Feedback dos clientes
-      </a>
-    </li>
-  
-
-            
-          
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../entregas/unidade3/" class="md-nav__link">
-        Apresentação unidade 3
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -859,10 +831,8 @@
 <p><strong>Domain Layer:</strong> é a parte mais interna da estrutura (sem dependências de outras camadas, é totalmente isolada). Ele contém Entidades (Modelos de Negócios), Casos de Uso e Interfaces de Repositório.</p>
 <p><strong>Presentation Layer:</strong> é responsável por mostrar os dados ao usuário. </p>
 <p><strong>Data Layer:</strong> contém implementações de repositórios e uma ou várias fontes de dados. Os Repositórios são responsáveis por coordenar dados das diferentes fontes de dados.</p>
-<p><strong>Infra Layer:</strong> é responsável por implementarinterfaces de frameworks. </p>
-<p><strong>Data Layer:</strong> é responsável pela composição das rotas.</p>
 <h2 id="regras">Regras</h2>
-<p>A principal regra da Arquitetura Limpa é não ter dependências das camadas internas às camadas externas. No gráfico, as setas em amarelo, apontando de fora para dentro, evidencia a regra da dependência, só pode haver dependências de camada externas para camadas internas. Caso haja necessidade podem ser criadas mais camadas na estrutua, de forma que as regras da Clean Architecture seja preservada. Desta forma optamos por adicionar mais duas camadas ao projeto, a Infra Layer e a Main Layer.</p>
+<p>A principal regra da Arquitetura Limpa é não ter dependências das camadas internas às camadas externas. No gráfico, as setas em amarelo, apontando de fora para dentro, evidencia a regra da dependência, só pode haver dependências de camada externas para camadas internas. Caso haja necessidade podem ser criadas mais camadas na estrutua, de forma que as regras da Clean Architecture seja preservada. Desta forma optamos por adicionar mais duas camadas ao projeto, uma Infra Layer que irá implementar interfaces de frameworks e uma Main Layer que fará a composição das rotas.</p>
 <p><img alt="Slide 01 - Scrum" src="../../img/cleanArchitecture2.jpg" /></p>
 
 
