@@ -18,12 +18,12 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
-          cd frontend
+          cd client
           npm ci
       - run: |
-          cd frontend
+          cd client
           npm run build --if-present
           
       - run: |
-           cd frontend
+           cd client
            npm test 
