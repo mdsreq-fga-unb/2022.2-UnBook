@@ -45,9 +45,7 @@ const ProfileUpdate = () => {
           setSecret("");
           setOk(data.ok);
           setLoading(false);
-        }
-
-      
+        }     
     } catch (err) {
       toast.error(err.response.data);
       setLoading(false);
@@ -64,6 +62,11 @@ const ProfileUpdate = () => {
       <div className="row py-5">
         <div className="col-md-4 offset-md-4">
           <AuthForm 
+            profileUpdate = {true}
+            username = {username}
+            setUsername = {setUsername}
+            about = {about}
+            setAbout = {setAbout}
             handleSubmit = {handleSubmit}
             name = {name}
             setName = {setName}

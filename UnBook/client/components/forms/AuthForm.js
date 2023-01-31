@@ -1,9 +1,48 @@
 import { SyncOutlined } from "@ant-design/icons";
 
 const AuthForm = ({
-    handleSubmit, name, setName, email, setEmail, password, setPassword, secret, setSecret, loading, page,
+    handleSubmit, 
+    name, 
+    setName, 
+    email, 
+    setEmail, 
+    password, 
+    setPassword, 
+    secret, 
+    setSecret, 
+    loading, 
+    page, 
+    username, 
+    setUsername, 
+    about, 
+    setAbout,
+    profileUpdate,
 }) => (
     <form onSubmit={handleSubmit}>
+            {profileUpdate && (
+              <div className="form-group py-2">
+                <label className="text-muted"><small>User name</small></label>
+                <input
+                  data-testid="name-input"
+                  value={username}
+                  onChange={e => setUsername(e.target.value)}
+                  type="text" className="form-control"
+                  placeholder="Digite seu nome" />
+              </div>
+            )}
+
+            {profileUpdate && (
+              <div className="form-group py-2">
+              <label className="text-muted"><small>Sobre</small></label>
+              <input
+                data-testid="name-input"
+                value={about}
+                onChange={e => setAbout(e.target.value)}
+                type="text" className="form-control"
+                placeholder="Escreva sobre você..." />
+              </div>
+            )}
+
             {page !== "login" && (
               <div className="form-group py-2">
                 <label className="text-muted"><small>Nome</small></label>
@@ -13,7 +52,7 @@ const AuthForm = ({
                   onChange={e => setName(e.target.value)}
                   type="text" className="form-control"
                   placeholder="Digite seu nome" />
-            </div>)}
+              </div>)}
 
             <div className="form-group py-2">
               <label className="text-muted"><small>E-mail</small></label>
