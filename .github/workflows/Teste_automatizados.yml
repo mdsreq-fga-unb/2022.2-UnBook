@@ -20,9 +20,7 @@ jobs:
       - run: |
           cd UnBook
           cd client
-          npm install --legacy-peer-deps
-          npm audit fix --force
-  # npm ci
+          npm ci
       - run: |
           cd UnBook
           cd client
