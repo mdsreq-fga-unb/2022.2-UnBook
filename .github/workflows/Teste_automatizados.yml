@@ -24,6 +24,7 @@ jobs:
       - run: |
           cd UnBook
           cd client
+          yarn add @ant-design/icons@5.0.1
           npm run build --if-present
           
       - run: |
