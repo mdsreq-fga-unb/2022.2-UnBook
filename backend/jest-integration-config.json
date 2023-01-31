@@ -1,5 +1,0 @@
-{
-  "testMatch": [
-    "**/*.test.ts"
-  ]
-}
