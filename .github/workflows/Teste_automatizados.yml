@@ -21,10 +21,10 @@ jobs:
           cd UnBook
           cd client
           npm ci --legacy-peer-deps
-      #- run: |
-      #    cd UnBook
-       #   cd client
-      #    npm run build --if-present
+      - run: |
+          cd UnBook
+          cd client
+          npm run build --if-present
           
       - run: |
            cd UnBook
