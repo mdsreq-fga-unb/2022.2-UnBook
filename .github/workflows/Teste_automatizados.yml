@@ -20,7 +20,7 @@ jobs:
       - run: |
           cd UnBook
           cd client
-          npm install
+          npm install --legacy-peer-deps
           npm ci
       - run: |
           cd UnBook
