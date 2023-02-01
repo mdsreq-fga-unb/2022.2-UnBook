@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { toast } from "react-toastify";
 import PostList from "../../components/cards/PostList";
+import People from "../../components/cards/People";
 
 const Home = () => {
     const [state, setState] = useContext(UserContext);
@@ -18,11 +19,17 @@ const Home = () => {
     //posts
     const [posts, setPosts] = useState([]);
 
+    //people
+    const [people, setPeople] = useState([]);
+
     //route
     const router = useRouter();
 
-    useEffect(() =>{
-      if(state && state.token) fetchUserPosts();
+    useEffect(() => {
+      if (state && state.token) {
+        fetchUserPosts();
+        findPeople();
+      }
     }, [state && state.token]);
 
     const fetchUserPosts = async () => {
@@ -31,6 +38,15 @@ const Home = () => {
         //console.log("user posts => ", data);
         setPosts(data);
       }catch(err){
+        console.log(err);
+      }
+    };
+
+    const findPeople = async () => {
+      try {
+        const { data } = await axios.get("/find-people");
+        setPeople(data);
+      } catch (err) {
         console.log(err);
       }
     };
@@ -112,7 +128,9 @@ const Home = () => {
 
                 {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}
 
-                <div className="col-md-4">Sidebar</div>
+                <div className="col-md-4">
+                  <People people={people}/>
+                </div>
             </div>
         </div>
       </UserRoute>
