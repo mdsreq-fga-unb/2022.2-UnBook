@@ -196,3 +196,29 @@ export const findPeople = async (req, res) => {
         console.log(err)
     }
 };
+
+
+// middleware
+export const addFollower = async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.body._id, { 
+           $addToSet: {followers: req.auth._id},
+        });
+        next();
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+export const userFollow = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.auth._id, { 
+            $addToSet: {following: req.body._id},
+        }, 
+        { new: true }
+        );
+        res.json(user);
+    } catch (err) {
+       console.log(err) 
+    }
+};

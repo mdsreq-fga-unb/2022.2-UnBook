@@ -107,7 +107,7 @@ const Home = () => {
     const handleFollow = async (user) => {
       console.log("add this user to following list ", user);
       try {
-        const { data } = await axios.put("/user-follow", { _id: auth._id });
+        const { data } = await axios.put("/user-follow", { _id: user._id });
         console.log("handle follow response => ", data);
       } catch (err) {
         console.log(err);

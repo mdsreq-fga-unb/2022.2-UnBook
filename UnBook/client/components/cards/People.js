@@ -24,7 +24,7 @@ const People = ({ people, handleFollow }) => {
             return user.name;
         }
     };
-
+ 
     return (
         <>
             <List 
