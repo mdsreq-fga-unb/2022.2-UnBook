@@ -27,14 +27,14 @@ const Home = () => {
 
     useEffect(() => {
       if (state && state.token) {
-        fetchUserPosts();
+        newsFeed();
         findPeople();
       }
     }, [state && state.token]);
 
-    const fetchUserPosts = async () => {
+    const newsFeed = async () => {
       try{
-        const {data} = await axios.get("/user-posts");
+        const {data} = await axios.get("/news-feed");
         //console.log("user posts => ", data);
         setPosts(data);
       }catch(err){
@@ -61,7 +61,7 @@ const Home = () => {
         if (data.error) {
           toast.error(data.error);
         } else {
-          fetchUserPosts();
+          newsFeed();
           toast.success("Publicação criada com sucesso!");
           setContent("");
           setImage({});
@@ -98,7 +98,7 @@ const Home = () => {
         console.log(post._id)
         const { data } = await axios.delete(`/delete-post/${post._id}`);
         toast.error("Publicação excluída com sucesso!");
-        fetchUserPosts();
+        newsFeed();
       } catch (err) {
         console.log(err)
       }
@@ -119,6 +119,7 @@ const Home = () => {
         let filtered = people.filter((p) => p._id !== auth._id);
         setPeople(filtered);
         // rerender the posts in newsfeed
+        newsFeed();
         toast.success(`Você está seguindo ${user.name}`);
       } catch (err) {
         console.log(err);
