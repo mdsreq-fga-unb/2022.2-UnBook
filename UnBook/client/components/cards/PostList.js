@@ -47,15 +47,23 @@ export const PostList = ({posts, handleDelete, handleLike, handleUnlike, handleC
                         <div className="px-1"> {post.likes.length} likes</div>
                       </div>
                       <div className="d-flex align-items-center">
-                        <CommentOutlined onClick={() => handleComment(post)}
-                        className="text-danger h5 ps-3 mt-2" />
-                        <div className="px-1">2 comments</div>
-                      </div>
+                        <CommentOutlined 
+                        onClick={() => handleComment(post)}
+                        className="text-danger h5 ps-3 mt-2" 
+                        />
+                        <div className="px-1">{post.comments.length} comments</div></div>
+                        
                     </div>
                     {state && state.user && state.user._id === post.postedBy._id && (
                       <div  className="d-flex align-items-center">
-                        <EditOutlined onClick={() => router.push(`/user/post/${post._id}`)} className="text-danger h5 ps-3 mt-2" />
-                        <DeleteOutlined onClick={() => handleDelete(post)} className="text-danger h5 ps-3 mt-2" />
+                        <EditOutlined 
+                          onClick={() => router.push(`/user/post/${post._id}`)} 
+                          className="text-danger h5 ps-3 mt-2" 
+                          />
+                        <DeleteOutlined 
+                          onClick={() => handleDelete(post)} 
+                          className="text-danger h5 ps-3 mt-2" 
+                          />
                       </div>
                     )}
                   </div>

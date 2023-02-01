@@ -9,6 +9,7 @@ import PostList from "../../components/cards/PostList";
 import People from "../../components/cards/People";
 import Link from "next/link";
 import { Modal } from "antd";
+import CommentForm from "../../components/forms/CommentForms";
 
 const Home = () => {
     const [state, setState] = useContext(UserContext);
@@ -161,10 +162,16 @@ const Home = () => {
     };
 
     const addComment = async (e) => {
+      e.preventDefault();
       try {
-        e.preventDefault();
-        console.log('add comment', currentPost._id);
-        console.log('save comment to db', comment)
+        const { data } = await axios.put("/add-comment", {
+          postId: currentPost._id,
+          comment,
+        })
+        console.log("add comment => ", data);
+        setComment("");
+        setVisible(false);
+        newsFeed();
       } catch (err) {
         console.log(err);
       }
@@ -223,18 +230,7 @@ const Home = () => {
               title="Comment"
               footer={null}
               >
-              <form onSubmit={addComment}>
-                <input 
-                  type="text" 
-                  className="form-control" 
-                  placeholder="Escreva algo..." 
-                  value={comment} 
-                  onChange={(e) => setComment(e.target.value)} 
-                  />
-                  <button className="btn btn-primary btn-sm btn-block mt-3">
-                    Enviar
-                  </button>
-              </form>
+              <CommentForm comment={comment} setComment={setComment} addComment={addComment} />
             </Modal>
         </div>
       </UserRoute>
