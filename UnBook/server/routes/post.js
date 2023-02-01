@@ -7,7 +7,16 @@ const router = express.Router();
 import { requireSignin, canEditDeletePost }  from "../middlewares";
 
 // controllers
-import { createPost, uploadImage, postByUser, userPost, updatePost, deletePost, newsFeed, } from "../controllers/post";
+import { createPost,
+        uploadImage, 
+        postByUser, 
+        userPost, 
+        updatePost, 
+        deletePost, 
+        newsFeed,
+        likePost,
+        unlikePost,
+     } from "../controllers/post";
 
 router.post("/create-post", requireSignin, createPost);
 router.post(
@@ -23,5 +32,8 @@ router.put("/update-post/:_id", requireSignin, canEditDeletePost, updatePost);
 router.delete("/delete-post/:_id", requireSignin, canEditDeletePost, deletePost);
 
 router.get("/news-feed", requireSignin, newsFeed);
+
+router.put("/like-post", requireSignin, likePost);
+router.put("/unlike-post", requireSignin, unlikePost);
 
 module.exports = router;

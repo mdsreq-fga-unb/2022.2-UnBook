@@ -12,7 +12,7 @@ import {
 import { UserContext } from "../../context";
 import { useRouter } from "next/router";
 
-export const PostList = ({posts, handleDelete}) => {
+export const PostList = ({posts, handleDelete, handleLike, handleUnlike}) => {
     const [ state ] = useContext(UserContext);
     const router = useRouter();
     return( 
@@ -35,7 +35,15 @@ export const PostList = ({posts, handleDelete}) => {
                   <div className="d-flex align-items-center justify-content-between">
                     <div  className="d-flex align-items-center">
                       <div className="d-flex align-items-center">
-                        <HeartOutlined className="text-danger h5 mt-2" />
+                        {post.likes.includes(state.user._id) ? (
+                          <HeartFilled onClick={() => handleUnlike(post)} 
+                          className="text-danger pt-2 h5 px-2" 
+                          />
+                        ) : (
+                          <HeartOutlined onClick={() => handleLike(post)} 
+                          className="text-danger pt-2 h5 px-2" 
+                          />
+                        )}
                         <div className="px-1">3 likes</div>
                       </div>
                       <div className="d-flex align-items-center">
