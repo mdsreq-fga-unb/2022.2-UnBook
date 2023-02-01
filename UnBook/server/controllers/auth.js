@@ -232,3 +232,28 @@ export const userFollowing = async (req, res) => {
        console.log(err) 
     }
 };
+
+// middleware
+export const removeFollower = async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.body._id, { 
+           $pull: {followers: req.auth._id},
+        });
+        next();
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+export const userUnfollow = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.auth._id, { 
+            $pull: {following: req.body._id},
+        }, 
+        { new: true }
+        ).select("-password -secret");
+        res.json(user);
+    } catch (err) {
+       console.log(err) 
+    }
+};
