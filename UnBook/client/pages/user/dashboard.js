@@ -219,6 +219,7 @@ const Home = () => {
               visible={visible} 
               onCancel={() => setVisible(false)} 
               title="Comment"
+              footer={null}
               >
               Show comment form
             </Modal>
