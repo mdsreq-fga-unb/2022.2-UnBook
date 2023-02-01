@@ -216,7 +216,7 @@ export const userFollow = async (req, res) => {
             $addToSet: {following: req.body._id},
         }, 
         { new: true }
-        );
+        ).select("-password -secret");
         res.json(user);
     } catch (err) {
        console.log(err) 
