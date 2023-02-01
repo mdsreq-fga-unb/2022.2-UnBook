@@ -24,8 +24,8 @@ const Home = () => {
     //people
     const [people, setPeople] = useState([]);
 
-    //comments
-    const [comments, setComments] = useState('');
+    //comment
+    const [comment, setComment] = useState('');
     const [visible, setVisible] = useState(false);
     const [currentPost, setCurrentPost] = useState({});
 
@@ -160,9 +160,11 @@ const Home = () => {
       setVisible(true);
     };
 
-    const addComment = async () => {
+    const addComment = async (e) => {
       try {
-        
+        e.preventDefault();
+        console.log('add comment', currentPost._id);
+        console.log('save comment to db', comment)
       } catch (err) {
         console.log(err);
       }
@@ -221,7 +223,18 @@ const Home = () => {
               title="Comment"
               footer={null}
               >
-              Show comment form
+              <form onSubmit={addComment}>
+                <input 
+                  type="text" 
+                  className="form-control" 
+                  placeholder="Escreva algo..." 
+                  value={comment} 
+                  onChange={(e) => setComment(e.target.value)} 
+                  />
+                  <button className="btn btn-primary btn-sm btn-block mt-3">
+                    Enviar
+                  </button>
+              </form>
             </Modal>
         </div>
       </UserRoute>
