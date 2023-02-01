@@ -9,7 +9,6 @@ import PostList from "../../components/cards/PostList";
 import People from "../../components/cards/People";
 import Link from "next/link";
 
-
 const Home = () => {
     const [state, setState] = useContext(UserContext);
 
@@ -169,7 +168,13 @@ const Home = () => {
                     image={image}
                   />
                   <br />
-                  <PostList posts={posts} handleDelete={handleDelete} handleLike={handleLike} handleUnlike={handleUnlike} />
+                  <PostList 
+                    posts={posts} 
+                    handleDelete={handleDelete} 
+                    handleLike={handleLike} 
+                    handleUnlike={handleUnlike} 
+
+                    />
                 </div>
 
                 {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}

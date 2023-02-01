@@ -11,6 +11,7 @@ import {
   DeleteOutlined } from "@ant-design/icons"
 import { UserContext } from "../../context";
 import { useRouter } from "next/router";
+import { imageSource } from "../../functions";
 
 export const PostList = ({posts, handleDelete, handleLike, handleUnlike}) => {
     const [ state ] = useContext(UserContext);
@@ -20,9 +21,8 @@ export const PostList = ({posts, handleDelete, handleLike, handleUnlike}) => {
             {posts && posts.map((post) => <div key={post._id} className="card mb-5">
                 <div className="card-header d-flex justify-content-between align-items-center">
                   <div>
-                    <Avatar size={40}>
-                      {post.postedBy.name[0]}  
-                    </Avatar>{" "}
+                    {/* <Avatar size={40}> {post.postedBy.name[0]} </Avatar>{" "} */}
+                    <Avatar size={40} src={imageSource(post.postedBy)} />
                     <span className="ml-3" style={{marginLeft: "0.2rem"}}>{post.postedBy.name}</span>
                   </div>
                   <span className="ml-3">{moment(post.createdAt).fromNow()}</span>
@@ -44,7 +44,7 @@ export const PostList = ({posts, handleDelete, handleLike, handleUnlike}) => {
                           className="text-danger pt-2 h5 px-2" 
                           />
                         )}
-                        <div className="px-1">3 likes</div>
+                        <div className="px-1"> {post.likes.length} likes</div>
                       </div>
                       <div className="d-flex align-items-center">
                         <CommentOutlined className="text-danger h5 ps-3 mt-2" />
