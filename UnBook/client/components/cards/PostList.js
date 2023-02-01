@@ -13,7 +13,7 @@ import { UserContext } from "../../context";
 import { useRouter } from "next/router";
 import { imageSource } from "../../functions";
 
-export const PostList = ({posts, handleDelete, handleLike, handleUnlike}) => {
+export const PostList = ({posts, handleDelete, handleLike, handleUnlike, handleComment}) => {
     const [ state ] = useContext(UserContext);
     const router = useRouter();
     return( 
@@ -47,7 +47,8 @@ export const PostList = ({posts, handleDelete, handleLike, handleUnlike}) => {
                         <div className="px-1"> {post.likes.length} likes</div>
                       </div>
                       <div className="d-flex align-items-center">
-                        <CommentOutlined className="text-danger h5 ps-3 mt-2" />
+                        <CommentOutlined onClick={() => handleComment(post)}
+                        className="text-danger h5 ps-3 mt-2" />
                         <div className="px-1">2 comments</div>
                       </div>
                     </div>
