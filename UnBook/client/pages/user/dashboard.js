@@ -7,6 +7,8 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import PostList from "../../components/cards/PostList";
 import People from "../../components/cards/People";
+import Link from "next/link";
+
 
 const Home = () => {
     const [state, setState] = useContext(UserContext);
@@ -151,6 +153,11 @@ const Home = () => {
                 {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}
 
                 <div className="col-md-4">
+                  {state && state.user && state.user.following && (
+                    <Link href={`/user/following`}>
+                      <p className="h6">{state.user.following.length} Seguindo</p>
+                    </Link>
+                  )}
                   <People people={people} handleFollow={handleFollow} />
                 </div>
             </div>

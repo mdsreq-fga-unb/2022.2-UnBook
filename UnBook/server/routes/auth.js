@@ -15,6 +15,7 @@ import {
     findPeople,
     addFollower,
     userFollow,
+    userFollowing,
  } from "../controllers/auth";
 
 router.post("/register", register);
@@ -26,6 +27,7 @@ router.put("/profile-update", requireSignin, profileUpdate);
 router.get("/find-people", requireSignin, findPeople);
 
 router.put("/user-follow", requireSignin, addFollower, userFollow);
+router.get("/user-following", requireSignin, userFollowing);
 
 module.exports = router;
 
