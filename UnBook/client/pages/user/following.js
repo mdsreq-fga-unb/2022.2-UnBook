@@ -7,6 +7,7 @@ import axios from "axios";
 import { RollbackOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { toast } from "react-toastify";
+import { newsFeed } from "./dashboard";
 
 const Following = () => {
   const [state, setState] = useContext(UserContext);
@@ -57,6 +58,8 @@ const Following = () => {
       let filtered = people.filter((p) => p._id !== auth._id);
       setPeople(filtered);
       toast.error(`Deixou de seguir ${user.name}`);
+      // rerender the posts in newsfeed
+      newsFeed();
     } catch (err) {
       console.log(err);
     }
