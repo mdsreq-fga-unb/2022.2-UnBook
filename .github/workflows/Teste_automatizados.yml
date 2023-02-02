@@ -26,4 +26,4 @@ jobs:
           
       - run: |
            cd UnBook/client
-           npm test --no watch
+           npm test -- --no watch
