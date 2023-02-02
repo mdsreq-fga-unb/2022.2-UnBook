@@ -29,5 +29,5 @@ jobs:
           
       - run: |
            cd UnBook/client
-           npm test 
+           npm test --no watch
            xdotool key q
