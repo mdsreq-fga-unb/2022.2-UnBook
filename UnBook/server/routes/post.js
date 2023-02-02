@@ -39,6 +39,6 @@ router.put("/like-post", requireSignin, likePost);
 router.put("/unlike-post", requireSignin, unlikePost);
 
 router.put('/add-comment', requireSignin, addComment);
-router.delete('/remove-comment', requireSignin, removeComment);
+router.put('/remove-comment', requireSignin, removeComment);
 
 module.exports = router;

@@ -21,7 +21,8 @@ const Post = ({
   handleLike,
   handleUnlike,
   handleComment,
-  commentsCount = 2,
+  commentsCount = 10,
+  removeComment,
 }) => {
   const [state] = useContext(UserContext);
   const router = useRouter();
@@ -89,7 +90,10 @@ const Post = ({
           </div>
           {/* 2 comments */}
           {post.comments && post.comments.length > 0 && (
-            <ol className="list-group">
+            <ol
+              className="list-group"
+              style={{ maxHeight: "125px", overflow: "scroll" }}
+            >
               {post.comments.slice(0, commentsCount).map((c) => (
                 <li className="list-group-item d-flex justify-content-between align-items-start">
                   <div className="ms-2 me-auto">
@@ -105,6 +109,14 @@ const Post = ({
                   </div>
                   <span className="badge rounded-pill text-muted">
                     {moment(c.created).fromNow()}
+                    {state && state.user && state.user._id === c.postedBy._id && (
+                      <div className="ml-auto mt-1">
+                        <DeleteOutlined
+                          onClick={() => removeComment(post._id, c)}
+                          className="pl-2 text-danger"
+                        />
+                      </div>
+                    )}
                   </span>
                 </li>
               ))}
