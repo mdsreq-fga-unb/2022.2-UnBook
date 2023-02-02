@@ -17,9 +17,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          
       - run: |
-        sudo apt-get update
-        sudo apt-get install -y 
+        sudo apt install -y xdotool 
         
       - run: |
           cd UnBook
