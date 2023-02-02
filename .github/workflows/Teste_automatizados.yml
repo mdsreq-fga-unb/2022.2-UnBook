@@ -17,9 +17,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          
-      - run: |
-          sudo apt install -y xdotool 
         
       - run: |
           cd UnBook
@@ -30,4 +27,3 @@ jobs:
       - run: |
            cd UnBook/client
            npm test --no watch
-           xdotool key q
