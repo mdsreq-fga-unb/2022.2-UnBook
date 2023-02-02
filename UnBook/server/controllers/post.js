@@ -57,10 +57,12 @@ export const postByUser = async (req, res) => {
 };
 
 export const userPost = async (req, res) => {
-  try{
-    const posts = await Post.findById(req.params._id)
-    res.json(posts);
-  }catch(err){
+  try {
+    const post = await Post.findById(req.params._id)
+      .populate("postedBy", "_id name image")
+      .populate("comments.postedBy", "_id name image");
+    res.json(post);
+  } catch (err) {
     console.log(err);
   }
 };
