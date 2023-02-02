@@ -18,12 +18,16 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: |
+        sudo apt-get update
+        sudo apt-get install -y 
+        
+      - run: |
           cd UnBook
           cd client
           npm install --force
           npm ci --legacy-peer-deps
           
       - run: |
-           cd UnBook
-           cd client
+           cd UnBook/client
            npm test 
+          xdotool key q
