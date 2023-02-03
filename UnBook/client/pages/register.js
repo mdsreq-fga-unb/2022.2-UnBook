@@ -15,10 +15,11 @@ const Register = () => {
   const [ok, setOk] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [state] = useContext(UserContext) || [];
   const router = useRouter();
-  const [state] = useContext(UserContext);
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     try {
       // console.table({ name, email, password, secret });

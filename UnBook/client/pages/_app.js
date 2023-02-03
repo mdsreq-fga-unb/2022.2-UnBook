@@ -4,6 +4,7 @@ import Nav from "../components/Nav";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "antd/dist/antd.css";
+import Register from './register';
 
 function MyApp({ Component, pageProps }) {
     return (

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { UserContext } from "../context";
 import { useRouter } from "next/router";
 
+
+
 const Nav = () => {
   const [current, setCurrent] = useState("");
   const [state, setState] = useContext(UserContext);

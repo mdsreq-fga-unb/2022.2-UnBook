@@ -1,6 +1,10 @@
 import React from 'react';
 import { render, cleanup } from '@testing-library/react';
 import { UserContext, UserProvider } from '../../context';
+import { Router } from 'next/router';
+import mockRouter from 'next-router-mock';
+
+jest.mock('next/router', () => require('next-router-mock'));
 
 afterEach(cleanup);
 
