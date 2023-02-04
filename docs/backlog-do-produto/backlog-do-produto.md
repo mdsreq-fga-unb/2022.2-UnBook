@@ -69,5 +69,5 @@
 
 | MVP | User Stories                                                     | Objetivo                              |
 | --- | ---------------------------------------------------------------- | ------------------------------------- |
-| 1   | US01, US02, US03, US29, US31, US32, US34                   | Criar e vizualizar postagens          |
+| 1   | US01, US02, US03, US05, US29, US31, US32, US34                   | Criar e vizualizar postagens          |
 | 2   | US04, US06, US07, US08, US19, US20, US21, US22, US23, US33       | Permitir interações entre os usuários |
