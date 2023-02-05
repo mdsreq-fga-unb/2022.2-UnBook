@@ -99,10 +99,15 @@ export const newsFeed = async (req, res) => {
     let following = user.following;
     following.push(user._id);
 
+    //pagination
+    const currentPage = req.params.page || 1;
+    const perPage = 3; 
+
     const posts = await Post.find({ postedBy: { $in: following } })
+      .skip((currentPage - 1) * perPage)
       .populate("postedBy", "_id name image")
       .sort({createdAt: -1})
-      .limit(10);
+      .limit(perPage);
 
     res.json(posts);
   } catch (err) {
@@ -172,5 +177,14 @@ export const removeComment = async (req, res) => {
     res.json(post);
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const totalPosts = async (req, res) => {
+  try{
+    const total = await Post.find().estimatedDocumentCount();
+    res.json(total);
+  }catch(err){
+    console.log(err)
   }
 };

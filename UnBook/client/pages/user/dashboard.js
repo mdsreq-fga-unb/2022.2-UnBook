@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import PostList from "../../components/cards/PostList";
 import People from "../../components/cards/People";
 import Link from "next/link";
-import { Modal } from "antd";
+import { Modal, Pagination } from "antd";
 import CommentForm from "../../components/forms/CommentForms";
 
 const Home = () => {
@@ -30,6 +30,10 @@ const Home = () => {
     const [visible, setVisible] = useState(false);
     const [currentPost, setCurrentPost] = useState({});
 
+    //pagination
+    const [totalPosts, setTotalPosts] = useState(0);
+    const [page, setPage] = useState(1);
+
     //route
     const router = useRouter();
 
@@ -38,11 +42,19 @@ const Home = () => {
         newsFeed();
         findPeople();
       }
-    }, [state && state.token]);
+    }, [state && state.token, page]);
+
+    useEffect(() => {
+      try{
+        axios.get('/total-posts').then(({data}) => setTotalPosts(data));
+      }catch(err){
+        console.log(err);
+      }
+    }, []);
 
     const newsFeed = async () => {
       try{
-        const {data} = await axios.get("/news-feed");
+        const {data} = await axios.get('/news-feed/s{page}');
         //console.log("user posts => ", data);
         setPosts(data);
       }catch(err){
@@ -69,6 +81,7 @@ const Home = () => {
         if (data.error) {
           toast.error(data.error);
         } else {
+          setPage(1);
           newsFeed();
           toast.success("Publicação criada com sucesso!");
           setContent("");
@@ -177,9 +190,17 @@ const Home = () => {
       }
     };
 
-    const removeComment = async () => {
+    const removeComment = async (postId, comment) => {
+      // console.log(postId, comment);
+      let answer = window.confirm("Are you sure?");
+      if (!answer) return;
       try {
-        
+        const { data } = await axios.put("/remove-comment", {
+          postId,
+          comment,
+        });
+        console.log("comment removed", data);
+        newsFeed();
       } catch (err) {
         console.log(err);
       }
@@ -210,6 +231,12 @@ const Home = () => {
                     handleLike={handleLike} 
                     handleUnlike={handleUnlike} 
                     handleComment={handleComment}
+                    removeComment={removeComment}
+                    />
+                  <Pagination 
+                    current={page}
+                    total = {(totalPosts/3)*10} 
+                    onChange={(value) => setPage(value)}
                     />
                 </div>
 
