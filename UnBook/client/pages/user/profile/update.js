@@ -106,7 +106,7 @@ const ProfileUpdate = () => {
           {/* upload image */}
           <label className="d-flex justify-content-center h5">
             {image && image.url ? (
-                <Avatar size={30} src={image.url} className="mt-1" />
+                <Avatar size={40} src={image.url} className="mt-1" />
               ) : uploading ? (
                 <LoadingOutlined className="mt-2 h5"/>
               ) : (

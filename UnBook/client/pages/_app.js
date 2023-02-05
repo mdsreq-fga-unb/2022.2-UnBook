@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
             <div>
                 <link rel="stylesheet" href="/css/styles.css" />
             </div>
-            <Nav />
+            {Component.name !== 'Login' && <Nav />}
             <ToastContainer position="top-center" />
             <Component {...pageProps} />
         </UserProvider>
