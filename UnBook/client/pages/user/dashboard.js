@@ -10,6 +10,7 @@ import People from "../../components/cards/People";
 import Link from "next/link";
 import { Modal, Pagination } from "antd";
 import CommentForm from "../../components/forms/CommentForms";
+import Search from "../../components/Search";
 
 const Home = () => {
   const [state, setState] = useContext(UserContext);
