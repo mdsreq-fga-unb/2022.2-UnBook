@@ -251,6 +251,8 @@ const Home = () => {
           {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}
 
           <div className="col-md-4">
+            <Search/>
+            <br/>
             {state && state.user && state.user.following && (
               <Link href={`/user/following`}>
                 <p className="h6">{state.user.following.length} Following</p>
