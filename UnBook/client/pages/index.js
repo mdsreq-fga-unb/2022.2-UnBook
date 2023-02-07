@@ -1,18 +1,38 @@
 import { useContext } from 'react';
 import { UserContext } from '../context';
+import ParallaxBG from '../components/cards/ParallaxBG';
+import axios from 'axios';
+import Post from "../components/cards/Post";
 
-const Home = () => {
+const Home = ({posts}) => {
     const [state, setState] = useContext(UserContext) || [];
+
     return (
-        <div className="container">
+      <>
+        <ParallaxBG url="images/default.jpg"/>
+          <div className="container">
             <div className="row">
-                <div className="col">
-                    <h1 className="display-1 text-center py-5">Home Page</h1>
-                    {JSON.stringify(state)}
+              {posts.map((post) => (
+                <div className="col-md-4">
+                  <Post
+                    key={post._id}
+                    post={post} />
                 </div>
+              ))}
             </div>
-        </div>
+          </div>
+      </>
     );
 };
 
+export async function getServerSideProps(context) {
+  const { data } = await axios.get("/posts");
+  return {
+    props: {
+      posts: data,
+    },
+  };
+}
+
 export default Home;
+
