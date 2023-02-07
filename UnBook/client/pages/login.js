@@ -94,6 +94,11 @@ const Login = () => {
     setAddClass(!addClass);
   };
 
+  const handleClickLogin = () => {
+    setAddClass(!addClass);
+    setOk(false);
+  };
+
 
   //impedir que o usuario mude de pagina pela barra do navegador
   if(state && state.token) router.push("/");
@@ -139,18 +144,17 @@ const Login = () => {
                 <Modal
                   title="Parabéns!"
                   visible={ok}
-                  onCancel={() => setOk(false)}
+                  onCancel={
+                    () => {
+                      setOk(false);
+                      handleClickLogin();
+                    }
+                  }
                   footer={null}
                 >
                 <p>Usuário cadastrado!</p>
-                <Link href="/login" className="btn btn-primary btn-sm">Login</Link>
+                <Link href="/login" onClick={handleClickLogin} className="btn btn-primary btn-sm">Login</Link>
                 </Modal>
-              </div>
-            </div>
-
-            <div className='row'>
-              <div className='col'>
-                <p className='text-center'>Já possui uma conta? {" "}<Link href="/login">Login</Link></p>
               </div>
             </div>
           </div>
@@ -161,7 +165,7 @@ const Login = () => {
         <div class="panel left-panel">
           <div class="content">
             <h3>É novo por aqui?</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis!</p>
+            <p>Clique em cadastrar, preencha o formulário e venha fazer parte da comunidade UnBooK!</p>
             <button class="btn-login  transparent" id="sign-up-btn" onClick={handleClick}>Cadastrar</button>
           </div>
           <img className='image' src="images/login-social.svg" alt="" />
@@ -170,7 +174,7 @@ const Login = () => {
         <div class="panel right-panel">
           <div class="content">
             <h3>Já possui uma conta?</h3>
-            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis!
+            <p>Clique em entrar e faça seu login utilizando seu email e senha.
             </p>
             <button class="btn-login  transparent" id="sign-in-btn"  onClick={handleClick} >Entrar</button>
           </div>
