@@ -19,6 +19,7 @@ import { createPost,
         addComment,
         removeComment,
         totalPosts,
+        totalFeed,
      } from "../controllers/post";
 
 router.post("/create-post", requireSignin, createPost);
@@ -35,6 +36,7 @@ router.put("/update-post/:_id", requireSignin, canEditDeletePost, updatePost);
 router.delete("/delete-post/:_id", requireSignin, canEditDeletePost, deletePost);
 
 router.get("/news-feed/:page", requireSignin, newsFeed);
+router.get("/total-feed/:page", requireSignin, totalFeed);
 
 router.put("/like-post", requireSignin, likePost);
 router.put("/unlike-post", requireSignin, unlikePost);
