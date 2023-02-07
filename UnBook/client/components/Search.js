@@ -46,7 +46,7 @@ const Search = () => {
                 </div>
             </form>
 
-            {result && result.map((r) => (<People key={r._id} people={result} />))}
+            {result && result.map((r) => (<People key={r._id} people={[r]} />))}
         </>
     );
 };
