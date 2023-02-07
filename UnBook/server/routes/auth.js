@@ -19,6 +19,7 @@ import {
     removeFollower,
     userUnfollow,
     searchUser,
+    getUser,
  } from "../controllers/auth";
 
 router.post("/register", register);
@@ -34,6 +35,7 @@ router.get("/user-following", requireSignin, userFollowing);
 router.put("/user-unfollow", requireSignin, removeFollower, userUnfollow);
 
 router.get("/search_user/:query", searchUser);
+router.get("/user/:username", getUser);
 
 
 

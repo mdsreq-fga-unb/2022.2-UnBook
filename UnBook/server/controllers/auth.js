@@ -273,3 +273,12 @@ export const searchUser = async (req, res) => {
         console.log(err)
     }
 };
+
+export const getUser = async (req, res) => {
+    try {
+      const user = await User.findOne({userName: req.params.username}).select("-password -secret");
+      res.json(user);
+    } catch (err) {
+      console.log(err)
+    }
+}
