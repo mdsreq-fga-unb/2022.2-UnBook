@@ -20,6 +20,7 @@ import { createPost,
         removeComment,
         totalPosts,
         totalFeed,
+        posts,
      } from "../controllers/post";
 
 router.post("/create-post", requireSignin, createPost);
