@@ -279,4 +279,14 @@ const Home = () => {
   );
 };
 
+export async function getServerSideProps(context) {
+  const { data } = await axios.get("/posts");
+  return {
+    props: {
+      posts: data,
+    },
+  };
+}
+
 export default Home;
+
