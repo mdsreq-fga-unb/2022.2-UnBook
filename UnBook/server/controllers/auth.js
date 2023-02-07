@@ -267,7 +267,7 @@ export const searchUser = async (req, res) => {
                 { name: { $regex: query, $options: 'i' } },
                 { username: { $regex: query, $options: 'i' } },
             ],
-        }).select('_id name username image');
+        }).select('-password -secret');
         res.json(user);
     } catch (err) {
         console.log(err)

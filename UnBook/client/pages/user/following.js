@@ -55,7 +55,7 @@ const Following = () => {
       // update context
       setState({ ...state, user: data });
       // update people state
-      let filtered = people.filter((p) => p._id !== auth._id);
+      let filtered = people.filter((p) => p._id !== user._id);
       setPeople(filtered);
       toast.error(`Deixou de seguir ${user.name}`);
       // rerender the posts in newsfeed
