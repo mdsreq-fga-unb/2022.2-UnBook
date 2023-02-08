@@ -6,6 +6,20 @@ import { toast } from "react-toastify";
 import Post from "../../components/cards/Post";
 import Link from "next/link";
 import { RollbackOutlined } from "@ant-design/icons";
+import { useLocation } from 'react-router-dom';
+
+const MyLink = () => {
+  const { pathname } = useRouter();
+
+  console.log(pathname)
+  
+  let linkHref = "/";
+  if (pathname === "http://localhost:3000/user/dashboard") {
+    linkHref = "http://localhost:3000/user/dashboard";
+  }
+
+  return linkHref;
+};
 
 const PostComments = () => {
   const [post, setPost] = useState({});
@@ -53,7 +67,7 @@ const PostComments = () => {
         <Post post={post} commentsCount={100} removeComment={removeComment} />
       </div>
 
-      <Link href="/user/dashboard">
+      <Link href={MyLink()}>
         <p className="d-flex justify-content-center p-5">
           <RollbackOutlined />
         </p>

@@ -69,9 +69,7 @@ const Post = ({
                 className="text-danger pt-2 h5 px-2"
               />
               <div className="pt-2 pl-3">
-                <Link href={`/post/${post._id}`}>
                   <p>{post.comments.length} comments</p>
-                </Link>
               </div>
 
               {state && state.user && state.user._id === post.postedBy._id && (

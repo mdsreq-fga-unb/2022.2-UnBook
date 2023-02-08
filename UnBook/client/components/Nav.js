@@ -35,9 +35,9 @@ const Nav = () => {
 
       {state !== null ? (
         <>
-          <div class="dropdown">
+          <div className="dropdown">
             <a 
-              class="btn dropdown-toggle text_light" 
+              className="btn dropdown-toggle text_light" 
               role="button"
               id="dropdownMenuLink"
               data-bs-toggle="dropdown" 
@@ -46,7 +46,7 @@ const Nav = () => {
               {state && state.user && state.user.name}
             </a>
 
-            <ul class="dropdown-menu">
+            <ul className="dropdown-menu">
               <li>
                 <Link 
                   href="/user/dashboard" 

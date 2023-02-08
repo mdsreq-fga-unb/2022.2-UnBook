@@ -20,6 +20,7 @@ import { createPost,
         removeComment,
         totalPosts,
         totalFeed,
+        getPost,
      } from "../controllers/post";
 
 router.post("/create-post", requireSignin, createPost);
@@ -41,9 +42,11 @@ router.get("/total-feed/:page", requireSignin, totalFeed);
 router.put("/like-post", requireSignin, likePost);
 router.put("/unlike-post", requireSignin, unlikePost);
 
-router.put('/add-comment', requireSignin, addComment);
-router.put('/remove-comment', requireSignin, removeComment);
+router.put("/add-comment", requireSignin, addComment);
+router.put("/remove-comment", requireSignin, removeComment);
 
 router.get("/total-posts", totalPosts);
+
+router.get("/post/:id", getPost);
 
 module.exports = router;
