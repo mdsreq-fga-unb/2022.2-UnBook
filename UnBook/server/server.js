@@ -1,33 +1,51 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import { readdirSync } from "fs";
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import morgan from "morgan";
+import { readdir } from "fs";
+import dotenv from "dotenv";
 
-const morgan = require('morgan');
-require('dotenv').config();
+dotenv.config();
 
 const app = express();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http, {
+  cors: {
+    origin: process.env.CLIENT_URL,
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-type"],
+  },
+});
 
-//db
-mongoose.connect(process.env.DATABASE, {
+// db
+mongoose
+  .connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-})
-.then(() => console.log("DB CONNECTED"))
-.catch(err => console.log("DB CONNECTION ERROR =>", err));
+  })
+  .then(() => console.log("DB connected"))
+  .catch((err) => console.log("DB CONNECTION ERROR => ", err));
+
 
 // middlewares
 app.use(express.json({ limit: "5mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(
-    cors({
-        origin: ["http://localhost:3000"],
-    })
+  cors({
+    origin: [process.env.CLIENT_URL],
+  })
 );
 
 // autoload routes
-readdirSync('./routes').map((r) => app.use('/api', require(`./routes/${r}`)));
+readdir("./routes", (err, files) => {
+  files.map((r) => app.use("/api", require(`./routes/${r}`)));
+});
+
+// socketio
+io.on("connect", (socket) => {
+  console.log("SOCKET>IO", socket.id);
+});
 
 const port = process.env.PORT || 8000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`)); 
+http.listen(port, () => console.log(`Server running on port ${port}`));

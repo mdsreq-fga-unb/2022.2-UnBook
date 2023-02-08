@@ -12,6 +12,11 @@ import { Modal, Pagination } from "antd";
 import CommentForm from "../components/forms/CommentForms";
 import Search from "../components/Search";
 import Head from "next/head"
+import io from "socket.io-client";
+
+const socket = io(process.env.NEXT_PUBLIC_SOCKETIO, {
+  reconnection: true,
+});
 
 const head = () => (
   <Head>
@@ -69,6 +74,10 @@ const Home = () => {
     } catch (err) {
       console.log(err);
     }
+  }, []);
+
+  useEffect(() => {
+    console.log('SOCKETIO ON JOIN', socket)   
   }, []);
 
   const totalFeed = async (page) => {
