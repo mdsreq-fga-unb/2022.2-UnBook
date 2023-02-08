@@ -67,7 +67,29 @@ const Home = () => {
     setPosts([...posts, post]);
     newsFeed(); });}
     }, [socket]);
-
+  
+  useEffect(() => {
+    if (socket) {
+    socket.on("new-comment", (comment) => {
+    setPosts(posts.map((post) => {
+    if (post._id === comment.postId) {
+    return {...post, comments: [...post.comments, comment] };
+    }
+    return post;
+    }));newsFeed(); });}
+    }, [socket]);
+  
+  useEffect(() => {
+    if (socket) {
+    socket.on("remove-comment", (comment) => {
+    setPosts(posts.map((post) => {
+    if (post._id === comment.postId) {
+    return {...post, comments: [...post.comments, comment] };
+    }
+    return post;
+    }));newsFeed(); });}
+    }, [socket]);
+  
   const newsFeed = async (page) => {
     try {
       const { data } = await axios.get(`/news-feed/${page}`);
@@ -201,6 +223,7 @@ const Home = () => {
       console.log("add comment", data);
       setComment("");
       setVisible(false);
+      socket.emit("new-comment", data);
       newsFeed();
     } catch (err) {
       console.log(err);
@@ -217,6 +240,7 @@ const Home = () => {
         comment,
       });
       console.log("comment removed", data);
+      socket.emit("remove-comment", data);
       newsFeed();
     } catch (err) {
       console.log(err);

@@ -96,7 +96,18 @@ const Home = () => {
     socket.on("new-comment", (comment) => {
     setPosts(posts.map((post) => {
     if (post._id === comment.postId) {
-    return {...posts, ...post, comments: [...post.comments, comment] };
+    return {...post, comments: [...post.comments, comment] };
+    }
+    return post;
+    }));totalFeed(); });}
+    }, [socket]);
+  
+  useEffect(() => {
+    if (socket) {
+    socket.on("remove-comment", (comment) => {
+    setPosts(posts.map((post) => {
+    if (post._id === comment.postId) {
+    return {...post, comments: [...post.comments, comment] };
     }
     return post;
     }));totalFeed(); });}
