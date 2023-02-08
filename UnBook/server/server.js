@@ -43,7 +43,10 @@ readdir("./routes", (err, files) => {
 
 // socketio
 io.on("connect", (socket) => {
-  console.log("SOCKET>IO", socket.id);
+  // console.log("SOCKET>IO", socket.id);
+  socket.on('send-message', (message) => {
+    console.log('new message received =>', message);
+  })
 });
 
 const port = process.env.PORT || 8000;

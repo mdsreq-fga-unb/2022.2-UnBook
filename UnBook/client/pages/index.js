@@ -251,7 +251,11 @@ const Home = () => {
             <h1>totalFeed</h1>
           </div>
         </div>
-
+        <button onClick={() => {
+          socket.emit('send-message',"This is pedro!!!"
+          )}} >
+          Send Message
+          </button>
         <div className="row py-3">
           <div className="col-md-8">
             <PostForm
