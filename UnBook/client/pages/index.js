@@ -11,8 +11,31 @@ import Link from "next/link";
 import { Modal, Pagination } from "antd";
 import CommentForm from "../components/forms/CommentForms";
 import Search from "../components/Search";
+import Head from "next/head"
+
+const head = () => (
+  <Head>
+    <title>UnBook - Uma rede social de Alunos para Alunos</title>
+    <meta
+      name="description"
+      content="Uma rede social de Alunos para Alunos feita na disciplina de MDS do curso de Engenharia de Software da Universidade de Brasília"
+    />
+    <meta
+      property="og:description"
+      content="Uma rede social de Alunos para Alunos"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="UnBook" />
+    {/* <meta property="og:url" content="http://UnBook.com" />
+    <meta
+      property="og:image:secure_url"
+      content="http://UnBook.com/images/default.jpg"
+/> */}
+  </Head>
+);
 
 const Home = () => {
+  {head()}
   const [state, setState] = useContext(UserContext);
   // state
   const [content, setContent] = useState("");
@@ -255,7 +278,7 @@ const Home = () => {
             <br/>
             {state && state.user && state.user.following && (
               <Link href={`/user/following`}>
-                <p className="h6">{state.user.following.length} Following</p>
+                <p className="h6">{state.user.following.length} Seguindo </p>
               </Link>
             )}
             <People people={people} handleFollow={handleFollow} />

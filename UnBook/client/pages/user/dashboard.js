@@ -255,7 +255,7 @@ const Home = () => {
             <br/>
             {state && state.user && state.user.following && (
               <Link href={`/user/following`}>
-                <p className="h6">{state.user.following.length} Following</p>
+                <p className="h6">{state.user.following.length} Seguindo</p>
               </Link>
             )}
             <People people={people} handleFollow={handleFollow} />
