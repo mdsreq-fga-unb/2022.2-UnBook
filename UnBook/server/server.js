@@ -45,7 +45,8 @@ readdir("./routes", (err, files) => {
 io.on("connect", (socket) => {
   // console.log("SOCKET>IO", socket.id);
   socket.on('send-message', (message) => {
-    console.log('new message received =>', message);
+    //console.log('new message received =>', message);
+    socket.broadcast.emit('receive-message', message);
   })
 });
 

@@ -77,7 +77,10 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    console.log('SOCKETIO ON JOIN', socket)   
+    //console.log('SOCKETIO ON JOIN', socket)   
+    socket.on("receive-message", (newMessage) => {
+      alert(newMessage);
+    });
   }, []);
 
   const totalFeed = async (page) => {
