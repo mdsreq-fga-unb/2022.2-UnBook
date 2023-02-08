@@ -213,6 +213,18 @@ export const totalPosts = async (req, res) => {
   }
 };
 
+export const posts = async (req, res) => {
+  try {
+    const posts = await Post.find()
+      .populate("postedBy", "_id name image")
+      .populate("comments.postedBy", "_id name image")
+      .sort({ createdAt: -1 })
+    res.json(posts);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const getPost = async (req, res) => {
   try {
     const post = await Post.findById(req.params._id)

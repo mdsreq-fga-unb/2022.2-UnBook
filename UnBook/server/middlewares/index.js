@@ -1,5 +1,6 @@
-const { expressjwt: jwt } = require("express-jwt");
 import Post from "../models/post";
+import User from "../models/user";
+const { expressjwt: jwt } = require("express-jwt");
 
 export const requireSignin = jwt({
     secret: process.env.JWT_SECRET,
@@ -18,4 +19,18 @@ export const canEditDeletePost = async (req, res, next) => {
     } catch (error) {
       
     }
+};
+
+export const isAdmin = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.user._id);
+    console.log("isAdmin ===> ", user);
+    if (user.role !== "Admin") {
+      return res.status(400).send("Unauthorized");
+    } else {
+      next();
+    }
+  } catch (err) {
+    console.log(err);
+  }
 };

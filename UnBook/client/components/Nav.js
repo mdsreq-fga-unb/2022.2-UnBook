@@ -65,6 +65,18 @@ const Nav = () => {
                     Perfil
                 </Link>
               </li>
+              {state.user.role === "Admin" && (
+                <li>
+                <Link 
+                  href="/admin" 
+                  className={`nav-link dropdown-item ${
+                    current === "/admin" && "active"
+                  }`}>
+                    Admin
+                </Link>
+              </li>
+              )}
+
               <li>
                 <a
                   onClick={logout}

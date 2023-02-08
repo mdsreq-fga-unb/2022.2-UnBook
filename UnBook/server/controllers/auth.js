@@ -96,7 +96,7 @@ export const login = async (req, res) => {
 export const currentUser = async(req, res) => {
     try {
       const user = await User.findById(req.auth._id).select("-password");
-      // res.json(user)
+      console.log("CURRENT USER IN BACKEND => ", user)
       res.json({ ok: true });
     } catch (err) {
       console.log(err);
