@@ -98,19 +98,21 @@ const Post = ({
                   className="list-group-item d-flex justify-content-between align-items-start"
                 >
                   <div className="ms-2 me-auto">
-                    <div>
-                      <Avatar
-                        size={20}
-                        className="mb-1 mr-3"
-                        src={imageSource(c.postedBy)}
-                      />
-                      &nbsp;{c.postedBy.name}
-                    </div>
+                    { c && c.postedBy && (
+                      <div>
+                        <Avatar
+                          size={20}
+                          className="mb-1 mr-3"
+                          src={imageSource(c.postedBy)}
+                        />
+                        &nbsp;{c.postedBy.name}
+                      </div>)
+                    }
                     <i className="text-muted">{c.text}</i>
                   </div>
                   <span className="badge rounded-pill text-muted">
                     {moment(c.created).fromNow()}
-                    {state && state.user && state.user._id === c.postedBy._id && (
+                    {state && state.user && c && c.postedBy && state.user._id === c.postedBy._id && (
                       <div className="ml-auto mt-1">
                         <DeleteOutlined
                           onClick={() => removeComment(post._id, c)}

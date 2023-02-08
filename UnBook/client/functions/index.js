@@ -1,5 +1,5 @@
 export const imageSource = (user) => {
-    if (user.image) {
+    if (user && user.image) {
     return user.image.url;
     } else {
     return "/images/logo.png";
