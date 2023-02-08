@@ -162,26 +162,25 @@ const Login = () => {
       </div>
 
       <div className="panels-container">
-        <div class="panel left-panel">
-          <div class="content">
+        <div className="panel left-panel">
+          <div className="content">
             <h3>É novo por aqui?</h3>
             <p>Clique em cadastrar, preencha o formulário e venha fazer parte da comunidade UnBooK!</p>
-            <button class="btn-login  transparent" id="sign-up-btn" onClick={handleClick}>Cadastrar</button>
+            <button className="btn-login  transparent" id="sign-up-btn" onClick={handleClick}>Cadastrar</button>
           </div>
           <img className='image' src="images/login-social.svg" alt="" />
         </div>
 
-        <div class="panel right-panel">
-          <div class="content">
+        <div className="panel right-panel">
+          <div className="content">
             <h3>Já possui uma conta?</h3>
             <p>Clique em entrar e faça seu login utilizando seu email e senha.
             </p>
-            <button class="btn-login  transparent" id="sign-in-btn"  onClick={handleClick} >Entrar</button>
+            <button className="btn-login  transparent" id="sign-in-btn"  onClick={handleClick} >Entrar</button>
           </div>
           <img className='image' src="images/signup-social.svg" alt="" />
         </div>
       </div>
-
     </div>
   );
 };
