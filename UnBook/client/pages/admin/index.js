@@ -36,7 +36,7 @@ const handleDelete = async (post) => {
         if (!answer) return;
             const { data } = await axios.delete(`/admin/delete-post/${post._id}`);
             toast.error("Post deleted");
-        newsFeed();
+             newsFeed();
     } catch (err) {
         console.log(err);
     }
@@ -49,6 +49,22 @@ return (
                 <div className="col text-center">
                     <h1>ADMIN</h1>
                 </div>
+            </div>
+            <div className='row py-4'>
+              <div className='col-md-8 offset-md-2'>
+                {posts && posts.map(post => (
+                <div className='card'>
+                    <div className='d-flex justify-content-between' key={post._id}>
+                      <div>
+                        {renderHTML(post.content)} - {post.postedBy && <b>{post.postedBy.name}</b>}
+                      </div>
+                      <div>
+                        <button onClick={() => handleDelete(post)} className='text-danger'>Deletar</button>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
         </div>
     </AdminRoute>
