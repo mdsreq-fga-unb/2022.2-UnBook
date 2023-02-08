@@ -52,7 +52,7 @@ export const postByUser = async (req, res) => {
       .populate("postedBy", "_id name image")
       .sort({ createdAt:  -1})
       .limit(10);
-      console.log('posts',posts)
+      // console.log('posts',posts)
     res.json(posts);
   }catch(err){
     console.log(err);
@@ -230,7 +230,7 @@ export const getPost = async (req, res) => {
     const post = await Post.findById(req.params._id)
       .populate("postedBy", "_id name image")
       .populate("comments.postedBy", "_id name image");
-    console.log(post)
+    // console.log(post)
     res.json(post);
   } catch (err) {
     console.log(err);

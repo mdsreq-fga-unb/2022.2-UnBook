@@ -23,7 +23,7 @@ const Following = () => {
   const fetchFollowing = async () => {
     try {
       const { data } = await axios.get("/user-following");
-      console.log("following => ", data);
+      // console.log("following => ", data);
       setPeople(data);
     } catch (err) {
       console.log(err);

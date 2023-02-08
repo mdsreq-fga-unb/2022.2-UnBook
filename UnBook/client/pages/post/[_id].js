@@ -11,7 +11,7 @@ import { useLocation } from 'react-router-dom';
 const MyLink = () => {
   const { pathname } = useRouter();
 
-  console.log(pathname)
+  // console.log(pathname)
   
   let linkHref = "/";
   if (pathname === "http://localhost:3000/user/dashboard") {
@@ -48,7 +48,7 @@ const PostComments = () => {
         postId,
         comment,
       });
-      console.log("comment removed", data);
+      // console.log("comment removed", data);
       fetchPost();
     } catch (err) {
       console.log(err);

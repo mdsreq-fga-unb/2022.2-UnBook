@@ -136,7 +136,7 @@ const Home = () => {
     // console.log("post => ", content);
     try {
       const { data } = await axios.post("/create-post", { content, image });
-      console.log("create post response => ", data);
+      // console.log("create post response => ", data);
       if (data.error) {
         toast.error(data.error);
       } else {
@@ -244,7 +244,7 @@ const Home = () => {
         postId: currentPost._id,
         comment,
       });
-      console.log("add comment", data);
+      // console.log("add comment", data);
       setComment("");
       setVisible(false);
       socket.emit("new-comment", data);
@@ -263,7 +263,7 @@ const Home = () => {
         postId,
         comment,
       });
-      console.log("comment removed", data);
+      // console.log("comment removed", data);
       socket.emit("remove-comment", data);
       totalFeed();
     } catch (err) {
@@ -273,9 +273,9 @@ const Home = () => {
 
   const info = async () => {
     try {
-      console.log(page)
+      // console.log(page)
       const { data } = await axios.get("/news-feed/" + '2'); 
-      console.log("info => ", data);
+      // console.log("info => ", data);
     } catch (err) {
       console.log(err);
     }

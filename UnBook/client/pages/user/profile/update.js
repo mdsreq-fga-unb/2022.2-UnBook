@@ -53,7 +53,7 @@ const ProfileUpdate = () => {
           image,
         }
       );
-      console.log("update response =>", data);
+      // console.log("update response =>", data);
 
         if(data.error){
           toast.error(data.error);
@@ -93,6 +93,20 @@ const ProfileUpdate = () => {
       setUploading(false);
     }
   };
+
+  const handleDeleteUser = async (user) => {
+    try {
+        const answer = window.confirm("Você tem certeza que deseja excluir sua conta?");
+        if (!answer) return;
+            const { data } = await axios.delete(`/delete-user/${user._id}`);
+            window.localStorage.removeItem("auth");
+            setState(null);
+            router.push("/login");
+            toast.error("Sua conta foi excluída");
+    } catch (err) {
+        console.log(err);
+    }
+};
 
   return (
     <div className="container-fluid">
@@ -154,7 +168,7 @@ const ProfileUpdate = () => {
 
         <div className='row'>
           <div className='col'>
-            <p className='text-center'>Já possui uma conta? {" "}<Link href="/login">Login</Link></p>
+            <p onClick={() => handleDeleteUser(state.user)} className='text-center'>Deseja excluir sua conta?</p>
           </div>
         </div>
     </div>

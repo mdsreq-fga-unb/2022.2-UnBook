@@ -53,20 +53,20 @@ io.on("connect", (socket) => {
 io.on("connect", (socket) => {
   // console.log("SOCKET>IO", socket.id);
   socket.on("new-post", (newPost) => {
-    console.log('post submited =>', newPost);
+    // console.log('post submited =>', newPost);
     socket.broadcast.emit("new-post", newPost);
   })
 
   socket.on("delete-post", (deletePost) => {
-    console.log('post deleted =>', deletePost);
+    // console.log('post deleted =>', deletePost);
     socket.broadcast.emit("delete-post", deletePost);
   })
   socket.on("new-comment", (comment) => {
-    console.log('new comment =>', comment);
+    // console.log('new comment =>', comment);
     socket.broadcast.emit("new-comment", comment);
   })
   socket.on("remove-comment", (comment) => {
-    console.log('coment removed =>', comment);
+    // console.log('coment removed =>', comment);
     socket.broadcast.emit("remove-comment", comment);
   })
 });

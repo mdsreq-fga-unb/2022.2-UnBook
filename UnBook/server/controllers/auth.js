@@ -96,7 +96,7 @@ export const login = async (req, res) => {
 export const currentUser = async(req, res) => {
     try {
       const user = await User.findById(req.auth._id).select("-password");
-      console.log("CURRENT USER IN BACKEND => ", user)
+      // console.log("CURRENT USER IN BACKEND => ", user)
       res.json({ ok: true });
     } catch (err) {
       console.log(err);
@@ -281,4 +281,31 @@ export const getUser = async (req, res) => {
     } catch (err) {
       console.log(err)
     }
+}
+
+export const users = async (req, res) => {
+  // console.log("delete user => ", req)
+  try {
+    const users = await User.find()
+      .select("-password -secret")
+      .sort({ createdAt: -1 })
+    res.json(users);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+export const deleteUser = async (req, res) => {
+  // console.log("delete post => ", req);
+  try {
+    const user = await User.findByIdAndDelete(req.params._id);
+    // remove a imagem do cloudinary
+    if (user.image && user.image.public_id) {
+      const image = await cloudinary.uploader.destroy(user.image.public_id);
+    }
+    res.json({ ok: true });
+  } catch (err) {
+    console.log(err)
+  }
 }

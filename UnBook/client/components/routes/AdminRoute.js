@@ -16,7 +16,7 @@ const AdminRoute = ({ children }) => {
   const getCurrentAdmin = async () => {
     try {
       const { data } = await axios.get(`/current-admin`);
-      console.log("CURRENT ADMIN RES", data);
+      // console.log("CURRENT ADMIN RES", data);
       if (data.ok) setOk(true);
     } catch (err) {
       router.push("/");
