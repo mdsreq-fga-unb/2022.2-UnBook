@@ -1,19 +1,6 @@
 import { useContext } from "react";
-import renderHTML from "react-render-html";
-import moment from "moment";
-import { Avatar } from "antd";
-import PostImage from "../images/PostImage";
-import {
-  HeartOutlined,
-  HeartFilled,
-  CommentOutlined,
-  EditOutlined,
-  DeleteOutlined,
-} from "@ant-design/icons";
 import { UserContext } from "../../context";
 import { useRouter } from "next/router";
-import { imageSource } from "../../functions";
-import Link from "next/link";
 import Post from "../../components/cards/Post";
 
 const PostList = ({
@@ -23,7 +10,7 @@ const PostList = ({
   handleUnlike,
   handleComment,
   removeComment,
-}) => {
+  }) => {
   const [state] = useContext(UserContext);
   const router = useRouter();
 

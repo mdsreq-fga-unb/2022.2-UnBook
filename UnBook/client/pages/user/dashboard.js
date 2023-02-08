@@ -11,6 +11,7 @@ import Link from "next/link";
 import { Modal, Pagination } from "antd";
 import CommentForm from "../../components/forms/CommentForms";
 import Search from "../../components/Search";
+import io from "socket.io-client";
 
 const Home = () => {
   const [state, setState] = useContext(UserContext);
@@ -33,6 +34,11 @@ const Home = () => {
   // route
   const router = useRouter();
 
+    //socket
+    const socket = io(process.env.NEXT_PUBLIC_SOCKETIO, {
+      reconnection: true,
+    });
+
   useEffect(() => {
     if (state && state.token) {
       newsFeed(page);
@@ -47,6 +53,20 @@ const Home = () => {
       console.log(err);
     }
   }, []);
+
+  useEffect(() => {
+    if (socket) {
+    socket.on("new-post", (post) => {
+    setPosts([...posts, post]);
+    newsFeed(); });}
+    }, [socket]);
+
+  useEffect(() => {
+    if (socket) {
+    socket.on("delete-post", (post) => {
+    setPosts([...posts, post]);
+    newsFeed(); });}
+    }, [socket]);
 
   const newsFeed = async (page) => {
     try {
@@ -80,6 +100,7 @@ const Home = () => {
         toast.success("Post created");
         setContent("");
         setImage({});
+        socket.emit("new-post", data);
       }
     } catch (err) {
       console.log(err);
@@ -112,6 +133,7 @@ const Home = () => {
       if (!answer) return;
       const { data } = await axios.delete(`/delete-post/${post._id}`);
       toast.error("Post deleted");
+      socket.emit("delete-post", data);
       newsFeed();
     } catch (err) {
       console.log(err);

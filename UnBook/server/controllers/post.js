@@ -20,8 +20,11 @@ export const createPost = async (req, res) => {
       image,
       postedBy: req.auth._id,
     });
-    post.save();
-    res.json(post);
+    await post.save();
+
+    const postWithUser = await Post.findById(post._id).populate('postedBy', '-password -secret');
+
+    res.json(postWithUser);
   } catch (err) {
     console.log(err);
     res.sendStatus(400);

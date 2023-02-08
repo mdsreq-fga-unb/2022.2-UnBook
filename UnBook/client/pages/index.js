@@ -14,10 +14,6 @@ import Search from "../components/Search";
 import Head from "next/head"
 import io from "socket.io-client";
 
-const socket = io(process.env.NEXT_PUBLIC_SOCKETIO, {
-  reconnection: true,
-});
-
 const head = () => (
   <Head>
     <title>UnBook - Uma rede social de Alunos para Alunos</title>
@@ -61,6 +57,11 @@ const Home = () => {
   // route
   const router = useRouter();
 
+  //socket
+  const socket = io(process.env.NEXT_PUBLIC_SOCKETIO, {
+    reconnection: true,
+  });
+
   useEffect(() => {
     if (state && state.token) {
       totalFeed(page);
@@ -77,11 +78,29 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    //console.log('SOCKETIO ON JOIN', socket)   
-    socket.on("receive-message", (newMessage) => {
-      alert(newMessage);
-    });
-  }, []);
+    if (socket) {
+    socket.on("new-post", (post) => {
+    setPosts([...posts, post]);
+    totalFeed(); });}
+    }, [socket]);
+
+  useEffect(() => {
+    if (socket) {
+    socket.on("delete-post", (post) => {
+    setPosts([...posts, post]);
+    totalFeed(); });}
+    }, [socket]);
+
+  useEffect(() => {
+    if (socket) {
+    socket.on("new-comment", (comment) => {
+    setPosts(posts.map((post) => {
+    if (post._id === comment.postId) {
+    return {...posts, ...post, comments: [...post.comments, comment] };
+    }
+    return post;
+    }));totalFeed(); });}
+    }, [socket]);
 
   const totalFeed = async (page) => {
     try {
@@ -115,6 +134,8 @@ const Home = () => {
         toast.success("Post created");
         setContent("");
         setImage({});
+        //socket
+        socket.emit("new-post", data);
       }
     } catch (err) {
       console.log(err);
@@ -147,6 +168,7 @@ const Home = () => {
       if (!answer) return;
       const { data } = await axios.delete(`/delete-post/${post._id}`);
       toast.error("Post deleted");
+      socket.emit("delete-post", data);
       totalFeed();
     } catch (err) {
       console.log(err);
@@ -214,6 +236,7 @@ const Home = () => {
       console.log("add comment", data);
       setComment("");
       setVisible(false);
+      socket.emit("new-comment", data);
       totalFeed();
     } catch (err) {
       console.log(err);
@@ -230,6 +253,7 @@ const Home = () => {
         comment,
       });
       console.log("comment removed", data);
+      socket.emit("remove-comment", data);
       totalFeed();
     } catch (err) {
       console.log(err);
@@ -254,11 +278,11 @@ const Home = () => {
             <h1>totalFeed</h1>
           </div>
         </div>
-        <button onClick={() => {
+        {/* <button onClick={() => {
           socket.emit('send-message',"This is pedro!!!"
           )}} >
           Send Message
-          </button>
+        </button> */}
         <div className="row py-3">
           <div className="col-md-8">
             <PostForm

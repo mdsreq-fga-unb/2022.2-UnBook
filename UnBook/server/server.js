@@ -41,12 +41,25 @@ readdir("./routes", (err, files) => {
   files.map((r) => app.use("/api", require(`./routes/${r}`)));
 });
 
-// socketio
+{/* // socketio
 io.on("connect", (socket) => {
   // console.log("SOCKET>IO", socket.id);
   socket.on('send-message', (message) => {
     //console.log('new message received =>', message);
     socket.broadcast.emit('receive-message', message);
+  })
+}); */}
+
+io.on("connect", (socket) => {
+  // console.log("SOCKET>IO", socket.id);
+  socket.on("new-post", (newPost) => {
+    console.log('psot submited =>', newPost);
+    socket.broadcast.emit("new-post", newPost);
+  })
+
+  socket.on("delete-post", (deletePost) => {
+    console.log('post deleted =>', deletePost);
+    socket.broadcast.emit("delete-post", deletePost);
   })
 });
 
