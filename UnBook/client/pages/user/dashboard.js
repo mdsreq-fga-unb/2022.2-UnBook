@@ -265,7 +265,6 @@ const Home = () => {
   return (
     <UserRoute>
       <div className="container-fluid">
-
         <div className="row py-3 background-index">
         <div className="col-md-8 index-container">
           <div className='header-index'>
