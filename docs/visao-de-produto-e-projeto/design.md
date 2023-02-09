@@ -1,6 +1,5 @@
 <p>
   <span style="font-size: 50px;">Padrão de Design UnBook</span>
-  <img src="../img/logo_UnBook.png" width="80px" height="80px" style="display: inline-block; vertical-align: bottom;">
 </p>
 
 ## Introdução
@@ -15,19 +14,18 @@ Informações adicionais, como a responsividade das páginas e a recuperação d
 
 ### Brancos
 
-`#FFFFFF`
+- #FFFFFF
 
 ### Azul
 
-`#2A8BF2`
+- #2A8BF2
 
 ### Azul claro
- `#60A9F6`
+- #60A9F6
 
 ### Cinza
- `#444`
+- #444444
  
-
 ## Componentes
 ### Barra superior
 - Barra superior fixa
