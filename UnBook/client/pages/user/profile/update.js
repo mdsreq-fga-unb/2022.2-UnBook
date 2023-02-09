@@ -1,11 +1,12 @@
 import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { Modal } from "antd";
+import { Modal, Avatar } from "antd";
 import Link from "next/link";
 import AuthForm from '../../../components/forms/AuthForm';
 import { UserContext } from '../../../context';
 import { useRouter } from 'next/router';
+import { LoadingOutlined, CameraOutlined } from '@ant-design/icons';
  
 const ProfileUpdate = () => {
   const [userName, setUsername] = useState("")
@@ -17,8 +18,12 @@ const ProfileUpdate = () => {
   const [ok, setOk] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  //profile image
+  const [image, setImage] = useState({});
+  const [uploading, setUploading] = useState(false);
+
   const router = useRouter();
-  const [state] = useContext(UserContext);
+  const [state, setState] = useContext(UserContext);
 
   useEffect(() => {
     if(state && state.user) {
@@ -27,6 +32,7 @@ const ProfileUpdate = () => {
       setAbout(state.user.about);
       setName(state.user.name);
       setEmail(state.user.email);
+      setImage(state.user.image);
     }
   }, [state && state.user])
 
@@ -44,14 +50,21 @@ const ProfileUpdate = () => {
           email,
           password,
           secret,
+          image,
         }
       );
-      console.log("update response =>", data);
+      // console.log("update response =>", data);
 
         if(data.error){
           toast.error(data.error);
           setLoading(false);
         } else {
+          // update local storage, update user, keep token
+          let auth = JSON.parse(localStorage.getItem("auth"));
+          auth.user = data;
+          localStorage.setItem("auth", JSON.stringify(auth));
+          // update context
+          setState({ ...state, user: data });
           setOk(true);
           setLoading(false);
         }     
@@ -60,6 +73,40 @@ const ProfileUpdate = () => {
       setLoading(false);
     }
   };
+
+  const handleImage = async (e) => {
+    const file =e.target.files[0];
+    let formData = new FormData()
+    formData.append("image", file);
+    //console.log([...formData]);
+    setUploading(true);
+    try{
+      const {data} = await axios.post("/upload-image", formData);
+      //console.log("upload image =>", data);
+      setImage({
+        url: data.url,
+        public_id: data.public_id,
+      })
+      setUploading(false);
+    }catch(err){
+      console.log(err);
+      setUploading(false);
+    }
+  };
+
+  const handleDeleteUser = async (user) => {
+    try {
+        const answer = window.confirm("Você tem certeza que deseja excluir sua conta?");
+        if (!answer) return;
+            const { data } = await axios.delete(`/delete-user/${user._id}`);
+            window.localStorage.removeItem("auth");
+            setState(null);
+            router.push("/login");
+            toast.error("Sua conta foi excluída");
+    } catch (err) {
+        console.log(err);
+    }
+};
 
   return (
     <div className="container-fluid">
@@ -70,6 +117,22 @@ const ProfileUpdate = () => {
       </div>
       <div className="row py-5">
         <div className="col-md-4 offset-md-4">
+          {/* upload image */}
+          <label className="d-flex justify-content-center h5">
+            {image && image.url ? (
+                <Avatar size={40} src={image.url} className="mt-1" />
+              ) : uploading ? (
+                <LoadingOutlined className="mt-2 h5"/>
+              ) : (
+                <CameraOutlined className="mt-2 h5"/>
+              )}
+              <input 
+                onChange={handleImage} 
+                type="file" 
+                accept="images/*" 
+                hidden
+              />
+          </label>
           <AuthForm 
             profileUpdate = {true}
             userName = {userName}
@@ -105,7 +168,7 @@ const ProfileUpdate = () => {
 
         <div className='row'>
           <div className='col'>
-            <p className='text-center'>Já possui uma conta? {" "}<Link href="/login">Login</Link></p>
+            <p onClick={() => handleDeleteUser(state.user)} className='text-center'>Deseja excluir sua conta?</p>
           </div>
         </div>
     </div>

@@ -15,10 +15,11 @@ const Register = () => {
   const [ok, setOk] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  const [state] = useContext(UserContext) || [];
   const router = useRouter();
-  const [state] = useContext(UserContext);
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     try {
       // console.table({ name, email, password, secret });
@@ -79,19 +80,19 @@ const Register = () => {
         </div>
       </div>
 
-      <div className="row">
-        <div className="col">
-          <Modal
-            title="Parabéns!"
-            visible={ok}
-            onCancel={() => setOk(false)}
-            footer={null}
-          >
-            <p>Usuário cadastrado!</p>
-            <Link href="/login" className="btn btn-primary btn-sm">Login</Link>
-          </Modal>
+        <div className="row">
+          <div className="col">
+            <Modal
+              title="Parabéns!"
+              visible={ok}
+              onCancel={() => setOk(false)}
+              footer={null}
+            >
+              <p>Usuário cadastrado!</p>
+              <Link href="/login" className="btn btn-primary btn-sm">Login</Link>
+            </Modal>
+          </div>
         </div>
-      </div>
 
         <div className='row'>
           <div className='col'>

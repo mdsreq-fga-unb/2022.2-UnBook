@@ -31,6 +31,3 @@ unbook/frontend/public/js
 unbook/backend/src/main/config/env.ts
 unbook/backend/globalConfig.json
 .next
-
-.env.local
-.env

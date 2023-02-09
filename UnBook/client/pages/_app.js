@@ -4,6 +4,7 @@ import Nav from "../components/Nav";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "antd/dist/antd.css";
+import Register from './register';
 
 function MyApp({ Component, pageProps }) {
     return (
@@ -11,7 +12,7 @@ function MyApp({ Component, pageProps }) {
             <div>
                 <link rel="stylesheet" href="/css/styles.css" />
             </div>
-            <Nav />
+            {Component.name !== 'Login' && <Nav />}
             <ToastContainer position="top-center" />
             <Component {...pageProps} />
         </UserProvider>

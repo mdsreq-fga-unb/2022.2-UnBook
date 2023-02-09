@@ -7,14 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --passWithNoTests --runInBand --no-cache --watchAll --silent",
-    "coverage": "jest --passWithNoTests --runInBand --no-cache --coverage"
+    "test": "jest --passWithNoTests --runInBand --no-cache --watch --silent",
+    "coverage": "jest --passWithNoTests --runInBand --no-cache --silent --coverage"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@ant-design/icons": "5.0.1",
+    "@iconscout/react-unicons": "^1.1.6",
     "antd": "^4.16.8",
     "axios": "^1.2.5",
     "bootstrap": "^5.2.3",
@@ -24,7 +25,9 @@
     "react-dom": "^18.2.0",
     "react-quill": "^2.0.0",
     "react-render-html": "^0.6.0",
-    "react-toastify": "^9.1.1"
+    "react-spinners": "^0.13.8",
+    "react-toastify": "^9.1.1",
+    "socket.io-client": "^4.6.0"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",

@@ -2,9 +2,12 @@ import React from 'react';
 import Register from '../../pages/register';
 import axios from 'axios';
 import { faker } from '@faker-js/faker';
-import { render, fireEvent, act } from '@testing-library/react';
+import { render, fireEvent, act, screen } from '@testing-library/react';
+import { Router } from 'next/router';
+import mockRouter from 'next-router-mock';
 
 jest.mock('axios');
+jest.mock('next/router', () => require('next-router-mock'));
 
 const makeSut = () => {
   const handleSubmit = jest.fn();
@@ -105,7 +108,7 @@ describe('Página de Registro', () => {
       fireEvent.click(registerButton);
     });
 
-    expect(axios.post).toHaveBeenCalledWith(`${process.env.NEXT_PUBLIC_API}/register`, {
+    expect(axios.post).toHaveBeenCalledWith(`/register`, {
       name: name,
       email: email,
       password: password,

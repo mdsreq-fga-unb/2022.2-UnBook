@@ -96,7 +96,7 @@ export const login = async (req, res) => {
 export const currentUser = async(req, res) => {
     try {
       const user = await User.findById(req.auth._id).select("-password");
-      // res.json(user)
+      // console.log("CURRENT USER IN BACKEND => ", user)
       res.json({ ok: true });
     } catch (err) {
       console.log(err);
@@ -165,6 +165,10 @@ export const profileUpdate = async (req, res) => {
         if(req.body.secret) {
             data.secret = req.body.secret;
         }
+        if(req.body.image) {
+            data.image = req.body.image;
+        }
+
 
         let user = await User.findByIdAndUpdate(req.auth._id, data, { new: true });
         // console.log(user);
@@ -177,4 +181,131 @@ export const profileUpdate = async (req, res) => {
         }
         console.log(err);
     }
+}
+
+export const findPeople = async (req, res) => { 
+    try {
+        const user = await User.findById(req.auth._id);
+        // user.following 
+        let following = user.following;
+        following.push(user._id);
+        const people = await User.find({ _id: { $nin: following } }).select("-password -secret")
+        .limit(10);
+        res.json(people);
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+
+// middleware
+export const addFollower = async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.body._id, { 
+           $addToSet: {followers: req.auth._id},
+        });
+        next();
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+export const userFollow = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.auth._id, { 
+            $addToSet: {following: req.body._id},
+        }, 
+        { new: true }
+        ).select("-password -secret");
+        res.json(user);
+    } catch (err) {
+       console.log(err) 
+    }
+};
+
+export const userFollowing = async (req, res) => {
+    try {
+        const user = await User.findById(req.auth._id);
+        const following = await User.find({ _id: { $in: user.following } }).select("-password -secret").limit(100);
+        res.json(following);
+    } catch (err) {
+       console.log(err) 
+    }
+};
+
+// middleware
+export const removeFollower = async (req, res, next) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.body._id, { 
+           $pull: {followers: req.auth._id},
+        });
+        next();
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+export const userUnfollow = async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.auth._id, { 
+            $pull: {following: req.body._id},
+        }, 
+        { new: true }
+        ).select("-password -secret");
+        res.json(user);
+    } catch (err) {
+       console.log(err) 
+    }
+};
+
+export const searchUser = async (req, res) => {
+    const {query} = req.params;
+    if (!query) return;
+    try {
+        const user = await User.find({
+            $or: [
+                { name: { $regex: query, $options: 'i' } },
+                { username: { $regex: query, $options: 'i' } },
+            ],
+        }).select('-password -secret');
+        res.json(user);
+    } catch (err) {
+        console.log(err)
+    }
+};
+
+export const getUser = async (req, res) => {
+    try {
+      const user = await User.findOne({userName: req.params.username}).select("-password -secret");
+      res.json(user);
+    } catch (err) {
+      console.log(err)
+    }
+}
+
+export const users = async (req, res) => {
+  // console.log("delete user => ", req)
+  try {
+    const users = await User.find()
+      .select("-password -secret")
+      .sort({ createdAt: -1 })
+    res.json(users);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+
+export const deleteUser = async (req, res) => {
+  // console.log("delete post => ", req);
+  try {
+    const user = await User.findByIdAndDelete(req.params._id);
+    // remove a imagem do cloudinary
+    if (user.image && user.image.public_id) {
+      const image = await cloudinary.uploader.destroy(user.image.public_id);
+    }
+    res.json({ ok: true });
+  } catch (err) {
+    console.log(err)
+  }
 }

@@ -1,58 +1,80 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, fireEvent, act } from '@testing-library/react';
 import Nav from '../../components/Nav';
 import { UserContext } from '../../context';
 import { useRouter } from 'next/router';
 
 jest.mock('next/router', () => ({
-  useRouter: () => ({
+  useRouter: jest.fn().mockImplementation(() => ({
     push: jest.fn(),
-    pathname: '/',
-  }),
+    pathname: '/'
+  })),
 }));
 
-const makeSut = () => {
-  const user = { name: 'Maciel', email: "macielfcjunior@gmail.com" };
-  const { getByTestId } = render(
-      <Nav />
-  );
-  const homeLink = getByTestId('home-link');
-  const loginLink = getByTestId('login-link');
-  const registerLink = getByTestId('register-link');
-  return { homeLink, loginLink, registerLink };
+const user = {
+  name: 'Maciel',
 };
 
-describe.skip('Componente Nav', () => { 
-  test('renderiza o componente nav corretamente', () => {
-    const { homeLink, loginLink, registerLink } = makeSut();
-    expect(homeLink).toBeInTheDocument();
-    expect(loginLink).toBeInTheDocument();
-    expect(registerLink).toBeInTheDocument();
-  });
+const createTestContext = (state) => {
+  return {
+    state,
+    setState: jest.fn(),
+  };
+};
+
+describe('Componente Nav', () => { 
+  describe('Testando o componente Nav', () => {
+    test('deve renderizar o componente corretamente', () => {
+      const initialState = null;
+      const { getByTestId } = render(
+        <UserContext.Provider value={[initialState, jest.fn()]}>
+          <Nav />
+        </UserContext.Provider>
+      );
+      const homeLink = getByTestId('home-link');
   
-  test('navega para a página inicial ao clicar no home link', () => {
-    const { getByTestId } = render(<Nav />);
-    const homeLink = getByTestId('home-link');
-    expect(homeLink).toBeInTheDocument();
-    fireEvent.click(homeLink);
-    expect(homeLink.href).toMatch(/\/$/);
-  });
+      expect(homeLink).toBeInTheDocument();
+      expect(homeLink.textContent).toBe('UnBook');
+    });
 
-  test('navega para a página de login ao clicar no login link', () => {
-    const { getByTestId } = render(<Nav />);
-    const loginLink = getByTestId('login-link');
-    expect(loginLink).toBeInTheDocument();
-    fireEvent.click(loginLink);
-    expect(loginLink.href).toMatch(/\/login$/);
-  });
+    test("renderiza o link de home", () => {
+      const { getByTestId } = render(
+        <UserContext.Provider value={{ state: null }}>
+          <Nav />
+        </UserContext.Provider>
+      );
+  
+      const homeLink = getByTestId("home-link");
+  
+      expect(homeLink.textContent).toBe("UnBook");
+    });
+ 
 
-  test('navega para a página de registro ao clicar no register link', () => {
-    const { getByTestId } = render(<Nav />);
-    const registerLink = getByTestId('register-link');
-    expect(registerLink).toBeInTheDocument();
-    fireEvent.click(registerLink);
-    expect(registerLink.href).toMatch(/\/register$/);
-  });
-})
+    test("deve exibir o link de login quando o usuário não está autenticado", () => {
+      const initialState = null;
+    
+      const { getByTestId } = render(
+        <UserContext.Provider value={[initialState, jest.fn()]}>
+          <Nav />
+        </UserContext.Provider>
+      );
+      const loginLink = getByTestId("login-link");
+    
+      expect(loginLink).toBeInTheDocument();
+      expect(loginLink.textContent).toBe("Login");
+    });
 
+    test('deve exibir o link de logout quando o usuário está autenticado', () => {
+      const { getByTestId } = render(
+        <UserContext.Provider value={[user, jest.fn()]}>
+          <Nav />
+        </UserContext.Provider>
+      );
+      const logoutLink = getByTestId('logout-link');
+
+      expect(logoutLink).toBeInTheDocument();
+      expect(logoutLink.textContent).toBe('Sair');
+    });
+  });
+});
 

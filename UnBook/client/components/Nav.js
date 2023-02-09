@@ -3,6 +3,8 @@ import Link from "next/link";
 import { UserContext } from "../context";
 import { useRouter } from "next/router";
 
+
+
 const Nav = () => {
   const [current, setCurrent] = useState("");
   const [state, setState] = useContext(UserContext);
@@ -33,9 +35,9 @@ const Nav = () => {
 
       {state !== null ? (
         <>
-          <div class="dropdown">
+          <div className="dropdown">
             <a 
-              class="btn dropdown-toggle text_light" 
+              className="btn dropdown-toggle text_light" 
               role="button"
               id="dropdownMenuLink"
               data-bs-toggle="dropdown" 
@@ -44,7 +46,7 @@ const Nav = () => {
               {state && state.user && state.user.name}
             </a>
 
-            <ul class="dropdown-menu">
+            <ul className="dropdown-menu">
               <li>
                 <Link 
                   href="/user/dashboard" 
@@ -63,6 +65,18 @@ const Nav = () => {
                     Perfil
                 </Link>
               </li>
+              {state.user.role === "Admin" && (
+                <li>
+                <Link 
+                  href="/admin" 
+                  className={`nav-link dropdown-item ${
+                    current === "/admin" && "active"
+                  }`}>
+                    Admin
+                </Link>
+              </li>
+              )}
+
               <li>
                 <a
                   onClick={logout}
