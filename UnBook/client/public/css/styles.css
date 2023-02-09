@@ -9,10 +9,6 @@
     text-shadow: 2px 2px navy;
 }
 
-.active {
-    background-color: navy;
-}
-
 .pointer {
     cursor: pointer;
 }
@@ -393,4 +389,70 @@ body, input {
     left: 50%;
   }
 }
+/* ============================================= */
+.background-index{
+  height: 100vh;
+  margin-top: 1.5rem;
+}
+
+.footer-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.header-index {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-index h1{
+  display: flex;
+  align-items: center;
+  margin-bottom: 0px;
+}
+
+.header-index button{
+  padding: 8px 16px;
+  background: linear-gradient(90deg, #2A8BF2, #60A9F6);
+  border: none;
+}
+
+.search-block{
+  margin-top: 8px;
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.delete-profile {
+  color: red;
+}
+
+.delete-profile:hover {
+  cursor: pointer;
+}
+
+/* ============== CARDS DE POST  =============== */
+.card-header {
+  color: #FFFFFF;
+  background: linear-gradient(90deg, #2A8BF2, #60A9F6);
+  display: flex;
+  justify-content: space-between;
+}
+
+.icons-post-edit {
+  display: flex;
+  justify-content: flex-end;
+  width: 100px;
+}
+
 /* ============================================= */

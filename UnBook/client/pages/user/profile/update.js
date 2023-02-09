@@ -110,21 +110,19 @@ const ProfileUpdate = () => {
 
   return (
     <div className="container-fluid">
-      <div className="row py-5 text-light bg-default-image">
-        <div className="col text-center">
-          <h1>Perfil</h1>
-        </div>
-      </div>
-      <div className="row py-5">
-        <div className="col-md-4 offset-md-4">
+      <div className='header-index d-flex justify-content-center mt-5'>
+            <h1>Meu Perfil</h1>
+          </div>
+      <div className="row py-2">
+        <div className="profile-container">
           {/* upload image */}
-          <label className="d-flex justify-content-center h5">
+          <label className="d-flex justify-content-center h5 mb-3">
             {image && image.url ? (
-                <Avatar size={40} src={image.url} className="mt-1" />
+                <Avatar size={100} src={image.url} className="mt-1" />
               ) : uploading ? (
-                <LoadingOutlined className="mt-2 h5"/>
+                <LoadingOutlined className="mt-2 h1"/>
               ) : (
-                <CameraOutlined className="mt-2 h5"/>
+                <CameraOutlined className="h1"/>
               )}
               <input 
                 onChange={handleImage} 
@@ -168,7 +166,7 @@ const ProfileUpdate = () => {
 
         <div className='row'>
           <div className='col'>
-            <p onClick={() => handleDeleteUser(state.user)} className='text-center'>Deseja excluir sua conta?</p>
+            <p onClick={() => handleDeleteUser(state.user)} className='text-center delete-profile'>Deseja excluir sua conta?</p>
           </div>
         </div>
     </div>
