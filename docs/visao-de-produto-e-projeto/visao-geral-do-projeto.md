@@ -23,9 +23,9 @@
 | 06     |   Entrega da atualização das documentações do GitPages  | 02/12/2022  | 08/12/2022 |
 | 07     |   Entrega do Backlog do produto refatorado  | 09/12/2022  | 13/12/2022 |
 | 08     | Entrega da landing page do projeto e lista de tarefas do produto ajustada.                                        | 14/12/2022  | 22/12/2022 |
-| 09     | US01, US02, US03, US04, US25, US27, US28, US29 Criar e visualizar postagens  | 03/01/2023  | 12/01/2023 |
-| 10     | US05, US06, US07, US10, US11, US18 | 13/01/2023  | 26/01/2023 |
-| 11     | US19, US20, US21, US22, US24	Permitir interações entre os usuários | 27/01/2023  | 08/02/2023 |
+| 09     | US01, US02, US03, US04, US25, US27, US28, US29 Criar e visualizar postagens, apenas US01 e 02 realizadas | 03/01/2023  | 12/01/2023 |
+| 10     | Refatoração código: US01, US02, US03, US05, US29, US31, US32, US34 | 13/01/2023  | 26/01/2023 |
+| 11     | Pendencia tecnicas:US32 Dessa sprint:US04, US06, US07, US08, US19, US20, US21, US22, US23 e US33	Permitir interações entre os usuários | 27/01/2023  | 08/02/2023 |
 
 ## Matriz de Comunicação
 
