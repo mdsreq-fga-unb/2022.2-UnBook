@@ -2,6 +2,9 @@ import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import { UserContext } from "../context";
 import { useRouter } from "next/router";
+import { Avatar } from "antd";
+import { imageSource } from "../functions/index";
+import { UilEstate, UilUserCheck, UilThLarge, UilUserSquare, UilPower } from '@iconscout/react-unicons'
 
 
 
@@ -21,101 +24,88 @@ const Nav = () => {
   };
 
   return (
-    <nav className={"nav d-flex justify-content-end primary bg-primary"}
-      style={{backgroundColor: "blue"}}
-    >
-
-      <Link 
-        href="/" 
-        className={`nav-link logo ${current ==="/" && "active"}`} 
-        data-testid="home-link">
-          UnBook
-      </Link>
-
-
-      {state !== null ? (
-        <>
-          <div className="dropdown">
-            <a 
-              className="btn dropdown-toggle text_light" 
-              role="button"
-              id="dropdownMenuLink"
-              data-bs-toggle="dropdown" 
-              aria-expanded="false"
-            >
-              {state && state.user && state.user.name}
-            </a>
-
-            <ul className="dropdown-menu">
-              <li>
+    <>
+      {state !== null && (
+        <div className="profile-header">
+          <div className='profile-header-image'>
+            <Avatar size={100} src={imageSource(state.user)} />
+          </div>
+          <div className='profile-header-name'>
+            {state.user.name}
+          </div>
+        </div>
+      )}
+      <nav className="nav">
+        <div className="nav-links">
+      <div className='nav-link'>
+          <UilEstate className={`${current === "/" && "active"} input-icon-nav`}  size="2rem" />
+          <Link 
+            href="/" 
+            className={`${current === "/" && "active"}`} 
+            data-testid="home-link">
+              Home
+          </Link>
+          </div>
+          {state !== null ? (
+            <>
+            <div className='nav-link'>
+                <UilThLarge className={`${current === "/user/dashboard" && "active"} input-icon-nav`} size="2rem" />
                 <Link 
                   href="/user/dashboard" 
-                  className={`nav-link dropdown-item ${
-                    current === "/user/dashboard" && "active"
-                  }`}>
-                    Feed
+                  className={`${current === "/user/dashboard" && "active"}`}>
+                    Dashboard
                 </Link>
-              </li>
-              <li>
+              </div>
+              <div className='nav-link'>
+              <UilUserSquare className={`${current === "/user/profile/update" && "active"} input-icon-nav`} size="2rem" />
                 <Link 
                   href="/user/profile/update" 
-                  className={`nav-link dropdown-item ${
-                    current === "/user/profile/update" && "active"
-                  }`}>
+                  className={`${current === "/user/profile/update" && "active"}`}>
                     Perfil
                 </Link>
-              </li>
+              </div>
               {state.user.role === "Admin" && (
-                <li>
-                <Link 
-                  href="/admin" 
-                  className={`nav-link dropdown-item ${
-                    current === "/admin" && "active"
-                  }`}>
-                    Admin
-                </Link>
-              </li>
+                <div className='nav-link'>
+                  <UilUserCheck className={`${current === "/user/profile/update" && "active"} input-icon-nav`} size="2rem" />
+                  <Link 
+                    href="/admin" 
+                    className={`${current === "/admin" && "active"}`}>
+                      Admin
+                  </Link>
+                </div>
               )}
-
-              <li>
-                <a
-                  onClick={logout}
-                  className="nav-link" 
-                  data-testid="logout-link">
-                    Sair
-               </a>
-              </li>
-            </ul>
+            </>
+          ) : (
+            <>
+              <Link 
+                href="/login" 
+                className={`nav-link text-light ${current === "/login" && "active"}`}
+                data-testid="login-link">
+                  Login
+              </Link>
+    
+              <Link 
+                href="/register" 
+                className={`nav-link text-light ${current === "/register" && "active"}`}
+                data-testid="register-link">
+                  Cadastrar
+              </Link>
+            </>
+          )}
+        </div>
+        {state !== null && (
+          <div className='nav-link'>
+          <UilPower className={`${current === "/" && "active"} input-icon-nav`} size="2rem" />
+          <a
+            onClick={logout}
+            className="nav-link" 
+            data-testid="logout-link">
+              Sair
+          </a>
           </div>
-        </>
-
-      ) : (
-
-        <>
-          <Link 
-            href="/login" 
-            className={`nav-link text-light ${
-              current === "/login" && "active"
-            }`}
-            data-testid="login-link">
-              Login
-          </Link>
-
-          <Link 
-            href="/register" 
-            className={`nav-link text-light ${
-              current === "/register" && "active"
-            }`}
-            data-testid="register-link">
-              Cadastrar
-          </Link>
-        </>
-
-      )}
-
-
-    </nav>
-
+        )}
+      </nav>
+    </>
   );
 };
 

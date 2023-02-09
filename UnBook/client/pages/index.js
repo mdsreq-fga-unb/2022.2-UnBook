@@ -38,6 +38,7 @@ const head = () => (
 const Home = () => {
   {head()}
   const [state, setState] = useContext(UserContext);
+  const [showForm, setShowForm] = useState(false);
   // state
   const [content, setContent] = useState("");
   const [image, setImage] = useState({});
@@ -76,6 +77,7 @@ const Home = () => {
       console.log(err);
     }
   }, []);
+  
 
   useEffect(() => {
     if (socket) {
@@ -122,6 +124,10 @@ const Home = () => {
     }
   };  
 
+  const toggleForm = () => {
+    setShowForm(!showForm);
+  };
+
   const findPeople = async () => {
     try {
       const { data } = await axios.get("/find-people");
@@ -141,7 +147,7 @@ const Home = () => {
         toast.error(data.error);
       } else {
         setPage(1);
-        totalFeed();
+        totalFeed(page);
         toast.success("Post created");
         setContent("");
         setImage({});
@@ -180,7 +186,7 @@ const Home = () => {
       const { data } = await axios.delete(`/delete-post/${post._id}`);
       toast.error("Post deleted");
       socket.emit("delete-post", data);
-      totalFeed();
+      totalFeed(page);
     } catch (err) {
       console.log(err);
     }
@@ -201,7 +207,7 @@ const Home = () => {
       let filtered = people.filter((p) => p._id !== user._id);
       setPeople(filtered);
       // rerender the posts in totalFeed
-      totalFeed();
+      totalFeed(page);
       toast.success(`Seguindo ${user.name}`);
     } catch (err) {
       console.log(err);
@@ -213,7 +219,7 @@ const Home = () => {
     try {
       const { data } = await axios.put("/like-post", { _id });
       // console.log("liked", data);
-      totalFeed();
+      totalFeed(page);
     } catch (err) {
       console.log(err);
     }
@@ -224,7 +230,7 @@ const Home = () => {
     try {
       const { data } = await axios.put("/unlike-post", { _id });
       // console.log("unliked", data);
-      totalFeed();
+      totalFeed(page);
     } catch (err) {
       console.log(err);
     }
@@ -247,8 +253,8 @@ const Home = () => {
       // console.log("add comment", data);
       setComment("");
       setVisible(false);
-      socket.emit("new-comment", data);
-      totalFeed();
+      // socket.emit("new-comment", data);
+      totalFeed(page);
     } catch (err) {
       console.log(err);
     }
@@ -265,7 +271,7 @@ const Home = () => {
       });
       // console.log("comment removed", data);
       socket.emit("remove-comment", data);
-      totalFeed();
+      totalFeed(page);
     } catch (err) {
       console.log(err);
     }
@@ -284,26 +290,24 @@ const Home = () => {
   return (
     <UserRoute>
       <div className="container-fluid">
-        <div className="row py-5 text-light bg-default-image">
-          <div className="col text-center">
-            <h1>totalFeed</h1>
+        
+        <div className="row py-3 background-index">
+          <div className="col-md-8 index-container">
+          <div className='header-index'>
+            <h1>Publicações</h1>
+            <button onClick={toggleForm} className="btn btn-primary btn-sm mt-1" >+ Criar nova publicação </button>
           </div>
-        </div>
-        {/* <button onClick={() => {
-          socket.emit('send-message',"This is pedro!!!"
-          )}} >
-          Send Message
-        </button> */}
-        <div className="row py-3">
-          <div className="col-md-8">
+          {showForm && (
             <PostForm
-              content={content}
-              setContent={setContent}
-              postSubmit={postSubmit}
-              handleImage={handleImage}
-              uploading={uploading}
-              image={image}
-            />
+            content={content}
+            setContent={setContent}
+            postSubmit={postSubmit}
+            handleImage={handleImage}
+            uploading={uploading}
+            image={image}
+          />
+          )}
+            
             <br />
             <PostList
               posts={posts}
@@ -313,18 +317,21 @@ const Home = () => {
               handleComment={handleComment}
               removeComment={removeComment}
             />
-            <Pagination
-              defaultCurrent={1}
-              total={Math.round((totalPosts / 3) * 10)}
-              pageSize={10}
-              onChange={(page) => setPage(page)}
-              showSizeChanger={false}
-            />
+            <div className='footer-pagination'>
+              <Pagination
+                defaultCurrent={1}
+                total={Math.round((totalPosts / 3) * 10)}
+                pageSize={10}
+                onChange={(page) => setPage(page)}
+                showSizeChanger={false}
+              />
+            </div>
+            
           </div>
 
           {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}
 
-          <div className="col-md-4">
+          <div className="col-md-4 search-block">
             <Search/>
             <br/>
             {state && state.user && state.user.following && (

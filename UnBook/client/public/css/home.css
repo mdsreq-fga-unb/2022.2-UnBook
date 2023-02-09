@@ -1,0 +1,177 @@
+
+
+.home {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.home-nav {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFFFF;
+  border-right: 1px solid #E5E5E5;
+  color: #707C97;
+}
+
+.profile-header{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-align: center;
+  color: #0D1C2E;
+  margin-bottom: 75px;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-top: 1.5rem;
+}
+
+.nav {
+  font-size: 1.1rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  padding-bottom: 1.5rem;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link a:hover {
+  cursor: pointer;
+  color: #2A8BF2;
+}
+
+.profile-header-image{
+  display: flex;
+  justify-content: center;
+}
+
+.profile-header-name {
+  font-size: 1.2rem;
+  font-weight: 300;
+  max-width: 150px;
+  line-height: 1.5rem;
+}
+
+.input-icon-nav {
+  text-align: center;
+  line-height: 55px;
+  color: #acacac;
+  transition: .3s;
+  font-size: 1rem;
+  margin-left: 0.5rem;
+}
+
+.active.input-icon-nav {
+  color: #2A8BF2;
+}
+
+.active {
+  color: #2A8BF2 !important;
+}
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.home-logo {
+  margin-left: 16px;
+}
+
+.home-nav a{
+  text-decoration: none;
+  padding: 8px 8px;
+  height: max-content;
+  color: #707C97;
+}
+
+.home-nav li {
+  list-style-type: none;
+}
+
+.home-nav ul {
+  padding: 0;
+}
+
+.home-contaimer {
+  background: linear-gradient(#F3F3FB, #FDFBFD);
+  flex-grow: 1;
+  height: 100vh;
+  border: none;
+}
+
+
+@media (max-width: 1200px) {
+  .profile-header{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .nav {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+
+@media (max-width: 1125px) {
+  .home {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .home-nav {
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .home-contaimer {
+    width: 100%;
+  }
+
+  .home-nav {
+    width: 100%;
+  }
+
+  .nav {
+    flex-direction: row;
+    padding-top: 24px;
+    justify-content: flex-end;
+  }
+
+  .nav-links {
+    flex-direction: row;
+  }
+
+  .profile-header {
+    display: none;
+  }
+}
+
+@media (max-width: 741px) {
+  .input-icon-nav {
+    display: none;
+  }
+}
+
+@media (max-width: 581px) {
+  .nav-link{
+    font-size: 1rem;
+    padding: 0px 0px;
+  }
+}

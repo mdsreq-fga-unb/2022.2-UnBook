@@ -38,7 +38,9 @@ const EditPost = () => {
         toast.error(data.error);
       } else {
         toast.success("Publicação atualizada com sucesso!");
-        router.push("/user/dashboard");
+        const previousPage = sessionStorage.getItem('previousPage') || '/';
+        console.log(previousPage);
+        router.push(previousPage);
       }
     } catch (err) {
       console.log(err)

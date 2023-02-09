@@ -11,10 +11,15 @@ function MyApp({ Component, pageProps }) {
         <UserProvider>
             <div>
                 <link rel="stylesheet" href="/css/styles.css" />
+                <link rel="stylesheet" href="/css/home.css" />
             </div>
-            {Component.name !== 'Login' && <Nav />}
-            <ToastContainer position="top-center" />
-            <Component {...pageProps} />
+            <div className='home'>
+              <div className='home-nav'>{Component.name !== 'Login' && <Nav />}</div>
+              <div className='home-contaimer'>
+                <ToastContainer position="top-center" />
+                <Component {...pageProps} />
+              </div>
+            </div>
         </UserProvider>
     )
 }

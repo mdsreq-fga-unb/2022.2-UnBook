@@ -31,12 +31,14 @@ const Post = ({
     <>
       {post && post.postedBy && (
         <div key={post._id} className="card mb-5">
-          <div className="card-header">
+          <div className="card-header d-flex ">
             {/* <Avatar size={40}>{post.postedBy.name[0]}</Avatar> */}
-            <Avatar size={40} src={imageSource(post.postedBy)} />
-            <span className="pt-2 ml-3" style={{ marginLeft: "1rem" }}>
-              {post.postedBy.name}
-            </span>
+            <div>
+              <Avatar size={40} src={imageSource(post.postedBy)} />
+              <span className="pt-2 ml-3" style={{ marginLeft: "1rem" }}>
+                {post.postedBy.name}
+              </span>
+            </div>
             <span className="pt-2 ml-3" style={{ marginLeft: "1rem" }}>
               {moment(post.createdAt).fromNow()}
             </span>
@@ -45,35 +47,36 @@ const Post = ({
           <div className="card-footer">
             {post.image && <PostImage url={post.image.url} />}
 
-            <div className="d-flex pt-2">
-              {state &&
-              state.user &&
-              post.likes &&
-              post.likes.includes(state.user._id) ? (
-                <HeartFilled
-                  onClick={() => handleUnlike(post._id)}
+            <div className="d-flex pt-2 justify-content-between">
+              <div className="icons-group-1 d-flex">
+                {state &&
+                state.user &&
+                post.likes &&
+                post.likes.includes(state.user._id) ? (
+                  <HeartFilled
+                    onClick={() => handleUnlike(post._id)}
+                    className="text-danger pt-2 h5 px-2"
+                  />
+                ) : (
+                  <HeartOutlined
+                    onClick={() => handleLike(post._id)}
+                    className="text-danger pt-2 h5 px-2"
+                  />
+                )}
+
+                <div className="pt-2 pl-3" style={{ marginRight: "1rem" }}>
+                  {post.likes.length} likes
+                </div>
+                <CommentOutlined
+                  onClick={() => handleComment(post)}
                   className="text-danger pt-2 h5 px-2"
                 />
-              ) : (
-                <HeartOutlined
-                  onClick={() => handleLike(post._id)}
-                  className="text-danger pt-2 h5 px-2"
-                />
-              )}
-
-              <div className="pt-2 pl-3" style={{ marginRight: "1rem" }}>
-                {post.likes.length} likes
+                <div className="pt-2 pl-3">
+                    <p>{post.comments.length} comments</p>
+                </div>
               </div>
-              <CommentOutlined
-                onClick={() => handleComment(post)}
-                className="text-danger pt-2 h5 px-2"
-              />
-              <div className="pt-2 pl-3">
-                  <p>{post.comments.length} comments</p>
-              </div>
-
               {state && state.user && state.user._id === post.postedBy._id && (
-                <>
+                <div className='icons-group-2 icons-post-edit'>
                   <EditOutlined
                     onClick={() => router.push(`/user/post/${post._id}`)}
                     className="text-danger pt-2 h5 px-2 mx-auto"
@@ -82,9 +85,10 @@ const Post = ({
                     onClick={() => handleDelete(post)}
                     className="text-danger pt-2 h5 px-2"
                   />
-                </>
+                </div>
               )}
             </div>
+
           </div>
           {/* 2 comments */}
           {post.comments && post.comments.length > 0 && (

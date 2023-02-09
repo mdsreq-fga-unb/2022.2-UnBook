@@ -109,7 +109,7 @@ const AuthForm = ({
             )}
 
 
-            <div className="form-group p-2">
+            <div className="form-group p-2 d-flex justify-content-center">
               <button 
                 value="Entrar"
                 data-testid="register-button"
