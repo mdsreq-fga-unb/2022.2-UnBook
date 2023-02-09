@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#arquitetura-do-projeto" class="md-skip">
+        <a href="#arquitetura-mvc" class="md-skip">
           Skip to content
         </a>
       
@@ -419,7 +419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../kanban/" class="md-nav__link">
+      <a href="../kanban.md" class="md-nav__link">
         Quadro Kanban
       </a>
     </li>
@@ -530,15 +530,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#camadas" class="md-nav__link">
-    Camadas
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#regras" class="md-nav__link">
-    Regras
+  <a href="#como-foi-implementado" class="md-nav__link">
+    Como foi implementado
   </a>
   
 </li>
@@ -547,6 +540,20 @@
   
 </nav>
       
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../design/" class="md-nav__link">
+        Arquitetura de Design
+      </a>
     </li>
   
 
@@ -824,15 +831,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#camadas" class="md-nav__link">
-    Camadas
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#regras" class="md-nav__link">
-    Regras
+  <a href="#como-foi-implementado" class="md-nav__link">
+    Como foi implementado
   </a>
   
 </li>
@@ -852,18 +852,32 @@
                   
 
 
-<h1 id="arquitetura-do-projeto">Arquitetura do Projeto</h1>
-<p>O projeto adotará a Arquitetura Limpa (Clean Architecture) como padrão arquitetônico. O qual tem como objetivo favorecer a reusabilidade de código a independência de tecnologia e a testabilidade. Para tal, esse padrão dividi-se em camadas, conforme o gráfico abaixo.</p>
-<p><img alt="Slide 01 - Scrum" src="../../img/cleanArchitecture.jpg" /></p>
-<h2 id="camadas">Camadas</h2>
-<p><strong>Domain Layer:</strong> é a parte mais interna da estrutura (sem dependências de outras camadas, é totalmente isolada). Ele contém Entidades (Modelos de Negócios), Casos de Uso e Interfaces de Repositório.</p>
-<p><strong>Presentation Layer:</strong> é responsável por mostrar os dados ao usuário. </p>
-<p><strong>Data Layer:</strong> contém implementações de repositórios e uma ou várias fontes de dados. Os Repositórios são responsáveis por coordenar dados das diferentes fontes de dados.</p>
-<p><strong>Infra Layer:</strong> é responsável por implementarinterfaces de frameworks. </p>
-<p><strong>Data Layer:</strong> é responsável pela composição das rotas.</p>
-<h2 id="regras">Regras</h2>
-<p>A principal regra da Arquitetura Limpa é não ter dependências das camadas internas às camadas externas. No gráfico, as setas em amarelo, apontando de fora para dentro, evidencia a regra da dependência, só pode haver dependências de camada externas para camadas internas. Caso haja necessidade podem ser criadas mais camadas na estrutua, de forma que as regras da Clean Architecture seja preservada. Desta forma optamos por adicionar mais duas camadas ao projeto, a Infra Layer e a Main Layer.</p>
-<p><img alt="Slide 01 - Scrum" src="../../img/cleanArchitecture2.jpg" /></p>
+<h1 id="arquitetura-mvc">Arquitetura MVC</h1>
+<p>A arquitetura MVC é uma forma de organizar o código de uma aplicação de software para torná-lo mais fácil de entender e manter. Ela divide o código em três partes diferentes: Modelo, Visão e Controlador.</p>
+<p>O Modelo é responsável por lidar com os dados da aplicação e as regras de negócio. Por exemplo, se você estiver criando um aplicativo de compras, o Modelo é responsável por manter as informações sobre os produtos disponíveis para venda e realizar cálculos de preços.</p>
+<p>A Visão é o que o usuário vê na tela. É responsável por exibir informações para o usuário e permitir que ele interaja com a aplicação, como escolher um produto para comprar.</p>
+<p>O Controlador é o intermediário entre o Modelo e a Visão. Ele recebe as ações do usuário, manipula os dados com o Modelo e atualiza a Visão. Por exemplo, se o usuário clicar em um botão para comprar um produto, o Controlador é responsável por realizar a ação de compra e atualizar a tela para mostrar ao usuário o resultado da compra.</p>
+<p>Ao usar a arquitetura MVC, o desenvolvedor pode trabalhar em cada parte do código de forma independente, tornando o desenvolvimento mais eficiente e fácil de manter. Além disso, a divisão clara dessas partes permite que diferentes equipes trabalhem juntas sem se interferirem mutuamente.</p>
+<p>Segue imagem para visualização:</p>
+<p><img alt="Slide 01 - Scrum" src="../../img/mvc.png" /></p>
+<h2 id="como-foi-implementado">Como foi implementado</h2>
+<ul>
+<li>
+<p>Definimos a camada de modelo: criamos uma classe ou conjunto de classes que representavam os dados e a lógica de negócios da aplicação.</p>
+</li>
+<li>
+<p>Definimos a camada de visão: criamos uma classe ou conjunto de classes que representavam a interface da aplicação e forneciam informações ao usuário.</p>
+</li>
+<li>
+<p>Definimos a camada de controlador: criamos uma classe ou conjunto de classes que controlavam a comunicação entre o modelo e a visão e processavam as ações do usuário.</p>
+</li>
+<li>
+<p>Conectamos as camadas: estabelecemos as conexões entre as camadas de modelo, visão e controlador para que as informações pudessem ser transmitidas de maneira adequada.</p>
+</li>
+<li>
+<p>Testamos a implementação: verificamos se o MVC estava funcionando corretamente, testando a aplicação em diferentes cenários.</p>
+</li>
+</ul>
 
 
 
@@ -907,13 +921,13 @@
       
       
         
-        <a href="../../entregas/seminario/" class="md-footer__link md-footer__link--next" aria-label="Next: Seminário de Processos e Ciclos de Vida" rel="next">
+        <a href="../design/" class="md-footer__link md-footer__link--next" aria-label="Next: Arquitetura de Design" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Seminário de Processos e Ciclos de Vida
+              Arquitetura de Design
             </div>
           </div>
           <div class="md-footer__button md-icon">
