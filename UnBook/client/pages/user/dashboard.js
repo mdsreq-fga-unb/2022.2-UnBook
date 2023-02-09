@@ -262,7 +262,7 @@ const Home = () => {
       <div className="container-fluid">
         <div className="row py-5 text-light bg-default-image">
           <div className="col text-center">
-            <h1>Newsfeed</h1>
+            <h1>Feed do Usuário</h1>
           </div>
         </div>
 

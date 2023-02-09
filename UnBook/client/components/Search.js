@@ -83,7 +83,7 @@ const Search = () => {
                         className="btn btn-outline-primary col-12"
                         type="submit"
                     >
-                        Search
+                        Pesquisar
                     </button>
                 </div>
             </form>
