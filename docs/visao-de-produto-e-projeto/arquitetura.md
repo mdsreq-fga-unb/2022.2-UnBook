@@ -1,22 +1,27 @@
-# Arquitetura do Projeto
+# Arquitetura MVC
+A arquitetura MVC é uma forma de organizar o código de uma aplicação de software para torná-lo mais fácil de entender e manter. Ela divide o código em três partes diferentes: Modelo, Visão e Controlador.
 
-O projeto adotará a Arquitetura Limpa (Clean Architecture) como padrão arquitetônico. O qual tem como objetivo favorecer a reusabilidade de código a independência de tecnologia e a testabilidade. Para tal, esse padrão dividi-se em camadas, conforme o gráfico abaixo.
+O Modelo é responsável por lidar com os dados da aplicação e as regras de negócio. Por exemplo, se você estiver criando um aplicativo de compras, o Modelo é responsável por manter as informações sobre os produtos disponíveis para venda e realizar cálculos de preços.
 
-![Slide 01 - Scrum](../img/cleanArchitecture.jpg)
+A Visão é o que o usuário vê na tela. É responsável por exibir informações para o usuário e permitir que ele interaja com a aplicação, como escolher um produto para comprar.
 
-## Camadas
+O Controlador é o intermediário entre o Modelo e a Visão. Ele recebe as ações do usuário, manipula os dados com o Modelo e atualiza a Visão. Por exemplo, se o usuário clicar em um botão para comprar um produto, o Controlador é responsável por realizar a ação de compra e atualizar a tela para mostrar ao usuário o resultado da compra.
 
-**Domain Layer:** é a parte mais interna da estrutura (sem dependências de outras camadas, é totalmente isolada). Ele contém Entidades (Modelos de Negócios), Casos de Uso e Interfaces de Repositório.
+Ao usar a arquitetura MVC, o desenvolvedor pode trabalhar em cada parte do código de forma independente, tornando o desenvolvimento mais eficiente e fácil de manter. Além disso, a divisão clara dessas partes permite que diferentes equipes trabalhem juntas sem se interferirem mutuamente.
 
-**Presentation Layer:** é responsável por mostrar os dados ao usuário. 
+Segue imagem para visualização:
 
-**Data Layer:** contém implementações de repositórios e uma ou várias fontes de dados. Os Repositórios são responsáveis por coordenar dados das diferentes fontes de dados.
+![Slide 01 - Scrum](../img/mvc.png)
 
-**Infra Layer:** é responsável por implementarinterfaces de frameworks. 
+## Como foi implementado
 
-**Data Layer:** é responsável pela composição das rotas.
+ - Definimos a camada de modelo: criamos uma classe ou conjunto de classes que representavam os dados e a lógica de negócios da aplicação.
 
-## Regras
- A principal regra da Arquitetura Limpa é não ter dependências das camadas internas às camadas externas. No gráfico, as setas em amarelo, apontando de fora para dentro, evidencia a regra da dependência, só pode haver dependências de camada externas para camadas internas. Caso haja necessidade podem ser criadas mais camadas na estrutua, de forma que as regras da Clean Architecture seja preservada. Desta forma optamos por adicionar mais duas camadas ao projeto, a Infra Layer e a Main Layer.
+ - Definimos a camada de visão: criamos uma classe ou conjunto de classes que representavam a interface da aplicação e forneciam informações ao usuário.
 
-![Slide 01 - Scrum](../img/cleanArchitecture2.jpg)
+ - Definimos a camada de controlador: criamos uma classe ou conjunto de classes que controlavam a comunicação entre o modelo e a visão e processavam as ações do usuário.
+
+ - Conectamos as camadas: estabelecemos as conexões entre as camadas de modelo, visão e controlador para que as informações pudessem ser transmitidas de maneira adequada.
+
+ - Testamos a implementação: verificamos se o MVC estava funcionando corretamente, testando a aplicação em diferentes cenários.
+
